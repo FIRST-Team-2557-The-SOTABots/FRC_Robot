@@ -1,0 +1,14 @@
+Eclipse Build.xml file not found issue resolution.
+
+http://www.chiefdelphi.com/forums/showthread.php?t=132713
+
+If you get an error in your project: 
+C:\Users\{user}\{project_location}\{project_name}\ build.xml:28: Cannot find C:\Users\{user}\{project_location}\{project_name}\ ${wpilib.ant.dir}\build.xml imported from C:\Users\{user}\{project_location}\{project_name}\ build.xml
+
+Then there's a very simple solution. 
+1) Go to File -> New -> Other
+2) find Robot Java Project and select it.
+	Name it anything except whatever your main project is named.
+	After the project has been made, delete it. 
+	
+This should resolve your problem on all your projects.
