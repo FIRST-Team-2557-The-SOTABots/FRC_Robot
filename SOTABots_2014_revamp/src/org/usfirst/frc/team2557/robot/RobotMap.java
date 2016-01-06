@@ -23,6 +23,7 @@ public class RobotMap {
 	public static SpeedController frontRight;
 	public static SpeedController backLeft;
 	public static SpeedController backRight;
+	public static SpeedController intakeMotor;
 	public static SpeedController winchMotor;
 	
 	public static DoubleSolenoid intakeArm;
