@@ -36,6 +36,8 @@ public class RobotMap {
 	public static Counter rightDriveEncoder;
 	public static Counter winchEncoder;
 	
+	public static RobotDrive robotDrive;
+	
 	
 	public static void init(){
 		

@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team2557.robot;
 
+import org.usfirst.frc.team2557.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2557.robot.subsystems.Winch;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,8 +19,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Drivetrain drivetrain;
+	public static Winch winch;
 
     Command autonomousCommand;
+    Command DriveTele;
+    Command WinchDown;
 
     /**
      * This function is run when the robot is first started up and should be
