@@ -3,10 +3,15 @@ package org.usfirst.frc.team2557.robot;
 
 import org.usfirst.frc.team2557.robot.subsystems.DriveShift;
 import org.usfirst.frc.team2557.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2557.robot.subsystems.FrontLeftMotor;
+import org.usfirst.frc.team2557.robot.subsystems.FrontRightMotor;
 import org.usfirst.frc.team2557.robot.subsystems.HallEffect;
 import org.usfirst.frc.team2557.robot.subsystems.IntakeArm;
 import org.usfirst.frc.team2557.robot.subsystems.IntakeMotor;
+import org.usfirst.frc.team2557.robot.subsystems.JoystickAxes;
 import org.usfirst.frc.team2557.robot.subsystems.LeftDriveEncoder;
+import org.usfirst.frc.team2557.robot.subsystems.RearLeftMotor;
+import org.usfirst.frc.team2557.robot.subsystems.RearRightMotor;
 import org.usfirst.frc.team2557.robot.subsystems.RightDriveEncoder;
 import org.usfirst.frc.team2557.robot.subsystems.Timer;
 import org.usfirst.frc.team2557.robot.subsystems.WinchEncoder;
@@ -40,6 +45,12 @@ public class Robot extends IterativeRobot {
 	public static WinchMotor winchMotor;
 	public static WinchSolenoid winchSolenoid;
 	public static HallEffect hallEffect;
+	public static RearRightMotor rearRightMotor;
+	public static RearLeftMotor rearLeftMotor;
+	public static FrontRightMotor frontRightMotor;
+	public static FrontLeftMotor frontLeftMotor;
+	public static JoystickAxes joystickAxes;
+	
 
     Command autonomousCommand;
     Command DriveTele;

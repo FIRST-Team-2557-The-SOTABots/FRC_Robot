@@ -21,8 +21,8 @@ public class RobotMap {
 	
 	public static CANTalon frontLeft;
 	public static CANTalon frontRight;
-	public static SpeedController backLeft;
-	public static SpeedController backRight;
+	public static CANTalon backLeft;
+	public static CANTalon backRight;
 	public static SpeedController intakeMotor;
 	public static SpeedController winchMotor;
 	
@@ -46,6 +46,15 @@ public class RobotMap {
 	public static double timerValue;
 	
 	public static boolean hallValue;
+	
+	public static double jx;
+	public static double jy;
+	
+	public static double frontLeftVoltage;
+	public static double frontRightVoltage;
+	public static double rearLeftVoltage;
+	public static double rearRightVoltage;
+	public static double lowSpeed;
 	
 	
 	public static void init(){
