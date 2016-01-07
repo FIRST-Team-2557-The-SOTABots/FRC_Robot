@@ -1,22 +1,9 @@
 
 package org.usfirst.frc.team2557.robot;
 
-import org.usfirst.frc.team2557.robot.subsystems.DriveShift;
-import org.usfirst.frc.team2557.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2557.robot.subsystems.FrontLeftMotor;
-import org.usfirst.frc.team2557.robot.subsystems.FrontRightMotor;
-import org.usfirst.frc.team2557.robot.subsystems.HallEffect;
-import org.usfirst.frc.team2557.robot.subsystems.IntakeArm;
-import org.usfirst.frc.team2557.robot.subsystems.IntakeMotor;
-import org.usfirst.frc.team2557.robot.subsystems.JoystickAxes;
-import org.usfirst.frc.team2557.robot.subsystems.LeftDriveEncoder;
-import org.usfirst.frc.team2557.robot.subsystems.RearLeftMotor;
-import org.usfirst.frc.team2557.robot.subsystems.RearRightMotor;
-import org.usfirst.frc.team2557.robot.subsystems.RightDriveEncoder;
-import org.usfirst.frc.team2557.robot.subsystems.Timer;
-import org.usfirst.frc.team2557.robot.subsystems.WinchEncoder;
-import org.usfirst.frc.team2557.robot.subsystems.WinchMotor;
-import org.usfirst.frc.team2557.robot.subsystems.WinchSolenoid;
+import org.usfirst.frc.team2557.robot.subsystems.*;
+
+import org.usfirst.frc.team2557.robot.commands.SetTime;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -34,7 +21,6 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Drivetrain drivetrain;
-	public static WinchMotor winch;
 	public static DriveShift driveShift;
 	public static IntakeArm intakeArm;
 	public static IntakeMotor intakeMotor;
@@ -55,6 +41,25 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     Command DriveTele;
     Command WinchDown;
+    Command Shift;
+    Command FrontLeftVoltage;
+    Command FrontRightVoltage;
+    Command GetTime;
+    Command GetXJoystickAxis;
+    Command GetYJoystickAxis;
+    Command HallCheck;
+    Command IntakeMotorDown;
+    Command IntakeMotorUp;
+    Command LeftDriveEncoderRate;
+    Command RearLeftVoltage;
+    Command RearRightVoltage;
+    Command RightDriveEncoderRate;
+    Command SetTime;
+    Command WinchEncoderCount;
+    Command WinchSolenoidLaunch;
+    Command WinchSolenoidLock;
+    Command WinchTimer;
+    
 
     /**
      * This function is run when the robot is first started up and should be
@@ -62,6 +67,27 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		drivetrain = new Drivetrain();
+		winchMotor = new WinchMotor();
+		driveShift = new DriveShift();
+		intakeArm = new IntakeArm();
+		intakeMotor = new IntakeMotor();
+		leftDriveEncoder = new LeftDriveEncoder();
+		rightDriveEncoder = new RightDriveEncoder();
+		timer = new Timer();
+		winchEncoder = new WinchEncoder();
+		winchMotor = new WinchMotor();
+		winchSolenoid = new WinchSolenoid();
+		hallEffect = new HallEffect();
+		rearRightMotor = new RearRightMotor();
+		rearLeftMotor = new RearLeftMotor();
+		frontRightMotor = new FrontRightMotor();
+		frontLeftMotor = new FrontLeftMotor();
+		joystickAxes = new JoystickAxes();
+		
+		SetTime = new SetTime();
+		
+		
         // instantiate the command used for the autonomous period
     }
 	
@@ -101,7 +127,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	SetTime.start();
         Scheduler.getInstance().run();
+        
     }
     
     /**

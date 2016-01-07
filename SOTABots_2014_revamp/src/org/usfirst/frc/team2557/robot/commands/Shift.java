@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveShiftUp extends Command {
+public class Shift extends Command {
 
-    public DriveShiftUp() {
+    public Shift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,7 +20,7 @@ public class DriveShiftUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveShift.shiftUp();
+    	Robot.driveShift.Shift();
     }
 
     // Make this return true when this Command no longer needs to run execute()

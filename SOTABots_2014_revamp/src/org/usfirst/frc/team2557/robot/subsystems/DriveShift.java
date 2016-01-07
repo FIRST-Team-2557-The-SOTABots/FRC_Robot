@@ -17,17 +17,17 @@ public class DriveShift extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void shiftUp(){
+    public void Shift(){
     	if(Value.kReverse == RobotMap.driveShift.get()){
     		RobotMap.driveShift.set(Value.kForward);
     		}
-    		
-    	}
-    public void shiftDown(){
-    	if(Value.kForward == RobotMap.driveShift.get()){
+    	else{
     		RobotMap.driveShift.set(Value.kReverse);
     	}
+    		
+    	}
+
     }
-    }
+
 
 
