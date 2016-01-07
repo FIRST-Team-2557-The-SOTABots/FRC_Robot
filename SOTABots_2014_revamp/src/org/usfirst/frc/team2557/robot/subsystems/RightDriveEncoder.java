@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Winch extends Subsystem {
+public class RightDriveEncoder extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -16,8 +16,8 @@ public class Winch extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void winchDown(){
-    	RobotMap.winchMotor.set(1);
+    public void encoderCount(){
+    	RobotMap.rightEncoderCount = RobotMap.rightDriveEncoder.getRate();
     }
 }
 

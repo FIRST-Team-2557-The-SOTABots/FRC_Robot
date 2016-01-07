@@ -38,6 +38,10 @@ public class RobotMap {
 	
 	public static RobotDrive robotDrive;
 	
+	public static double winchEncoderCount;
+	public static double rightEncoderCount;
+	public static double leftEncoderCount;
+	
 	
 	public static void init(){
 		
