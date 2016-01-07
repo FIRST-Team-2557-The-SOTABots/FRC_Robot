@@ -17,7 +17,16 @@ public class WinchMotor extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void winchDown(){
+    	while(RobotMap.hallValue == false){
     	RobotMap.winchMotor.set(1);
+    	}
+    }
+    public void winchTimer(){
+    	if(RobotMap.timerValue > 5){
+    		while(RobotMap.hallValue == false){
+    		RobotMap.winchMotor.set(1);
+    		}
+    	}
     }
 }
 

@@ -19,8 +19,8 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 	
-	public static SpeedController frontLeft;
-	public static SpeedController frontRight;
+	public static CANTalon frontLeft;
+	public static CANTalon frontRight;
 	public static SpeedController backLeft;
 	public static SpeedController backRight;
 	public static SpeedController intakeMotor;
@@ -38,13 +38,18 @@ public class RobotMap {
 	
 	public static RobotDrive robotDrive;
 	
-	public static double winchEncoderCount;
-	public static double rightEncoderCount;
-	public static double leftEncoderCount;
+	public static int winchEncoderCount;
+	public static double rightEncoderRate;
+	public static double leftEncoderRate;
+	
+	public static Timer time;
+	public static double timerValue;
+	
+	public static boolean hallValue;
 	
 	
 	public static void init(){
-		
+		frontRight = new CANTalon(1, 0);
 		
 		
 	}

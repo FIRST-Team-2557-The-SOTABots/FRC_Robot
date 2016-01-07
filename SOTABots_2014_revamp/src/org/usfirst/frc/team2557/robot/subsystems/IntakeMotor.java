@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class IntakeSubsystem extends Subsystem {
+public class IntakeMotor extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

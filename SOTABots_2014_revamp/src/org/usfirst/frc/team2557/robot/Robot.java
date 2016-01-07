@@ -1,8 +1,17 @@
 
 package org.usfirst.frc.team2557.robot;
 
+import org.usfirst.frc.team2557.robot.subsystems.DriveShift;
 import org.usfirst.frc.team2557.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2557.robot.subsystems.HallEffect;
+import org.usfirst.frc.team2557.robot.subsystems.IntakeArm;
+import org.usfirst.frc.team2557.robot.subsystems.IntakeMotor;
+import org.usfirst.frc.team2557.robot.subsystems.LeftDriveEncoder;
+import org.usfirst.frc.team2557.robot.subsystems.RightDriveEncoder;
+import org.usfirst.frc.team2557.robot.subsystems.Timer;
+import org.usfirst.frc.team2557.robot.subsystems.WinchEncoder;
 import org.usfirst.frc.team2557.robot.subsystems.WinchMotor;
+import org.usfirst.frc.team2557.robot.subsystems.WinchSolenoid;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +30,16 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Drivetrain drivetrain;
 	public static WinchMotor winch;
+	public static DriveShift driveShift;
+	public static IntakeArm intakeArm;
+	public static IntakeMotor intakeMotor;
+	public static LeftDriveEncoder leftDriveEncoder;
+	public static RightDriveEncoder rightDriveEncoder;
+	public static Timer timer;
+	public static WinchEncoder winchEncoder;
+	public static WinchMotor winchMotor;
+	public static WinchSolenoid winchSolenoid;
+	public static HallEffect hallEffect;
 
     Command autonomousCommand;
     Command DriveTele;

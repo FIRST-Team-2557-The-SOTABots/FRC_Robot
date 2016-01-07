@@ -16,8 +16,10 @@ public class LeftDriveEncoder extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void encoderCount(){
-    	RobotMap.rightEncoderCount = RobotMap.rightDriveEncoder.getRate();
+
+    public void encoderRate(){
+    	RobotMap.leftEncoderRate = RobotMap.leftDriveEncoder.getRate();
     }
+
 }
 

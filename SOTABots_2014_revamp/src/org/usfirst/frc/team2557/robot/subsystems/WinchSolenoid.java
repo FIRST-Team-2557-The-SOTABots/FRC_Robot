@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
+import org.usfirst.frc.team2557.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,6 +16,14 @@ public class WinchSolenoid extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    public void lock(){
+    	if(RobotMap.hallValue == true && RobotMap.winchEncoderCount > 512){
+    		RobotMap.winchSolenoid.set(Value.kForward);
+    	}
+    }
+    public void launch(){
+    	RobotMap.winchSolenoid.set(Value.kReverse);
     }
 }
 

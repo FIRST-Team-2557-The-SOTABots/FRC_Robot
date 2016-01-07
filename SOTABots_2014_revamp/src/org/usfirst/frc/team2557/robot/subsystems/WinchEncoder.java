@@ -17,7 +17,7 @@ public class WinchEncoder extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void encoderCount(){
-    	 RobotMap.winchEncoderCount = RobotMap.winchEncoder.getRate();
+    	RobotMap.winchEncoderCount = RobotMap.winchEncoder.get();
     }
 }
 
