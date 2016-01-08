@@ -17,11 +17,14 @@ public class IntakeArm extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void armUp(){
-    	RobotMap.intakeArm.set(Value.kForward);
+    public void arm(){
+    	if(RobotMap.intakeArm.get() == Value.kReverse){
+    		RobotMap.intakeArm.set(Value.kForward);
+    	}
+    	else{
+    		RobotMap.intakeArm.set(Value.kReverse);
+    	}
+    	}
     }
-    public void armDown(){
-    	RobotMap.intakeArm.set(Value.kReverse);
-    }
-}
+
 

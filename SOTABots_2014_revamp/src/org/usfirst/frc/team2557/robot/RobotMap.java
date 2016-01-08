@@ -44,11 +44,16 @@ public class RobotMap {
 	
 	public static Timer time;
 	public static double timerValue;
+	public static double oldTime;
+	public static double oldThrottle;
 	
 	public static boolean hallValue;
 	
 	public static double jx;
 	public static double jy;
+	public static double x;
+	public static double y;
+	public static double c;
 	
 	public static double frontLeftVoltage;
 	public static double frontRightVoltage;
@@ -56,9 +61,11 @@ public class RobotMap {
 	public static double rearRightVoltage;
 	public static double lowSpeed;
 	
+	public static double briefSave;
+	
 	
 	public static void init(){
-		frontRight = new CANTalon(1, 0);
+		frontRight = new CANTalon(0);
 		
 		
 	}

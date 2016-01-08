@@ -7,10 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Shift extends Command {
+public class LeftAutoDrive extends Command {
 
-    public Shift() {
-    	requires(Robot.driveShift);
+    public LeftAutoDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,7 +20,7 @@ public class Shift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveShift.Shift();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -36,17 +36,21 @@ public class Robot extends IterativeRobot {
 	public static FrontRightMotor frontRightMotor;
 	public static FrontLeftMotor frontLeftMotor;
 	public static JoystickAxes joystickAxes;
+	public static ThrottleTimer throttleTimer;
+	public static GradualSpeedIncrease gradualSpeedIncrease;
 	
 
     Command autonomousCommand;
     Command DriveTele;
-    Command WinchDown;
+    
     Command Shift;
     Command FrontLeftVoltage;
     Command FrontRightVoltage;
+    Command GetOldData;
     Command GetTime;
     Command GetXJoystickAxis;
     Command GetYJoystickAxis;
+    Command GradualSpeedIncrease;
     Command HallCheck;
     Command IntakeMotorDown;
     Command IntakeMotorUp;
@@ -55,6 +59,7 @@ public class Robot extends IterativeRobot {
     Command RearRightVoltage;
     Command RightDriveEncoderRate;
     Command SetTime;
+    Command WinchDown;
     Command WinchEncoderCount;
     Command WinchSolenoidLaunch;
     Command WinchSolenoidLock;
@@ -84,8 +89,9 @@ public class Robot extends IterativeRobot {
 		frontRightMotor = new FrontRightMotor();
 		frontLeftMotor = new FrontLeftMotor();
 		joystickAxes = new JoystickAxes();
-		
+		throttleTimer = new ThrottleTimer();
 		SetTime = new SetTime();
+		gradualSpeedIncrease = new GradualSpeedIncrease();
 		
 		
         // instantiate the command used for the autonomous period
@@ -129,6 +135,11 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	SetTime.start();
         Scheduler.getInstance().run();
+        if(oi.joystick1.getRawAxis(0) > 0 && GradualSpeedIncrease.isRunning() == false && GetOldData.isRunning() == false){
+        	GradualSpeedIncrease.start();
+        	GetOldData.start();
+        	
+        }
         
     }
     

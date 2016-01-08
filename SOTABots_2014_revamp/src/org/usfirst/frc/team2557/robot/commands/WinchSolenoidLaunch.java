@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WinchSolenoidLaunch extends Command {
 
     public WinchSolenoidLaunch() {
+    	requires(Robot.winchSolenoid);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
