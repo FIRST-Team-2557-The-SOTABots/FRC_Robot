@@ -22,7 +22,7 @@ public class Drivetrain extends Subsystem {
     	RobotMap.robotDrive.arcadeDrive(Robot.oi.joystick1);
     }
     public void driveExpo(){
-    	if(Robot.oi.joystick1.getThrottle() > RobotMap.oldThrottle + 0.75 && RobotMap.time.get() > RobotMap.oldTime + 0.25){
+    	if(Robot.oi.joystick1.getThrottle() > RobotMap.oldThrottle + 0.75 || Robot.oi.joystick1.getThrottle() > RobotMap.oldThrottle - 0.75 && RobotMap.time.get() > RobotMap.oldTime + 0.25){
     		RobotMap.robotDrive.arcadeDrive(RobotMap.briefSave, Robot.oi.joystick1.getX());
     	}
     }
