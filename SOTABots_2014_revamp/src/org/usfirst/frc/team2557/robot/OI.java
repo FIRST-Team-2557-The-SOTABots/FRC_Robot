@@ -1,5 +1,12 @@
 package org.usfirst.frc.team2557.robot;
 
+import org.usfirst.frc.team2557.robot.commands.Arm;
+import org.usfirst.frc.team2557.robot.commands.IntakeMotorDown;
+import org.usfirst.frc.team2557.robot.commands.IntakeMotorUp;
+import org.usfirst.frc.team2557.robot.commands.Shift;
+import org.usfirst.frc.team2557.robot.commands.WinchDown;
+import org.usfirst.frc.team2557.robot.commands.WinchSolenoidLaunch;
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.*;
 
@@ -9,6 +16,9 @@ import edu.wpi.first.wpilibj.buttons.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+
+	
+	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -72,21 +82,21 @@ public class OI {
 	
 	public OI(){
 		
-		joystick1 = new Joystick(0);
+		 = new Joystick(0);
 		joystick2 = new Joystick(1);
 		
-		LJ1 = new JoystickButton(joystick1, 0);
-		LJ2 = new JoystickButton(joystick1, 1);
-		LJ3 = new JoystickButton(joystick1, 2);
-		LJ4 = new JoystickButton(joystick1, 3);
-		LJ5 = new JoystickButton(joystick1, 4);
-		LJ6 = new JoystickButton(joystick1, 5);
-		LJ7 = new JoystickButton(joystick1, 6);
-		LJ8 = new JoystickButton(joystick1, 7);
-		LJ9 = new JoystickButton(joystick1, 8);
-		LJ10 = new JoystickButton(joystick1,9);
-		LJ11 = new JoystickButton(joystick1, 10);
-		LJ12 = new JoystickButton(joystick1, 11);
+		LJ1 = new JoystickButton(, 0);
+		LJ2 = new JoystickButton(, 1);
+		LJ3 = new JoystickButton(, 2);
+		LJ4 = new JoystickButton(, 3);
+		LJ5 = new JoystickButton(, 4);
+		LJ6 = new JoystickButton(, 5);
+		LJ7 = new JoystickButton(, 6);
+		LJ8 = new JoystickButton(, 7);
+		LJ9 = new JoystickButton(, 8);
+		LJ10 = new JoystickButton(,9);
+		LJ11 = new JoystickButton(, 10);
+		LJ12 = new JoystickButton(, 11);
 		
 		RJ1 = new JoystickButton(joystick2, 0);
 		RJ2 = new JoystickButton(joystick2, 1);
@@ -102,12 +112,16 @@ public class OI {
 		RJ12 = new JoystickButton(joystick2, 11);
 		
 		
-		
-		
+		LJ1.whenPressed(new WinchSolenoidLaunch());
+		LJ2.whenPressed(new Shift());
+		LJ3.whenPressed(new WinchDown());
+		LJ4.whileHeld(new IntakeMotorUp());
+		LJ5.whileHeld(new IntakeMotorDown());
+		LJ6.whenPressed(new Arm());
 	}
 	
 	public Joystick joystick1(){
-		return joystick1;
+		return ;
 	}
 	public Joystick joystick2(){
 		return joystick2;

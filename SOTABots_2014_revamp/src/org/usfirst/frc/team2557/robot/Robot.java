@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2557.robot;
 
 import org.usfirst.frc.team2557.robot.subsystems.*;
-
+import org.usfirst.frc.team2557.robot.commands.LightLaunch;
 import org.usfirst.frc.team2557.robot.commands.SetTime;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -38,12 +38,11 @@ public class Robot extends IterativeRobot {
 	public static JoystickAxes joystickAxes;
 	public static ThrottleTimer throttleTimer;
 	public static GradualSpeedIncrease gradualSpeedIncrease;
+	public static LightSensor lightSensor;
 	
 
     Command autonomousCommand;
     Command DriveTele;
-    
-    Command Shift;
     Command FrontLeftVoltage;
     Command FrontRightVoltage;
     Command GetOldData;
@@ -55,10 +54,13 @@ public class Robot extends IterativeRobot {
     Command IntakeMotorDown;
     Command IntakeMotorUp;
     Command LeftDriveEncoderRate;
+    Command LightCheck;
+    Command LightLaunch;
     Command RearLeftVoltage;
     Command RearRightVoltage;
     Command RightDriveEncoderRate;
     Command SetTime;
+    Command Shift;
     Command WinchDown;
     Command WinchEncoderCount;
     Command WinchSolenoidLaunch;
@@ -105,12 +107,16 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
+    
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        LightLaunch.start();
+        LightCheck.start();
+        
     }
 
     public void teleopInit() {
@@ -134,6 +140,9 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	SetTime.start();
+    	HallCheck.start();
+    	WinchTimer.start();
+    	WinchSolenoidLock.start();
         Scheduler.getInstance().run();
         if(oi.joystick1.getRawAxis(0) > 0 && GradualSpeedIncrease.isRunning() == false && GetOldData.isRunning() == false){
         	GradualSpeedIncrease.start();

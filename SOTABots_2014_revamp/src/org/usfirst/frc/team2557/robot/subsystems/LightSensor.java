@@ -1,12 +1,16 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
+import org.usfirst.frc.team2557.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class LightSensor extends Subsystem {
-    
+    public void lightCheck(){
+    	RobotMap.lightValue = RobotMap.lightSensor.get();
+    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

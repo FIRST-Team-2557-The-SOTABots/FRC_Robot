@@ -25,5 +25,10 @@ public class WinchSolenoid extends Subsystem {
     public void launch(){
     	RobotMap.winchSolenoid.set(Value.kReverse);
     }
+    public void lightLaunch(){
+    	if(RobotMap.lightValue == true){
+    		RobotMap.winchSolenoid.set(Value.kReverse);
+    	}
+    }
 }
 

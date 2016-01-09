@@ -23,8 +23,8 @@ public class RobotMap {
 	public static CANTalon frontRight;
 	public static CANTalon backLeft;
 	public static CANTalon backRight;
-	public static SpeedController intakeMotor;
-	public static SpeedController winchMotor;
+	public static CANTalon intakeMotor;
+	public static CANTalon winchMotor;
 	
 	public static DoubleSolenoid intakeArm;
 	public static DoubleSolenoid winchSolenoid;
@@ -48,6 +48,7 @@ public class RobotMap {
 	public static double oldThrottle;
 	
 	public static boolean hallValue;
+	public static boolean lightValue;
 	
 	public static double jx;
 	public static double jy;
