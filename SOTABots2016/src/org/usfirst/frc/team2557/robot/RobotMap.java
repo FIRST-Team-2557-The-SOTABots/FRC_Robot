@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  */
 public class RobotMap {
 
-	
+	//
 	//added motors ¯\_(ツ)_/¯
 	public static CANTalon motor1 = new CANTalon(0);
 	public static CANTalon motor2 = new CANTalon(0);
