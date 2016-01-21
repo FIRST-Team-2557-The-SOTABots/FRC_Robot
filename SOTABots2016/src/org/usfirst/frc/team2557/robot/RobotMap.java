@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -13,8 +14,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class RobotMap {
 
 	
-	
-	
+	//added motors ¯\_(ツ)_/¯
+	public static CANTalon motor1 = new CANTalon(0);
+	public static CANTalon motor2 = new CANTalon(0);
 	
 	public static AnalogInput RangeFinder1 = new AnalogInput(0);
 	public static AnalogInput RangeFinder2 = new AnalogInput(1);
