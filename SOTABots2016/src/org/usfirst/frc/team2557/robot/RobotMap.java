@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -16,8 +17,9 @@ public class RobotMap {
 
 	//
 	//added motors ¯\_(ツ)_/¯
-	public static CANTalon motor1 = new CANTalon(0);
-	public static CANTalon motor2 = new CANTalon(0);
+	//Liam: fixed port errors made by sam, renamed motors to motorLeft and motorRight from motor1 and motor2, respectively. 1/21/16
+	public static CANTalon motorLeft = new CANTalon(0);
+	public static CANTalon motorRight = new CANTalon(1);
 	
 	public static AnalogInput RangeFinder1 = new AnalogInput(0);
 	public static AnalogInput RangeFinder2 = new AnalogInput(1);
@@ -33,6 +35,8 @@ public class RobotMap {
 	public static DigitalInput limitswitch = new DigitalInput(0);
 	public static DigitalInput limitswitch2 = new DigitalInput(1);
 	
+	//Liam: added robotdrive 1/21/16
+	public static RobotDrive arcadeDrive = new RobotDrive(motorLeft, motorRight);
 	
 	public static void init(){
 		
