@@ -8,8 +8,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2557.robot.commands.DriveComm;
 import org.usfirst.frc.team2557.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2557.robot.commands.Solenoid1Toggle;
+import org.usfirst.frc.team2557.robot.commands.Solenoid2Toggle;
 import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
 import org.usfirst.frc.team2557.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,21 +25,36 @@ import org.usfirst.frc.team2557.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
 	public static final DriveSub driveSub = new DriveSub();
-
+	public static Solenoid_System SolSystem;
+	
+	
+	public static OI oi;
+	
+	
     Command autonomousCommand;
     Command driveCommand;
-
+    Command Sol1T;
+    Command Sol2T;
+    
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+    	SolSystem = new Solenoid_System();
+    	
+    	
+        driveCommand = new DriveComm();
+        Sol1T = new Solenoid1Toggle();
+        Sol2T = new Solenoid2Toggle();
+    	
+    	
 		oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
-        driveCommand = new DriveComm();
+
     }
 	
 	public void disabledPeriodic() {
