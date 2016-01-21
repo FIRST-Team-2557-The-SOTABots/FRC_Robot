@@ -19,15 +19,15 @@ public class RobotMap {
 	public static CANTalon motor1 = new CANTalon(0);
 	public static CANTalon motor2 = new CANTalon(0);
 	
-	public static AnalogInput RangeFinder1 = new AnalogInput(0);
-	public static AnalogInput RangeFinder2 = new AnalogInput(1);
+	public static AnalogInput RangeFinder1 = new AnalogInput(0); //Added Two range finders
+	public static AnalogInput RangeFinder2 = new AnalogInput(1); //More may e added if needed
 	
 	//added the Encoders on 1/21/16.D
 	public static Counter LeftEnc;
 	public static Counter RightEnc;
 	
-	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1);
-	public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3);
+	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1); //Added two Double Solenoids
+	public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3); //Might Add another if needed
 	
 	//added the limit switches 1/21/16
 	public static DigitalInput limitswitch = new DigitalInput(0);
