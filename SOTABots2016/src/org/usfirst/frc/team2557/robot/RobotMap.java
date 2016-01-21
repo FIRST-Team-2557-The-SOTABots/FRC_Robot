@@ -21,8 +21,8 @@ public class RobotMap {
 	public static CANTalon motorLeft = new CANTalon(0);
 	public static CANTalon motorRight = new CANTalon(1);
 	
-	public static AnalogInput RangeFinder1 = new AnalogInput(0); //Added Two range finders
-	public static AnalogInput RangeFinder2 = new AnalogInput(1); //More may e added if needed
+	public static AnalogInput RangeFinderRight1 = new AnalogInput(0); //Added Two range finders
+	public static AnalogInput RangeFinderLeft2 = new AnalogInput(1); //More may e added if needed
 	
 	//added the Encoders on 1/21/16.D
 	public static Counter LeftEnc;

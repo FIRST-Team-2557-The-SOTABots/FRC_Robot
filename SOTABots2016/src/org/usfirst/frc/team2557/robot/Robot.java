@@ -10,6 +10,7 @@ import org.usfirst.frc.team2557.robot.commands.DriveComm;
 import org.usfirst.frc.team2557.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2557.robot.commands.Solenoid1Toggle;
 import org.usfirst.frc.team2557.robot.commands.Solenoid2Toggle;
+import org.usfirst.frc.team2557.robot.subsystems.Autonomous;
 import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
 import org.usfirst.frc.team2557.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveSub driveSub = new DriveSub();
+	public static final Autonomous autonomous = new Autonomous();
 	public static Solenoid_System SolSystem;
 	
 	
