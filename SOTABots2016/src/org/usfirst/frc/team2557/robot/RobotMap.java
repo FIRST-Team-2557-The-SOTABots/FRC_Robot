@@ -21,6 +21,7 @@ public class RobotMap {
 	public static AnalogInput RangeFinder1 = new AnalogInput(0);
 	public static AnalogInput RangeFinder2 = new AnalogInput(1);
 	
+	//added the Encoders on 1/21/16.D
 	public static Counter LeftEnc;
 	public static Counter RightEnc;
 	
