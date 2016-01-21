@@ -3,6 +3,7 @@ package org.usfirst.frc.team2557.robot;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
@@ -27,6 +28,10 @@ public class RobotMap {
 	
 	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1);
 	public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3);
+	
+	//added the limit switches 1/21/16
+	public static DigitalInput limitswitch = new DigitalInput(0);
+	public static DigitalInput limitswitch2 = new DigitalInput(1);
 	
 	
 	public static void init(){
