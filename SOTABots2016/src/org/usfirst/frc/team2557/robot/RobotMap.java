@@ -21,22 +21,30 @@ public class RobotMap {
 	public static CANTalon motorLeft = new CANTalon(0);
 	public static CANTalon motorRight = new CANTalon(1);
 	
-	public static AnalogInput RangeFinderRight1 = new AnalogInput(0); //Added Two range finders
-	public static AnalogInput RangeFinderLeft2 = new AnalogInput(1); //More may e added if needed
+	//Liam: added robotdrive 1/21/16	//Moved the robot drive and its comment to be below the motors -H 1/22/16
+	public static RobotDrive arcadeDrive = new RobotDrive(motorLeft, motorRight);
 	
-	//added the Encoders on 1/21/16.D
-	public static Counter LeftEnc;
-	public static Counter RightEnc;
-	
-	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1); //Added two Double Solenoids
+	//moved the solenoids from below the counter/encoders to above the analog inputs -H 1/22
+	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1); //Added two Double Solenoids 
 	public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3); //Might Add another if needed
+	
+	public static AnalogInput RangeFinderRight1 = new AnalogInput(0); //Added Two range finders
+	public static AnalogInput RangeFinderLeft2 = new AnalogInput(1); //More may be added if needed
 	
 	//added the limit switches 1/21/16
 	public static DigitalInput limitswitch = new DigitalInput(0);
 	public static DigitalInput limitswitch2 = new DigitalInput(1);
 	
-	//Liam: added robotdrive 1/21/16
-	public static RobotDrive arcadeDrive = new RobotDrive(motorLeft, motorRight);
+	//added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
+	public static Counter LeftEnc;
+	public static Counter RightEnc;
+	
+	public static double RFR; //A declared double in the robot map that is for the right range finder 1/22
+	public static double RFL; //A declared double in the robot map that is for the left range finder 1/22
+	
+	
+	
+	
 	
 	public static void init(){
 		
