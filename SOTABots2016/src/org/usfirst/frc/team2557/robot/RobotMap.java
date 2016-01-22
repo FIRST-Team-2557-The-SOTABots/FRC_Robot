@@ -35,6 +35,9 @@ public class RobotMap {
 	public static DigitalInput limitswitch = new DigitalInput(0);
 	public static DigitalInput limitswitch2 = new DigitalInput(1);
 	
+	//added this DI 1/22/16
+	public static DigitalInput LimitLimitSwitch = new DigitalInput(2);
+	
 	//added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
 	public static Counter LeftEnc;
 	public static Counter RightEnc;
