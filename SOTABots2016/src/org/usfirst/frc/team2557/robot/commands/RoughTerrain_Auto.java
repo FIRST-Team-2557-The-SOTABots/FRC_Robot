@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2557.robot.commands;
 
-import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,7 +12,7 @@ public class RoughTerrain_Auto extends Command {
     public RoughTerrain_Auto() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.autonomous);
+    	
     }
 
     // Called just before this Command runs the first time
