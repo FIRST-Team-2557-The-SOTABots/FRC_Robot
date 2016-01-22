@@ -38,6 +38,12 @@ public class Robot extends IterativeRobot {
     Command driveCommand;
     Command Sol1T;
     Command Sol2T;
+    Command Lowbar_Auto;
+    Command Moat_Auto;
+    Command Rampart_Auto;
+    Command RockWall_Auto;
+    Command RoughTerrain_Auto;
+    
     
     
     /**
@@ -65,7 +71,13 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+       
+    	if (autonomousCommand != null) autonomousCommand.start();
+        if (Lowbar_Auto != null) Lowbar_Auto.start();
+        if (Moat_Auto != null) Moat_Auto.start();
+        if (Rampart_Auto != null) Rampart_Auto.start();
+        if (RockWall_Auto != null) RockWall_Auto.start();
+        
     }
 
     /**
