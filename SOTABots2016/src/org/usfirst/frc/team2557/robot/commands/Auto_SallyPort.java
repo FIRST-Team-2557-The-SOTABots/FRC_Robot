@@ -24,14 +24,14 @@ public class Auto_SallyPort extends Command {
     	//This code is pretty much the same as the Draw Bridge but is for the sally port instead
     	//and like always this will only work if the rangeFinders are in the front to register the doors of the drawbridge and the sally port
     	//Added 1/22/16.
-    	if(RobotMap.RangeFinderFRight.getVoltage()>4 && RobotMap.RangeFinderFLeft.getVoltage()>4){
+    	if(RobotMap.RangeFinderF.getVoltage()>4){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderFRight.getVoltage()<=4 && RobotMap.RangeFinderFLeft.getVoltage()<=4;
+        return RobotMap.RangeFinderF.getVoltage()<=4;
     }
 
     // Called once after isFinished returns true

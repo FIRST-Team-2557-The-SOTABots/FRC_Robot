@@ -24,7 +24,7 @@ public class Auto_Lowbar extends Command {
     	
     	//This will only work if the range finders are in the back of the robot. Added 1/21/16.
     	//This will now work. Changed code on 1/22/16.
-    	if(RobotMap.RangeFinderBRight.getVoltage()>5 && RobotMap.RangeFinderBLeft.getVoltage()>3){
+    	if(RobotMap.RangeFinderB.getVoltage()>5){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     	
@@ -33,7 +33,7 @@ public class Auto_Lowbar extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderBRight.getVoltage()<=5 && RobotMap.RangeFinderBLeft.getVoltage()<=5;
+        return RobotMap.RangeFinderB.getVoltage()<=5;
     }
 
     // Called once after isFinished returns true
