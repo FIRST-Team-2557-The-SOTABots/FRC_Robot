@@ -23,14 +23,14 @@ public class Auto_RoughTerrain extends Command {
     protected void execute() {
     	
     	//This will only work if the Range Finders are in the front of the Robot. Added on 1/21/16.
-    	if(RobotMap.RangeFinderRight1.getVoltage()>10 && RobotMap.RangeFinderLeft2.getVoltage()>10){
+    	if(RobotMap.RangeFinderFRight.getVoltage()>10 && RobotMap.RangeFinderFLeft.getVoltage()>10){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderRight1.getVoltage()<=10 && RobotMap.RangeFinderLeft2.getVoltage()<=10;
+        return RobotMap.RangeFinderFRight.getVoltage()<=10 && RobotMap.RangeFinderFLeft.getVoltage()<=10;
     }
 
     // Called once after isFinished returns true
