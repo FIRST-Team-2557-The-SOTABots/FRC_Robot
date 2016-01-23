@@ -46,9 +46,10 @@ public class RobotMap {
 	public static Counter LeftEnc;
 	public static Counter RightEnc;
 	
-	public static double RFR; //A declared double in the robot map that is for the right range finder 1/22
+	public static double RFF; //A declared double in the robot map that is for the front range finder 1/22
 	public static double RFL; //A declared double in the robot map that is for the left range finder 1/22
-	
+	public static double RFR; //A declared double in the robot map that is for the tight range finder
+	public static double RFB; //A declared double in the robot map that is for the back range finder
 	
 	
 	
