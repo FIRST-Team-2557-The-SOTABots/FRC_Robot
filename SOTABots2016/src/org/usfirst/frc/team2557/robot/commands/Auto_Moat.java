@@ -1,15 +1,18 @@
 package org.usfirst.frc.team2557.robot.commands;
 
+import org.usfirst.frc.team2557.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ChivelDeFrise_Auto extends Command {
+public class Auto_Moat extends Command {
 
-    public ChivelDeFrise_Auto() {
+    public Auto_Moat() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -18,15 +21,21 @@ public class ChivelDeFrise_Auto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	//This will only work if the rangeFinders are in the Front. Added 1/21/16.
+    	if(RobotMap.RangeFinderRight1.getVoltage()>10 && RobotMap.RangeFinderLeft2.getVoltage()>10){
+    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return RobotMap.RangeFinderRight1.getVoltage()<=10 && RobotMap.RangeFinderLeft2.getVoltage()<=10;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	RobotMap.arcadeDrive.arcadeDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

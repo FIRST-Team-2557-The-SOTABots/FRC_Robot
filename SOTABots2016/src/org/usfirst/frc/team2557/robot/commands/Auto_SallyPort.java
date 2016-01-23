@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DrawBirdge_Auto extends Command {
+public class Auto_SallyPort extends Command {
 
-    public DrawBirdge_Auto() {
+    public Auto_SallyPort() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
