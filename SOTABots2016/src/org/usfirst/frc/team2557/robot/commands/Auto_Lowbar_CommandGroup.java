@@ -10,7 +10,7 @@ public class Auto_Lowbar_CommandGroup extends CommandGroup {
     public  Auto_Lowbar_CommandGroup() {
     	
     	addSequential(new Auto_Lowbar());
-    	
+    	addSequential(new Auto_Lowbar_Rotation());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
