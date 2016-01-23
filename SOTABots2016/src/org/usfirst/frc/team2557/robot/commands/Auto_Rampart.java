@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2557.robot.commands;
 
+import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,9 +24,10 @@ public class Auto_Rampart extends Command {
     protected void execute() {
     	
     	//This will only work if the RangeFInders are in the front of the drive train. Added 1/21/16.
-    	if(RobotMap.RangeFinderF.getVoltage()>10){
-    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-    	}
+//    	if(RobotMap.RangeFinderF.getVoltage()>10){
+//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+//    	}
+    	Robot.autonomous.rampart(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     }
 
     // Make this return true when this Command no longer needs to run execute()

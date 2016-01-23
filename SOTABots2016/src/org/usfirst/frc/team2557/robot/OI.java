@@ -29,15 +29,15 @@ public class OI {
 	
     public OI(){
     	
-    	s1I = new JoystickButton(stick1, 1);
-    	s1II = new JoystickButton(stick1, 2);
-    	s1III = new JoystickButton(stick1, 3);
-    	s1IV = new JoystickButton(stick1, 4);
-    	s1V = new JoystickButton(stick1, 5);
-    	s1VI = new JoystickButton(stick1, 6);
-    	s1VII = new JoystickButton(stick1, 7);
-    	s1VIII = new JoystickButton(stick1, 8);
-    	s1IX = new JoystickButton(stick1, 9);
+    	s1I = new JoystickButton(stick1, 0);
+    	s1II = new JoystickButton(stick1, 1);
+    	s1III = new JoystickButton(stick1, 2);
+    	s1IV = new JoystickButton(stick1, 3);
+    	s1V = new JoystickButton(stick1, 4);
+    	s1VI = new JoystickButton(stick1, 5);
+    	s1VII = new JoystickButton(stick1, 6);
+    	s1VIII = new JoystickButton(stick1, 7);
+    	s1IX = new JoystickButton(stick1, 8);
     	
     	
     	

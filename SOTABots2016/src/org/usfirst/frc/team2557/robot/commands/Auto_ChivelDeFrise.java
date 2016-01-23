@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2557.robot.commands;
 
+import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,9 +23,10 @@ public class Auto_ChivelDeFrise extends Command {
     protected void execute() {
     	
     	//Modified on 1/22/16.
-    	if(RobotMap.RangeFinderF.getVoltage()>4 ){
-    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-    	}
+//    	if(RobotMap.RangeFinderF.getVoltage()>4 ){
+//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+//    	}
+    	Robot.autonomous.chivelDeFrise(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     }
 
     // Make this return true when this Command no longer needs to run execute()
