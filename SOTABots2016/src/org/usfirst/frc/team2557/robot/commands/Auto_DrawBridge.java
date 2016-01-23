@@ -24,7 +24,7 @@ public class Auto_DrawBridge extends Command {
     	//This allows the Robot to move to the Draw Bridge to get into range for the manipulator to open the drawbridge.
     	//Since their is no manipulator yet this will allow us to get to the Draw Bridge.
     	//Added 1/22/16.
-    	if(RobotMap.RangeFinderRight1.getVoltage()>4 && RobotMap.RangeFinderLeft2.getVoltage()>4){
+    	if(RobotMap.RangeFinderFRight.getVoltage()>4 && RobotMap.RangeFinderFLeft.getVoltage()>4){
     		
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
@@ -32,7 +32,7 @@ public class Auto_DrawBridge extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderRight1.getVoltage()<=4 && RobotMap.RangeFinderLeft2.getVoltage()<=4;
+        return RobotMap.RangeFinderFRight.getVoltage()<=4 && RobotMap.RangeFinderFLeft.getVoltage()<=4;
     }
 
     // Called once after isFinished returns true
