@@ -28,10 +28,10 @@ public class RobotMap {
 	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1); //Added two Double Solenoids 
 	public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3); //Might Add another if needed
 	
-	public static AnalogInput RangeFinderFRight = new AnalogInput(0); //Added Two range finders
-	public static AnalogInput RangeFinderFLeft = new AnalogInput(1); //More may be added if needed
-	public static AnalogInput RangeFinderBRight = new AnalogInput(2); //Added two more range finders also renamed the existing ones
-	public static AnalogInput RangeFinderBLeft = new AnalogInput(3); //and change where they were refernce to mathc
+	public static AnalogInput RangeFinderF = new AnalogInput(0); //Added Two range finders
+	public static AnalogInput RangeFinderL = new AnalogInput(1); //More may be added if needed
+	public static AnalogInput RangeFinderR = new AnalogInput(2); //Added two more range finders also renamed the existing ones
+	public static AnalogInput RangeFinderB = new AnalogInput(3); //and change where they were refernce to mathc
 	
 	
 	
