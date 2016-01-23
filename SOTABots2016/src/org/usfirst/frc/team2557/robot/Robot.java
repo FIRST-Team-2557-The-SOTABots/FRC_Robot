@@ -6,13 +6,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team2557.robot.commands.DriveComm;
-import org.usfirst.frc.team2557.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2557.robot.commands.DriveCommand;
 import org.usfirst.frc.team2557.robot.commands.Solenoid1Toggle;
 import org.usfirst.frc.team2557.robot.commands.Solenoid2Toggle;
 import org.usfirst.frc.team2557.robot.subsystems.Autonomous;
 import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
-import org.usfirst.frc.team2557.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
 
 
@@ -25,7 +23,6 @@ import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveSub driveSub = new DriveSub();
 	public static final Autonomous autonomous = new Autonomous();
 	public static Solenoid_System SolSystem;
@@ -54,14 +51,13 @@ public class Robot extends IterativeRobot {
     	SolSystem = new Solenoid_System();
     	
     	
-        driveCommand = new DriveComm();
+        driveCommand = new DriveCommand();
         Sol1T = new Solenoid1Toggle();
         Sol2T = new Solenoid2Toggle();
     	
     	
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
 
     }
 	
