@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2557.robot.commands;
 
+import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,12 +21,13 @@ public class Auto_Lowbar_Rotation extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(RobotMap.RangeFinderF.getVoltage()>3){
-    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-    	}
-    	else if(RobotMap.RangeFinderF.getVoltage()<=3){
-    		RobotMap.arcadeDrive.arcadeDrive(0, 1);
-    	}
+//    	if(RobotMap.RangeFinderF.getVoltage()>3){
+//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+//    	}
+//    	else if(RobotMap.RangeFinderF.getVoltage()<=3){
+//    		RobotMap.arcadeDrive.arcadeDrive(0, 1);
+//    	}
+    	Robot.autonomous.lowBarRotation(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     		
     }
 

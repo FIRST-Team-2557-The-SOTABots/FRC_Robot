@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2557.robot.commands;
 
+import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,10 +25,10 @@ public class Auto_Lowbar extends Command {
     	
     	//This will only work if the range finders are in the back of the robot. Added 1/21/16.
     	//This will now work. Changed code on 1/22/16.
-    	if(RobotMap.RangeFinderB.getVoltage()>5){
-    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-    	}
-    	
+//    	if(RobotMap.RangeFinderB.getVoltage()>5){
+//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+//    	}
+    	Robot.autonomous.lowBar(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     
     }
 
