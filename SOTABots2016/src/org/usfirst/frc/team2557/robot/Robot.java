@@ -71,13 +71,15 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-       
+        //talked to Antonio about how to make a switch-able autonomous
+    	//so that the drive team can set it up on the field
+    	//Made adjustments to this code on 1/22/16
     	if (autonomousCommand != null) autonomousCommand.start();
         if (Lowbar_Auto != null) Lowbar_Auto.start();
         if (Moat_Auto != null) Moat_Auto.start();
         if (Rampart_Auto != null) Rampart_Auto.start();
         if (RockWall_Auto != null) RockWall_Auto.start();
-        
+        if (RoughTerrain_Auto != null) RoughTerrain_Auto.start();
     }
 
     /**
