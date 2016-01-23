@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RockWall_Auto extends Command {
-//Lol
-    public RockWall_Auto() {
+public class Auto_Rampart extends Command {
+
+    public Auto_Rampart() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
@@ -22,22 +22,22 @@ public class RockWall_Auto extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	//Will only work if the RangeFineders are in the Front. and above the drive train. Added 1/22/16.
+    	//This will only work if the RangeFInders are in the front of the drive train. Added 1/21/16.
     	if(RobotMap.RangeFinderRight1.getVoltage()>10 && RobotMap.RangeFinderLeft2.getVoltage()>10){
-    		
-    		RobotMap.arcadeDrive.arcadeDrive(.5,0);
+    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return RobotMap.RangeFinderRight1.getVoltage()<=10 && RobotMap.RangeFinderLeft2.getVoltage()<=10;
+    		
+    	
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
-    	RobotMap.arcadeDrive.arcadeDrive(0, 0);
+    	RobotMap.arcadeDrive.arcadeDrive(1, 0);
     }
 
     // Called when another command which requires one or more of the same
