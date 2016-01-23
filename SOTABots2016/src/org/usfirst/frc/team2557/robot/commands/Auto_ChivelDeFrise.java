@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SallyPort_Auto extends Command {
+public class Auto_ChivelDeFrise extends Command {
 
-    public SallyPort_Auto() {
+    public Auto_ChivelDeFrise() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RockWall_Auto extends Command {
+public class Auto_RockWall extends Command {
 //Lol
-    public RockWall_Auto() {
+    public Auto_RockWall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
