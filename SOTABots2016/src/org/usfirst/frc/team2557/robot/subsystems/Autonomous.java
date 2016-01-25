@@ -93,6 +93,18 @@ public class Autonomous extends Subsystem {
     	}
     }
     
+    public void portculisRotation(){
+    	if (RobotMap.RangeFinderF.getVoltage()>4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16){
+    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+    	}
+    	else if (RobotMap.RangeFinderF.getVoltage()>4 && RobotMap.RangeFinderL.getVoltage()>12 && RobotMap.RangeFinderR.getVoltage()<16){
+    		RobotMap.arcadeDrive.arcadeDrive(1, 1);
+    	}
+    	else if (RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()>12 && RobotMap.RangeFinderR.getVoltage()<16){
+    		RobotMap.arcadeDrive.arcadeDrive(.5, 1);
+    	}
+    }
+    
     public void rampart(){
     	if(RobotMap.RangeFinderF.getVoltage()>10){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
