@@ -5,13 +5,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auto_Lowbar_CommandGroup extends CommandGroup {
+public class Auto_ChivelDeFrise_CommandGroup extends CommandGroup {
     
-    public  Auto_Lowbar_CommandGroup() {
-    	
-    	//this will stay true due to the fact that the low bar is always in a specified spot on the field
-    	addSequential(new Auto_Lowbar());
-    	addSequential(new Auto_Lowbar_Rotation());
+    public  Auto_ChivelDeFrise_CommandGroup() {
+    	addSequential(new Auto_ChivelDeFrise());
+    	addSequential(new Auto_ChivelDeFrise_Rotation());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
