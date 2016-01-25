@@ -41,6 +41,7 @@ public class Autonomous extends Subsystem {
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     }
+    
     public void drawBridgeRotation(){
     	if (RobotMap.RangeFinderF.getVoltage()>4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
@@ -67,9 +68,22 @@ public class Autonomous extends Subsystem {
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     }
+    
     public void moat(){
     	if(RobotMap.RangeFinderF.getVoltage()>10){ 
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+    	}
+    }
+    
+    public void moatRotation(){
+    	if (RobotMap.RangeFinderF.getVoltage()>4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16){
+    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+    	}
+    	else if (RobotMap.RangeFinderF.getVoltage()>4 && RobotMap.RangeFinderL.getVoltage()>12 && RobotMap.RangeFinderR.getVoltage()<16){
+    		RobotMap.arcadeDrive.arcadeDrive(1, 1);
+    	}
+    	else if (RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()>12 && RobotMap.RangeFinderR.getVoltage()<16){
+    		RobotMap.arcadeDrive.arcadeDrive(.5, 1);
     	}
     }
     
