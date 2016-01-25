@@ -87,13 +87,13 @@ public class Autonomous extends Subsystem {
     	}
     }
     
-    public void portculis(){
+    public void portcullis(){
     	if(RobotMap.RangeFinderF.getVoltage()>4){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}
     }
     
-    public void portculisRotation(){
+    public void portcullisRotation(){
     	if (RobotMap.RangeFinderF.getVoltage()>4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16){
     		RobotMap.arcadeDrive.arcadeDrive(1, 0);
     	}

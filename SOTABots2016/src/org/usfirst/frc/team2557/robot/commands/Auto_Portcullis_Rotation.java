@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_Portculis_Rotation extends Command {
+public class Auto_Portcullis_Rotation extends Command {
 
-    public Auto_Portculis_Rotation() {
+    public Auto_Portcullis_Rotation() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,7 +21,7 @@ public class Auto_Portculis_Rotation extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.autonomous.portculisRotation();
+    	Robot.autonomous.portcullisRotation();
     }
 
     // Make this return true when this Command no longer needs to run execute()
