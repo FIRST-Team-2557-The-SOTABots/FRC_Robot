@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_Portcullis extends Command {
+public class Auto_Rampart_Rotation extends Command {
 
-    public Auto_Portcullis() {
+    public Auto_Rampart_Rotation() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,13 +21,7 @@ public class Auto_Portcullis extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	//added code to this porticulis to make it so the robot will reach the defense
-    	//Added on 1/22/16.
-//    	if(RobotMap.RangeFinderF.getVoltage()>4){
-//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-//    	}
-    	Robot.autonomous.portcullis(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
+    	Robot.autonomous.rampartRotation();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +33,6 @@ public class Auto_Portcullis extends Command {
     protected void end() {
     	RobotMap.arcadeDrive.arcadeDrive(0, 0);
     }
-
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
