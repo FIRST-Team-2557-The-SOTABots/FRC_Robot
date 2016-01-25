@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auto_Portculis_CommandGroup extends CommandGroup {
+public class Auto_Portcullis_CommandGroup extends CommandGroup {
     
-    public  Auto_Portculis_CommandGroup() {
-    	addSequential(new Auto_Portculis());
-    	addSequential(new Auto_Portculis_Rotation());
+    public  Auto_Portcullis_CommandGroup() {
+    	addSequential(new Auto_Portcullis());
+    	addSequential(new Auto_Portcullis_Rotation());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

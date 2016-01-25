@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_Portculis extends Command {
+public class Auto_Portcullis extends Command {
 
-    public Auto_Portculis() {
+    public Auto_Portcullis() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -27,7 +27,7 @@ public class Auto_Portculis extends Command {
 //    	if(RobotMap.RangeFinderF.getVoltage()>4){
 //    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
 //    	}
-    	Robot.autonomous.portculis(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
+    	Robot.autonomous.portcullis(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     }
 
     // Make this return true when this Command no longer needs to run execute()
