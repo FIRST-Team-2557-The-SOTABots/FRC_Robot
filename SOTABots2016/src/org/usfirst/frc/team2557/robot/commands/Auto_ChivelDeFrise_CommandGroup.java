@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Auto_ChivelDeFrise_CommandGroup extends CommandGroup {
     
     public  Auto_ChivelDeFrise_CommandGroup() {
+    	
+    	//Added this to make sure that when the subsystem receives an input form the drive team that the robot will know what to do.
+    	//In this Command Group we can see that the chivel de frise will be activated then once done do another command in the order of which they are presented.
+    	//You see this by seeing the add Sequential next to each of the commands that are going to run during this command group.
     	addSequential(new Auto_ChivelDeFrise());
     	addSequential(new Auto_ChivelDeFrise_Rotation());
         // Add Commands here:

@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Auto_RoughtTerrain_CommandGroup extends CommandGroup {
     
     public  Auto_RoughtTerrain_CommandGroup() {
+    	
+    	//RoughTerrain which is a 
     	addSequential(new Auto_RoughTerrain());
     	addSequential(new Auto_RoughTerrain_Rotation());
         // Add Commands here:
@@ -28,3 +30,6 @@ public class Auto_RoughtTerrain_CommandGroup extends CommandGroup {
         // arm.
     }
 }
+
+//this is only a test
+//Plz make sure to comment all the time when doing a video

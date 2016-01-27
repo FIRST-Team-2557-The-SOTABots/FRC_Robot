@@ -9,6 +9,10 @@ public class Auto_DrawBridge_CommandGroup extends CommandGroup {
     
     public  Auto_DrawBridge_CommandGroup() {
     	
+    	//This is to allow the below commands to run during autonomous.
+    	//Due to this the commands should run. Although the commands due not have much code due to the fact that the
+    	//fact that the code is in the methods.
+    	
     	addSequential(new Auto_DrawBridge());
     	addSequential(new Auto_DrawBridge_Rotation());
         // Add Commands here:
@@ -19,7 +23,7 @@ public class Auto_DrawBridge_CommandGroup extends CommandGroup {
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
+        //      addSequential(new Command2());xs
         // Command1 and Command2 will run in parallel.
 
         // A command group will require all of the subsystems that each member

@@ -23,16 +23,20 @@ public class Auto_ChivelDeFrise_Rotation extends Command {
     protected void execute() {
     	
     	//Created this autonomous on 1/25/16.
+    	//This is part of the subsystem that is called autonomous in which the robot will do what ever it is told to do given a certain parameters.
+    	//This is in the method.
     	Robot.autonomous.chivelDeFriserotation();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16;
+       //Once this statement is true the robot will stop the action and make it so that the robot will be ready for the next operation
+    	return RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	//This is telling the robot that once the above statement is true that the robot should stop in its tracks.
     	RobotMap.arcadeDrive.arcadeDrive(0, 0);
     }
 
