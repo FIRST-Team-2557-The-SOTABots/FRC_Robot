@@ -32,6 +32,7 @@ public class RobotMap {
 	public static AnalogInput RangeFinderL = new AnalogInput(1); //More may be added if needed
 	public static AnalogInput RangeFinderR = new AnalogInput(2); //Added two more range finders also renamed the existing ones
 	public static AnalogInput RangeFinderB = new AnalogInput(3); //and change where they were refernce to mathc
+	public static AnalogInput LidarSensor  = new AnalogInput(4); //This is for the lidar sensor
 	
 	
 	
@@ -48,8 +49,9 @@ public class RobotMap {
 	
 	public static double RFF; //A declared double in the robot map that is for the front range finder 1/22
 	public static double RFL; //A declared double in the robot map that is for the left range finder 1/22
-	public static double RFR; //A declared double in the robot map that is for the tight range finder
+	public static double RFR; //A declared double in the robot map that is for the right range finder
 	public static double RFB; //A declared double in the robot map that is for the back range finder
+	public static double LS;  //
 	
 	
 	
