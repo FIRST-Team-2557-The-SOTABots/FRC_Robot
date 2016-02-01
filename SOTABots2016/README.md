@@ -57,9 +57,9 @@ This assumes that you already have IntelliJ IDEA set up for Java 8 development.
 4. Find the drop-down on the upper-right side of IntelliJ IDEA and click "Edit Configurations..."
 5. Click the "+" sign, and select "Gradle". Name the task "Deploy to RoboRIO"
 6. Click the ellipses next to "Gradle project" and select "SOTABots2016"
-7. In tasks, write: "deploy restart". Make sure to click "Apply" before closing out the configurations window.
+7. In tasks, write: "deploy". Make sure to click "Apply" before closing out the configurations window.
 
-Congratulations, IntelliJ is now set up! You can click the green arrow in the upper-right side of IntelliJ IDEA to run the code on the RoboRIO.
+Congratulations, IntelliJ is now set up! You can click the green arrow in the upper-right side of IntelliJ IDEA to deploy code on the RoboRIO.
 
 ### Eclipse
 This assumes that you already have Eclipse set up for Java 8 development.
