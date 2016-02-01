@@ -1,5 +1,5 @@
 # SOTABots2016
-This is the main java project for the Robot code of 2016. It uses [GradleRIO](https://github.com/Open-RIO/GradleRIO) for efficient building tasks.
+This is the main java project for the Robot code of 2016. It uses [GradleRIO](https://github.com/Open-RIO/GradleRIO) for efficient build tasks.
 
 ## Running with the Command Line
 The easiest way to get the code up and running is to use the command line. Gradle allows the WPI code to be deployed to the robot with ease and without Eclipse.
@@ -57,12 +57,12 @@ This assumes that you already have IntelliJ IDEA set up for Java 8 development.
 4. Find the drop-down on the upper-right side of IntelliJ IDEA and click "Edit Configurations..."
 5. Click the "+" sign, and select "Gradle". Name the task "Deploy to RoboRIO"
 6. Click the ellipses next to "Gradle project" and select "SOTABots2016"
-7. In tasks, write: "deploy restart". Make sure to click "Apply" before closing out the configurations window.
+7. In tasks, write: "deploy". Make sure to click "Apply" before closing out the configurations window.
 
-Congratulations, IntelliJ is now set up! You can click the green arrow in the upper-right side of IntelliJ IDEA to run the code on the RoboRIO.
+Congratulations, IntelliJ is now set up! You can click the green arrow in the upper-right side of IntelliJ IDEA to deploy code on the RoboRIO.
 
 ### Eclipse
-This assumes that you have set up Eclipse for Java 8 development.
+This assumes that you already have Eclipse set up for Java 8 development.
 
 1. Right-click in the "Project Explorer" pane and select "Import..."
 2. Under "Gradle", select "Gradle Project" and click next.
@@ -70,5 +70,6 @@ This assumes that you have set up Eclipse for Java 8 development.
 4. Under "Java home directory" browse for your local JDK 8 home, if necessary. Click finish.
 
 To deploy code to the robot...
+
 1. If a pane named "Gradle Tasks" does not exist, you can open it via "Window>>Show View>>Other>>Gradle>>Gradle Tasks". Gradle Tasks shows all the tasks that can be executed.
 2. Double-click "deploy" to deploy code to the Robot.
