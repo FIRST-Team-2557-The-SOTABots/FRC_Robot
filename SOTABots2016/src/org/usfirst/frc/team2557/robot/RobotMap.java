@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
@@ -18,11 +19,13 @@ public class RobotMap {
 	//
 	//added motors ¯\_(ツ)_/¯
 	//Liam: fixed port errors made by sam, renamed motors to motorLeft and motorRight from motor1 and motor2, respectively. 1/21/16
-	public static CANTalon motorLeft = new CANTalon(0);
-	public static CANTalon motorRight = new CANTalon(1);
+	public static CANTalon frontLeft = new CANTalon(0);
+	public static CANTalon frontRight = new CANTalon(1);
+	public static CANTalon backLeft = new CANTalon(2); //Added the other 2 motors to the drive train Antonio 2/2
+	public static CANTalon backRight = new CANTalon(3); //Added the other 2 motors to the drive train Antonio 2/2
 	
 	//Liam: added robotdrive 1/21/16	//Moved the robot drive and its comment to be below the motors -H 1/22/16
-	public static RobotDrive arcadeDrive = new RobotDrive(motorLeft, motorRight);
+	public static RobotDrive arcadeDrive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
 	
 	//moved the solenoids from below the counter/encoders to above the analog inputs -H 1/22
 	public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1); //Added two Double Solenoids 
@@ -45,8 +48,8 @@ public class RobotMap {
 	
 	public static DigitalInput LidarSensor  = new DigitalInput(3); //This is for the lidar sensor
 	//added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
-	public static Counter LeftEnc;
-	public static Counter RightEnc;
+	public static Encoder LeftEnc = new Encoder(0,1);
+	public static Encoder RightEnc = new Encoder(2,3);
 	
 	public static double RFF; //A declared double in the robot map that is for the front range finder 1/22
 	public static double RFL; //A declared double in the robot map that is for the left range finder 1/22

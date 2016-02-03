@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveSub extends Subsystem {
 	  //Liam: Added motors and drive 1/21/16
-    CANTalon left    = RobotMap.motorLeft;
-    CANTalon right   = RobotMap.motorRight;
+    CANTalon frontLeft    = RobotMap.frontLeft;
+    CANTalon frontRight   = RobotMap.frontRight;
+    CANTalon backLeft	  = RobotMap.backLeft;
+    CANTalon backRight	  = RobotMap.backRight;
     RobotDrive drive = RobotMap.arcadeDrive;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
