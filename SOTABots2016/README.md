@@ -39,7 +39,7 @@ gradlew reboot   # WINDOWS!
 ```
 
 ### Clean the robot code on the RoboRIO
-This cleans the RoboRio, removing the java files that are already on the RoboRIO. This is useful for debugging.
+This cleans the RoboRIO, removing the java files that are already on the RoboRIO. This is useful for debugging.
 ```
 ./gradlew cleanRIO   # MAC/LINUX!
 gradlew cleanRIO   # WINDOWS!
