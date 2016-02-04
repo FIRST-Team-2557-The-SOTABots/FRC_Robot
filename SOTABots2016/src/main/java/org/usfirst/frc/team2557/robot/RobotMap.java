@@ -35,9 +35,6 @@ public class RobotMap {
 	public static AnalogInput RangeFinderR = new AnalogInput(2); //Added two more range finders also renamed the existing ones
 	public static AnalogInput RangeFinderB = new AnalogInput(3); //and change where they were refernce to mathc
 	
-	
-	
-	
 	//added the limit switches 1/21/16
 	public static DigitalInput limitswitch = new DigitalInput(0);
 	public static DigitalInput limitswitch2 = new DigitalInput(1);
