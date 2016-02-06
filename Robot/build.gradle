@@ -1,45 +1,41 @@
-/**
-Template file for classes using GradleRIO
-@author Jaci
-*/
-
 buildscript {
-  repositories {
-	mavenCentral()
-	maven {
-		name = "GradleRIO"
-		url = "http://dev.imjac.in/maven"
-	}
-  }
-  dependencies {
-    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'			//Change this line if you wish to Update GradleRIO
-  }
+    repositories {
+        mavenCentral()
+        maven {
+            name = "GradleRIO"
+            url = "http://dev.imjac.in/maven"
+        }
+    }
+    dependencies {
+        classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'
+        // GradleRIO should automatically download the latest WPI libraries
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'GradleRIO'                                 //Apply the GradleRIO plugin
+apply plugin: 'GradleRIO'   //Apply the GradleRIO plugin
 
-gradlerio.robotClass = "org.usfirst.frc.team2557.Robot"   //The class for the main Robot Class. Used in manifest
-gradlerio.team = "2557"                                   //Your FRC team number (e.g. 5333 for team 'Can't C#', or 47 for Chief Delphi)
-//gradlerio.rioIP = "10.53.33.20"                         //Uncomment to specify the IP address of the RIO
+gradlerio.robotClass = "org.usfirst.frc.team2557.Robot" //The class for the main Robot Class. Used in manifest
+gradlerio.team = "2557"
+gradlerio.rioIP = "10.25.57.20" // GradleRIO attempts to upload code via USB first, falls back to IP
 
 def robotManifest = {
-  attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
-  attributes 'Robot-Class': gradlerio.robotClass
+    attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+    attributes 'Robot-Class': gradlerio.robotClass
 }
 
 jar {
-  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-  manifest robotManifest
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest robotManifest
 }
 
 task genJavadoc(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
-  from javadoc.destinationDir
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {
-  archives genJavadoc
+    archives genJavadoc
 }
