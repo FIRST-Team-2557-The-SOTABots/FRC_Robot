@@ -78,6 +78,8 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
      * @return Boot message of Lidar unit
      */
     public String getBootMessage() {
+        this.selfUpdate();
+
         return this._bootMsg;
     }
 
