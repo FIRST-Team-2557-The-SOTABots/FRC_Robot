@@ -55,25 +55,26 @@ public class RobotMap {
         backLeft = new CANTalon(2);
         backRight = new CANTalon(3);
 
-        RobotDrive arcadeDrive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
+        arcadeDrive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
 
-        DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1);
-        DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3);
+        DSolenoid1 = new DoubleSolenoid(0, 0, 1);
+        DSolenoid2 = new DoubleSolenoid(0, 2, 3);
 
-        AnalogInput RangeFinderF = new AnalogInput(0);
-        AnalogInput RangeFinderL = new AnalogInput(1);
-        AnalogInput RangeFinderR = new AnalogInput(2);
-        AnalogInput RangeFinderB = new AnalogInput(3);
+        RangeFinderF = new AnalogInput(0);
+        RangeFinderL = new AnalogInput(1);
+        RangeFinderR = new AnalogInput(2);
+        RangeFinderB = new AnalogInput(3);
 
-        DigitalInput limitswitch = new DigitalInput(0);
-        DigitalInput limitswitch2 = new DigitalInput(1);
+        limitswitch = new DigitalInput(0);
+        limitswitch2 = new DigitalInput(1);
 
-        DigitalInput LimitLimitSwitch = new DigitalInput(2);
+        LimitLimitSwitch = new DigitalInput(2);
 
-        LidarRangeFinder LidarSensor = new LidarRangeFinder();
+        LidarSensor = new LidarRangeFinder();
 
-        Encoder LeftEnc = new Encoder(0, 1);
-        Encoder RightEnc = new Encoder(2, 3);
+        LeftEnc = new Encoder(0, 1);
+        RightEnc = new Encoder(2, 3);
+
     }
 
 }
