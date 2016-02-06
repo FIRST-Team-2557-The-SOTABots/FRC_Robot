@@ -14,34 +14,34 @@ public class RobotMap {
     //
     //added motors ¯\_(ツ)_/¯
     //Liam: fixed port errors made by sam, renamed motors to motorLeft and motorRight from motor1 and motor2, respectively. 1/21/16
-    public static CANTalon frontLeft = new CANTalon(0);
-    public static CANTalon frontRight = new CANTalon(1);
-    public static CANTalon backLeft = new CANTalon(2); //Added the other 2 motors to the drive train Antonio 2/2
-    public static CANTalon backRight = new CANTalon(3); //Added the other 2 motors to the drive train Antonio 2/2
+    public static CANTalon frontLeft;
+    public static CANTalon frontRight;
+    public static CANTalon backLeft; //Added the other 2 motors to the drive train Antonio 2/2
+    public static CANTalon backRight; //Added the other 2 motors to the drive train Antonio 2/2
 
     //Liam: added robotdrive 1/21/16	//Moved the robot drive and its comment to be below the motors -H 1/22/16
-    public static RobotDrive arcadeDrive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
+    public static RobotDrive arcadeDrive;
 
     //moved the solenoids from below the counter/encoders to above the analog inputs -H 1/22
-    public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1); //Added two Double Solenoids
-    public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3); //Might Add another if needed
+    public static DoubleSolenoid DSolenoid1; //Added two Double Solenoids
+    public static DoubleSolenoid DSolenoid2; //Might Add another if needed
 
-    public static AnalogInput RangeFinderF = new AnalogInput(0); //Added Two range finders
-    public static AnalogInput RangeFinderL = new AnalogInput(1); //More may be added if needed
-    public static AnalogInput RangeFinderR = new AnalogInput(2); //Added two more range finders also renamed the existing ones
-    public static AnalogInput RangeFinderB = new AnalogInput(3); //and change where they were refernce to mathc
+    public static AnalogInput RangeFinderF; //Added Two range finders
+    public static AnalogInput RangeFinderL; //More may be added if needed
+    public static AnalogInput RangeFinderR; //Added two more range finders also renamed the existing ones
+    public static AnalogInput RangeFinderB; //and change where they were refernce to mathc
 
     //added the limit switches 1/21/16
-    public static DigitalInput limitswitch = new DigitalInput(0);
-    public static DigitalInput limitswitch2 = new DigitalInput(1);
+    public static DigitalInput limitswitch;
+    public static DigitalInput limitswitch2;
 
     //added this DI 1/22/16
-    public static DigitalInput LimitLimitSwitch = new DigitalInput(2);
+    public static DigitalInput LimitLimitSwitch;
 
     public static LidarRangeFinder LidarSensor = new LidarRangeFinder(); //This is for the lidar sensor
     //added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
-    public static Encoder LeftEnc = new Encoder(0, 1);
-    public static Encoder RightEnc = new Encoder(2, 3);
+    public static Encoder LeftEnc;
+    public static Encoder RightEnc;
 
     public static double RFF; //A declared double in the robot map that is for the front range finder 1/22
     public static double RFL; //A declared double in the robot map that is for the left range finder 1/22
@@ -50,8 +50,30 @@ public class RobotMap {
 
 
     public static void init() {
+        frontLeft = new CANTalon(0);
+        frontRight = new CANTalon(1);
+        backLeft = new CANTalon(2);
+        backRight = new CANTalon(3);
 
+        RobotDrive arcadeDrive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
 
+        DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0, 0, 1);
+        DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0, 2, 3);
+
+        AnalogInput RangeFinderF = new AnalogInput(0);
+        AnalogInput RangeFinderL = new AnalogInput(1);
+        AnalogInput RangeFinderR = new AnalogInput(2);
+        AnalogInput RangeFinderB = new AnalogInput(3);
+
+        DigitalInput limitswitch = new DigitalInput(0);
+        DigitalInput limitswitch2 = new DigitalInput(1);
+
+        DigitalInput LimitLimitSwitch = new DigitalInput(2);
+
+        LidarRangeFinder LidarSensor = new LidarRangeFinder();
+
+        Encoder LeftEnc = new Encoder(0, 1);
+        Encoder RightEnc = new Encoder(2, 3);
     }
 
 }
