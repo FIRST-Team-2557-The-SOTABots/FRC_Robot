@@ -10,13 +10,6 @@ It is critical that the **JAVA_HOME** environment variable ***must*** be set to 
 
 Make sure that your terminal/command prompt is in the same directory as this README!
 
-### Setting up WPI
-You should only need to set up WPI once when first deploying and when WPI updates are released.
-```
-./gradlew wpi   # MAC/LINUX!
-gradlew wpi   # WINDOWS!
-```
-
 ### Deploying to the RoboRIO
 This deploys code to the Robot and restarts the robot code to be used immediately.
 ```
