@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -75,6 +76,8 @@ public class RobotMap {
         LeftEnc = new Encoder(0, 1);
         RightEnc = new Encoder(2, 3);
 
+        // SET UP LIVEWINDOW
+        LiveWindow.addSensor("Main", "Lidar Sensor", LidarSensor);
     }
 
 }
