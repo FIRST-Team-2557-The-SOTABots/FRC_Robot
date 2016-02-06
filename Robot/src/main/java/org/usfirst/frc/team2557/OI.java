@@ -82,21 +82,21 @@ public class OI {
 	
 	public OI(){
 		
-		 = new Joystick(0);
+		joystick1 = new Joystick(0);
 		joystick2 = new Joystick(1);
 		
-		LJ1 = new JoystickButton(, 0);
-		LJ2 = new JoystickButton(, 1);
-		LJ3 = new JoystickButton(, 2);
-		LJ4 = new JoystickButton(, 3);
-		LJ5 = new JoystickButton(, 4);
-		LJ6 = new JoystickButton(, 5);
-		LJ7 = new JoystickButton(, 6);
-		LJ8 = new JoystickButton(, 7);
-		LJ9 = new JoystickButton(, 8);
-		LJ10 = new JoystickButton(,9);
-		LJ11 = new JoystickButton(, 10);
-		LJ12 = new JoystickButton(, 11);
+		LJ1 = new JoystickButton(joystick1, 0);
+		LJ2 = new JoystickButton(joystick1, 1);
+		LJ3 = new JoystickButton(joystick1, 2);
+		LJ4 = new JoystickButton(joystick1, 3);
+		LJ5 = new JoystickButton(joystick1, 4);
+		LJ6 = new JoystickButton(joystick1, 5);
+		LJ7 = new JoystickButton(joystick1, 6);
+		LJ8 = new JoystickButton(joystick1, 7);
+		LJ9 = new JoystickButton(joystick1, 8);
+		LJ10 = new JoystickButton(joystick1, 9);
+		LJ11 = new JoystickButton(joystick1, 10);
+		LJ12 = new JoystickButton(joystick1, 11);
 		
 		RJ1 = new JoystickButton(joystick2, 0);
 		RJ2 = new JoystickButton(joystick2, 1);
@@ -121,7 +121,7 @@ public class OI {
 	}
 	
 	public Joystick joystick1(){
-		return ;
+		return joystick1;
 	}
 	public Joystick joystick2(){
 		return joystick2;
