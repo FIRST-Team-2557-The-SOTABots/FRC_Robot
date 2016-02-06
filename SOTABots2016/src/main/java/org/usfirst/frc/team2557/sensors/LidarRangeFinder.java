@@ -2,11 +2,13 @@ package org.usfirst.frc.team2557.sensors;
 
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+import edu.wpi.first.wpilibj.tables.ITable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LidarRangeFinder extends SensorBase {
+public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     private enum LidarState {
         BOOT,
@@ -22,6 +24,8 @@ public class LidarRangeFinder extends SensorBase {
     private LidarData[] _data;
 
     private float _currentMotorRPM;
+    
+    private ITable _table;
 
     public LidarRangeFinder() {
         this._serial = new SerialPort(115200, SerialPort.Port.kOnboard);
@@ -185,5 +189,38 @@ public class LidarRangeFinder extends SensorBase {
             return this.quality;
         }
     }
+
+	@Override
+	public void initTable(ITable subtable) {
+		this._table = subtable;
+		this.updateTable();
+	}
+
+	@Override
+	public ITable getTable() {
+		return this._table;
+	}
+
+	@Override
+	public String getSmartDashboardType() {
+		return "Lidar";
+	}
+
+	@Override
+	public void updateTable() {
+		if(this._table != null) {
+			this._table.putString("Boot Message", this._bootMsg);
+		}
+	}
+
+	@Override
+	public void startLiveWindowMode() {
+		
+	}
+
+	@Override
+	public void stopLiveWindowMode() {
+		
+	}
 
 }
