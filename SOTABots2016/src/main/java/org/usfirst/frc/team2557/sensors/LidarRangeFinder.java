@@ -192,37 +192,38 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         }
     }
 
-	@Override
-	public void initTable(ITable subtable) {
-		this._table = subtable;
-		this.updateTable();
-	}
+    @Override
+    public void initTable(ITable subtable) {
+        this._table = subtable;
+        this.updateTable();
+    }
 
-	@Override
-	public ITable getTable() {
-		return this._table;
-	}
+    @Override
+    public ITable getTable() {
+        return this._table;
+    }
 
-	@Override
-	public String getSmartDashboardType() {
-		return "Lidar";
-	}
+    @Override
+    public String getSmartDashboardType() {
+        return "Lidar";
+    }
 
-	@Override
-	public void updateTable() {
-		if(this._table != null) {
-			this._table.putString("Boot Message", this._bootMsg);
-		}
-	}
+    @Override
+    public void updateTable() {
+        if (this._table != null) {
+            double angle = this._table.getNumber("Angle", 0.0);
+            this._table.putNumber("Distance for Angle " + Math.floor(angle), this.getData((int) Math.floor(angle)).getDistance());
+        }
+    }
 
-	@Override
-	public void startLiveWindowMode() {
-		
-	}
+    @Override
+    public void startLiveWindowMode() {
 
-	@Override
-	public void stopLiveWindowMode() {
-		
-	}
+    }
+
+    @Override
+    public void stopLiveWindowMode() {
+
+    }
 
 }
