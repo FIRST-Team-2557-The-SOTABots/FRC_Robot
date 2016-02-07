@@ -2,6 +2,7 @@ package org.usfirst.frc.team2557.sensors;
 
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.hal.HALUtil;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.tables.ITable;
 
@@ -10,15 +11,8 @@ import java.util.List;
 
 public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
-    private enum LidarState {
-        BOOT,
-        DATA
-    }
-
     private SerialPort _serial;
 
-    private LidarState _state = LidarState.BOOT;
-    private String _bootMsg = "";
     private List<Byte> _byteBuilder;
 
     private LidarData[] _data;
@@ -28,7 +22,8 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     private ITable _table;
 
     public LidarRangeFinder() {
-        this._serial = new SerialPort(115200, SerialPort.Port.kOnboard);
+        this._serial = new SerialPort(115200, SerialPort.Port.kMXP);
+        this._serial.reset();
 
         this._byteBuilder = new ArrayList<Byte>();
 
@@ -36,6 +31,10 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         for (int i = 0; i < this._data.length; i++) {
             this._data[i] = new LidarData();
         }
+    }
+
+    public void init() {
+        this._serial.reset();
     }
 
     /**
@@ -72,53 +71,32 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         return this._data[angle - 1];
     }
 
-    /**
-     * Gets the boot message received from the sensor.
-     *
-     * @return Boot message of Lidar unit
-     */
-    public String getBootMessage() {
-        this.selfUpdate();
-
-        return this._bootMsg;
-    }
-
-
     private void selfUpdate() {
         // See if there are any bytes to read
         while (this._serial.getBytesReceived() > 0) {
             byte currByte = this._serial.read(1)[0];
-            this._byteBuilder.add(currByte);
 
-            // See what mode we are in
-            switch (this._state) {
-                case DATA:
-                    if (this._byteBuilder.size() == 22) {
-                        this.readData(this.getByteArrayFromBuilder());
-                        this._byteBuilder.clear();
-                    }
-                    break;
-                case BOOT:
-                    if (currByte == 0xFA) {
-                        // This is the start of the first packet!
-                        // Our job here is done.
-                        this._byteBuilder.remove(this._byteBuilder.size() - 1);
-
-                        this._bootMsg = new String(this.getByteArrayFromBuilder());
-
-                        this._byteBuilder.clear();
-
-                        this._byteBuilder.add(currByte); // We must include the first byte of the next packet!!
-
-                        this._state = LidarState.DATA;
-                    }
-                    break;
+            if(this._byteBuilder.size() > 0) {
+                this._byteBuilder.add(currByte);
             }
+
+            if(currByte == (byte) 0xFA) {
+                this._byteBuilder.add(currByte);
+            }
+
+            if (this._byteBuilder.size() == 22) {
+                this.readData(this.getByteArrayFromBuilder(22));
+                this._byteBuilder.clear();
+            }
+            if(this._byteBuilder.size() > 22) {
+                this._byteBuilder.clear();
+            }
+
         }
     }
 
-    private byte[] getByteArrayFromBuilder() {
-        byte[] bytes = new byte[this._byteBuilder.size()];
+    private byte[] getByteArrayFromBuilder(int count) {
+        byte[] bytes = new byte[22];
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = this._byteBuilder.get(i);
         }
@@ -136,7 +114,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         this._currentMotorRPM = motor_rpm;
 
         for (int i = 0; i < 4; i++) {
-            int angle = index * 4 + i;
+            int angle = (index * 4 + i) * -1 - 25;
 
             byte d1 = inBytes[4 + 4 * i]; // First half of distance data
             byte d2 = inBytes[5 + 4 * i]; // Invalid flag or second half of distance data
@@ -145,8 +123,8 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
             // Check for valid distance
             int distance = 0;
-            if ((d2 & 0x80) >> 7 != 0) { // Valid data?
-                distance = d1 | ((d2 & 0x3F) << 8);
+            if ((d2 & 0x8) == 0) { // Valid data
+                distance = d1 | (d2 << 8);
             }
 
             int quality = (d4 << 8) | d3;
@@ -224,6 +202,14 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     @Override
     public void stopLiveWindowMode() {
 
+    }
+
+    public void debugMethod() {
+        this.selfUpdate();
+
+//        System.out.println("Bytes out: " + this._byteBuilder.size());
+//        System.out.println(HALUtil.getHALErrorMessage(-1073807298));
+        System.out.println(this.getData(10).getDistance());
     }
 
 }
