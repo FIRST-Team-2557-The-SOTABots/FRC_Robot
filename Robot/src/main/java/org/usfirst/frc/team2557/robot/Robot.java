@@ -67,6 +67,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	// Initialize lidar
+    	RobotMap.LidarSensor.init();
+    	
         // schedule the autonomous command (example)
         //talked to Antonio about how to make a switch-able autonomous
         //so that the drive team can set it up on the field
@@ -87,6 +90,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	// Initialize lidar
+    	RobotMap.LidarSensor.init();
+    	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -111,7 +117,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void testInit() {
-        RobotMap.LidarSensor.init();
+    	// Initialize lidar
+    	RobotMap.LidarSensor.init();
     }
 
     /**
@@ -120,6 +127,6 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
 		
-		RobotMap.LidarSensor.debugMethod();
+	RobotMap.LidarSensor.debugMethod();
     }
 }
