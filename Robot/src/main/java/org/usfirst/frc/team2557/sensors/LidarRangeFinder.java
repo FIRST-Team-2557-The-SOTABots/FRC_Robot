@@ -73,23 +73,18 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     private void selfUpdate() {
         // See if there are any bytes to read
-        while (this._serial.getBytesReceived() > 0) {
-            byte currByte = this._serial.read(1)[0];
-
-            if(this._byteBuilder.size() > 0) {
-                this._byteBuilder.add(currByte);
-            }
+        byte[] inBytes = this._serial.read(this._serial.getBytesReceived());
+        for(byte currByte : inBytes) {
 
             if(currByte == (byte) 0xFA) {
+                if(this._byteBuilder.size() == 22) {
+                    this.readData(this.getByteArrayFromBuilder(22));
+                    this._byteBuilder.clear();
+                }
+                this._byteBuilder.clear();
                 this._byteBuilder.add(currByte);
-            }
-
-            if (this._byteBuilder.size() == 22) {
-                this.readData(this.getByteArrayFromBuilder(22));
-                this._byteBuilder.clear();
-            }
-            if(this._byteBuilder.size() > 22) {
-                this._byteBuilder.clear();
+            }else{
+                this._byteBuilder.add(currByte);
             }
 
         }
@@ -106,25 +101,29 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     private void readData(byte[] inBytes) {
         // Skip 0: always 0xFA
 
-        byte index = inBytes[1];
+        int index = inBytes[1] & 0xFF; // 0xA0 (160) - 0xF9 (249)
+        // Turn the index into 0-89
+        index -= 160;
 
-        byte speed_L = inBytes[2];
-        byte speed_H = inBytes[3];
+        int speed_L = inBytes[2] & 0xFF;
+        int speed_H = inBytes[3] & 0xFF;
         float motor_rpm = (float) ((speed_H << 8) | speed_L) / 64.0f;
         this._currentMotorRPM = motor_rpm;
 
         for (int i = 0; i < 4; i++) {
-            int angle = (index * 4 + i) * -1 - 25;
+            int angle = index * 4 + i;
 
-            byte d1 = inBytes[4 + 4 * i]; // First half of distance data
-            byte d2 = inBytes[5 + 4 * i]; // Invalid flag or second half of distance data
-            byte d3 = inBytes[6 + 4 * i]; // First half of quality data
-            byte d4 = inBytes[7 + 4 * i]; // Second half of quality data
+            int d1 = inBytes[4 + 4 * i] & 0xFF; // First half of distance data
+            int d2 = inBytes[5 + 4 * i] & 0xFF; // Invalid flag or second half of distance data
+            int d3 = inBytes[6 + 4 * i] & 0xFF; // First half of quality data
+            int d4 = inBytes[7 + 4 * i] & 0xFF; // Second half of quality data
 
             // Check for valid distance
             int distance = 0;
-            if ((d2 & 0x8) == 0) { // Valid data
-                distance = d1 | (d2 << 8);
+            if ((d2 & 0x80) == 0) { // Valid data
+                distance = ((d2 & 0x3F) << 8) | d1; // Strips out last two bits of higher value; distance = 14 bits
+            }else{ // Invalid data!
+//                System.out.println("Error 0x" + String.format("%02X", d1));
             }
 
             int quality = (d4 << 8) | d3;
@@ -134,7 +133,34 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
             this.getData(angle).quality = quality;
         }
 
-        // TODO: Add in checksum(?) (works without in the meantime)
+        int cs_L = inBytes[20] & 0xFF;
+        int cs_H = inBytes[21] & 0xFF;
+        int pChecksum = (cs_H << 8) | cs_L;
+
+        if(pChecksum != getChecksum(inBytes)) {
+            // TODO: Take action on failed checksum
+//            System.out.println("Checksum failed!");
+        }
+    }
+
+    private int getChecksum(byte[] inBytes) {
+        // TODO: Code working checksum algorithm
+
+        int[] data_list = new int[10];
+        // Group the data by word, little-endian
+        for(int i = 0; i < data_list.length; i++) {
+            int d1 = inBytes[2 * i] & 0xFF;
+            int d2 = inBytes[2 * i + 1] & 0xFF;
+
+            data_list[i] = d2 << 8 | d1;
+        }
+
+        int checksum = 0;
+        for(int d : data_list) {
+            checksum += d;
+        }
+
+        return checksum;
     }
 
     public class LidarData {
@@ -208,8 +234,10 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         this.selfUpdate();
 
 //        System.out.println("Bytes out: " + this._byteBuilder.size());
-//        System.out.println(HALUtil.getHALErrorMessage(-1073807298));
-        System.out.println(this.getData(10).getDistance());
+//        System.out.println(this.getData(10).getDistance());
+//        System.out.println(this.getCurrentRPM());
+//        System.out.println(this.getData(10).getDistance());
+        System.out.println("Distance: " + this.getCurrentRPM() + ", RPM: " + this.getData(0).getDistance());
     }
 
 }
