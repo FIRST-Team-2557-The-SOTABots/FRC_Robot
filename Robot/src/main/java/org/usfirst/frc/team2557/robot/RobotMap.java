@@ -39,7 +39,7 @@ public class RobotMap {
     //added this DI 1/22/16
     public static DigitalInput LimitLimitSwitch;
 
-    public static LidarRangeFinder LidarSensor = new LidarRangeFinder(); //This is for the lidar sensor
+    public static LidarRangeFinder LidarSensor; //This is for the lidar sensor
     //added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
     public static Encoder LeftEnc;
     public static Encoder RightEnc;
@@ -50,6 +50,10 @@ public class RobotMap {
     public static double RFB; //A declared double in the robot map that is for the back range finder
 
 
+    /**
+     * Initializes all the parts of RobotMap. This must be called main init method
+     * in Robot.java, as WPI needs to set up before these objects can be constructed.
+     */
     public static void init() {
         frontLeft = new CANTalon(0);
         frontRight = new CANTalon(1);
@@ -77,7 +81,7 @@ public class RobotMap {
         RightEnc = new Encoder(5, 6);
 
         // SET UP LIVEWINDOW
-        //LiveWindow.addSensor("Main", "Lidar Sensor", LidarSensor);
+        LiveWindow.addSensor("Main", "Lidar Sensor", LidarSensor);
     }
 
 }

@@ -15,6 +15,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     private List<Byte> _byteBuilder;
 
     private LidarData[] _data;
+    private String _currentErrorMsg = "";
 
     private float _currentMotorRPM;
 
@@ -97,7 +98,10 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         return bytes;
     }
 
+
     private void readData(byte[] inBytes) {
+        this._currentErrorMsg = "";
+
         // Skip 0: always 0xFA
 
         int index = inBytes[1] & 0xFF; // 0xA0 (160) - 0xF9 (249)
@@ -129,7 +133,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
                 if ((d2 & 0x80) == 0) { // Valid data
                     distance = ((d2 & 0x3F) << 8) | d1; // Strips out last two bits of higher value; distance = 14 bits
                 } else { // Invalid data!
-//                System.out.println("Error 0x" + String.format("%02X", d1));
+                    this._currentErrorMsg = "Invalid data! (error 0x" + String.format("%02X", d1);
                 }
 
                 int quality = (d4 << 8) | d3;
@@ -140,6 +144,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
             }
         } else {
             // Checksum failed!
+            this._currentErrorMsg = "Checksum failed!";
         }
     }
 
@@ -220,7 +225,10 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     public void updateTable() {
         if (this._table != null) {
             double angle = this._table.getNumber("Angle", 0.0);
-            this._table.putNumber("Distance for Angle " + Math.floor(angle), this.getData((int) Math.floor(angle)).getDistance());
+            this._table.putNumber("Distance (" + Math.floor(angle) + " degrees)", this.getData((int) Math.floor(angle)).getDistance());
+            this._table.putNumber("Quality (" + Math.floor(angle) + " degrees)", this.getData((int) Math.floor(angle)).getQuality());
+
+            this._table.putString("Current Error Message", this._currentErrorMsg);
         }
     }
 
@@ -241,7 +249,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 //        System.out.println(this.getData(10).getDistance());
 //        System.out.println(this.getCurrentRPM());
 //        System.out.println(this.getData(10).getDistance());
-        System.out.println("Distance: " + this.getCurrentRPM() + ", RPM: " + this.getData(0).getDistance());
+//        System.out.println("Distance: " + this.getCurrentRPM() + ", RPM: " + this.getData(0).getDistance());
     }
 
 }
