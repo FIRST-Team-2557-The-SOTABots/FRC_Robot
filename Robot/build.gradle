@@ -5,6 +5,7 @@ buildscript {
 		name = "GradleRIO"
 		url = "http://dev.imjac.in/maven"
 	}
+	mavenLocal()
   }
   dependencies {
     classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+' // GradleRIO should automatically download the latest WPI libraries
