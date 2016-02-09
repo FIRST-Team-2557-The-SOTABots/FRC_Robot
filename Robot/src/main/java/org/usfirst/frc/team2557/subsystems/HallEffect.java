@@ -17,7 +17,7 @@ public class HallEffect extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void hallCheck(){
-    	RobotMap.hallValue = RobotMap.hallEffect.get();
+    	//RobotMap.hallValue = RobotMap.hallEffect.get(); //These are not supposed to be commented out but it is throwing a null. Check the declarations in RobotMap -Antonio 2/8/16
     }
 }
 

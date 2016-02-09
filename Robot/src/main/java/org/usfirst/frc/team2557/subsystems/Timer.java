@@ -18,11 +18,11 @@ public class Timer extends Subsystem {
     }
     public void setTime(){
     	if(RobotMap.hallValue == false){
-    	RobotMap.time.start();
+    	//RobotMap.time.start(); //These are not supposed to be commented out but they are throwing nulls. Check RobotMap declaration -Antonio 2/8/16
     	}
     }
     public void getTime(){
-    	RobotMap.time.get();
+    	//RobotMap.time.get(); //These are not supposed to be commented out but they are throwing nulls. Check RobotMap declaration -Antonio 2/8/16
     }
 }
 
