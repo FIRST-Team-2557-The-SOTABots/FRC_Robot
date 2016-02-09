@@ -19,24 +19,24 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 	
-	public static CANTalon frontLeft;
-	public static CANTalon frontRight;
-	public static CANTalon backLeft;
-	public static CANTalon backRight;
-	public static CANTalon intakeMotor;
-	public static CANTalon winchMotor;
+	public static CANTalon frontLeft = new CANTalon(4);
+	public static CANTalon frontRight = new CANTalon(5);
+	public static CANTalon backLeft = new CANTalon(0);
+	public static CANTalon backRight = new CANTalon(1);
+	public static CANTalon intakeMotor = new CANTalon(3);
+	public static CANTalon winchMotor = new CANTalon(2);
 	
-	public static DoubleSolenoid intakeArm;
-	public static DoubleSolenoid winchSolenoid;
-	public static DoubleSolenoid driveShift;
+	public static DoubleSolenoid intakeArm = new DoubleSolenoid (0,2,3);
+	public static DoubleSolenoid winchSolenoid = new DoubleSolenoid(0,0,1);
+	public static DoubleSolenoid driveShift = new DoubleSolenoid(0,4,5);
 	
-	public static DigitalInput hallEffect;
-	public static DigitalInput lightSensor;
-	public static Counter leftDriveEncoder;
-	public static Counter rightDriveEncoder;
-	public static Counter winchEncoder;
+	public static DigitalInput hallEffect = new DigitalInput(0);
+	public static DigitalInput lightSensor = new DigitalInput(1);
+	public static Encoder leftDriveEncoder = new Encoder(2,3);
+	public static Encoder rightDriveEncoder = new Encoder(4,5);
+	public static Encoder winchEncoder = new Encoder(6,7);
 	
-	public static RobotDrive robotDrive;
+	public static RobotDrive robotDrive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
 	
 	public static int winchEncoderCount;
 	public static double rightEncoderRate;
@@ -66,7 +66,6 @@ public class RobotMap {
 	
 	
 	public static void init(){
-		frontRight = new CANTalon(0);
 		
 		
 	}

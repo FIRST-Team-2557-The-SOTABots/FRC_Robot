@@ -18,12 +18,12 @@ public class DriveShift extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void Shift(){
-    	if(Value.kReverse == RobotMap.driveShift.get()){
-    		RobotMap.driveShift.set(Value.kForward);
-    		}
-    	else{
-    		RobotMap.driveShift.set(Value.kReverse);
-    	}
+//    	if(Value.kReverse == RobotMap.driveShift.get()){
+//    		RobotMap.driveShift.set(Value.kForward);
+//    		}
+//    	else{
+//    		RobotMap.driveShift.set(Value.kReverse);
+//    	}
     		
     	}
 
