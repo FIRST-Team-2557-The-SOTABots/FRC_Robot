@@ -2,7 +2,6 @@ package org.usfirst.frc.team2557.sensors;
 
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.hal.HALUtil;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.tables.ITable;
 
@@ -18,7 +17,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     private LidarData[] _data;
 
     private float _currentMotorRPM;
-    
+
     private ITable _table;
 
     public LidarRangeFinder() {
@@ -74,16 +73,16 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     private void selfUpdate() {
         // See if there are any bytes to read
         byte[] inBytes = this._serial.read(this._serial.getBytesReceived());
-        for(byte currByte : inBytes) {
+        for (byte currByte : inBytes) {
 
-            if(currByte == (byte) 0xFA) {
-                if(this._byteBuilder.size() == 22) {
+            if (currByte == (byte) 0xFA) {
+                if (this._byteBuilder.size() == 22) {
                     this.readData(this.getByteArrayFromBuilder(22));
                     this._byteBuilder.clear();
                 }
                 this._byteBuilder.clear();
                 this._byteBuilder.add(currByte);
-            }else{
+            } else {
                 this._byteBuilder.add(currByte);
             }
 
@@ -105,60 +104,65 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         // Turn the index into 0-89
         index -= 160;
 
-        int speed_L = inBytes[2] & 0xFF;
-        int speed_H = inBytes[3] & 0xFF;
-        float motor_rpm = (float) ((speed_H << 8) | speed_L) / 64.0f;
-        this._currentMotorRPM = motor_rpm;
-
-        for (int i = 0; i < 4; i++) {
-            int angle = index * 4 + i;
-
-            int d1 = inBytes[4 + 4 * i] & 0xFF; // First half of distance data
-            int d2 = inBytes[5 + 4 * i] & 0xFF; // Invalid flag or second half of distance data
-            int d3 = inBytes[6 + 4 * i] & 0xFF; // First half of quality data
-            int d4 = inBytes[7 + 4 * i] & 0xFF; // Second half of quality data
-
-            // Check for valid distance
-            int distance = 0;
-            if ((d2 & 0x80) == 0) { // Valid data
-                distance = ((d2 & 0x3F) << 8) | d1; // Strips out last two bits of higher value; distance = 14 bits
-            }else{ // Invalid data!
-//                System.out.println("Error 0x" + String.format("%02X", d1));
-            }
-
-            int quality = (d4 << 8) | d3;
-
-            this.getData(angle).angle = angle;
-            this.getData(angle).distance = distance;
-            this.getData(angle).quality = quality;
-        }
-
+        // Get checksum from packet
         int cs_L = inBytes[20] & 0xFF;
         int cs_H = inBytes[21] & 0xFF;
         int pChecksum = (cs_H << 8) | cs_L;
+        // Validate checksum
+        if (getChecksum(inBytes) == pChecksum) {
 
-        if(pChecksum != getChecksum(inBytes)) {
-            // TODO: Take action on failed checksum
-//            System.out.println("Checksum failed!");
+            int speed_L = inBytes[2] & 0xFF;
+            int speed_H = inBytes[3] & 0xFF;
+            float motor_rpm = (float) ((speed_H << 8) | speed_L) / 64.0f;
+            this._currentMotorRPM = motor_rpm;
+
+            for (int i = 0; i < 4; i++) {
+                int angle = index * 4 + i;
+
+                int d1 = inBytes[4 + 4 * i] & 0xFF; // First half of distance data
+                int d2 = inBytes[5 + 4 * i] & 0xFF; // Invalid flag or second half of distance data
+                int d3 = inBytes[6 + 4 * i] & 0xFF; // First half of quality data
+                int d4 = inBytes[7 + 4 * i] & 0xFF; // Second half of quality data
+
+                // Check for valid distance
+                int distance = 0;
+                if ((d2 & 0x80) == 0) { // Valid data
+                    distance = ((d2 & 0x3F) << 8) | d1; // Strips out last two bits of higher value; distance = 14 bits
+                } else { // Invalid data!
+//                System.out.println("Error 0x" + String.format("%02X", d1));
+                }
+
+                int quality = (d4 << 8) | d3;
+
+                this.getData(angle).angle = angle;
+                this.getData(angle).distance = distance;
+                this.getData(angle).quality = quality;
+            }
+        } else {
+            // Checksum failed!
         }
     }
 
     private int getChecksum(byte[] inBytes) {
-        // TODO: Code working checksum algorithm
-
         int[] data_list = new int[10];
         // Group the data by word, little-endian
-        for(int i = 0; i < data_list.length; i++) {
+        for (int i = 0; i < data_list.length; i++) {
             int d1 = inBytes[2 * i] & 0xFF;
             int d2 = inBytes[2 * i + 1] & 0xFF;
 
-            data_list[i] = d2 << 8 | d1;
+            data_list[i] = (d2 << 8) | d1;
         }
 
-        int checksum = 0;
-        for(int d : data_list) {
-            checksum += d;
+        // Compute the checksum on 32 bits
+        int chk32 = 0;
+        for (int d : data_list) {
+            chk32 = (chk32 << 1) + d;
         }
+
+        // Return a value wrapped around on 15 bits, and truncated to still fit into 15 bits
+        int checksum = 0;
+        checksum = (chk32 & 0x7FFF) + (chk32 >> 15); // Wrap around to fit into 15 bits
+        checksum &= 0x7FFF; // Truncate to 15 bits
 
         return checksum;
     }
