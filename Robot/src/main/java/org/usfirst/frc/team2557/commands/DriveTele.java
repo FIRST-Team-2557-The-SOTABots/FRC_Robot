@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTele extends Command {
 
     public DriveTele() {
-    	requires(Robot.drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

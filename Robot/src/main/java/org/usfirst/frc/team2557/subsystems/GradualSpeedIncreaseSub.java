@@ -9,7 +9,7 @@ import java.lang.Math;
 /**
  *
  */
-public class GradualSpeedIncrease extends Subsystem {
+public class GradualSpeedIncreaseSub extends Subsystem {
     private double x;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

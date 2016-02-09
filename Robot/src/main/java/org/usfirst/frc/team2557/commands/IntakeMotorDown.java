@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeMotorDown extends Command {
 
     public IntakeMotorDown() {
-    	requires(Robot.intakeMotor);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

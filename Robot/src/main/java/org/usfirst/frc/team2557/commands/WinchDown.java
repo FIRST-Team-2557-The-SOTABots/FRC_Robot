@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WinchDown extends Command {
 
     public WinchDown() {
-    	requires(Robot.winchMotor);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

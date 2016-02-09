@@ -2,8 +2,7 @@
 package org.usfirst.frc.team2557;
 
 import org.usfirst.frc.team2557.subsystems.*;
-import org.usfirst.frc.team2557.commands.LightLaunch;
-import org.usfirst.frc.team2557.commands.SetTime;
+import org.usfirst.frc.team2557.commands.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,35 +36,35 @@ public class Robot extends IterativeRobot {
 	public static FrontLeftMotor frontLeftMotor;
 	public static JoystickAxes joystickAxes;
 	public static ThrottleTimer throttleTimer;
-	public static GradualSpeedIncrease gradualSpeedIncrease;
+	public static GradualSpeedIncreaseSub gradualSpeedIncreaseSub;
 	public static LightSensor lightSensor;
 	
 
     Command autonomousCommand;
-    Command DriveTele;
-    Command FrontLeftVoltage;
-    Command FrontRightVoltage;
-    Command GetOldData;
-    Command GetTime;
-    Command GetXJoystickAxis;
-    Command GetYJoystickAxis;
-    Command GradualSpeedIncrease;
-    Command HallCheck;
-    Command IntakeMotorDown;
-    Command IntakeMotorUp;
-    Command LeftDriveEncoderRate;
-    Command LightCheck;
-    Command LightLaunch;
-    Command RearLeftVoltage;
-    Command RearRightVoltage;
-    Command RightDriveEncoderRate;
-    Command SetTime;
-    Command Shift;
-    Command WinchDown;
-    Command WinchEncoderCount;
-    Command WinchSolenoidLaunch;
-    Command WinchSolenoidLock;
-    Command WinchTimer;
+    Command driveTele;
+    Command frontLeftVoltage;
+    Command frontRightVoltage;
+    Command getOldData;
+    Command getTime;
+    Command getXJoystickAxis;
+    Command getYJoystickAxis;
+    Command gradualSpeedIncreaseCommand;
+    Command hallCheck;
+    Command intakeMotorDown;
+    Command intakeMotorUp;
+    Command leftDriveEncoderRate;
+    Command lightGet;
+    Command lightLaunch;
+    Command rearLeftVoltage;
+    Command rearRightVoltage;
+    Command rightDriveEncoderRate;
+    Command setTime;
+    Command shift;
+    Command winchDown;
+    Command winchEncoderCount;
+    Command winchSolenoidLaunch;
+    Command winchSolenoidLock;
+    Command winchTimer;
     
 
     /**
@@ -74,26 +73,55 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		
+		/////SUBSYSTEMS/////
 		drivetrain = new Drivetrain();
-		winchMotor = new WinchMotor();
 		driveShift = new DriveShift();
+		frontRightMotor = new FrontRightMotor();
+		frontLeftMotor = new FrontLeftMotor();		
+		gradualSpeedIncreaseSub = new GradualSpeedIncreaseSub();
+		hallEffect = new HallEffect();
 		intakeArm = new IntakeArm();
 		intakeMotor = new IntakeMotor();
+		joystickAxes = new JoystickAxes();
 		leftDriveEncoder = new LeftDriveEncoder();
-		rightDriveEncoder = new RightDriveEncoder();
+		lightSensor = new LightSensor();
+		throttleTimer = new ThrottleTimer();
 		timer = new Timer();
-		winchEncoder = new WinchEncoder();
-		winchMotor = new WinchMotor();
-		winchSolenoid = new WinchSolenoid();
-		hallEffect = new HallEffect();
 		rearRightMotor = new RearRightMotor();
 		rearLeftMotor = new RearLeftMotor();
-		frontRightMotor = new FrontRightMotor();
-		frontLeftMotor = new FrontLeftMotor();
-		joystickAxes = new JoystickAxes();
-		throttleTimer = new ThrottleTimer();
-		SetTime = new SetTime();
-		gradualSpeedIncrease = new GradualSpeedIncrease();
+		rightDriveEncoder = new RightDriveEncoder();
+		winchMotor = new WinchMotor();
+		winchEncoder = new WinchEncoder();
+		winchSolenoid = new WinchSolenoid();
+		
+		
+		/////COMMANDS/////
+		autonomousCommand = new Autonomous();
+		driveTele = new DriveTele();
+		frontLeftVoltage = new FrontLeftVoltage();
+		frontRightVoltage = new FrontRightVoltage();
+		getOldData = new GetOldData();
+		getTime = new GetTime();
+		getXJoystickAxis = new GetXJoystickAxis();
+		getYJoystickAxis = new GetYJoystickAxis();
+		gradualSpeedIncreaseCommand = new GradualSpeedIncreaseCommand();
+		hallCheck = new HallCheck();
+		intakeMotorDown = new IntakeMotorDown();
+		intakeMotorUp = new IntakeMotorUp();
+		leftDriveEncoderRate = new LeftDriveEncoderRate();
+		lightGet = new LightGet();
+		lightLaunch = new LightLaunch();
+		rearLeftVoltage = new RearLeftVoltage();
+		rearRightVoltage = new RearRightVoltage();
+		rightDriveEncoderRate = new RightDriveEncoderRate();
+		setTime = new SetTime();
+		shift = new Shift();
+		winchDown = new WinchDown();
+		winchEncoderCount = new WinchEncoderCount();
+		winchSolenoidLaunch = new WinchSolenoidLaunch();
+		winchSolenoidLock = new WinchSolenoidLock();
+		winchTimer = new WinchTimer();
 		
 		
         // instantiate the command used for the autonomous period
@@ -114,8 +142,8 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        LightLaunch.start();
-        LightCheck.start();
+        lightLaunch.start();
+        lightGet.start();
         
     }
 
@@ -139,14 +167,14 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	SetTime.start();
-    	HallCheck.start();
-    	WinchTimer.start();
-    	WinchSolenoidLock.start();
+    	setTime.start();
+    	hallCheck.start();
+    	winchTimer.start();
+    	winchSolenoidLock.start();
         Scheduler.getInstance().run();
-        if(oi.joystick1.getRawAxis(0) > 0 && GradualSpeedIncrease.isRunning() == false && GetOldData.isRunning() == false){
-        	GradualSpeedIncrease.start();
-        	GetOldData.start();
+        if(oi.joystick1.getRawAxis(0) > 0 && gradualSpeedIncreaseCommand.isRunning() == false && getOldData.isRunning() == false){
+        	gradualSpeedIncreaseCommand.start();
+        	getOldData.start();
         	
         }
         

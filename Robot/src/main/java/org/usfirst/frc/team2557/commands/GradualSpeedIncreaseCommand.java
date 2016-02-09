@@ -20,7 +20,7 @@ public class GradualSpeedIncreaseCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gradualSpeedIncrease.gradualSpeedIncrease();
+    	Robot.gradualSpeedIncreaseSub.gradualSpeedIncrease();
     }
 
     // Make this return true when this Command no longer needs to run execute()
