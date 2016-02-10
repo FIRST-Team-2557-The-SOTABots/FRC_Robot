@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.commands;
 
 import org.usfirst.frc.team2557.Robot;
+import org.usfirst.frc.team2557.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,7 +21,15 @@ public class IntakeMotorDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeMotor.intakeReverse();
+    	if(Robot.oi.joystick1.getRawButton(5)){
+    		Robot.intakeMotor.intakeReverse();
+    	}
+    	else if(Robot.oi.joystick1.getRawButton(6)){
+    		Robot.intakeMotor.intakeForward();
+    	}
+    	else{
+    		RobotMap.intakeMotor.set(0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

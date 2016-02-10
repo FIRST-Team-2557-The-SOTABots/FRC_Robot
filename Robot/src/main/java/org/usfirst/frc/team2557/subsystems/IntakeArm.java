@@ -18,12 +18,12 @@ public class IntakeArm extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void arm(){
-    	if(RobotMap.intakeArm.get() == Value.kReverse){
-    		RobotMap.intakeArm.set(Value.kForward);
-    	}
-    	else{
-    		RobotMap.intakeArm.set(Value.kReverse);
-    	}
+//    	if(RobotMap.intakeArm.get() == Value.kReverse){
+//    		RobotMap.intakeArm.set(Value.kForward);
+//    	}
+//    	else{
+//    		RobotMap.intakeArm.set(Value.kReverse);
+//    	}
     	}
     }
 

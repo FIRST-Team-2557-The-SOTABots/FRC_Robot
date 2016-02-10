@@ -19,12 +19,12 @@ public class ThrottleTimer extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void getOldData(){
-    	x = RobotMap.time.get();
-    	y = Math.abs(Robot.oi.joystick1.getThrottle());
-    	if(RobotMap.time.get() > x + 0.25){
-    		RobotMap.oldTime = x;
-    		RobotMap.oldThrottle = y;
-    	}
+//    	x = RobotMap.time.get(); //Check robot map because time is throwing a null pointer -Antonio 2/9/16
+//    	y = Math.abs(Robot.oi.joystick1.getThrottle());
+//    	if(RobotMap.time.get() > x + 0.25){
+//    		RobotMap.oldTime = x;
+//    		RobotMap.oldThrottle = y;
+//    	}
     }
 }
 

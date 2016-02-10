@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.commands;
 
 import org.usfirst.frc.team2557.Robot;
+import org.usfirst.frc.team2557.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,7 +21,16 @@ public class WinchDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.winchMotor.winchDown();
+    	if(Robot.oi.joystick1.getRawAxis(2) > .5){
+    		RobotMap.winchMotor.set(-1);	
+    	}
+    	else if(Robot.oi.joystick1.getRawAxis(3) > .5){
+    		RobotMap.winchMotor.set(1);
+    	}
+    	else{
+    		RobotMap.winchMotor.set(0);
+    	}
+//    	Robot.winchMotor.winchDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()

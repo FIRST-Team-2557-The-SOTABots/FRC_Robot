@@ -1,11 +1,6 @@
 package org.usfirst.frc.team2557;
 
-import org.usfirst.frc.team2557.commands.Arm;
-import org.usfirst.frc.team2557.commands.IntakeMotorDown;
-import org.usfirst.frc.team2557.commands.IntakeMotorUp;
-import org.usfirst.frc.team2557.commands.Shift;
-import org.usfirst.frc.team2557.commands.WinchDown;
-import org.usfirst.frc.team2557.commands.WinchSolenoidLaunch;
+import org.usfirst.frc.team2557.commands.*;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.*;
@@ -85,39 +80,37 @@ public class OI {
 		joystick1 = new Joystick(0);
 		joystick2 = new Joystick(1);
 		
-		LJ1 = new JoystickButton(joystick1, 0);
-		LJ2 = new JoystickButton(joystick1, 1);
-		LJ3 = new JoystickButton(joystick1, 2);
-		LJ4 = new JoystickButton(joystick1, 3);
-		LJ5 = new JoystickButton(joystick1, 4);
-		LJ6 = new JoystickButton(joystick1, 5);
-		LJ7 = new JoystickButton(joystick1, 6);
-		LJ8 = new JoystickButton(joystick1, 7);
-		LJ9 = new JoystickButton(joystick1, 8);
-		LJ10 = new JoystickButton(joystick1, 9);
-		LJ11 = new JoystickButton(joystick1, 10);
-		LJ12 = new JoystickButton(joystick1, 11);
+		LJ1 = new JoystickButton(joystick1, 1);
+		LJ2 = new JoystickButton(joystick1, 2);
+		LJ3 = new JoystickButton(joystick1, 3);
+		LJ4 = new JoystickButton(joystick1, 4);
+		LJ5 = new JoystickButton(joystick1, 5);
+		LJ6 = new JoystickButton(joystick1, 6);
+		LJ7 = new JoystickButton(joystick1, 7);
+		LJ8 = new JoystickButton(joystick1, 8);
+		LJ9 = new JoystickButton(joystick1, 9);
+		LJ10 = new JoystickButton(joystick1, 10);
+		LJ11 = new JoystickButton(joystick1, 11);
+		LJ12 = new JoystickButton(joystick1, 12);
 		
-		RJ1 = new JoystickButton(joystick2, 0);
-		RJ2 = new JoystickButton(joystick2, 1);
-		RJ3 = new JoystickButton(joystick2, 2);
-		RJ4 = new JoystickButton(joystick2, 3);
-		RJ5 = new JoystickButton(joystick2, 4);
-		RJ6 = new JoystickButton(joystick2, 5);
-		RJ7 = new JoystickButton(joystick2, 6);
-		RJ8 = new JoystickButton(joystick2, 7);
-		RJ9 = new JoystickButton(joystick2, 8);
-		RJ10 = new JoystickButton(joystick2,9);
-		RJ11 = new JoystickButton(joystick2, 10);
-		RJ12 = new JoystickButton(joystick2, 11);
+		RJ1 = new JoystickButton(joystick2, 1);
+		RJ2 = new JoystickButton(joystick2, 2);
+		RJ3 = new JoystickButton(joystick2, 3);
+		RJ4 = new JoystickButton(joystick2, 4);
+		RJ5 = new JoystickButton(joystick2, 5);
+		RJ6 = new JoystickButton(joystick2, 6);
+		RJ7 = new JoystickButton(joystick2, 7);
+		RJ8 = new JoystickButton(joystick2, 8);
+		RJ9 = new JoystickButton(joystick2, 9);
+		RJ10 = new JoystickButton(joystick2,10);
+		RJ11 = new JoystickButton(joystick2, 11);
+		RJ12 = new JoystickButton(joystick2, 12);
 		
 		
-		LJ1.whenPressed(new WinchSolenoidLaunch());
-		LJ2.whenPressed(new Shift());
-		LJ3.whenPressed(new WinchDown());
-		LJ4.whileHeld(new IntakeMotorUp());
-		LJ5.whileHeld(new IntakeMotorDown());
-		LJ6.whenPressed(new Arm());
+		LJ8.whenPressed(new WinchSolenoidLaunch());
+		LJ3.toggleWhenPressed(new Shift());
+	    LJ4.toggleWhenPressed(new Arm());
+		LJ2.whenPressed(new WinchSolenoidLock());
 	}
 	
 	public Joystick joystick1(){

@@ -63,7 +63,6 @@ public class Robot extends IterativeRobot {
     Command winchDown;
     Command winchEncoderCount;
     Command winchSolenoidLaunch;
-    Command winchSolenoidLock;
     Command winchTimer;
     
 
@@ -120,7 +119,6 @@ public class Robot extends IterativeRobot {
 		winchDown = new WinchDown();
 		winchEncoderCount = new WinchEncoderCount();
 		winchSolenoidLaunch = new WinchSolenoidLaunch();
-		winchSolenoidLock = new WinchSolenoidLock();
 		winchTimer = new WinchTimer();
 		
 		
@@ -167,16 +165,19 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+        driveTele.start();
+    	intakeMotorDown.start();
+    	winchDown.start();
     	setTime.start();
     	hallCheck.start();
     	winchTimer.start();
-    	winchSolenoidLock.start();
-        Scheduler.getInstance().run();
-        if(oi.joystick1.getRawAxis(0) > 0 && gradualSpeedIncreaseCommand.isRunning() == false && getOldData.isRunning() == false){
-        	gradualSpeedIncreaseCommand.start();
-        	getOldData.start();
-        	
-        }
+
+//        if(oi.joystick1.getRawAxis(0) > 0 && gradualSpeedIncreaseCommand.isRunning() == false && getOldData.isRunning() == false){
+//        	gradualSpeedIncreaseCommand.start();
+//        	getOldData.start();
+//        	
+//        } //Commented out because it is unneccesary right now -Antonio 2/9/16
         
     }
     
