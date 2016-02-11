@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -40,6 +39,7 @@ public class RobotMap {
     public static DigitalInput LimitLimitSwitch;
 
     public static LidarRangeFinder LidarSensor; //This is for the lidar sensor
+
     //added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
     public static Encoder LeftEnc;
     public static Encoder RightEnc;
@@ -79,9 +79,6 @@ public class RobotMap {
 
         LeftEnc = new Encoder(3, 4);
         RightEnc = new Encoder(5, 6);
-
-        // SET UP LIVEWINDOW
-//        LiveWindow.addSensor("Main", "Lidar Sensor", LidarSensor);
     }
 
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc.team2557.sensors;
 
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.tables.ITable;
 
@@ -31,10 +32,8 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         for (int i = 0; i < this._data.length; i++) {
             this._data[i] = new LidarData();
         }
-    }
 
-    public void init() {
-        this._serial.reset();
+        LiveWindow.addSensor("Lidar", 0, this);
     }
 
     /**
@@ -89,9 +88,11 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
                 }
 
             }
-        } catch(RuntimeException ex) {
+        } catch (RuntimeException ex) {
             System.out.println("-- Something went wrong! --");
             ex.printStackTrace();
+
+            this._serial.reset();
         }
     }
 
@@ -224,12 +225,12 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     @Override
     public String getSmartDashboardType() {
-        return "Lidar";
+        return "Lidar Range Finder";
     }
 
     @Override
     public void updateTable() {
-        if (this._table != null && false) {
+        if (this._table != null) {
             double angle = this._table.getNumber("Angle", 0.0);
             this._table.putNumber("Distance (" + Math.floor(angle) + " degrees)", this.getData((int) Math.floor(angle)).getDistance());
             this._table.putNumber("Quality (" + Math.floor(angle) + " degrees)", this.getData((int) Math.floor(angle)).getQuality());
@@ -240,27 +241,12 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     @Override
     public void startLiveWindowMode() {
-//        this.init();
+
     }
 
     @Override
     public void stopLiveWindowMode() {
 
-    }
-
-    public void debugMethod() {
-        this.selfUpdate();
-
-//        System.out.println("Bytes out: " + this._byteBuilder.size());
-//        System.out.println(this.getData(10).getDistance());
-//        System.out.println(this.getCurrentRPM());
-        for(int i = 0; i < 360; i++) {
-            if(this.getData(i).getDistance() != 0) {
-                System.out.println(this.getData(i).getDistance());
-                break;
-            }
-        }
-//        System.out.println("Distance: " + this.getCurrentRPM() + ", RPM: " + this.getData(0).getDistance());
     }
 
 }
