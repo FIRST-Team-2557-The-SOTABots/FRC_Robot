@@ -84,6 +84,9 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+
+        // Update Lidar NetworkTables
+        RobotMap.LidarSensor.updateNetworkTables();
     }
 
     public void teleopInit() {
@@ -108,6 +111,9 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         driveCommand.start();
+
+        // Update Lidar NetworkTables
+        RobotMap.LidarSensor.updateNetworkTables();
     }
 
     public void testInit() {
@@ -119,5 +125,8 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+
+        // Update Lidar NetworkTables
+        RobotMap.LidarSensor.updateNetworkTables();
     }
 }

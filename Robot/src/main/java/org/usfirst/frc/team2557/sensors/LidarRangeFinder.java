@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITable;
 
 import java.util.ArrayList;
@@ -104,6 +105,21 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         return bytes;
     }
 
+    public void updateNetworkTables() {
+        ITable lidarTable = NetworkTable.getTable("Lidar");
+
+        double[] distances = new double[360];
+        double[] qualities = new double[360];
+        for (int i = 0; i < 359; i++) {
+            distances[i] = this.getData(i).getDistance();
+            qualities[i] = this.getData(i).getQuality();
+        }
+
+        lidarTable.putNumberArray("Distances", distances);
+        lidarTable.putNumberArray("Qualities", qualities);
+        lidarTable.putString("ErrorMsg", this._currentErrorMsg);
+        lidarTable.putNumber("RPM", this.getCurrentRPM());
+    }
 
     private void readData(byte[] inBytes) {
         this._currentErrorMsg = "";
@@ -135,10 +151,13 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
                 int d3 = inBytes[6 + 4 * i] & 0xFF; // First half of quality data
                 int d4 = inBytes[7 + 4 * i] & 0xFF; // Second half of quality data
 
+                boolean updateNetworkTables = false;
+
                 // Check for valid distance
                 int distance = 0;
                 if ((d2 & 0x80) == 0) { // Valid data
                     distance = ((d2 & 0x3F) << 8) | d1; // Strips out last two bits of higher value; distance = 14 bits
+                    updateNetworkTables = true;
                 } else { // Invalid data!
                     this._currentErrorMsg = "Invalid data! (error 0x" + String.format("%02X", d1);
                 }
