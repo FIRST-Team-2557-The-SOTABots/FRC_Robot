@@ -72,21 +72,26 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     }
 
     private void selfUpdate() {
-        // See if there are any bytes to read
-        byte[] inBytes = this._serial.read(this._serial.getBytesReceived());
-        for (byte currByte : inBytes) {
+        try {
+            // See if there are any bytes to read
+            byte[] inBytes = this._serial.read(this._serial.getBytesReceived());
+            for (byte currByte : inBytes) {
 
-            if (currByte == (byte) 0xFA) {
-                if (this._byteBuilder.size() == 22) {
-                    this.readData(this.getByteArrayFromBuilder(22));
+                if (currByte == (byte) 0xFA) {
+                    if (this._byteBuilder.size() == 22) {
+                        this.readData(this.getByteArrayFromBuilder(22));
+                        this._byteBuilder.clear();
+                    }
                     this._byteBuilder.clear();
+                    this._byteBuilder.add(currByte);
+                } else {
+                    this._byteBuilder.add(currByte);
                 }
-                this._byteBuilder.clear();
-                this._byteBuilder.add(currByte);
-            } else {
-                this._byteBuilder.add(currByte);
-            }
 
+            }
+        } catch(RuntimeException ex) {
+            System.out.println("-- Something went wrong! --");
+            ex.printStackTrace();
         }
     }
 
@@ -112,6 +117,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
         int cs_L = inBytes[20] & 0xFF;
         int cs_H = inBytes[21] & 0xFF;
         int pChecksum = (cs_H << 8) | cs_L;
+
         // Validate checksum
         if (getChecksum(inBytes) == pChecksum) {
 
@@ -223,7 +229,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     @Override
     public void updateTable() {
-        if (this._table != null) {
+        if (this._table != null && false) {
             double angle = this._table.getNumber("Angle", 0.0);
             this._table.putNumber("Distance (" + Math.floor(angle) + " degrees)", this.getData((int) Math.floor(angle)).getDistance());
             this._table.putNumber("Quality (" + Math.floor(angle) + " degrees)", this.getData((int) Math.floor(angle)).getQuality());
@@ -234,7 +240,7 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     @Override
     public void startLiveWindowMode() {
-
+//        this.init();
     }
 
     @Override
@@ -248,7 +254,12 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 //        System.out.println("Bytes out: " + this._byteBuilder.size());
 //        System.out.println(this.getData(10).getDistance());
 //        System.out.println(this.getCurrentRPM());
-//        System.out.println(this.getData(10).getDistance());
+        for(int i = 0; i < 360; i++) {
+            if(this.getData(i).getDistance() != 0) {
+                System.out.println(this.getData(i).getDistance());
+                break;
+            }
+        }
 //        System.out.println("Distance: " + this.getCurrentRPM() + ", RPM: " + this.getData(0).getDistance());
     }
 

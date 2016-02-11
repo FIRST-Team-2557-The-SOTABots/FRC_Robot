@@ -81,7 +81,7 @@ public class RobotMap {
         RightEnc = new Encoder(5, 6);
 
         // SET UP LIVEWINDOW
-        LiveWindow.addSensor("Main", "Lidar Sensor", LidarSensor);
+//        LiveWindow.addSensor("Main", "Lidar Sensor", LidarSensor);
     }
 
 }
