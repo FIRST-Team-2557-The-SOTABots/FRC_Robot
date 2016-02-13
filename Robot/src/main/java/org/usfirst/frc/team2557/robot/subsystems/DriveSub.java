@@ -27,7 +27,7 @@ public class DriveSub extends Subsystem {
     }
     public void doArcade() {
     	  //Liam: added arcade drive 1/21/16
-    	drive.arcadeDrive(Robot.oi.stick1);
+    	drive.arcadeDrive(Robot.oi.driver);
     }
 }
 
