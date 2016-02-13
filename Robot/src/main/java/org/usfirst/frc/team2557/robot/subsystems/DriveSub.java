@@ -16,7 +16,7 @@ public class DriveSub extends Subsystem {
     CANTalon frontRight   = RobotMap.frontRight;
     CANTalon backLeft	  = RobotMap.backLeft;
     CANTalon backRight	  = RobotMap.backRight;
-    RobotDrive drive = RobotMap.arcadeDrive;
+    RobotDrive drive = RobotMap.robotDrive;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

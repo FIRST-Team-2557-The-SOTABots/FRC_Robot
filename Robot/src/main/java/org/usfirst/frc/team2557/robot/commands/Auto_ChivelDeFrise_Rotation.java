@@ -37,7 +37,7 @@ public class Auto_ChivelDeFrise_Rotation extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//This is telling the robot that once the above statement is true that the robot should stop in its tracks.
-    	RobotMap.arcadeDrive.arcadeDrive(0, 0);
+    	RobotMap.robotDrive.arcadeDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

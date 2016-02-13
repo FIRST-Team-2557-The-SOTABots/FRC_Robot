@@ -42,7 +42,7 @@ public class Auto_ChivelDeFrise extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.arcadeDrive.arcadeDrive(0, 0);
+    	RobotMap.robotDrive.arcadeDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
