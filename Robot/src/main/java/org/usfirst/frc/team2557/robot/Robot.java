@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.*;
-import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoSomething;
+import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
 
@@ -21,8 +21,6 @@ import org.usfirst.frc.team2557.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-    //public static final DriveSub driveSub = new DriveSub(); //Not understanding why it is written like thise - Antonio
-
 	//Subsystem Declarations//
     public static OI oi;
     public static DriveSub driveSub;
@@ -31,8 +29,6 @@ public class Robot extends IterativeRobot {
     //Command Declarations//
     Command autonomousCommand;
     Command driveCommand;
-    Command Sol1T; //What are these two commands for? - Antonio
-    Command Sol2T; //What are these two commands for? - Antonio
 
     SendableChooser autoChooser;
 
@@ -45,6 +41,7 @@ public class Robot extends IterativeRobot {
         RobotMap.init();
         
         //Subsystem Connections//
+        driveSub = new DriveSub();
         manipulatorSub = new ManipulatorSub();
 
         //Command Connections//
@@ -55,7 +52,7 @@ public class Robot extends IterativeRobot {
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser = new SendableChooser();
-        autoChooser.addDefault("Do Nothing", new Auto_DoSomething());
+        autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
 

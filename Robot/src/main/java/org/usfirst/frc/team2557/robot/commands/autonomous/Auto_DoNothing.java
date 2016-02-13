@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * For those moments when the best thing to do is nothing at all.
  */
-public class Auto_DoSomething extends Command {
+public class Auto_DoNothing extends Command {
 
     @Override
     protected void initialize() {
@@ -16,7 +16,7 @@ public class Auto_DoSomething extends Command {
 
     @Override
     protected void execute() {
-    	RobotMap.robotDrive.arcadeDrive(0,1);
+
     }
 
     @Override
