@@ -1,25 +1,27 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
+import org.usfirst.frc.team2557.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * For those moments when the best thing to do is nothing at all.
  */
-public class Auto_DoNothing extends Command {
+public class Auto_DoSomething extends Command {
 
     @Override
     protected void initialize() {
-
     }
 
     @Override
     protected void execute() {
-
+    	RobotMap.robotDrive.arcadeDrive(0,1);
     }
 
     @Override
-    protected boolean isFinished() {
-        return false;
+	protected boolean isFinished() {
+    	return true;
     }
 
     @Override

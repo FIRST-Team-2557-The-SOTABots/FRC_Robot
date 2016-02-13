@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2557.robot.commands.DriveCommand;
-import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
-import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
+import org.usfirst.frc.team2557.robot.commands.*;
+import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoSomething;
+import org.usfirst.frc.team2557.robot.subsystems.*;
 
 
 /**
@@ -21,14 +21,18 @@ import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
  */
 public class Robot extends IterativeRobot {
 
-    public static final DriveSub driveSub = new DriveSub();
+    //public static final DriveSub driveSub = new DriveSub(); //Not understanding why it is written like thise - Antonio
 
+	//Subsystem Declarations//
     public static OI oi;
+    public static DriveSub driveSub;
+    public static ManipulatorSub manipulatorSub;
 
+    //Command Declarations//
     Command autonomousCommand;
     Command driveCommand;
-    Command Sol1T;
-    Command Sol2T;
+    Command Sol1T; //What are these two commands for? - Antonio
+    Command Sol2T; //What are these two commands for? - Antonio
 
     SendableChooser autoChooser;
 
@@ -39,14 +43,19 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         // Initialize RobotMap
         RobotMap.init();
+        
+        //Subsystem Connections//
+        manipulatorSub = new ManipulatorSub();
 
+        //Command Connections//
         driveCommand = new DriveCommand();
 
+        
         oi = new OI();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser = new SendableChooser();
-        autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
+        autoChooser.addDefault("Do Nothing", new Auto_DoSomething());
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
 

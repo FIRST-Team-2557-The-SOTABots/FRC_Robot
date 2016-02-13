@@ -16,7 +16,7 @@ public class DriveSub extends Subsystem {
     CANTalon frontRight   = RobotMap.driveFrontRight;
     CANTalon backLeft	  = RobotMap.driveBackLeft;
     CANTalon backRight	  = RobotMap.driveBackRight;
-    RobotDrive drive = RobotMap.robotDrive;
+    RobotDrive robotDrive = RobotMap.robotDrive;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -26,8 +26,10 @@ public class DriveSub extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void doArcade() {
-    	  //Liam: added arcade drive 1/21/16
-    	drive.arcadeDrive(Robot.oi.driver);
+    	robotDrive.arcadeDrive(Robot.oi.driver.getRawAxis(1), Robot.oi.driver.getRawAxis(0));
+    }
+    public void doTank(){
+    	robotDrive.tankDrive(Robot.oi.driver.getRawAxis(1), Robot.oi.driver.getRawAxis(5));
     }
 }
 
