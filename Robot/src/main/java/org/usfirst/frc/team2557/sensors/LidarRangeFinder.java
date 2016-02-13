@@ -23,8 +23,8 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
     private ITable _table;
 
-    public LidarRangeFinder() {
-        this._serial = new SerialPort(115200, SerialPort.Port.kMXP);
+    public LidarRangeFinder(SerialPort.Port port) {
+        this._serial = new SerialPort(115200, port);
         this._serial.reset();
 
         this._byteBuilder = new ArrayList<Byte>();
@@ -164,7 +164,6 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
 
                 int quality = (d4 << 8) | d3;
 
-                this.getData(angle).angle = angle;
                 this.getData(angle).distance = distance;
                 this.getData(angle).quality = quality;
             }
@@ -199,18 +198,8 @@ public class LidarRangeFinder extends SensorBase implements LiveWindowSendable {
     }
 
     public class LidarData {
-        protected int angle;
         protected int distance;
         protected int quality;
-
-        /**
-         * Returns the angle in degrees.
-         *
-         * @return Angle in degrees
-         */
-        public int getAngle() {
-            return this.angle;
-        }
 
         /**
          * Returns the distance in mm.

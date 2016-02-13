@@ -54,7 +54,7 @@ public class RobotMap {
 
         catapultHallEffect = new DigitalInput(0);
 
-        LidarSensor = new LidarRangeFinder();
+        LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 
         robotDrive = new RobotDrive(driveFrontLeft, driveFrontRight, driveBackLeft, driveBackRight);
     }
