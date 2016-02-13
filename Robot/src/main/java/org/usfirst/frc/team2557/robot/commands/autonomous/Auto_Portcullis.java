@@ -21,23 +21,17 @@ public class Auto_Portcullis extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	//added code to this porticulis to make it so the robot will reach the defense
-    	//Added on 1/22/16.
-//    	if(RobotMap.RangeFinderF.getVoltage()>4){
-//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-//    	}
-    	Robot.autonomous.portcullis(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.robotDrive.arcadeDrive(0, 0);
+
     }
 
     // Called when another command which requires one or more of the same

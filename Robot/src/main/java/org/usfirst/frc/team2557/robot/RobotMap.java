@@ -26,11 +26,6 @@ public class RobotMap {
     public static DoubleSolenoid DSolenoid1 = new DoubleSolenoid(0,0,1); //Added two Double Solenoids
     public static DoubleSolenoid DSolenoid2 = new DoubleSolenoid(0,2,3); //Might Add another if needed
 
-    public static AnalogInput RangeFinderF = new AnalogInput(0); //Added Two range finders
-    public static AnalogInput RangeFinderL = new AnalogInput(1); //More may be added if needed
-    public static AnalogInput RangeFinderR = new AnalogInput(2); //Added two more range finders also renamed the existing ones
-    public static AnalogInput RangeFinderB = new AnalogInput(3); //and change where they were refernce to mathc
-
     //added the limit switches 1/21/16
     public static DigitalInput limitswitch = new DigitalInput(0);
     public static DigitalInput limitswitch2 = new DigitalInput(1);
@@ -43,12 +38,6 @@ public class RobotMap {
     //added the Encoders on 1/21/16.D  //Moved this little section to be below the inputs -H 1/22
     public static Encoder LeftEnc = new Encoder(3,4);
     public static Encoder RightEnc = new Encoder(5,6);
-
-    public static double RFF; //A declared double in the robot map that is for the front range finder 1/22
-    public static double RFL; //A declared double in the robot map that is for the left range finder 1/22
-    public static double RFR; //A declared double in the robot map that is for the right range finder
-    public static double RFB; //A declared double in the robot map that is for the back range finder
-
 
     /**
      * Initializes all the parts of RobotMap. This must be called main init method

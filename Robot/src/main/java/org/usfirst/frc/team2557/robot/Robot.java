@@ -5,10 +5,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.DriveCommand;
 import org.usfirst.frc.team2557.robot.commands.Solenoid1Toggle;
 import org.usfirst.frc.team2557.robot.commands.Solenoid2Toggle;
-import org.usfirst.frc.team2557.robot.subsystems.Autonomous;
+import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
 import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
 
@@ -23,7 +25,6 @@ import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
 public class Robot extends IterativeRobot {
 
     public static final DriveSub driveSub = new DriveSub();
-    public static final Autonomous autonomous = new Autonomous();
     public static Solenoid_System SolSystem;
 
 
@@ -34,12 +35,8 @@ public class Robot extends IterativeRobot {
     Command driveCommand;
     Command Sol1T;
     Command Sol2T;
-    Command Lowbar_Auto;
-    Command Moat_Auto;
-    Command Rampart_Auto;
-    Command RockWall_Auto;
-    Command RoughTerrain_Auto;
 
+    SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -51,15 +48,16 @@ public class Robot extends IterativeRobot {
 
         SolSystem = new Solenoid_System();
 
-
         driveCommand = new DriveCommand();
         Sol1T = new Solenoid1Toggle();
         Sol2T = new Solenoid2Toggle();
 
-
         oi = new OI();
-        // instantiate the command used for the autonomous period
 
+        // Make a SendableChooser on the SmartDashboard for changing auto programs
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
+        SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
 
     public void disabledPeriodic() {
@@ -67,16 +65,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        //talked to Antonio about how to make a switch-able autonomous
-        //so that the drive team can set it up on the field
-        //Made adjustments to this code on 1/22/16
-        if (autonomousCommand != null) autonomousCommand.start();
-        if (Lowbar_Auto != null) Lowbar_Auto.start();
-        if (Moat_Auto != null) Moat_Auto.start();
-        if (Rampart_Auto != null) Rampart_Auto.start();
-        if (RockWall_Auto != null) RockWall_Auto.start();
-        if (RoughTerrain_Auto != null) RoughTerrain_Auto.start();
+        autonomousCommand = (Command) autoChooser.getSelected();
+        autonomousCommand.start();
     }
 
     /**

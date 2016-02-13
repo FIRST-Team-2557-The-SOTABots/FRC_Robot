@@ -22,23 +22,17 @@ public class Auto_RockWall extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	//Will only work if the RangeFineders are in the Front. and above the drive train. Added 1/22/16.
-//    	if(RobotMap.RangeFinderF.getVoltage()>10){
-//    		RobotMap.arcadeDrive.arcadeDrive(.5,0);
-//    	}
-    	Robot.autonomous.rockWall(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderF.getVoltage()<=10;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
-    	RobotMap.robotDrive.arcadeDrive(0, 0);
+
     }
 
     // Called when another command which requires one or more of the same
