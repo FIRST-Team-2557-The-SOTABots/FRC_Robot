@@ -38,5 +38,48 @@ public class OI {
     public OI(){
 
     }
+    /*
+     * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
+     * 
+     *===Driver Controller===
+     *
+     * Left Joystick Y-Axis	=	=	Left side of the drive train
+     * Left Joystick X-Axis	=	=
+     * Right Joystick Y-Axis	=	Right side of the drive train
+     * Right Joystick X-Axis	=
+     * Left Trigger Axis	=	=
+     * Right Trigger Axis	=	=
+     * A	=	=	=	=	=	=
+     * B	=	=	=	=	=	=
+     * X	=	=	=	=	=	=
+     * Y	=	=	=	=	=	=
+     * LB	=	=	=	=	=	=
+     * RB	=	=	=	=	=	=
+     * BACK	=	=	=	=	=	=
+     * START	=	=	=	=	=
+     * LJB	=	=	=	=	=	=
+     * RJB	=	=	=	=	=	=
+     * 
+     *
+     *===Manipulator Controller===
+     *
+     * Left Joystick Y-Axis	=	=
+     * Left Joystick X-Axis	=	=
+     * Right Joystick Y-Axis	=
+     * Right Joystick X-Axis	=
+     * Left Trigger Axis	=	=
+     * Right Trigger Axis	=	=	Setting the catapult
+     * A	=	=	=	=	=	=
+     * B	=	=	=	=	=	=
+     * X	=	=	=	=	=	=
+     * Y	=	=	=	=	=	=
+     * LB	=	=	=	=	=	=	Spitting out the ball (outtake)
+     * RB	=	=	=	=	=	=	Intaking the ball
+     * BACK	=	=	=	=	=	=
+     * START	=	=	=	=	=	Allows for the catapult to shoot
+     * LJB	=	=	=	=	=	=
+     * RJB	=	=	=	=	=	=	
+     * 
+     */
 }
 
