@@ -30,7 +30,6 @@ public class Robot extends IterativeRobot {
 
     public static OI oi;
 
-
     Command autonomousCommand;
     Command driveCommand;
     Command Sol1T;
