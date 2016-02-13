@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
@@ -8,12 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_RockWall extends Command {
-//Lol
-    public Auto_RockWall() {
+public class Auto_DrawBridge_Rotation extends Command {
+
+    public Auto_DrawBridge_Rotation() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	
     }
 
     // Called just before this Command runs the first time
@@ -23,21 +22,16 @@ public class Auto_RockWall extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	//Will only work if the RangeFineders are in the Front. and above the drive train. Added 1/22/16.
-//    	if(RobotMap.RangeFinderF.getVoltage()>10){
-//    		RobotMap.arcadeDrive.arcadeDrive(.5,0);
-//    	}
-    	Robot.autonomous.rockWall(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
+    	Robot.autonomous.drawBridgeRotation();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderF.getVoltage()<=10;
+        return RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
     	RobotMap.robotDrive.arcadeDrive(0, 0);
     }
 

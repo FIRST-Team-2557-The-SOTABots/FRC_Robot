@@ -1,16 +1,15 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Auto_RockWall_CommandGroup extends CommandGroup {
+public class Auto_Rampart_CommandGroup extends CommandGroup {
     
-    public  Auto_RockWall_CommandGroup() {
-    	
-    	addSequential(new Auto_RockWall());
-    	addSequential(new Auto_RockWall_Rotation());
+    public  Auto_Rampart_CommandGroup() {
+    	addSequential(new Auto_Rampart());
+    	addSequential(new Auto_Rampart_Rotation());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

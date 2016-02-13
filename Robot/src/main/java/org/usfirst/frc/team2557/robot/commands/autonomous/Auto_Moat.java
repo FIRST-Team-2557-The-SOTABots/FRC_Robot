@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_Moat_Rotation extends Command {
+public class Auto_Moat extends Command {
 
-    public Auto_Moat_Rotation() {
+    public Auto_Moat() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -21,12 +22,17 @@ public class Auto_Moat_Rotation extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.autonomous.moatRotation();
+    	
+    	//This will only work if the rangeFinders are in the Front. Added 1/21/16.
+//    	if(RobotMap.RangeFinderF.getVoltage()>10){ 
+//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
+//    	}
+    	Robot.autonomous.moat(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16;
+        return RobotMap.RangeFinderF.getVoltage()<=10;
     }
 
     // Called once after isFinished returns true

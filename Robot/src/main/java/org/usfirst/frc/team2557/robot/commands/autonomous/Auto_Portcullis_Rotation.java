@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_SallyPort extends Command {
+public class Auto_Portcullis_Rotation extends Command {
 
-    public Auto_SallyPort() {
+    public Auto_Portcullis_Rotation() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,19 +21,12 @@ public class Auto_SallyPort extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	//This code is pretty much the same as the Draw Bridge but is for the sally port instead
-    	//and like always this will only work if the rangeFinders are in the front to register the doors of the drawbridge and the sally port
-    	//Added 1/22/16.
-//    	if(RobotMap.RangeFinderF.getVoltage()>4){
-//    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
-//    	}
-    	Robot.autonomous.sallyPort(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
+    	Robot.autonomous.portcullisRotation();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.RangeFinderF.getVoltage()<=4;
+        return RobotMap.RangeFinderF.getVoltage()<=4 && RobotMap.RangeFinderL.getVoltage()<=12 && RobotMap.RangeFinderR.getVoltage()<=16;
     }
 
     // Called once after isFinished returns true

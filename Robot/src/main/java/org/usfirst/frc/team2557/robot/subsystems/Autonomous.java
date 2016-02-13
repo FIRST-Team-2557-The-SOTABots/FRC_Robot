@@ -176,16 +176,4 @@ public class Autonomous extends Subsystem {
     		RobotMap.robotDrive.arcadeDrive(.5, 1);
     	}
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
-

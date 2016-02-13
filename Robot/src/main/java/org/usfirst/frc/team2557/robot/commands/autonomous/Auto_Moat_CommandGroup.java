@@ -1,17 +1,16 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Auto_RoughtTerrain_CommandGroup extends CommandGroup {
+public class Auto_Moat_CommandGroup extends CommandGroup {
     
-    public  Auto_RoughtTerrain_CommandGroup() {
+    public  Auto_Moat_CommandGroup() {
     	
-    	//RoughTerrain which is a 
-    	addSequential(new Auto_RoughTerrain());
-    	addSequential(new Auto_RoughTerrain_Rotation());
+    	addSequential(new Auto_Moat());
+    	addSequential(new Auto_Moat_Rotation());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -30,6 +29,3 @@ public class Auto_RoughtTerrain_CommandGroup extends CommandGroup {
         // arm.
     }
 }
-
-//this is only a test
-//Plz make sure to comment all the time when doing a video

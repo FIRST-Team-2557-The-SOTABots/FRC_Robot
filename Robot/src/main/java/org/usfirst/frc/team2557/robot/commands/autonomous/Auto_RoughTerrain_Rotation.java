@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_RockWall_Rotation extends Command {
+public class Auto_RoughTerrain_Rotation extends Command {
 
-    public Auto_RockWall_Rotation() {
+    public Auto_RoughTerrain_Rotation() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,7 +21,7 @@ public class Auto_RockWall_Rotation extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.autonomous.rockWallRotation();
+    	Robot.autonomous.roughTerrainRotation();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +33,6 @@ public class Auto_RockWall_Rotation extends Command {
     protected void end() {
     	RobotMap.robotDrive.arcadeDrive(0, 0);
     }
-
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {

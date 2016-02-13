@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auto_ChivelDeFrise extends Command {
+public class Auto_DrawBridge extends Command {
 
-    public Auto_ChivelDeFrise() {
+    public Auto_DrawBridge() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,22 +22,18 @@ public class Auto_ChivelDeFrise extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	//This is saying that the subsystem which is called autonomous will have the code that is neccassary for the robot to start.
-    	// even thought that this is autonomous that robot still has to be able to receive commands through all of the necassary
-    	//The comment below in this section of the code shows what was there.
-    	//The command of which tells the robot to look at the method stated above or below depending in what you want to do
-    	//Modified on 1/22/16.
+    	//This allows the Robot to move to the Draw Bridge to get into range for the manipulator to open the drawbridge.
+    	//Since their is no manipulator yet this will allow us to get to the Draw Bridge.
+    	//Added 1/22/16.
 //    	if(RobotMap.RangeFinderF.getVoltage()>4 ){
 //    		RobotMap.arcadeDrive.arcadeDrive(1, 0);
 //    	}
-    	Robot.autonomous.chivelDeFrise(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
-    	//Antonio was the one who made changes in this command to make it so that the method would include this.
+    	Robot.autonomous.drawBridge(); //Put the above lines of code into a method within the autonomous subsystem 1/23/16
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return RobotMap.RangeFinderF.getVoltage()<=4;
-        //this tells the robot to set the statement above to false unless actually updated.
     }
 
     // Called once after isFinished returns true

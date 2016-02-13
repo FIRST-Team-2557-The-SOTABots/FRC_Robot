@@ -1,15 +1,17 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Auto_Rampart_CommandGroup extends CommandGroup {
+public class Auto_Lowbar_CommandGroup extends CommandGroup {
     
-    public  Auto_Rampart_CommandGroup() {
-    	addSequential(new Auto_Rampart());
-    	addSequential(new Auto_Rampart_Rotation());
+    public  Auto_Lowbar_CommandGroup() {
+    	
+    	//this will stay true due to the fact that the low bar is always in a specified spot on the field
+    	addSequential(new Auto_Lowbar());
+    	addSequential(new Auto_Lowbar_Rotation());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
