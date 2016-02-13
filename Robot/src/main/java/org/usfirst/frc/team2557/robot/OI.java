@@ -59,7 +59,15 @@ public class OI {
      * START	=	=	=	=	=
      * LJB	=	=	=	=	=	=
      * RJB	=	=	=	=	=	=
-     * 
+     * POV-1	=	=	=	=	=
+     * POV1	=	=	=	=	=	=
+     * POV2	=	=	=	=	=	=
+     * POV3	=	=	=	=	=	=
+     * POV4	=	=	=	=	=	=
+     * POV5	=	=	=	=	=	=
+     * POV6	=	=	=	=	=	=
+     * POV7	=	=	=	=	=	=
+     * POV8	=	=	=	=	=	=
      *
      *===Manipulator Controller===
      *
@@ -79,6 +87,16 @@ public class OI {
      * START	=	=	=	=	=	Allows for the catapult to shoot
      * LJB	=	=	=	=	=	=
      * RJB	=	=	=	=	=	=	
+     * POV-1	=	=	=	=	=
+     * POV1	=	=	=	=	=	=
+     * POV2	=	=	=	=	=	=
+     * POV3	=	=	=	=	=	=
+     * POV4	=	=	=	=	=	=
+     * POV5	=	=	=	=	=	=
+     * POV6	=	=	=	=	=	=
+     * POV7	=	=	=	=	=	=
+     * POV8	=	=	=	=	=	=
+     * 
      * 
      */
 }

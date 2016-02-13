@@ -107,6 +107,7 @@ public class Robot extends IterativeRobot {
 
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
+        oi.driver.get
     }
 
     public void testInit() {
