@@ -8,11 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.DriveCommand;
-import org.usfirst.frc.team2557.robot.commands.Solenoid1Toggle;
-import org.usfirst.frc.team2557.robot.commands.Solenoid2Toggle;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.subsystems.DriveSub;
-import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
 
 
 /**
@@ -25,8 +22,6 @@ import org.usfirst.frc.team2557.robot.subsystems.Solenoid_System;
 public class Robot extends IterativeRobot {
 
     public static final DriveSub driveSub = new DriveSub();
-    public static Solenoid_System SolSystem;
-
 
     public static OI oi;
 
@@ -45,11 +40,7 @@ public class Robot extends IterativeRobot {
         // Initialize RobotMap
         RobotMap.init();
 
-        SolSystem = new Solenoid_System();
-
         driveCommand = new DriveCommand();
-        Sol1T = new Solenoid1Toggle();
-        Sol2T = new Solenoid2Toggle();
 
         oi = new OI();
 
@@ -83,7 +74,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        autonomousCommand.cancel();
 
         // Start the drive command
         driveCommand.start();
