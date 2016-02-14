@@ -32,8 +32,10 @@ public class Robot extends IterativeRobot {
     //Command Declarations//
     Command autonomousCommand;
     Command catapultCommand;
+    Command climbTower;
     Command driveCommand;
     Command intakeCommand;
+    Command secondArmRelease;
 
     SendableChooser autoChooser;
 
@@ -59,8 +61,10 @@ public class Robot extends IterativeRobot {
 
         //Command Connections//
         catapultCommand = new CatapultCommand();
+        climbTower = new ClimbTower();
         driveCommand = new DriveCommand();
         intakeCommand = new IntakeCommand();
+        secondArmRelease = new SecondArmRelease();
         
         oi = new OI();
 
@@ -98,8 +102,10 @@ public class Robot extends IterativeRobot {
 
         // Start the drive command
         catapultCommand.start();
+        climbTower.start();
         driveCommand.start();
         intakeCommand.start();
+        secondArmRelease.start();
     }
 
     /**
