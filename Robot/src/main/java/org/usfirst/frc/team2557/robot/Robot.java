@@ -11,6 +11,8 @@ import org.usfirst.frc.team2557.robot.commands.*;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
+import java.io.IOException;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,6 +44,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         // Initialize RobotMap
         RobotMap.init();
+
+        // Run GRIP
+        try {
+            new ProcessBuilder("/home/lvuser/start_grip").inheritIO().start();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
         
         //Subsystem Connections//
         driveSub = new DriveSub();
