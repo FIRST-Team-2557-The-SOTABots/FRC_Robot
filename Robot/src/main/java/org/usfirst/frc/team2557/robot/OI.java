@@ -47,26 +47,26 @@ public class OI {
      * Left Joystick X-Axis	=	=
      * Right Joystick Y-Axis	=	Right side of the drive train
      * Right Joystick X-Axis	= 
-     * Left Trigger Axis	=	= 
-     * Right Trigger Axis	=	= 
+     * Left Trigger Axis	=	= 	Winch (tied into Right Trigger)
+     * Right Trigger Axis	=	=	Winch (tied into Left Trigger)
      * A	=	=	=	=	=	= 
      * B	=	=	=	=	=	= 
      * X	=	=	=	=	=	= 
      * Y	=	=	=	=	=	= 
      * LB	=	=	=	=	=	= 
      * RB	=	=	=	=	=	= 
-     * BACK	=	=	=	=	=	= Intake Arm Configuration 5; Climbing
+     * BACK	=	=	=	=	=	=	Secondary Arm Servo Actuation
      * START	=	=	=	=	= 
      * LJB	=	=	=	=	=	= 
      * RJB	=	=	=	=	=	= 
      * POV-1	=	=	=	=	= 
-     * POV1	=	=	=	=	=	= Intake Arm Configuration 1; Intake
+     * POV1	=	=	=	=	=	= 
      * POV2	=	=	=	=	=	= 
-     * POV3	=	=	=	=	=	= Intake Arm Configuration 2; Load
+     * POV3	=	=	=	=	=	= 
      * POV4	=	=	=	=	=	= 
-     * POV5	=	=	=	=	=	= Intake Arm Configuration 3; Portcullis
+     * POV5	=	=	=	=	=	= 
      * POV6	=	=	=	=	=	= 
-     * POV7	=	=	=	=	=	= Intake Arm Configuration 4; Lowbar
+     * POV7	=	=	=	=	=	= 
      * POV8	=	=	=	=	=	=
      *
      *===Manipulator Controller===
@@ -83,19 +83,19 @@ public class OI {
      * Y	=	=	=	=	=	=
      * LB	=	=	=	=	=	=	Spitting out the ball (outtake)
      * RB	=	=	=	=	=	=	Intaking the ball
-     * BACK	=	=	=	=	=	=
+     * BACK	=	=	=	=	=	=	Intake Arm Configuration 5; Climbing
      * START	=	=	=	=	=	Allows for the catapult to shoot
      * LJB	=	=	=	=	=	=
      * RJB	=	=	=	=	=	=	
      * POV-1	=	=	=	=	=
+     * POV0	=	=	=	=	=	=	Intake Arm Configuration 1; Intake
      * POV1	=	=	=	=	=	=
-     * POV2	=	=	=	=	=	=
+     * POV2	=	=	=	=	=	=	Intake Arm Configuration 2; Load
      * POV3	=	=	=	=	=	=
-     * POV4	=	=	=	=	=	=
+     * POV4	=	=	=	=	=	=	Intake Arm Configuration 3; Portcullis
      * POV5	=	=	=	=	=	=
-     * POV6	=	=	=	=	=	=
+     * POV6	=	=	=	=	=	=	Intake Arm Configuration 4; Lowbar
      * POV7	=	=	=	=	=	=
-     * POV8	=	=	=	=	=	=
      * 
      * 
      */
