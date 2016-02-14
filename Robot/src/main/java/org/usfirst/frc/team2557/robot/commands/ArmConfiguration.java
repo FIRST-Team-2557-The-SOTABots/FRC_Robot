@@ -15,7 +15,6 @@ public class ArmConfiguration extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
 		if(Robot.oi.manipulator.getPOV() == 0){
 			if(RobotMap.armGyro.getAngle() < 45){
 				Robot.manipulatorSub.actuatorsUp();
@@ -68,7 +67,6 @@ public class ArmConfiguration extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
