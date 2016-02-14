@@ -8,7 +8,7 @@ buildscript {
 	mavenLocal()
   }
   dependencies {
-    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+' // GradleRIO should automatically download the latest WPI libraries
+    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '4.3.3' // GradleRIO should automatically download the latest WPI libraries
   }
 }
 
