@@ -29,7 +29,9 @@ public class Robot extends IterativeRobot {
 
     //Command Declarations//
     Command autonomousCommand;
+    Command catapultCommand;
     Command driveCommand;
+    Command intakeCommand;
 
     SendableChooser autoChooser;
 
@@ -47,8 +49,9 @@ public class Robot extends IterativeRobot {
         cameraSub = new CameraSub();
 
         //Command Connections//
+        catapultCommand = new CatapultCommand();
         driveCommand = new DriveCommand();
-
+        intakeCommand = new IntakeCommand();
         
         oi = new OI();
 
@@ -85,7 +88,9 @@ public class Robot extends IterativeRobot {
         autonomousCommand.cancel();
 
         // Start the drive command
+        catapultCommand.start();
         driveCommand.start();
+        intakeCommand.start();
     }
 
     /**

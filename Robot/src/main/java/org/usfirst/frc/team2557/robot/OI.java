@@ -46,20 +46,28 @@ public class OI {
      * Left Joystick Y-Axis	=	=	Left side of the drive train
      * Left Joystick X-Axis	=	=
      * Right Joystick Y-Axis	=	Right side of the drive train
-     * Right Joystick X-Axis	=
-     * Left Trigger Axis	=	=
-     * Right Trigger Axis	=	=
-     * A	=	=	=	=	=	=
-     * B	=	=	=	=	=	=
-     * X	=	=	=	=	=	=
-     * Y	=	=	=	=	=	=
-     * LB	=	=	=	=	=	=
-     * RB	=	=	=	=	=	=
-     * BACK	=	=	=	=	=	=
-     * START	=	=	=	=	=
-     * LJB	=	=	=	=	=	=
-     * RJB	=	=	=	=	=	=
-     * 
+     * Right Joystick X-Axis	= 
+     * Left Trigger Axis	=	= 
+     * Right Trigger Axis	=	= 
+     * A	=	=	=	=	=	= 
+     * B	=	=	=	=	=	= 
+     * X	=	=	=	=	=	= 
+     * Y	=	=	=	=	=	= 
+     * LB	=	=	=	=	=	= 
+     * RB	=	=	=	=	=	= 
+     * BACK	=	=	=	=	=	= 
+     * START	=	=	=	=	= 
+     * LJB	=	=	=	=	=	= 
+     * RJB	=	=	=	=	=	= 
+     * POV-1	=	=	=	=	= 
+     * POV1	=	=	=	=	=	= Intake Arm Configuration 1
+     * POV2	=	=	=	=	=	= 
+     * POV3	=	=	=	=	=	= Intake Arm Configuration 2
+     * POV4	=	=	=	=	=	= 
+     * POV5	=	=	=	=	=	= Intake Arm Configuration 3
+     * POV6	=	=	=	=	=	= 
+     * POV7	=	=	=	=	=	= Intake Arm Configuration 4
+     * POV8	=	=	=	=	=	=
      *
      *===Manipulator Controller===
      *
@@ -79,6 +87,16 @@ public class OI {
      * START	=	=	=	=	=	Allows for the catapult to shoot
      * LJB	=	=	=	=	=	=
      * RJB	=	=	=	=	=	=	
+     * POV-1	=	=	=	=	=
+     * POV1	=	=	=	=	=	=
+     * POV2	=	=	=	=	=	=
+     * POV3	=	=	=	=	=	=
+     * POV4	=	=	=	=	=	=
+     * POV5	=	=	=	=	=	=
+     * POV6	=	=	=	=	=	=
+     * POV7	=	=	=	=	=	=
+     * POV8	=	=	=	=	=	=
+     * 
      * 
      */
 }
