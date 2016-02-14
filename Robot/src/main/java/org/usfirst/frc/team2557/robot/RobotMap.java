@@ -21,6 +21,8 @@ public class RobotMap {
     public static CANTalon rightActuatorMotor;
     public static CANTalon intakeMotor;
 
+    public static Servo secondaryArm;
+    
     public static AnalogGyro armGyro;
 
     public static Encoder leftActuatorEncoder;
@@ -31,12 +33,16 @@ public class RobotMap {
     public static LidarRangeFinder LidarSensor;
 
     public static RobotDrive robotDrive;
-
+    
+    public static double x = 0.5;
+    public static double y = 0.5;
+    public static double target = 40;
     /**
      * Initializes all the parts of RobotMap. This must be called main init method
      * in Robot.java, as WPI needs to set up before these objects can be constructed.
      */
     public static void init() {
+    	
         driveFrontLeft = new CANTalon(0);
         driveFrontRight = new CANTalon(1);
         driveBackLeft = new CANTalon(2);
@@ -49,6 +55,8 @@ public class RobotMap {
 
         armGyro = new AnalogGyro(0);
 
+        secondaryArm = new Servo(1);
+        
         leftActuatorEncoder = new Encoder(1, 2);
         rightActuatorEncoder = new Encoder(3, 4);
 

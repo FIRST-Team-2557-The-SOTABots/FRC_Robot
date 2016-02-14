@@ -30,5 +30,41 @@ public class ManipulatorSub extends Subsystem {
 			RobotMap.intakeMotor.set(0);
 		}
 	}
+	public void actuatorsUp(){
+		RobotMap.leftActuatorMotor.set(RobotMap.x);
+		RobotMap.rightActuatorMotor.set(RobotMap.y);
+		if(RobotMap.leftActuatorEncoder.getRate() > RobotMap.target){
+			RobotMap.x = RobotMap.x - 0.1;
+		}
+		else if(RobotMap.leftActuatorEncoder.getRate() < RobotMap.target){
+			RobotMap.x = RobotMap.x + 0.1;
+		}
+		
+		if(RobotMap.rightActuatorEncoder.getRate() > RobotMap.target){
+			RobotMap.y = RobotMap.y - 0.1;
+		}
+		else if(RobotMap.rightActuatorEncoder.getRate() < RobotMap.target){
+			RobotMap.y = RobotMap.y + 0.1;
+		}
+	}
+	public void actuatorsDown(){
+		RobotMap.leftActuatorMotor.set(-RobotMap.x);
+		RobotMap.rightActuatorMotor.set(-RobotMap.y);
+		if(Math.abs(RobotMap.leftActuatorEncoder.getRate()) > RobotMap.target){
+			RobotMap.x = RobotMap.x - 0.1;
+		}
+		else if(Math.abs(RobotMap.leftActuatorEncoder.getRate()) < RobotMap.target){
+			RobotMap.x = RobotMap.x + 0.1;
+		}
+		
+		if(Math.abs(RobotMap.rightActuatorEncoder.getRate()) > RobotMap.target){
+			RobotMap.y = RobotMap.y - 0.1;
+		}
+		else if(Math.abs(RobotMap.rightActuatorEncoder.getRate()) < RobotMap.target){
+			RobotMap.y = RobotMap.y + 0.1;
+		}
+	}
+	
+	
 	
 }

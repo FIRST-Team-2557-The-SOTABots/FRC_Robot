@@ -55,18 +55,18 @@ public class OI {
      * Y	=	=	=	=	=	= 
      * LB	=	=	=	=	=	= 
      * RB	=	=	=	=	=	= 
-     * BACK	=	=	=	=	=	= 
+     * BACK	=	=	=	=	=	= Intake Arm Configuration 5; Climbing
      * START	=	=	=	=	= 
      * LJB	=	=	=	=	=	= 
      * RJB	=	=	=	=	=	= 
      * POV-1	=	=	=	=	= 
-     * POV1	=	=	=	=	=	= Intake Arm Configuration 1
+     * POV1	=	=	=	=	=	= Intake Arm Configuration 1; Intake
      * POV2	=	=	=	=	=	= 
-     * POV3	=	=	=	=	=	= Intake Arm Configuration 2
+     * POV3	=	=	=	=	=	= Intake Arm Configuration 2; Load
      * POV4	=	=	=	=	=	= 
-     * POV5	=	=	=	=	=	= Intake Arm Configuration 3
+     * POV5	=	=	=	=	=	= Intake Arm Configuration 3; Portcullis
      * POV6	=	=	=	=	=	= 
-     * POV7	=	=	=	=	=	= Intake Arm Configuration 4
+     * POV7	=	=	=	=	=	= Intake Arm Configuration 4; Lowbar
      * POV8	=	=	=	=	=	=
      *
      *===Manipulator Controller===

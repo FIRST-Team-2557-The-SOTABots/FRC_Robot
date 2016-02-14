@@ -118,6 +118,7 @@ public class Robot extends IterativeRobot {
 
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
+        
     }
 
     public void testInit() {
