@@ -4,7 +4,7 @@ import org.usfirst.frc.team2557.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SecondArmRelease extends Command{
+public class ClimbTowerCommand extends Command {
 
 	@Override
 	protected void initialize() {
@@ -15,7 +15,7 @@ public class SecondArmRelease extends Command{
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		Robot.manipulatorSub.secondArmRelease();
+		Robot.manipulatorSub.climbTower();
 	}
 
 	@Override

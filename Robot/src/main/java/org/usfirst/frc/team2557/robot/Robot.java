@@ -61,10 +61,10 @@ public class Robot extends IterativeRobot {
 
         //Command Connections//
         catapultCommand = new CatapultCommand();
-        climbTower = new ClimbTower();
+        climbTower = new ClimbTowerCommand();
         driveCommand = new DriveCommand();
         intakeCommand = new IntakeCommand();
-        secondArmRelease = new SecondArmRelease();
+        secondArmRelease = new SecondArmReleaseCommand();
         
         oi = new OI();
 

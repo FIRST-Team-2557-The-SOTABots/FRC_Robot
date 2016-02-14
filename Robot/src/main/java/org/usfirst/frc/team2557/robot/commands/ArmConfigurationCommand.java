@@ -5,12 +5,11 @@ import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ArmConfiguration extends Command {
+public class ArmConfigurationCommand extends Command {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
