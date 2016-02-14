@@ -55,8 +55,8 @@ public class OI {
      * Y	=	=	=	=	=	= 
      * LB	=	=	=	=	=	= 
      * RB	=	=	=	=	=	= 
-     * BACK	=	=	=	=	=	=	Secondary Arm Servo Actuation
-     * START	=	=	=	=	= 
+     * BACK	=	=	=	=	=	=	Secondary Arm Servo Actuation (tied into START)
+     * START	=	=	=	=	= 	Secondary Arm Servo Actuation (tied into BACK)
      * LJB	=	=	=	=	=	= 
      * RJB	=	=	=	=	=	= 
      * POV-1	=	=	=	=	= 

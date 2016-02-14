@@ -14,7 +14,10 @@ public class SecondArmReleaseCommand extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.manipulatorSub.secondArmRelease();
+		if(Robot.oi.driverBack.get() && Robot.oi.driverStart.get()){
+			Robot.manipulatorSub.secondArmRelease();
+		}
+		
 	}
 
 	@Override

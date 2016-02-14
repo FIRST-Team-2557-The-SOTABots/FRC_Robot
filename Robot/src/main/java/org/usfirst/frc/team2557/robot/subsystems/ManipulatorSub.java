@@ -55,6 +55,6 @@ public class ManipulatorSub extends Subsystem {
 	}
 
 	public void secondArmRelease() {
-		RobotMap.secondaryArm.setAngle(90);
+		RobotMap.secondaryArm.setAngle(90); //Subject to change since this is an arbitrary setting
 	}
 }
