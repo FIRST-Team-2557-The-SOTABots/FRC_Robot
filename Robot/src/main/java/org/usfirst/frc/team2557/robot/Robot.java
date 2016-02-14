@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static DriveSub driveSub;
     public static ManipulatorSub manipulatorSub;
+    public static CameraSub cameraSub;
 
     //Command Declarations//
     Command autonomousCommand;
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
         //Subsystem Connections//
         driveSub = new DriveSub();
         manipulatorSub = new ManipulatorSub();
+        cameraSub = new CameraSub();
 
         //Command Connections//
         driveCommand = new DriveCommand();
