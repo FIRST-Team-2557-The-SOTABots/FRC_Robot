@@ -24,10 +24,11 @@ import java.io.IOException;
 public class Robot extends IterativeRobot {
 
 	//Subsystem Declarations//
-    public static OI oi;
-    public static DriveSub driveSub;
-    public static ManipulatorSub manipulatorSub;
-    public static CameraSub cameraSub;
+    public static OI 				oi;
+    public static DriveSub 			driveSub;
+    public static ManipulatorSub 	manipulatorSub;
+    public static CameraSub 		cameraSub;
+    public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
     Command autonomousCommand;
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
     Command driveCommand;
     Command intakeCommand;
     Command secondArmRelease;
+    Command smartDashboardCommand;
 
     SendableChooser autoChooser;
 
@@ -55,21 +57,22 @@ public class Robot extends IterativeRobot {
         }
         
         //Subsystem Connections//
-        driveSub = new DriveSub();
-        manipulatorSub = new ManipulatorSub();
-        cameraSub = new CameraSub();
-
+        driveSub 				= new DriveSub();
+        manipulatorSub 			= new ManipulatorSub();
+        cameraSub 				= new CameraSub();
+        smartDashboardSub 		= new SmartDashboardSub();
         //Command Connections//
-        catapultCommand = new CatapultCommand();
-        climbTower = new ClimbTowerCommand();
-        driveCommand = new DriveCommand();
-        intakeCommand = new IntakeCommand();
-        secondArmRelease = new SecondArmReleaseCommand();
+        catapultCommand 		= new CatapultCommand();
+        climbTower 				= new ClimbTowerCommand();
+        driveCommand 			= new DriveCommand();
+        intakeCommand 			= new IntakeCommand();
+        secondArmRelease 		= new SecondArmReleaseCommand();
+        smartDashboardCommand 	= new SmartDashboardCommand();
         
-        oi = new OI();
+        oi 						= new OI();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
-        autoChooser = new SendableChooser();
+        autoChooser 			= new SendableChooser();
         autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
@@ -116,7 +119,8 @@ public class Robot extends IterativeRobot {
 
     }
 
-    /**
+    /*
+
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
