@@ -41,8 +41,23 @@ public class ManipulatorSub extends Subsystem {
 	public void actuatorsUp() {
 		setActuators(defaultSpeed);
 	}
+<<<<<<< HEAD
 	public void actuatorsDown() {
 		setActuators(-defaultSpeed);
 	}
 
+=======
+	public void climbTower(){
+		if(Robot.oi.driver.getRawAxis(2) > 0.5 && Robot.oi.driver.getRawAxis(3) > 0.5){
+			RobotMap.climbingMotor.set(1);
+		}
+		else{
+			RobotMap.climbingMotor.set(0);
+		}
+	}
+	public void secondArmRelease(){
+		RobotMap.secondaryArm.setAngle(90);
+	}
+	
+>>>>>>> 2016
 }
