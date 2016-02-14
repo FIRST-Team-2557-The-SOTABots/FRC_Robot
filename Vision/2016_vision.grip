@@ -1,0 +1,194 @@
+<grip:Pipeline>
+  <sources>
+    <grip:Camera>
+      <property name="deviceNumber" value="0"/>
+    </grip:Camera>
+  </sources>
+  <steps>
+    <grip:Step name="CV resize">
+      <grip:Input step="0" socket="0"/>
+      <grip:Input step="0" socket="1"/>
+      <grip:Input step="0" socket="2">
+        <value>0.25</value>
+      </grip:Input>
+      <grip:Input step="0" socket="3">
+        <value>0.25</value>
+      </grip:Input>
+      <grip:Input step="0" socket="4">
+        <value>INTER_LINEAR</value>
+      </grip:Input>
+      <grip:Output step="0" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="HSV Threshold">
+      <grip:Input step="1" socket="0"/>
+      <grip:Input step="1" socket="1">
+        <value>
+          <double>0.0</double>
+          <double>95.15151515151514</double>
+        </value>
+      </grip:Input>
+      <grip:Input step="1" socket="2">
+        <value>
+          <double>194.9190647482014</double>
+          <double>255.0</double>
+        </value>
+      </grip:Input>
+      <grip:Input step="1" socket="3">
+        <value>
+          <double>43.57014388489208</double>
+          <double>255.0</double>
+        </value>
+      </grip:Input>
+      <grip:Output step="1" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="Find Contours">
+      <grip:Input step="2" socket="0"/>
+      <grip:Input step="2" socket="1">
+        <value>false</value>
+      </grip:Input>
+      <grip:Output step="2" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="Filter Contours">
+      <grip:Input step="3" socket="0"/>
+      <grip:Input step="3" socket="1">
+        <value>0.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="2">
+        <value>3.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="3">
+        <value>10.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="4">
+        <value>1000.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="5">
+        <value>0.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="6">
+        <value>1000.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="7">
+        <value>
+          <int>0</int>
+          <int>100</int>
+        </value>
+      </grip:Input>
+      <grip:Output step="3" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="Publish ContoursReport">
+      <grip:Input step="4" socket="0"/>
+      <grip:Input step="4" socket="1">
+        <value>goalContoursReport</value>
+      </grip:Input>
+      <grip:Input step="4" socket="2">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="3">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="4">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="5">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="6">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="7">
+        <value>true</value>
+      </grip:Input>
+    </grip:Step>
+    <grip:Step name="Find Lines">
+      <grip:Input step="5" socket="0"/>
+      <grip:Output step="5" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="Publish LinesReport">
+      <grip:Input step="6" socket="0"/>
+      <grip:Input step="6" socket="1">
+        <value>goalLinesReport</value>
+      </grip:Input>
+      <grip:Input step="6" socket="2">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="6" socket="3">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="6" socket="4">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="6" socket="5">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="6" socket="6">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="6" socket="7">
+        <value>true</value>
+      </grip:Input>
+    </grip:Step>
+    <grip:Step name="Mask">
+      <grip:Input step="7" socket="0"/>
+      <grip:Input step="7" socket="1"/>
+      <grip:Output step="7" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="Publish Video">
+      <grip:Input step="8" socket="0"/>
+      <grip:Input step="8" socket="1">
+        <value>80</value>
+      </grip:Input>
+    </grip:Step>
+  </steps>
+  <connections>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="7" socket="1"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="3" socket="0" previewed="true"/>
+      <grip:Input step="4" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="7" socket="0" previewed="true"/>
+      <grip:Input step="8" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="7" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="5" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="1" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="2" socket="0" previewed="true"/>
+      <grip:Input step="3" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output source="0" socket="0" previewed="false"/>
+      <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="5" socket="0" previewed="true"/>
+      <grip:Input step="6" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+  </connections>
+  <settings>
+    <teamNumber>2557</teamNumber>
+    <publishAddress>10.25.57.20</publishAddress>
+    <deployAddress>10.25.57.20</deployAddress>
+    <deployDir>/home/lvuser</deployDir>
+    <deployUser>lvuser</deployUser>
+    <deployJavaHome>/usr/local/frc/JRE/</deployJavaHome>
+    <deployJvmOptions>lvuser</deployJvmOptions>
+  </settings>
+</grip:Pipeline>
