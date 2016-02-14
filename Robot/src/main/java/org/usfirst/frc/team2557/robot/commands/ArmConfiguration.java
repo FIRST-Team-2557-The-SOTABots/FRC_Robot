@@ -61,8 +61,7 @@ public class ArmConfiguration extends Command {
 			}
 		}
 		else{
-			RobotMap.leftActuatorMotor.set(0);
-			RobotMap.rightActuatorMotor.set(0);
+			Robot.manipulatorSub.setActuators(0);
 		}
 
 	}

@@ -30,41 +30,19 @@ public class ManipulatorSub extends Subsystem {
 			RobotMap.intakeMotor.set(0);
 		}
 	}
-	public void actuatorsUp(){
-		RobotMap.leftActuatorMotor.set(RobotMap.x);
-		RobotMap.rightActuatorMotor.set(RobotMap.y);
-		if(RobotMap.leftActuatorEncoder.getRate() > RobotMap.target){
-			RobotMap.x = RobotMap.x - 0.1;
-		}
-		else if(RobotMap.leftActuatorEncoder.getRate() < RobotMap.target){
-			RobotMap.x = RobotMap.x + 0.1;
-		}
-		
-		if(RobotMap.rightActuatorEncoder.getRate() > RobotMap.target){
-			RobotMap.y = RobotMap.y - 0.1;
-		}
-		else if(RobotMap.rightActuatorEncoder.getRate() < RobotMap.target){
-			RobotMap.y = RobotMap.y + 0.1;
-		}
+
+	double Actuators_Kp = 0.03; // Adjust Kp as necessary
+	public void setActuators(double speed) {
+		RobotMap.leftActuatorMotor.set(speed);
+		RobotMap.rightActuatorMotor.set(speed * ((RobotMap.leftActuatorEncoder.getRate() - RobotMap.rightActuatorEncoder.getRate()) * Actuators_Kp)); // PID error correction algorithm
 	}
-	public void actuatorsDown(){
-		RobotMap.leftActuatorMotor.set(-RobotMap.x);
-		RobotMap.rightActuatorMotor.set(-RobotMap.y);
-		if(Math.abs(RobotMap.leftActuatorEncoder.getRate()) > RobotMap.target){
-			RobotMap.x = RobotMap.x - 0.1;
-		}
-		else if(Math.abs(RobotMap.leftActuatorEncoder.getRate()) < RobotMap.target){
-			RobotMap.x = RobotMap.x + 0.1;
-		}
-		
-		if(Math.abs(RobotMap.rightActuatorEncoder.getRate()) > RobotMap.target){
-			RobotMap.y = RobotMap.y - 0.1;
-		}
-		else if(Math.abs(RobotMap.rightActuatorEncoder.getRate()) < RobotMap.target){
-			RobotMap.y = RobotMap.y + 0.1;
-		}
+
+	double defaultSpeed = 0.5;
+	public void actuatorsUp() {
+		setActuators(defaultSpeed);
 	}
-	
-	
-	
+	public void actuatorsDown() {
+		setActuators(-defaultSpeed);
+	}
+
 }

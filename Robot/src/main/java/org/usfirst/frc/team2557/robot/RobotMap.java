@@ -33,10 +33,7 @@ public class RobotMap {
     public static LidarRangeFinder LidarSensor;
 
     public static RobotDrive robotDrive;
-    
-    public static double x = 0.5;
-    public static double y = 0.5;
-    public static double target = 40;
+
     /**
      * Initializes all the parts of RobotMap. This must be called main init method
      * in Robot.java, as WPI needs to set up before these objects can be constructed.
