@@ -19,7 +19,7 @@ public class CameraSub extends Subsystem {
     }
 
     public double getTargetPositionX() {
-        final double Px = gripTable.getSubTable("goalContoursReport").getNumber("centerX", 0);
+        final double Px = this.getClosestTargetValue("centerX");
 
         return (Px - (FOVp / 2)) / (FOVp / 2);
     }
@@ -28,8 +28,22 @@ public class CameraSub extends Subsystem {
     private final double FOVp = 320;
     private final double Tft = 1.6667;
     public double getTargetDistance() {
-        final double Tp = gripTable.getSubTable("goalContoursReport").getNumber("width", 0);
+        final double Tp = this.getClosestTargetValue("width");
         return (Tft * FOVp) / (2 * Tp * Math.tan(Math.toRadians(fov / 2)));
+    }
+
+    private double getClosestTargetValue(String value) {
+        int lowestIndex = 0;
+        double[] xCandidates = gripTable.getSubTable("goalContoursReport").getNumberArray("centerX", new double[1]);
+
+        for(int i = 0; i < xCandidates.length; i++) {
+            if(Math.abs(xCandidates[i]) < Math.abs(xCandidates[lowestIndex])) {
+                lowestIndex = i;
+                continue;
+            }
+        }
+
+        return gripTable.getSubTable("goalContoursReport").getNumberArray(value, new double[1])[lowestIndex];
     }
 
 }
