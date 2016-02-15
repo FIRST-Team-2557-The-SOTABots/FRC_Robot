@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -23,7 +24,7 @@ public class RobotMap {
 
     public static Servo secondaryArm;
     
-    public static AnalogGyro armGyro;
+    public static Gyro armGyro;
 
     public static Encoder leftActuatorEncoder;
     public static Encoder rightActuatorEncoder;
