@@ -12,10 +12,10 @@ public class SmartDashboardSub extends Subsystem{
 	}
 	
 	public void voltageCheck(){
-		SmartDashboard.putNumber("The FrontLeftDriveMotor is pulling: ", RobotMap.driveFrontLeft.getOutputVoltage());
-		SmartDashboard.putNumber("The FrontRightDriveMotor is pulling: ", RobotMap.driveFrontRight.getOutputVoltage());
-		SmartDashboard.putNumber("The BackLeftDriveMotor is pulling: ", RobotMap.driveBackLeft.getOutputVoltage());
-		SmartDashboard.putNumber("The BackRightDriveMotor is pulling: ", RobotMap.driveBackRight.getOutputVoltage());
+		SmartDashboard.putNumber("The driveLeft1 is pulling: ", RobotMap.driveLeft1.getOutputVoltage());
+		SmartDashboard.putNumber("The driveLeft2 is pulling: ", RobotMap.driveLeft2.getOutputVoltage());
+		SmartDashboard.putNumber("The driveRight1 is pulling: ", RobotMap.driveRight1.getOutputVoltage());
+		SmartDashboard.putNumber("The driveRight2 is pulling: ", RobotMap.driveRight2.getOutputVoltage());
 		SmartDashboard.putNumber("The CatapultMotor is pulling: ", RobotMap.catapultMotor.getOutputVoltage());
 		SmartDashboard.putNumber("The ClimbingMotor is pulling: ", RobotMap.climbingMotor.getOutputVoltage());
 		SmartDashboard.putNumber("The IntakeMotor is pulling: ", RobotMap.intakeMotor.getOutputVoltage());

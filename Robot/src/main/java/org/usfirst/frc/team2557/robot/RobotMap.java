@@ -13,10 +13,10 @@ import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
  */
 public class RobotMap {
 
-    public static CANTalon driveFrontLeft;
-    public static CANTalon driveFrontRight;
-    public static CANTalon driveBackLeft;
-    public static CANTalon driveBackRight;
+    public static CANTalon driveLeft1;
+    public static CANTalon driveLeft2;
+    public static CANTalon driveRight1;
+    public static CANTalon driveRight2;
     public static CANTalon catapultMotor;
     public static CANTalon climbingMotor;
     public static CANTalon leftActuatorMotor;
@@ -44,15 +44,15 @@ public class RobotMap {
      */
     public static void init() {
     	
-        driveFrontLeft = new CANTalon(0);
-        driveFrontRight = new CANTalon(1);
-        driveBackLeft = new CANTalon(2);
-        driveBackRight = new CANTalon(3);
-        catapultMotor = new CANTalon(4);
-        climbingMotor = new CANTalon(5);
-        leftActuatorMotor = new CANTalon(6);
-        rightActuatorMotor = new CANTalon(7);
-        intakeMotor = new CANTalon(8);
+        driveLeft1 = new CANTalon(8);
+        driveLeft2 = new CANTalon(7);
+        driveRight1 = new CANTalon(6);
+        driveRight2 = new CANTalon(5);
+        catapultMotor = new CANTalon(1);
+        climbingMotor = new CANTalon(9);
+        leftActuatorMotor = new CANTalon(2);
+        rightActuatorMotor = new CANTalon(3);
+        intakeMotor = new CANTalon(4);
 
         armGyro = new AnalogGyro(0);
 
@@ -67,7 +67,7 @@ public class RobotMap {
 
         LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 
-        robotDrive = new RobotDrive(driveFrontLeft, driveFrontRight, driveBackLeft, driveBackRight);
+        robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
     }
 
 }
