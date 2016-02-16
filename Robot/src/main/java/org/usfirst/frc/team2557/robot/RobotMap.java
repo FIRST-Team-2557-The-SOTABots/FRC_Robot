@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
@@ -31,6 +32,8 @@ public class RobotMap {
 
     public static DigitalInput catapultHallEffect;
 
+    public static Accelerometer rioAccelerometer;
+
     public static LidarRangeFinder LidarSensor;
 
     public static RobotDrive robotDrive;
@@ -59,6 +62,8 @@ public class RobotMap {
         rightActuatorEncoder = new Encoder(3, 4);
 
         catapultHallEffect = new DigitalInput(0);
+
+        rioAccelerometer = new BuiltInAccelerometer();
 
         LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 

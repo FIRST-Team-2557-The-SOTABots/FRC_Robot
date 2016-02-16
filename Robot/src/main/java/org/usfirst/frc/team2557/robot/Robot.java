@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
     public static DriveSub 			driveSub;
     public static ManipulatorSub 	manipulatorSub;
     public static CameraSub 		cameraSub;
+    public static PositionSub       positionSub;
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
@@ -60,6 +61,7 @@ public class Robot extends IterativeRobot {
         driveSub 				= new DriveSub();
         manipulatorSub 			= new ManipulatorSub();
         cameraSub 				= new CameraSub();
+        positionSub             = new PositionSub();
         smartDashboardSub 		= new SmartDashboardSub();
         //Command Connections//
         catapultCommand 		= new CatapultCommand();
@@ -82,6 +84,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        positionSub.reset();
+
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
     }
@@ -97,8 +101,10 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+        positionSub.reset();
+
         // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
+        // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
@@ -132,7 +138,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void testInit() {
-
+        positionSub.reset();
     }
 
     /**
