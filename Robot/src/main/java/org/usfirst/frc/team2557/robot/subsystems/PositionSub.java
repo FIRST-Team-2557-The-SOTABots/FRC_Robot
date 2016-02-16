@@ -44,4 +44,16 @@ public class PositionSub extends Subsystem {
         this._eulerTimer.start();
     }
 
+    public double getDisplacement() {
+        return this._displacement;
+    }
+
+    public double getVelocity() {
+        return this._velocity;
+    }
+
+    public double getAcceleration() {
+        return RobotMap.rioAccelerometer.getY();
+    }
+
 }
