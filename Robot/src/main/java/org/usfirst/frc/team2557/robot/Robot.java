@@ -131,7 +131,9 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
+        
+        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.driveLeft1.getEncVelocity());
+        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.driveLeft1.getEncPosition());
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
         

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
@@ -12,6 +13,7 @@ import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
  * floating around.
  */
 public class RobotMap {
+	
 
     public static CANTalon driveLeft1;
     public static CANTalon driveLeft2;
@@ -44,10 +46,12 @@ public class RobotMap {
      */
     public static void init() {
     	
-        driveLeft1 = new CANTalon(8);
-        driveLeft2 = new CANTalon(7);
-        driveRight1 = new CANTalon(6);
-        driveRight2 = new CANTalon(5);
+    	driveLeft1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	
+        driveLeft1 = new CANTalon(6);
+        driveLeft2 = new CANTalon(5);
+        driveRight1 = new CANTalon(8);
+        driveRight2 = new CANTalon(7);
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
         leftActuatorMotor = new CANTalon(2);
