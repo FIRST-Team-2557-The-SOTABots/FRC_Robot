@@ -118,6 +118,10 @@ public class Robot extends IterativeRobot {
         driveCommand.start();
         intakeCommand.start();
         secondArmRelease.start();
+//        if(oi.manipulatorLJB.get()){
+//        	RobotMap.leftActuatorMotor.setEncPosition(0);
+//        	RobotMap.rightActuatorMotor.setEncPosition(0);
+//        }
     }
 
     /**

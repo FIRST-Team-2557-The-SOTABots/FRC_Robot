@@ -85,7 +85,7 @@ public class OI {
      * RB	=	=	=	=	=	=	Intaking the ball
      * BACK	=	=	=	=	=	=	Intake Arm Configuration 5; Climbing
      * START	=	=	=	=	=	Allows for the catapult to shoot
-     * LJB	=	=	=	=	=	=
+     * LJB	=	=	=	=	=	=	Reset Encoders
      * RJB	=	=	=	=	=	=	
      * POV-1	=	=	=	=	=
      * POV0	=	=	=	=	=	=	Intake Arm Configuration 1; Intake
