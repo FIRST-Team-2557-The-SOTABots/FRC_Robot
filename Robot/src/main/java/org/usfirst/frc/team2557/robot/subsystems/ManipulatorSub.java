@@ -36,16 +36,6 @@ public class ManipulatorSub extends Subsystem {
 		RobotMap.rightActuatorMotor.set(speed);  // * ((RobotMap.leftActuatorMotor.getEncVelocity() - RobotMap.rightActuatorMotor.getEncVelocity()) * Actuators_Kp)); //needs rethunkinen // PID error correction algorithm
 	}
 
-	double defaultSpeed = 0.5;
-
-	public void actuatorsUp() {
-		setActuators(defaultSpeed);
-	}
-
-	public void actuatorsDown() {
-		setActuators(-defaultSpeed);
-	}
-
 	public void climbTower() {
 		if (Robot.oi.driver.getRawAxis(2) > 0.5 && Robot.oi.driver.getRawAxis(3) > 0.5) {
 			RobotMap.climbingMotor.set(1);
