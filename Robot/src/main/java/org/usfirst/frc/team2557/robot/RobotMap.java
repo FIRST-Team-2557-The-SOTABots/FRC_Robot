@@ -62,9 +62,6 @@ public class RobotMap {
         armGyro = new AnalogGyro(0);
 
         secondaryArm = new Servo(1);
-        
-        leftActuatorEncoder = new Encoder(1, 2);
-        rightActuatorEncoder = new Encoder(3, 4);
 
         catapultHallEffect = new DigitalInput(0);
 
