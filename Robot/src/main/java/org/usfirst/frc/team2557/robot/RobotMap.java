@@ -46,12 +46,13 @@ public class RobotMap {
      */
     public static void init() {
     	
-    	driveLeft1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	
-        driveLeft1 = new CANTalon(6);
-        driveLeft2 = new CANTalon(5);
+    	/*
+    	 * CAN ports 6, 8, 2, and 3 have encoder breakouts.
+    	 */
+        driveLeft1 = new CANTalon(7);
+        driveLeft2 = new CANTalon(6);
         driveRight1 = new CANTalon(8);
-        driveRight2 = new CANTalon(7);
+        driveRight2 = new CANTalon(5);
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
         leftActuatorMotor = new CANTalon(2);

@@ -12,8 +12,8 @@ public class ManipulatorSub extends Subsystem {
 	}
 
 	public void catapult() {
-		if (RobotMap.catapultHallEffect.get() == false && Robot.oi.manipulatorStart.get() == false) {
-			RobotMap.catapultMotor.set(Math.abs(Robot.oi.manipulator.getRawAxis(3)));
+		if (Robot.oi.manipulatorStart.get() == false) {
+			RobotMap.catapultMotor.set(-Robot.oi.manipulator.getRawAxis(3));
 		} else {
 			RobotMap.catapultMotor.set(0);
 		}
@@ -21,7 +21,7 @@ public class ManipulatorSub extends Subsystem {
 
 	public void intake() {
 		if (Robot.oi.manipulatorLB.get()) {
-			RobotMap.intakeMotor.set(.5);
+			RobotMap.intakeMotor.set(-.5);
 		} else if (Robot.oi.manipulatorRB.get()) {
 			RobotMap.intakeMotor.set(.5);
 		} else {
@@ -33,7 +33,7 @@ public class ManipulatorSub extends Subsystem {
 
 	public void setActuators(double speed) {
 		RobotMap.leftActuatorMotor.set(speed);
-		RobotMap.rightActuatorMotor.set(speed * ((RobotMap.leftActuatorEncoder.getRate() - RobotMap.rightActuatorEncoder.getRate()) * Actuators_Kp)); // PID error correction algorithm
+		RobotMap.rightActuatorMotor.set(speed); // * ((RobotMap.leftActuatorEncoder.getRate() - RobotMap.rightActuatorEncoder.getRate()) * Actuators_Kp)); // PID error correction algorithm
 	}
 
 	double defaultSpeed = 0.5;

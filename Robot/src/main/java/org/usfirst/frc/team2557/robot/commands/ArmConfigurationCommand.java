@@ -14,53 +14,62 @@ public class ArmConfigurationCommand extends Command {
 
 	@Override
 	protected void execute() {
-		if(Robot.oi.manipulator.getPOV() == 0){
-			if(RobotMap.armGyro.getAngle() < 45){
-				Robot.manipulatorSub.actuatorsUp();
-			}
-			else if(RobotMap.armGyro.getAngle() > 45){
-				Robot.manipulatorSub.actuatorsDown();
-			}
-			else{
-				return;
-			}
-		}
-		else if(Robot.oi.manipulator.getPOV() == 2){
-			if(RobotMap.armGyro.getAngle() < 45){
-				Robot.manipulatorSub.actuatorsUp();
-			}
-			else if(RobotMap.armGyro.getAngle() > 45){
-				Robot.manipulatorSub.actuatorsDown();
-			}
-			else{
-				return;
-			}
-		}
-		else if(Robot.oi.manipulator.getPOV() == 4){
-			if(RobotMap.armGyro.getAngle() < 45){
-				Robot.manipulatorSub.actuatorsUp();
-			}
-			else if(RobotMap.armGyro.getAngle() > 45){
-				Robot.manipulatorSub.actuatorsDown();
-			}
-			else{
-				return;
-			}
-		}
-		else if(Robot.oi.manipulator.getPOV() == 6){
-			if(RobotMap.armGyro.getAngle() < 45){
-				Robot.manipulatorSub.actuatorsUp();
-			}
-			else if(RobotMap.armGyro.getAngle() > 45){
-				Robot.manipulatorSub.actuatorsDown();
-			}
-			else{
-				return;
-			}
+		if(Robot.oi.manipulatorBack.get()){
+			Robot.manipulatorSub.setActuators(-0.5);
 		}
 		else{
 			Robot.manipulatorSub.setActuators(0);
 		}
+		
+		
+		
+//		if(Robot.oi.manipulator.getPOV() == 0){
+//			if(RobotMap.armGyro.getAngle() < 45){
+//				Robot.manipulatorSub.actuatorsUp();
+//			}
+//			else if(RobotMap.armGyro.getAngle() > 45){
+//				Robot.manipulatorSub.actuatorsDown();
+//			}
+//			else{
+//				return;
+//			}
+//		}
+//		else if(Robot.oi.manipulator.getPOV() == 2){
+//			if(RobotMap.armGyro.getAngle() < 45){
+//				Robot.manipulatorSub.actuatorsUp();
+//			}
+//			else if(RobotMap.armGyro.getAngle() > 45){
+//				Robot.manipulatorSub.actuatorsDown();
+//			}
+//			else{
+//				return;
+//			}
+//		}
+//		else if(Robot.oi.manipulator.getPOV() == 4){
+//			if(RobotMap.armGyro.getAngle() < 45){
+//				Robot.manipulatorSub.actuatorsUp();
+//			}
+//			else if(RobotMap.armGyro.getAngle() > 45){
+//				Robot.manipulatorSub.actuatorsDown();
+//			}
+//			else{
+//				return;
+//			}
+//		}
+//		else if(Robot.oi.manipulator.getPOV() == 6){
+//			if(RobotMap.armGyro.getAngle() < 45){
+//				Robot.manipulatorSub.actuatorsUp();
+//			}
+//			else if(RobotMap.armGyro.getAngle() > 45){
+//				Robot.manipulatorSub.actuatorsDown();
+//			}
+//			else{
+//				return;
+//			}
+//		}
+//		else{
+//			Robot.manipulatorSub.setActuators(0);
+//		}
 
 	}
 

@@ -18,8 +18,8 @@ public class OI {
 	public JoystickButton driverY = new JoystickButton(driver, 4);
 	public JoystickButton driverLB = new JoystickButton(driver, 5);
 	public JoystickButton driverRB = new JoystickButton(driver,6);
-	public JoystickButton driverStart = new JoystickButton(driver, 7);
-	public JoystickButton driverBack = new JoystickButton(driver, 8);
+	public JoystickButton driverBack = new JoystickButton(driver, 7);
+	public JoystickButton driverStart = new JoystickButton(driver, 8);
 	public JoystickButton driverLJB = new JoystickButton(driver, 9);
 	public JoystickButton driverRJB = new JoystickButton(driver, 10);
 	
@@ -30,8 +30,8 @@ public class OI {
 	public JoystickButton manipulatorY = new JoystickButton(manipulator, 4);
 	public JoystickButton manipulatorLB = new JoystickButton(manipulator, 5);
 	public JoystickButton manipulatorRB = new JoystickButton(manipulator, 6);
-	public JoystickButton manipulatorStart = new JoystickButton(manipulator, 7);
-	public JoystickButton manipulatorBack = new JoystickButton(manipulator, 8);
+	public JoystickButton manipulatorBack = new JoystickButton(manipulator, 7);
+	public JoystickButton manipulatorStart = new JoystickButton(manipulator, 8);
 	public JoystickButton manipulatorLJB = new JoystickButton(manipulator, 9);
 	public JoystickButton manipulatorRJB = new JoystickButton(manipulator, 10);
 	

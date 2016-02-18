@@ -32,6 +32,7 @@ public class Robot extends IterativeRobot {
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
+    Command armConfigurationCommand;
     Command autonomousCommand;
     Command catapultCommand;
     Command climbTower;
@@ -64,6 +65,7 @@ public class Robot extends IterativeRobot {
         positionSub             = new PositionSub();
         smartDashboardSub 		= new SmartDashboardSub();
         //Command Connections//
+        armConfigurationCommand = new ArmConfigurationCommand();
         catapultCommand 		= new CatapultCommand();
         climbTower 				= new ClimbTowerCommand();
         driveCommand 			= new DriveCommand();
@@ -107,9 +109,10 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+//        autonomousCommand.cancel();
 
         // Start the drive command
+        armConfigurationCommand.start();
         catapultCommand.start();
         climbTower.start();
         driveCommand.start();
@@ -132,8 +135,17 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.driveLeft1.getEncVelocity());
-        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.driveLeft1.getEncPosition());
+        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.driveRight1.getEncVelocity());
+        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.driveRight1.getEncPosition());
+        
+        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.driveLeft2.getEncVelocity());
+        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.driveLeft2.getEncPosition());
+        
+        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.leftActuatorMotor.getEncVelocity());
+        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.leftActuatorMotor.getEncPosition());
+        
+        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.rightActuatorMotor.getEncVelocity());
+        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.rightActuatorMotor.getEncPosition());
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
         
