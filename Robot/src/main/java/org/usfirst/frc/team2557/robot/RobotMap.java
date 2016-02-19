@@ -29,9 +29,6 @@ public class RobotMap {
     
     public static Gyro armGyro;
 
-    public static Encoder leftActuatorEncoder;
-    public static Encoder rightActuatorEncoder;
-
     public static DigitalInput catapultHallEffect;
 
     public static Accelerometer rioAccelerometer;
