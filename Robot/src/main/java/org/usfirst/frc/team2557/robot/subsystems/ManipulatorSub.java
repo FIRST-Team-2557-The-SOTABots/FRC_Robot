@@ -34,7 +34,7 @@ public class ManipulatorSub extends Subsystem {
 	public void setActuators(double speed) {
 		RobotMap.leftActuatorMotor.set(speed);
 		double multiplier = 1;
-		if(RobotMap.leftActuatorMotor.getEncVelocity() != 0) {
+		if(RobotMap.leftActuatorMotor.getEncVelocity() + RobotMap.rightActuatorMotor.getEncVelocity() != 0) {
 			multiplier = (RobotMap.leftActuatorMotor.getEncVelocity() - RobotMap.rightActuatorMotor.getEncVelocity())
 					* (1 / ((RobotMap.leftActuatorMotor.getEncVelocity() + RobotMap.rightActuatorMotor.getEncVelocity()) / 2))
 					* Actuators_Kp
