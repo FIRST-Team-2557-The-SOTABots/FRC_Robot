@@ -33,15 +33,8 @@ public class ManipulatorSub extends Subsystem {
 
 	public void setActuators(double speed) {
 		RobotMap.leftActuatorMotor.set(speed);
-		RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1));
-//		double multiplier = 1;
-//		if(RobotMap.leftActuatorMotor.getEncVelocity() + RobotMap.rightActuatorMotor.getEncVelocity() != 0) {
-//			multiplier = (RobotMap.leftActuatorMotor.getEncVelocity() - RobotMap.rightActuatorMotor.getEncVelocity())
-//					* (1 / ((RobotMap.leftActuatorMotor.getEncVelocity() + RobotMap.rightActuatorMotor.getEncVelocity()) / 2))
-//					* Actuators_Kp
-//					+ 1;
-//		}
-//		RobotMap.rightActuatorMotor.set(speed * multiplier);
+		// TODO: Right Talon PID with left Talon encoder
+		RobotMap.rightActuatorMotor.set(speed);
 	}
 
 	public void climbTower() {
