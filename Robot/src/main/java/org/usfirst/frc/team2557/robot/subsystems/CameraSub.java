@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITable;
+import org.usfirst.frc.team2557.accessories.ArduinoComm;
+import org.usfirst.frc.team2557.robot.RobotMap;
 
 public class CameraSub extends Subsystem {
 
@@ -30,6 +32,19 @@ public class CameraSub extends Subsystem {
     public double getTargetDistance() {
         final double Tp = this.getClosestTargetValue("width");
         return (Tft * FOVp) / (2 * Tp * Math.tan(Math.toRadians(fov / 2)));
+    }
+
+    public void update() {
+        if(this.getNumTargets() > 0) {
+            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.Orange);
+        }else{
+            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
+        }
+    }
+
+    public int getNumTargets() {
+        double[] targets = gripTable.getSubTable("goalContoursReport").getNumberArray("centerX", new double[0]);
+        return targets.length;
     }
 
     private double getClosestTargetValue(String value) {

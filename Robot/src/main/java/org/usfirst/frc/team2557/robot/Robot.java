@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team2557.accessories.ArduinoComm;
 import org.usfirst.frc.team2557.robot.commands.*;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.subsystems.*;
@@ -50,6 +51,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         // Initialize RobotMap
         RobotMap.init();
+
+        // Change LEDs to Yellow
+        RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
 
         // Run GRIP
         try {
@@ -98,6 +102,9 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
 
+        // Update camera sub
+        cameraSub.update();
+
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
     }
@@ -141,6 +148,9 @@ public class Robot extends IterativeRobot {
         
         smartDashboardCommand.start();
 
+        // Update camera sub
+        cameraSub.update();
+
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
         
@@ -155,6 +165,9 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+
+        // Update camera sub
+        cameraSub.update();
 
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
