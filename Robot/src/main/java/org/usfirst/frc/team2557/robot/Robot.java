@@ -112,11 +112,8 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         positionSub.reset();
 
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-//        autonomousCommand.cancel();
+        if(autonomousCommand != null)
+            autonomousCommand.cancel();
 
         // Start the drive command
         armConfigurationCommand.start();
