@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.accessories.ArduinoComm;
+import org.usfirst.frc.team2557.math.EulerDistanceEstimator;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -33,6 +34,7 @@ public class RobotMap {
     public static DigitalInput catapultHallEffect;
 
     public static Accelerometer rioAccelerometer;
+    public static EulerDistanceEstimator distanceEstimator;
 
     public static LidarRangeFinder LidarSensor;
 
@@ -66,6 +68,7 @@ public class RobotMap {
         catapultHallEffect = new DigitalInput(0);
 
         rioAccelerometer = new BuiltInAccelerometer();
+        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer);
 
         LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 

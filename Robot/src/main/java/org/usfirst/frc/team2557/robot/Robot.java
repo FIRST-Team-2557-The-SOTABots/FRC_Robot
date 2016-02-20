@@ -29,7 +29,6 @@ public class Robot extends IterativeRobot {
     public static DriveSub 			driveSub;
     public static ManipulatorSub 	manipulatorSub;
     public static CameraSub 		cameraSub;
-    public static PositionSub       positionSub;
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
@@ -66,7 +65,6 @@ public class Robot extends IterativeRobot {
         driveSub 				= new DriveSub();
         manipulatorSub 			= new ManipulatorSub();
         cameraSub 				= new CameraSub();
-        positionSub             = new PositionSub();
         smartDashboardSub 		= new SmartDashboardSub();
         //Command Connections//
         armConfigurationCommand = new ArmConfigurationCommand();
@@ -90,7 +88,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        positionSub.reset();
+        RobotMap.distanceEstimator.reset();
 
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
@@ -100,6 +98,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        // Update distance estimator
+        RobotMap.distanceEstimator.update();
+
         Scheduler.getInstance().run();
 
         // Update camera sub
@@ -110,8 +111,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        positionSub.reset();
-
         if(autonomousCommand != null)
             autonomousCommand.cancel();
 
@@ -154,7 +153,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void testInit() {
-        positionSub.reset();
+
     }
 
     /**
