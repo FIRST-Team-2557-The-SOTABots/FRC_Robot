@@ -27,7 +27,9 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() { 
   Serial.begin(9600);
+  
   Wire.begin(8);
+  Wire.onReceive(receiveEvent);
 
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
@@ -47,11 +49,6 @@ void loop() {
     }else if(inChar == '4') {
       Mode = 4;
     }
-  }
-  while(Wire.available()) {
-    byte inByte = Serial.read();
-    Serial.write(inByte);
-    Mode = inByte;
   }
   
   // Some example procedures showing how to display to the pixels:
@@ -80,6 +77,15 @@ void loop() {
   }
 
   colorWipeUpdate();
+
+  delay(50);
+}
+
+void receiveEvent(int howMany) {
+  while(Wire.available() > 0) {
+    byte inByte = Wire.read();
+    Mode = inByte;
+  }
 }
 
 // Fill the dots one after the other with a color
