@@ -12,6 +12,7 @@ public class SmartDashboardCommand extends Command {
 
 	protected void execute() {
 		Robot.smartDashboardSub.voltageCheck();
+		Robot.smartDashboardSub.EncoderCheck();
 	}
 
 	protected boolean isFinished() {
