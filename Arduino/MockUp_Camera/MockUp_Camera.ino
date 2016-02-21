@@ -7,7 +7,7 @@
 
 #define PIN 6
 
-int Mode = 3;
+int Mode = -1;//3;
 int currentMode = -1;
 
 // Parameter 1 = number of pixels in strip
@@ -33,6 +33,8 @@ void setup() {
 
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
+
+  sonar(strip.Color(0, 0, 200), 40, 8);
 }
 
 void loop() {
@@ -77,6 +79,7 @@ void loop() {
   }
 
   colorWipeUpdate();
+  sonarUpdate();
 
   delay(50);
 }
@@ -104,6 +107,33 @@ void colorWipeUpdate() {
     strip.setPixelColor(colorWipe_i++, colorWipe_c);
     strip.show();
     colorWipe_timer = millis();
+  }
+}
+
+// A light pattern that goes back and forth
+uint32_t sonar_c;
+uint8_t sonar_wait;
+unsigned long sonar_timer;
+int sonar_i;
+int sonar_max;
+void sonar(uint32_t c, uint8_t wait, int leds) {
+  sonar_c = c;
+  sonar_wait = wait;
+  sonar_timer = 0;
+  sonar_i = 0;
+  sonar_max = leds;
+}
+void sonarUpdate() {
+  if(millis() - sonar_timer > sonar_wait) {
+    strip.setPixelColor(sonar_i, strip.Color(0, 0, 0));
+    int realI = sonar_i++;
+    while(realI >= sonar_max) {
+      realI -= sonar_max;
+    }
+    strip.setPixelColor(realI, 
+    strip.show();
+    
+    sonar_timer = millis();
   }
 }
 
