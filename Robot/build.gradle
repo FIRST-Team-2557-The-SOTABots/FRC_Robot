@@ -1,14 +1,20 @@
 buildscript {
   repositories {
-	mavenCentral()
-	maven {
-		name = "GradleRIO"
-		url = "http://dev.imjac.in/maven"
-	}
+      if('allow' == System.properties['build.network_access']) {
+          mavenCentral()
+          maven {
+              name = "GradleRIO"
+              url = "http://dev.imjac.in/maven"
+          }
+      }else {
+          maven {
+              url 'dependencies'
+          }
+      }
 	mavenLocal()
   }
   dependencies {
-    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '4.3.3' // GradleRIO should automatically download the latest WPI libraries
+    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+' // GradleRIO should automatically download the latest WPI libraries
   }
 }
 

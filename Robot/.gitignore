@@ -93,3 +93,5 @@ bin/
 !gradle/libs/GradleRIO.jar
 
 !libs/*.jar
+
+!dependencies/*
