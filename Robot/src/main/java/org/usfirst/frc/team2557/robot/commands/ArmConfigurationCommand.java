@@ -24,34 +24,32 @@ public class ArmConfigurationCommand extends Command {
 //			Robot.manipulatorSub.setActuators(0);
 //		}
 		
-		
-		
 		if(Robot.oi.manipulator.getPOV() == 0){
-				if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 0){
-					Robot.manipulatorSub.setActuators(-.5);
-				}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 0){
-					Robot.manipulatorSub.setActuators(.5);
-				}
+			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 0){
+				Robot.manipulatorSub.setActuators(-.5);
+			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 0){
+				Robot.manipulatorSub.setActuators(.5);
+			}
 		}	else if(Robot.oi.manipulator.getPOV() == 90){
-				if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -35){
-					Robot.manipulatorSub.setActuators(-.5);
-				}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -35){
-					Robot.manipulatorSub.setActuators(.5);
-				}
+			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -35){
+				Robot.manipulatorSub.setActuators(-.5);
+			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -35){
+				Robot.manipulatorSub.setActuators(.5);
+			}
 		}	else if(Robot.oi.manipulator.getPOV() == 180){
-				if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -150){
-					Robot.manipulatorSub.setActuators(-.5);
-				}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -150){
-					Robot.manipulatorSub.setActuators(.5);
+			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -150){
+				Robot.manipulatorSub.setActuators(-.5);
+			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -150){
+				Robot.manipulatorSub.setActuators(.5);
 			}
 		}	else if(Robot.oi.manipulator.getPOV() == 270){
-				if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 45){
-					Robot.manipulatorSub.setActuators(-.5);
-				}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 45){
-					Robot.manipulatorSub.setActuators(.5);
-				}
+			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 45){
+				Robot.manipulatorSub.setActuators(-.5);
+			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 45){
+				Robot.manipulatorSub.setActuators(.5);
+			}
 		}	else{
-				Robot.manipulatorSub.setActuators(0);
+			Robot.manipulatorSub.setActuators(0);
 		}
 
 	}

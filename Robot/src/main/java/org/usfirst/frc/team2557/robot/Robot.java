@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.accessories.ArduinoComm;
 import org.usfirst.frc.team2557.robot.commands.*;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
+import org.usfirst.frc.team2557.robot.commands.autonomous.groups.Auto_Lowbar_Group;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
 import java.io.IOException;
@@ -80,6 +81,7 @@ public class Robot extends IterativeRobot {
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser 			= new SendableChooser();
         autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
+        autoChooser.addDefault("Lowbar", new Auto_Lowbar_Group());
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
 
@@ -88,7 +90,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        RobotMap.distanceEstimator.reset();
+        RobotMap.positionEstimator.init();
 
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
@@ -99,7 +101,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         // Update distance estimator
-        RobotMap.distanceEstimator.update();
+        RobotMap.positionEstimator.update();
 
         Scheduler.getInstance().run();
 
@@ -111,6 +113,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+        RobotMap.positionEstimator.init();
+
         if(autonomousCommand != null)
             autonomousCommand.cancel();
 

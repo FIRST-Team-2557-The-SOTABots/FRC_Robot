@@ -1,11 +1,10 @@
 package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.accessories.ArduinoComm;
-import org.usfirst.frc.team2557.math.EulerDistanceEstimator;
+import org.usfirst.frc.team2557.math.EulerPositionEstimator;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -28,13 +27,12 @@ public class RobotMap {
     public static CANTalon intakeMotor;
 
     public static Servo secondaryArm;
-    
-    public static Gyro armGyro;
 
     public static DigitalInput catapultHallEffect;
 
     public static Accelerometer rioAccelerometer;
-    public static EulerDistanceEstimator distanceEstimator;
+    private static Gyro mainGyro;
+    public static EulerPositionEstimator positionEstimator;
 
     public static LidarRangeFinder LidarSensor;
 
@@ -61,18 +59,19 @@ public class RobotMap {
         rightActuatorMotor = new CANTalon(3);
         intakeMotor = new CANTalon(4);
 
-        armGyro = new AnalogGyro(0);
-
-        secondaryArm = new Servo(1);
+        secondaryArm = new Servo(0);
 
         catapultHallEffect = new DigitalInput(0);
 
         rioAccelerometer = new BuiltInAccelerometer();
-        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer);
+        mainGyro = new AnalogGyro(0);
+        positionEstimator = new EulerPositionEstimator(rioAccelerometer, mainGyro);
 
         LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 
         robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
+
+        arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt
     }
 
 }

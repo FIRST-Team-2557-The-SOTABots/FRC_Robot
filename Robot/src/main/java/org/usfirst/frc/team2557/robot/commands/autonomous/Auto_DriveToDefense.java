@@ -3,18 +3,18 @@ package org.usfirst.frc.team2557.robot.commands.autonomous;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
-public class Auto_DriveToDefense extends Command {
+public class Auto_DriveToDefense extends Auto_DistanceDrive {
 
-    private double metersToDefense = 1.5; //TODO: Experiment with this value to reach the edge of a defense
-    private double speed = 0.5;
+    private static double metersToDefense = 1.5; //TODO: Experiment with this value to reach the edge of a defense
+    private static double speed = 0.5;
 
     public Auto_DriveToDefense() {
-
+        super(metersToDefense, speed);
     }
 
     @Override
     protected void initialize() {
-        RobotMap.distanceEstimator.reset();
+        RobotMap.positionEstimator.reset();
     }
 
     final double Kp = 0.03;
@@ -26,17 +26,17 @@ public class Auto_DriveToDefense extends Command {
 
     @Override
     protected boolean isFinished() {
-        return RobotMap.distanceEstimator.getDistance() >= metersToDefense;
+        return RobotMap.positionEstimator.getDisplacementY() >= metersToDefense;
     }
 
     @Override
     protected void end() {
-
+        RobotMap.robotDrive.tankDrive(0, 0);
     }
 
     @Override
     protected void interrupted() {
-
+        RobotMap.robotDrive.tankDrive(0, 0);
     }
 
 }
