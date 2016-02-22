@@ -23,7 +23,7 @@ public class RobotMap {
     public static CANTalon catapultMotor;
     public static CANTalon climbingMotor;
     public static CANTalon leftActuatorMotor;
-    public static CANTalon rightActuatorMotor;
+//    public static CANTalon rightActuatorMotor;
     public static CANTalon intakeMotor;
 
     public static Servo secondaryArm;
@@ -56,7 +56,7 @@ public class RobotMap {
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
         leftActuatorMotor = new CANTalon(2);
-        rightActuatorMotor = new CANTalon(3);
+//        rightActuatorMotor = new CANTalon(3);
         intakeMotor = new CANTalon(4);
 
         secondaryArm = new Servo(0);

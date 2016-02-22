@@ -12,9 +12,11 @@ public class ManipulatorSub extends Subsystem {
 	}
 
 	public void catapult() {
-		if (Robot.oi.manipulatorStart.get() == false && RobotMap.catapultHallEffect.get() == false) {
-			RobotMap.catapultMotor.set(-Robot.oi.manipulator.getRawAxis(3));
-		} else {
+		if (RobotMap.catapultHallEffect.get()) {
+			RobotMap.catapultMotor.set(-.25);
+		} else if (Robot.oi.manipulatorStart.get()){
+			RobotMap.catapultMotor.set(-.9);
+		} else{
 			RobotMap.catapultMotor.set(0);
 		}
 	}
@@ -34,7 +36,7 @@ public class ManipulatorSub extends Subsystem {
 	public void setActuators(double speed) {
 		RobotMap.leftActuatorMotor.set(speed);
 		// TODO: Right Talon PID with left Talon encoder
-		RobotMap.rightActuatorMotor.set(speed);
+//		RobotMap.rightActuatorMotor.set(speed);
 	}
 
 	public void climbTower() {

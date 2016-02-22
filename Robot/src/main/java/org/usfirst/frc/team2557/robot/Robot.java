@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
         RobotMap.init();
 
         // Change LEDs to Yellow
-        RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
+//        RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
 
         // Run GRIP
         try {

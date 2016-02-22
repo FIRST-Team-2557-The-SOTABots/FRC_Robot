@@ -11,7 +11,7 @@ public class CatapultCommand extends Command {
 	}
 
 	protected void execute() {
-		//Robot.manipulatorSub.catapult();
+		Robot.manipulatorSub.catapult();
 	}
 
 	protected boolean isFinished() {

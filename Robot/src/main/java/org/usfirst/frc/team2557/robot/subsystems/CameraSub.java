@@ -35,11 +35,11 @@ public class CameraSub extends Subsystem {
     }
 
     public void update() {
-        if(this.getNumTargets() > 0) {
-            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.Orange);
-        }else{
-            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
-        }
+//        if(this.getNumTargets() > 0) {
+//            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.Orange);
+//        }else{
+//            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
+//        }
     }
 
     public int getNumTargets() {
