@@ -7,7 +7,21 @@
 
 #define PIN 6
 
-int Mode = -1;//3;
+// DEFINE MODES
+#define MODE_YELLOW 0
+#define MODE_PULSATINGYELLOW 1;
+
+#define MODE_RED 2;
+#define MODE_PULSATINGRED 3;
+#define MODE_PULSATINGYELLOWRED 4;
+
+#define MODE_BLUE 5;
+#define MODE_PULSATINGBLUE 6;
+#define MODE_PULSATINGYELLOWBLUE 7;
+
+#define MODE_GROOVY 8;
+
+int Mode = MODE_YELLOW;
 int currentMode = -1;
 
 // Parameter 1 = number of pixels in strip
@@ -40,46 +54,55 @@ void setup() {
 void loop() {
   while(Serial.available()) {
     char inChar = Serial.read();
-    if(inChar == '0') {
-      Mode = 0;
-    }else if(inChar == '1') {
-      Mode = 1;
-    }else if(inChar == '2') {
-      Mode = 2;
-    }else if(inChar == '3') {
-      Mode = 3;
-    }else if(inChar == '4') {
-      Mode = 4;
+    String inString = "";
+    inString += inChar;
+
+    Mode = inString.toInt();
+  }
+
+  if(currentMode != Mode) {
+    switch(Mode) {
+      case MODE_YELLOW:
+        colorWipe(strip.Color(200, 200, 0), 80);
+        break;
+      case MODE_PULSATINGYELLOW:
+        pulse(200, 200, 0, 200);
+        break;
+        
+      case MODE_RED:
+        colorWipe(strip.Color(200, 0, 0), 80);
+        break;
+      case MODE_PULSATINGRED:
+        pulse(200, 0, 0, 200);
+        break;
+      case MODE_PULSATINGYELLOWRED:
+      
+        break;
+        
+      case MODE_BLUE:
+        colorWipe(strip.Color(0, 0, 200), 80);
+        break;
+      case MODE_PULSATINGBLUE:
+        pulse(0, 0, 200, 200);
+        break;
+      case MODE_PULSATINGYELLOWBLUE:
+      
+        break;
+
+      case MODE_GROOVY:
+        // GROOVY!
+        break;
     }
+    currentMode = Mode;
   }
-  
-  // Some example procedures showing how to display to the pixels:
-//colorWipe(strip.Color(0, 0, 0, 255), 50); // White RGBW
-//Mode = 0: Not aimed at Goal
-//Mode = 1: Aimed at Goal
   if(Mode == 0 && currentMode != Mode){
-    colorWipe(strip.Color(200, 0, 200), 150); //Purple
+    colorWipe(strip.Color(200, 0, 200), 100); //Purple
     currentMode = Mode;
-  }
-  if(Mode == 1 && currentMode != Mode){
-    colorWipe(strip.Color(0, 200, 0), 150); //Green
-    currentMode = Mode;
-  }
-  if(Mode == 2 && currentMode != Mode){
-    colorWipe(strip.Color(255, 50, 0), 150); //Orange
-    currentMode = Mode;
-  }
-  if(Mode == 3 && currentMode != Mode){
-    colorWipe(strip.Color(200, 200, 0), 45); //Safety Yellow
-    currentMode = Mode;
-  }
-  if(Mode == 4 && currentMode != Mode){
-    colorWipe(strip.Color(0, 0, 0), 45); //Nothing
-    currentMode = Mode;
-  }
+  }else if(Mode == 
 
   colorWipeUpdate();
   sonarUpdate();
+  pulseUpdate();
 
   delay(50);
 }
@@ -130,11 +153,29 @@ void sonarUpdate() {
     while(realI >= sonar_max) {
       realI -= sonar_max;
     }
-    strip.setPixelColor(realI, 
+    strip.setPixelColor(realI, sonar_c);
     strip.show();
     
     sonar_timer = millis();
   }
+}
+
+// A pulsating color
+uint8_t pulse_r;
+uint8_t pulse_g;
+uint8_t pulse_b;
+unsigned long pulse_duration;
+void pulse(uint8_t r, uint8_t g, uint8_t b, uint8_t duration) {
+  pulse_r = r;
+  pulse_g = g;
+  pulse_b = b;
+  pulse_duration = duration;
+}
+void pulseUpdate() {
+  for(int i = 0; i < strip.numPixels(); i++) {
+    strip.setPixelColor(pulse_i, pulse_r * (sin(millis() / pulse_duration) + 1 / 2) * 200, pulse_g * (sin(millis() / pulse_duration) + 1 / 2) * 200, pulse_b * (sin(millis() / pulse_duration) + 1 / 2) * 200);
+  }
+  strip.show();
 }
 
 void rainbow(uint8_t wait) {

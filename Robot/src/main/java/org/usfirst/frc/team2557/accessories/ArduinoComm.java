@@ -5,11 +5,18 @@ import edu.wpi.first.wpilibj.I2C;
 public class ArduinoComm {
 
     public enum LightsMode {
-        Purple,
-        Green,
-        Orange,
-        SafetyYellow,
-        Nothing
+        Yellow,
+        PulsatingYellow,
+
+        Red,
+        PulsatingRed,
+        PulsatingYellowRed,
+
+        Blue,
+        PulsatingBlue,
+        PulsatingYellowBLue,
+
+        GROOVY
     }
 
     private I2C _arduino;
