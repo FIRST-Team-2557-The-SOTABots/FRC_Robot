@@ -27,7 +27,7 @@ public class Auto_CameraAlignForShot extends Command {
 
     @Override
     protected void end() {
-
+        Robot.chassis.stop();
     }
 
     @Override

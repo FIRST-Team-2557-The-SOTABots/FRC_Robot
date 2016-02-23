@@ -30,7 +30,7 @@ public class Auto_DistanceDrive extends Command {
     final double Kp = 0.03;
     @Override
     protected void execute() {
-        RobotMap.robotDrive.tankDrive(this._speed, this._speed * RobotMap.mainGyro.getAngle() * Kp);
+        Robot.chassis.set(this._speed, this._speed * RobotMap.mainGyro.getAngle() * Kp);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Auto_DistanceDrive extends Command {
 
     @Override
     protected void end() {
-        RobotMap.robotDrive.tankDrive(0, 0);
+        Robot.chassis.stop();
     }
 
     @Override
