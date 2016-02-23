@@ -11,22 +11,6 @@ public class ManipulatorSub extends Subsystem {
 
 	}
 
-	public void catapult() {
-		
-		if (RobotMap.catapultHallEffect.get() == false){
-			RobotMap.set = true;
-		}
-		
-		if (RobotMap.catapultHallEffect.get() && Robot.oi.manipulatorStart.get() == false && RobotMap.set == false) {
-			RobotMap.catapultMotor.set(-.75);
-		} else if (Robot.oi.manipulatorStart.get()){
-			RobotMap.catapultMotor.set(-1);
-			RobotMap.set = false;
-		} else{
-			RobotMap.catapultMotor.set(0);
-		}
-	}
-
 	double Actuators_Kp = 0.03; // Adjust Kp as necessary
 
 	public void setActuators(double speed) {

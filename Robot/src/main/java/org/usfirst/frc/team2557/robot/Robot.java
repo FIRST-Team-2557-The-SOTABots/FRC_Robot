@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
     public static OI 				oi;
     public static Chassis chassis;
     public static Intake intake;
+    public static Catapult catapult;
     public static Winch winch;
     public static SecondArm secondArm;
     public static ManipulatorSub 	manipulatorSub;
@@ -38,7 +39,6 @@ public class Robot extends IterativeRobot {
     //Command Declarations//
     Command armConfigurationCommand;
     Command autonomousCommand;
-    Command catapultCommand;
     Command smartDashboardCommand;
 
     SendableChooser autoChooser;
@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot {
         //Subsystem Connections//
         chassis = new Chassis();
         intake = new Intake();
+        catapult = new Catapult();
         winch = new Winch();
         secondArm = new SecondArm();
         manipulatorSub 			= new ManipulatorSub();
@@ -74,7 +75,6 @@ public class Robot extends IterativeRobot {
 
         //Command Connections//
         armConfigurationCommand = new ArmConfigurationCommand();
-        catapultCommand 		= new CatapultCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
@@ -110,7 +110,6 @@ public class Robot extends IterativeRobot {
 
         // Start teleop commands
         armConfigurationCommand.start();
-        catapultCommand.start();
         smartDashboardCommand.start();
     }
 

@@ -1,10 +1,14 @@
-package org.usfirst.frc.team2557.robot.commands.autonomous;
+package org.usfirst.frc.team2557.robot.commands.catapult;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
-import org.usfirst.frc.team2557.robot.RobotMap;
 
-public class Auto_RetractCatapult extends Command {
+public class CatapultRetractCommand extends Command {
+
+    public CatapultRetractCommand() {
+        requires(Robot.catapult);
+    }
+
     @Override
     protected void initialize() {
 
@@ -12,17 +16,17 @@ public class Auto_RetractCatapult extends Command {
 
     @Override
     protected void execute() {
-        RobotMap.catapultMotor.set(1.0);
+        Robot.catapult.setCatapultMotor(0.75);
     }
 
     @Override
     protected boolean isFinished() {
-        return RobotMap.catapultHallEffect.get();
+        return Robot.catapult.isCatapultDown();
     }
 
     @Override
     protected void end() {
-        RobotMap.catapultMotor.set(0);
+        Robot.catapult.setCatapultMotor(0);
     }
 
     @Override

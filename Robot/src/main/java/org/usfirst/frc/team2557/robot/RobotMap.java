@@ -43,8 +43,6 @@ public class RobotMap {
     public static ArduinoComm arduinoComm;
 
     public static RobotDrive robotDrive;
-    
-    public static boolean set = false;
 
     /**
      * Initializes all the parts of RobotMap. This must be called main init method
