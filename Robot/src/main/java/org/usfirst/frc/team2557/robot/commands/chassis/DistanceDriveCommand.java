@@ -1,10 +1,10 @@
-package org.usfirst.frc.team2557.robot.commands.autonomous;
+package org.usfirst.frc.team2557.robot.commands.chassis;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
-public class Auto_DistanceDrive extends Command {
+public class DistanceDriveCommand extends Command {
 
     private double _distance;
     private double _speed;
@@ -14,7 +14,7 @@ public class Auto_DistanceDrive extends Command {
      * @param distance Distance to move
      * @param speed Speed to move the distance
      */
-    public Auto_DistanceDrive(double distance, double speed) {
+    public DistanceDriveCommand(double distance, double speed) {
         this._distance = distance;
         this._speed = speed;
 

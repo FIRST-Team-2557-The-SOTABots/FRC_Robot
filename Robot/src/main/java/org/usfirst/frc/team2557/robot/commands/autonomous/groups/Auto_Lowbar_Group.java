@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultRetractCommand;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultShootCommand;
+import org.usfirst.frc.team2557.robot.commands.chassis.DistanceDriveCommand;
 
 public class Auto_Lowbar_Group extends CommandGroup {
 
@@ -17,7 +18,7 @@ public class Auto_Lowbar_Group extends CommandGroup {
         this.addParallel(new CatapultRetractCommand());
         this.addSequential(new Auto_DriveToDefense());
 
-        this.addSequential(new Auto_DistanceDrive(1, 0.5));
+        this.addSequential(new DistanceDriveCommand(1, 0.5));
 
         this.addParallel(new Auto_ArmPosition(0));
         this.addSequential(new Auto_CameraAlignForShot());
