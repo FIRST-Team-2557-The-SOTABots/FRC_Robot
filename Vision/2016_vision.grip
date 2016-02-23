@@ -17,29 +17,29 @@
       <grip:Input step="0" socket="4">
         <value>INTER_LINEAR</value>
       </grip:Input>
-      <grip:Output step="0" socket="0" previewed="false"/>
+      <grip:Output step="0" socket="0" previewed="true"/>
     </grip:Step>
     <grip:Step name="HSV Threshold">
       <grip:Input step="1" socket="0"/>
       <grip:Input step="1" socket="1">
         <value>
-          <double>9.712230215827338</double>
-          <double>78.48484848484847</double>
+          <double>42.086330935251794</double>
+          <double>108.7878787878788</double>
         </value>
       </grip:Input>
       <grip:Input step="1" socket="2">
         <value>
           <double>0.0</double>
-          <double>12.449494949494936</double>
+          <double>255.0</double>
         </value>
       </grip:Input>
       <grip:Input step="1" socket="3">
         <value>
-          <double>0.0</double>
+          <double>249.95503597122303</double>
           <double>255.0</double>
         </value>
       </grip:Input>
-      <grip:Output step="1" socket="0" previewed="false"/>
+      <grip:Output step="1" socket="0" previewed="true"/>
     </grip:Step>
     <grip:Step name="Find Contours">
       <grip:Input step="2" socket="0"/>
@@ -114,23 +114,23 @@
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output step="3" socket="0" previewed="true"/>
-      <grip:Input step="4" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="0" socket="0" previewed="false"/>
-      <grip:Input step="1" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output source="0" socket="0" previewed="false"/>
       <grip:Input step="0" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="0" socket="0" previewed="false"/>
-      <grip:Input step="5" socket="0"/>
+      <grip:Output step="3" socket="0" previewed="true"/>
+      <grip:Input step="4" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="1" socket="0" previewed="false"/>
+      <grip:Output step="5" socket="0" previewed="true"/>
+      <grip:Input step="6" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="1" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
       <grip:Input step="2" socket="0"/>
     </grip:Connection>
     <grip:Connection>
@@ -138,18 +138,18 @@
       <grip:Input step="3" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="5" socket="0" previewed="true"/>
-      <grip:Input step="6" socket="0"/>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="5" socket="1"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="1" socket="0" previewed="false"/>
-      <grip:Input step="5" socket="1"/>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="5" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
     <teamNumber>2557</teamNumber>
     <publishAddress>10.25.57.20</publishAddress>
-    <deployAddress>10.25.57.20</deployAddress>
+    <deployAddress>172.22.11.2</deployAddress>
     <deployDir>/home/lvuser</deployDir>
     <deployUser>lvuser</deployUser>
     <deployJavaHome>/usr/local/frc/JRE/</deployJavaHome>
