@@ -63,13 +63,11 @@ public class ArmConfigurationCommand extends Command {
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 		
 	}
 
