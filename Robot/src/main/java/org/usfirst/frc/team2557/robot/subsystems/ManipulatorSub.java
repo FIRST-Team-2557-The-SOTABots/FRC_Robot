@@ -35,15 +35,4 @@ public class ManipulatorSub extends Subsystem {
 //		RobotMap.rightActuatorMotor.set(speed);
 	}
 
-	public void climbTower() {
-		if (Robot.oi.driver.getRawAxis(2) > 0.5 && Robot.oi.driver.getRawAxis(3) > 0.5) {
-			RobotMap.climbingMotor.set(1);
-		} else {
-			RobotMap.climbingMotor.set(0);
-		}
-	}
-
-	public void secondArmRelease() {
-		RobotMap.secondaryArm.setAngle(90); //Subject to change since this is an arbitrary setting
-	}
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team2557.robot.commands.IntakeInCommand;
 import org.usfirst.frc.team2557.robot.commands.IntakeOutCommand;
+import org.usfirst.frc.team2557.robot.commands.SecondArmReleaseCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -64,6 +65,8 @@ public class OI {
         manipulatorRJB = new JoystickButton(manipulator, 10);
 
         // Set commands to buttons
+        driverStart.whileActive(new SecondArmReleaseCommand());
+
         manipulatorLB.whileHeld(new IntakeOutCommand());
         manipulatorRB.whileHeld(new IntakeInCommand());
     }
