@@ -20,19 +20,19 @@ public class Auto_DistanceDrive extends Command {
 
     @Override
     protected void initialize() {
-        RobotMap.positionEstimator.reset();
-        RobotMap.positionEstimator.resetGyro();
+        RobotMap.distanceEstimator.reset();
+        RobotMap.mainGyro.reset();
     }
 
     final double Kp = 0.03;
     @Override
     protected void execute() {
-        RobotMap.robotDrive.tankDrive(this._speed, this._speed * RobotMap.positionEstimator.getAngle() * Kp);
+        RobotMap.robotDrive.tankDrive(this._speed, this._speed * RobotMap.mainGyro.getAngle() * Kp);
     }
 
     @Override
     protected boolean isFinished() {
-        return RobotMap.positionEstimator.getDisplacementY() >= this._distance;
+        return RobotMap.distanceEstimator.getDistance() >= this._distance;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Auto_DistanceDrive extends Command {
 
     @Override
     protected void interrupted() {
-        RobotMap.robotDrive.tankDrive(0, 0);
+        this.end();
     }
 
 }

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.accessories.ArduinoComm;
-import org.usfirst.frc.team2557.math.EulerPositionEstimator;
+import org.usfirst.frc.team2557.math.EulerDistanceEstimator;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -33,10 +33,10 @@ public class RobotMap {
 
     public static Accelerometer rioAccelerometer;
 
-    private static Gyro mainGyro;
+    public static Gyro mainGyro;
     public static AnalogInput potentiometer;
     
-    public static EulerPositionEstimator positionEstimator;
+    public static EulerDistanceEstimator distanceEstimator;
 
     public static LidarRangeFinder LidarSensor;
 
@@ -72,12 +72,13 @@ public class RobotMap {
         secondaryArm = new Servo(0);
 
         catapultHallEffect = new DigitalInput(0);
-        
-        potentiometer = new AnalogInput(2);
 
         rioAccelerometer = new BuiltInAccelerometer();
+
         mainGyro = new AnalogGyro(0);
-        positionEstimator = new EulerPositionEstimator(rioAccelerometer, mainGyro);
+        potentiometer = new AnalogInput(2);
+
+        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer);
 
         LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 

@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2557.accessories.ArduinoComm;
 import org.usfirst.frc.team2557.robot.commands.*;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.commands.autonomous.groups.Auto_Lowbar_Group;
@@ -90,8 +89,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        RobotMap.positionEstimator.init();
-
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
     }
@@ -101,7 +98,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         // Update distance estimator
-        RobotMap.positionEstimator.update();
+        RobotMap.distanceEstimator.update();
 
         Scheduler.getInstance().run();
 
@@ -113,8 +110,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        RobotMap.positionEstimator.init();
-
         if(autonomousCommand != null)
             autonomousCommand.cancel();
 
