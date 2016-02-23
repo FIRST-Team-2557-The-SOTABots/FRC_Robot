@@ -39,7 +39,6 @@ public class Robot extends IterativeRobot {
     Command catapultCommand;
     Command climbTower;
     Command driveCommand;
-    Command ledUpdateCommand;
     Command secondArmRelease;
     Command smartDashboardCommand;
 
@@ -77,7 +76,6 @@ public class Robot extends IterativeRobot {
         catapultCommand 		= new CatapultCommand();
         climbTower 				= new ClimbTowerCommand();
         driveCommand 			= new DriveCommand();
-        ledUpdateCommand        = new LEDUpdateCommand();
         secondArmRelease 		= new SecondArmReleaseCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
 
@@ -95,8 +93,6 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
-
-        ledUpdateCommand.start();
     }
 
     /**
@@ -115,7 +111,6 @@ public class Robot extends IterativeRobot {
 
 
         // Start teleop commands
-        ledUpdateCommand.start();
         armConfigurationCommand.start();
         catapultCommand.start();
         climbTower.start();

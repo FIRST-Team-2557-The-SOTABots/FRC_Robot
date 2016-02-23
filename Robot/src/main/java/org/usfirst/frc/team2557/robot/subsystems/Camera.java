@@ -1,11 +1,9 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITable;
-import org.usfirst.frc.team2557.accessories.ArduinoComm;
-import org.usfirst.frc.team2557.robot.RobotMap;
+import org.usfirst.frc.team2557.robot.commands.LEDUpdateCommand;
 
 public class Camera extends Subsystem {
 
@@ -17,7 +15,7 @@ public class Camera extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new LEDUpdateCommand());
     }
 
     public double getTargetPositionX() {

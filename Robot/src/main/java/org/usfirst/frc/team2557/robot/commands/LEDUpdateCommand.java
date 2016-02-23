@@ -12,6 +12,7 @@ public class LEDUpdateCommand extends Command {
         // this command can safely run with other
         // commands using the camera at the same
         // time.
+        setInterruptible(false);
     }
 
     @Override

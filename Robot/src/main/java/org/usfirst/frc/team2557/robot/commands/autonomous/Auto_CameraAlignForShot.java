@@ -7,7 +7,12 @@ public class Auto_CameraAlignForShot extends Command {
 
     public Auto_CameraAlignForShot() {
         requires(Robot.chassis);
-        requires(Robot.camera);
+
+        // Do not require camera! Although
+        // we use the camera, the camera is a
+        // "shared system", meaning it will
+        // not under ANY circumstances interfere
+        // with any other commands
     }
 
     @Override
