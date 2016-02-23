@@ -38,7 +38,7 @@ public class RobotMap {
     
     public static EulerDistanceEstimator distanceEstimator;
 
-    public static LidarRangeFinder LidarSensor;
+    public static LidarRangeFinder lidarSensor;
 
     public static ArduinoComm arduinoComm;
 
@@ -80,7 +80,7 @@ public class RobotMap {
 
         distanceEstimator = new EulerDistanceEstimator(rioAccelerometer);
 
-        LidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
+        lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 
         robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
 

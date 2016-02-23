@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
     public static Intake intake;
     public static ManipulatorSub 	manipulatorSub;
     public static Camera camera;
+    public static Lidar lidar;
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
@@ -64,6 +65,7 @@ public class Robot extends IterativeRobot {
         intake = new Intake();
         manipulatorSub 			= new ManipulatorSub();
         camera = new Camera();
+        lidar = new Lidar();
         smartDashboardSub 		= new SmartDashboardSub();
 
         //OI Connection//
@@ -105,9 +107,6 @@ public class Robot extends IterativeRobot {
         RobotMap.distanceEstimator.update();
 
         Scheduler.getInstance().run();
-
-        // Update Lidar NetworkTables
-        RobotMap.LidarSensor.updateNetworkTables();
     }
 
     public void teleopInit() {
@@ -139,9 +138,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
-        // Update Lidar NetworkTables
-        RobotMap.LidarSensor.updateNetworkTables();
         
     }
 
@@ -154,8 +150,5 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-
-        // Update Lidar NetworkTables
-        RobotMap.LidarSensor.updateNetworkTables();
     }
 }
