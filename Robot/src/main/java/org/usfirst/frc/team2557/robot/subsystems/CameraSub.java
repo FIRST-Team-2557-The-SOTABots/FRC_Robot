@@ -36,9 +36,10 @@ public class CameraSub extends Subsystem {
 
     public void update() {
         if(this.getNumTargets() > 0) {
-            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.Orange);
+            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.PulsatingYellow);
         }else{
-            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
+            // TODO: Change this to aliance color
+            RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.Yellow);
         }
     }
 
