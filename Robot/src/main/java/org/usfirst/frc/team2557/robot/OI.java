@@ -2,41 +2,73 @@ package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
+import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
+import org.usfirst.frc.team2557.robot.commands.secondArm.SecondArmReleaseCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	  //Liam: Added first joystick 1/21/16
-	public Joystick driver = new Joystick(0);
-	public Joystick manipulator = new Joystick(1);
-	
-	public JoystickButton driverA = new JoystickButton(driver, 1);
-	public JoystickButton driverB = new JoystickButton(driver, 2);
-	public JoystickButton driverX = new JoystickButton(driver, 3);
-	public JoystickButton driverY = new JoystickButton(driver, 4);
-	public JoystickButton driverLB = new JoystickButton(driver, 5);
-	public JoystickButton driverRB = new JoystickButton(driver,6);
-	public JoystickButton driverBack = new JoystickButton(driver, 7);
-	public JoystickButton driverStart = new JoystickButton(driver, 8);
-	public JoystickButton driverLJB = new JoystickButton(driver, 9);
-	public JoystickButton driverRJB = new JoystickButton(driver, 10);
-	
-	
-	public JoystickButton manipulatorA = new JoystickButton(manipulator, 1);
-	public JoystickButton manipulatorB = new JoystickButton(manipulator, 2);
-	public JoystickButton manipulatorX = new JoystickButton(manipulator, 3);
-	public JoystickButton manipulatorY = new JoystickButton(manipulator, 4);
-	public JoystickButton manipulatorLB = new JoystickButton(manipulator, 5);
-	public JoystickButton manipulatorRB = new JoystickButton(manipulator, 6);
-	public JoystickButton manipulatorBack = new JoystickButton(manipulator, 7);
-	public JoystickButton manipulatorStart = new JoystickButton(manipulator, 8);
-	public JoystickButton manipulatorLJB = new JoystickButton(manipulator, 9);
-	public JoystickButton manipulatorRJB = new JoystickButton(manipulator, 10);
+	public Joystick driver;
+
+	public JoystickButton driverA;
+	public JoystickButton driverB;
+	public JoystickButton driverX;
+	public JoystickButton driverY;
+	public JoystickButton driverLB;
+	public JoystickButton driverRB;
+	public JoystickButton driverBack;
+	public JoystickButton driverStart;
+	public JoystickButton driverLJB;
+	public JoystickButton driverRJB;
+
+	public Joystick manipulator;
+
+	public JoystickButton manipulatorA;
+	public JoystickButton manipulatorB;
+	public JoystickButton manipulatorX;
+	public JoystickButton manipulatorY;
+	public JoystickButton manipulatorLB;
+	public JoystickButton manipulatorRB;
+	public JoystickButton manipulatorBack;
+	public JoystickButton manipulatorStart;
+	public JoystickButton manipulatorLJB;
+	public JoystickButton manipulatorRJB;
 	
     public OI(){
+        driver = new Joystick(0);
 
+        driverA = new JoystickButton(driver, 1);
+        driverB = new JoystickButton(driver, 2);
+        driverX = new JoystickButton(driver, 3);
+        driverY = new JoystickButton(driver, 4);
+        driverLB = new JoystickButton(driver, 5);
+        driverRB = new JoystickButton(driver, 6);
+        driverBack = new JoystickButton(driver, 7);
+        driverStart = new JoystickButton(driver, 8);
+        driverLJB = new JoystickButton(driver, 9);
+        driverRJB = new JoystickButton(driver, 10);
+
+        manipulator = new Joystick(1);
+
+        manipulatorA = new JoystickButton(manipulator, 1);
+        manipulatorB = new JoystickButton(manipulator, 2);
+        manipulatorX = new JoystickButton(manipulator, 3);
+        manipulatorY = new JoystickButton(manipulator, 4);
+        manipulatorLB = new JoystickButton(manipulator, 5);
+        manipulatorRB = new JoystickButton(manipulator, 6);
+        manipulatorBack = new JoystickButton(manipulator, 7);
+        manipulatorStart = new JoystickButton(manipulator, 8);
+        manipulatorLJB = new JoystickButton(manipulator, 9);
+        manipulatorRJB = new JoystickButton(manipulator, 10);
+
+        // Set commands to buttons
+        driverStart.whileActive(new SecondArmReleaseCommand());
+
+        manipulatorLB.whileHeld(new IntakeOutCommand());
+        manipulatorRB.whileHeld(new IntakeInCommand());
     }
     /*
      * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
@@ -96,7 +128,6 @@ public class OI {
      * POV5	=	=	=	=	=	=
      * POV6	=	=	=	=	=	=	Intake Arm Configuration 4; Lowbar
      * POV7	=	=	=	=	=	=
-     * 
      * 
      */
 }

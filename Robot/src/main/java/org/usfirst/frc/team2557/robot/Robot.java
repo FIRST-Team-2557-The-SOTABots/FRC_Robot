@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2557.accessories.ArduinoComm;
 import org.usfirst.frc.team2557.robot.commands.*;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.commands.autonomous.groups.Auto_Lowbar_Group;
@@ -27,19 +26,19 @@ public class Robot extends IterativeRobot {
 
 	//Subsystem Declarations//
     public static OI 				oi;
-    public static DriveSub 			driveSub;
+    public static Chassis chassis;
+    public static Intake intake;
+    public static Catapult catapult;
+    public static Winch winch;
+    public static SecondArm secondArm;
     public static ManipulatorSub 	manipulatorSub;
-    public static CameraSub 		cameraSub;
+    public static Camera camera;
+    public static Lidar lidar;
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
     Command armConfigurationCommand;
     Command autonomousCommand;
-    Command catapultCommand;
-    Command climbTower;
-    Command driveCommand;
-    Command intakeCommand;
-    Command secondArmRelease;
     Command smartDashboardCommand;
 
     SendableChooser autoChooser;
@@ -52,10 +51,7 @@ public class Robot extends IterativeRobot {
         // Initialize RobotMap
         RobotMap.init();
 
-        // Change LEDs to Yellow
-//        RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
-
-        // Run GRIP
+        // Start GRIP
         try {
             new ProcessBuilder("/home/lvuser/start_grip").inheritIO().start();
         } catch(IOException e) {
@@ -63,20 +59,23 @@ public class Robot extends IterativeRobot {
         }
         
         //Subsystem Connections//
-        driveSub 				= new DriveSub();
+        chassis = new Chassis();
+        intake = new Intake();
+        catapult = new Catapult();
+        winch = new Winch();
+        secondArm = new SecondArm();
         manipulatorSub 			= new ManipulatorSub();
-        cameraSub 				= new CameraSub();
+        camera = new Camera();
+        lidar = new Lidar();
         smartDashboardSub 		= new SmartDashboardSub();
+
+        //OI Connection//
+        // NOTE: oi MUST be constructed after subsystems
+        oi 						= new OI();
+
         //Command Connections//
         armConfigurationCommand = new ArmConfigurationCommand();
-        catapultCommand 		= new CatapultCommand();
-        climbTower 				= new ClimbTowerCommand();
-        driveCommand 			= new DriveCommand();
-        intakeCommand 			= new IntakeCommand();
-        secondArmRelease 		= new SecondArmReleaseCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
-        
-        oi 						= new OI();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser 			= new SendableChooser();
@@ -90,8 +89,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        RobotMap.positionEstimator.init();
-
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
     }
@@ -101,34 +98,19 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         // Update distance estimator
-        RobotMap.positionEstimator.update();
+        RobotMap.distanceEstimator.update();
 
         Scheduler.getInstance().run();
-
-        // Update camera sub
-        cameraSub.update();
-
-        // Update Lidar NetworkTables
-        RobotMap.LidarSensor.updateNetworkTables();
     }
 
     public void teleopInit() {
-        RobotMap.positionEstimator.init();
-
         if(autonomousCommand != null)
             autonomousCommand.cancel();
 
-        // Start the drive command
+
+        // Start teleop commands
         armConfigurationCommand.start();
-        catapultCommand.start();
-        climbTower.start();
-        driveCommand.start();
-        intakeCommand.start();
-        secondArmRelease.start();
-//        if(oi.manipulatorLJB.get()){
-//        	RobotMap.leftActuatorMotor.setEncPosition(0);
-//        	RobotMap.rightActuatorMotor.setEncPosition(0);
-//        }
+        smartDashboardCommand.start();
     }
 
     /**
@@ -146,14 +128,6 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        smartDashboardCommand.start();
-
-        // Update camera sub
-        cameraSub.update();
-
-        // Update Lidar NetworkTables
-        RobotMap.LidarSensor.updateNetworkTables();
-        
     }
 
     public void testInit() {
@@ -165,11 +139,5 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-
-        // Update camera sub
-        cameraSub.update();
-
-        // Update Lidar NetworkTables
-        RobotMap.LidarSensor.updateNetworkTables();
     }
 }
