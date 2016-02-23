@@ -17,9 +17,9 @@ public class ArmConfigurationCommand extends Command {
 
 		if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed() == false && RobotMap.leftActuatorMotor.isRevLimitSwitchClosed() == false){
 			RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1)/2);
-		} else if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed() && -Robot.oi.manipulator.getRawAxis(1) < 0){
+		} else if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed() && Robot.oi.manipulator.getRawAxis(1) < 0){
 			RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1)/2);
-		} else if(RobotMap.leftActuatorMotor.isRevLimitSwitchClosed() && -Robot.oi.manipulator.getRawAxis(1) > 0){
+		} else if(RobotMap.leftActuatorMotor.isRevLimitSwitchClosed() && Robot.oi.manipulator.getRawAxis(1) > 0){
 			RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1)/2);
 		} else{
 			RobotMap.leftActuatorMotor.set(0);

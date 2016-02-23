@@ -35,6 +35,7 @@ public class SmartDashboardSub extends Subsystem{
 //        
 //        SmartDashboard.putNumber("The Encoder Velocity is: " , RobotMap.rightActuatorMotor.getEncVelocity());
 //        SmartDashboard.putNumber("The Encoder Position is: " , RobotMap.rightActuatorMotor.getEncPosition());
+		SmartDashboard.putNumber("The Potentiometer is reading: ", RobotMap.potentiometer.getVoltage());
 	}
 	
 	

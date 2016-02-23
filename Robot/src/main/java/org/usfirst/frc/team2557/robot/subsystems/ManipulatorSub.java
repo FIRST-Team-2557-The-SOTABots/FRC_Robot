@@ -12,10 +12,16 @@ public class ManipulatorSub extends Subsystem {
 	}
 
 	public void catapult() {
-		if (RobotMap.catapultHallEffect.get()) {
-			RobotMap.catapultMotor.set(-.25);
+		
+		if (RobotMap.catapultHallEffect.get() == false){
+			RobotMap.set = true;
+		}
+		
+		if (RobotMap.catapultHallEffect.get() && Robot.oi.manipulatorStart.get() == false && RobotMap.set == false) {
+			RobotMap.catapultMotor.set(-.75);
 		} else if (Robot.oi.manipulatorStart.get()){
-			RobotMap.catapultMotor.set(-.9);
+			RobotMap.catapultMotor.set(-1);
+			RobotMap.set = false;
 		} else{
 			RobotMap.catapultMotor.set(0);
 		}
