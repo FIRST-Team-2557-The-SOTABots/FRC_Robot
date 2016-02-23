@@ -52,10 +52,7 @@ public class Robot extends IterativeRobot {
         // Initialize RobotMap
         RobotMap.init();
 
-        // Change LEDs to Yellow
-//        RobotMap.arduinoComm.changeMode(ArduinoComm.LightsMode.SafetyYellow);
-
-        // Run GRIP
+        // Start GRIP
         try {
             new ProcessBuilder("/home/lvuser/start_grip").inheritIO().start();
         } catch(IOException e) {
@@ -67,6 +64,11 @@ public class Robot extends IterativeRobot {
         manipulatorSub 			= new ManipulatorSub();
         camera = new Camera();
         smartDashboardSub 		= new SmartDashboardSub();
+
+        //OI Connection//
+        // NOTE: oi MUST be constructed after subsystems
+        oi 						= new OI();
+
         //Command Connections//
         armConfigurationCommand = new ArmConfigurationCommand();
         catapultCommand 		= new CatapultCommand();
@@ -76,8 +78,6 @@ public class Robot extends IterativeRobot {
         ledUpdateCommand        = new LEDUpdateCommand();
         secondArmRelease 		= new SecondArmReleaseCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
-        
-        oi 						= new OI();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser 			= new SendableChooser();
@@ -114,7 +114,8 @@ public class Robot extends IterativeRobot {
         if(autonomousCommand != null)
             autonomousCommand.cancel();
 
-        // Start the drive command
+
+        // Start teleop commands
         ledUpdateCommand.start();
         armConfigurationCommand.start();
         catapultCommand.start();
@@ -122,10 +123,7 @@ public class Robot extends IterativeRobot {
         driveCommand.start();
         intakeCommand.start();
         secondArmRelease.start();
-//        if(oi.manipulatorLJB.get()){
-//        	RobotMap.leftActuatorMotor.setEncPosition(0);
-//        	RobotMap.rightActuatorMotor.setEncPosition(0);
-//        }
+        smartDashboardCommand.start();
     }
 
     /**
@@ -142,8 +140,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
-        smartDashboardCommand.start();
 
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
