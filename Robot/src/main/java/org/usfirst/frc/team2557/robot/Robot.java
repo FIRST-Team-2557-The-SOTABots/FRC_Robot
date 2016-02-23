@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 
 	//Subsystem Declarations//
     public static OI 				oi;
-    public static DriveSub 			driveSub;
+    public static Chassis chassis;
     public static ManipulatorSub 	manipulatorSub;
     public static CameraSub 		cameraSub;
     public static SmartDashboardSub smartDashboardSub;
@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
         }
         
         //Subsystem Connections//
-        driveSub 				= new DriveSub();
+        chassis = new Chassis();
         manipulatorSub 			= new ManipulatorSub();
         cameraSub 				= new CameraSub();
         smartDashboardSub 		= new SmartDashboardSub();

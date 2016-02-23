@@ -1,8 +1,13 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2557.robot.Robot;
 
 public class Auto_CameraAlignForShot extends Command {
+
+    public Auto_CameraAlignForShot() {
+        requires(Robot.chassis);
+    }
 
     @Override
     protected void initialize() {

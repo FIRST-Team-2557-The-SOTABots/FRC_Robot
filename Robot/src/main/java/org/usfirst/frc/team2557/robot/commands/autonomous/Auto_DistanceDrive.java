@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 public class Auto_DistanceDrive extends Command {
@@ -16,6 +17,8 @@ public class Auto_DistanceDrive extends Command {
     public Auto_DistanceDrive(double distance, double speed) {
         this._distance = distance;
         this._speed = speed;
+
+        requires(Robot.chassis);
     }
 
     @Override
