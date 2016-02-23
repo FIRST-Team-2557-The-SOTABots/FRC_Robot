@@ -20,8 +20,8 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	Robot.driveSub.doArcade();
-    	Robot.driveSub.doTank();
+    	Robot.driveSub.doArcade();
+//    	Robot.driveSub.doTank();
     }
 
     // Make this return true when this Command no longer needs to run execute()

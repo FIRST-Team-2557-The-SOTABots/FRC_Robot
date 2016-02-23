@@ -34,7 +34,7 @@ public class RobotMap {
     public static Accelerometer rioAccelerometer;
 
     private static Gyro mainGyro;
-    public static AnalogOutput potentiometer;
+    public static AnalogInput potentiometer;
     
     public static EulerPositionEstimator positionEstimator;
 
@@ -73,7 +73,7 @@ public class RobotMap {
 
         catapultHallEffect = new DigitalInput(0);
         
-        potentiometer = new AnalogOutput(1);
+        potentiometer = new AnalogInput(2);
 
         rioAccelerometer = new BuiltInAccelerometer();
         mainGyro = new AnalogGyro(0);
