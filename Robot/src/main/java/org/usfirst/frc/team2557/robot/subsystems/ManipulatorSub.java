@@ -27,16 +27,6 @@ public class ManipulatorSub extends Subsystem {
 		}
 	}
 
-	public void intake() {
-		if (Robot.oi.manipulatorLB.get()) {
-			RobotMap.intakeMotor.set(-.5);
-		} else if (Robot.oi.manipulatorRB.get()) {
-			RobotMap.intakeMotor.set(.5);
-		} else {
-			RobotMap.intakeMotor.set(0);
-		}
-	}
-
 	double Actuators_Kp = 0.03; // Adjust Kp as necessary
 
 	public void setActuators(double speed) {

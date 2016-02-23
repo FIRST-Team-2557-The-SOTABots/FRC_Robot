@@ -27,6 +27,7 @@ public class Robot extends IterativeRobot {
 	//Subsystem Declarations//
     public static OI 				oi;
     public static Chassis chassis;
+    public static Intake intake;
     public static ManipulatorSub 	manipulatorSub;
     public static Camera camera;
     public static SmartDashboardSub smartDashboardSub;
@@ -37,7 +38,6 @@ public class Robot extends IterativeRobot {
     Command catapultCommand;
     Command climbTower;
     Command driveCommand;
-    Command intakeCommand;
     Command ledUpdateCommand;
     Command secondArmRelease;
     Command smartDashboardCommand;
@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot {
         
         //Subsystem Connections//
         chassis = new Chassis();
+        intake = new Intake();
         manipulatorSub 			= new ManipulatorSub();
         camera = new Camera();
         smartDashboardSub 		= new SmartDashboardSub();
@@ -74,7 +75,6 @@ public class Robot extends IterativeRobot {
         catapultCommand 		= new CatapultCommand();
         climbTower 				= new ClimbTowerCommand();
         driveCommand 			= new DriveCommand();
-        intakeCommand 			= new IntakeCommand();
         ledUpdateCommand        = new LEDUpdateCommand();
         secondArmRelease 		= new SecondArmReleaseCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
@@ -121,7 +121,6 @@ public class Robot extends IterativeRobot {
         catapultCommand.start();
         climbTower.start();
         driveCommand.start();
-        intakeCommand.start();
         secondArmRelease.start();
         smartDashboardCommand.start();
     }
