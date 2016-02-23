@@ -38,7 +38,6 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     Command catapultCommand;
     Command climbTower;
-    Command driveCommand;
     Command secondArmRelease;
     Command smartDashboardCommand;
 
@@ -75,7 +74,6 @@ public class Robot extends IterativeRobot {
         armConfigurationCommand = new ArmConfigurationCommand();
         catapultCommand 		= new CatapultCommand();
         climbTower 				= new ClimbTowerCommand();
-        driveCommand 			= new DriveCommand();
         secondArmRelease 		= new SecondArmReleaseCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
 
@@ -114,7 +112,6 @@ public class Robot extends IterativeRobot {
         armConfigurationCommand.start();
         catapultCommand.start();
         climbTower.start();
-        driveCommand.start();
         secondArmRelease.start();
         smartDashboardCommand.start();
     }
