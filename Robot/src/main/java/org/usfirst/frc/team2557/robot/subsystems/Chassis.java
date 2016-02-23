@@ -23,5 +23,13 @@ public class Chassis extends Subsystem {
     	drive.tankDrive(-Robot.oi.driver.getRawAxis(1) * limitingFactor,
                 -Robot.oi.driver.getRawAxis(5) * limitingFactor);
     }
+
+    public void set(double lvalue, double rvalue) {
+        drive.tankDrive(lvalue, rvalue);
+    }
+
+    public void stop() {
+        this.set(0, 0);
+    }
 }
 
