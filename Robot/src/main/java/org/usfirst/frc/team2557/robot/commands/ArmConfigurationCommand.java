@@ -14,43 +14,45 @@ public class ArmConfigurationCommand extends Command {
 
 	@Override
 	protected void execute() {
-//		if(Robot.oi.manipulatorBack.get()){
-//			Robot.manipulatorSub.setActuators(-0.35);
-//		}
-//		else if(Robot.oi.manipulatorStart.get()){
-//			Robot.manipulatorSub.setActuators(0.35);
-//		}
-//		else{
+
+		if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed() == false && RobotMap.leftActuatorMotor.isRevLimitSwitchClosed() == false){
+			RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1)/2);
+		} else if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed() && Robot.oi.manipulator.getRawAxis(1) < 0){
+			RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1)/2);
+		} else if(RobotMap.leftActuatorMotor.isRevLimitSwitchClosed() && Robot.oi.manipulator.getRawAxis(1) > 0){
+			RobotMap.leftActuatorMotor.set(Robot.oi.manipulator.getRawAxis(1)/2);
+		} else{
+			RobotMap.leftActuatorMotor.set(0);
+		}
+		
+		
+//		if(Robot.oi.manipulator.getPOV() == 0){
+//			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 0){
+//				Robot.manipulatorSub.setActuators(-.5);
+//			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 0){
+//				Robot.manipulatorSub.setActuators(.5);
+//			}
+//		}	else if(Robot.oi.manipulator.getPOV() == 90){
+//			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -35){
+//				Robot.manipulatorSub.setActuators(-.5);
+//			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -35){
+//				Robot.manipulatorSub.setActuators(.5);
+//			}
+//		}	else if(Robot.oi.manipulator.getPOV() == 180){
+//			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -150){
+//				Robot.manipulatorSub.setActuators(-.5);
+//			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -150){
+//				Robot.manipulatorSub.setActuators(.5);
+//			}
+//		}	else if(Robot.oi.manipulator.getPOV() == 270){
+//			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 45){
+//				Robot.manipulatorSub.setActuators(-.5);
+//			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 45){
+//				Robot.manipulatorSub.setActuators(.5);
+//			}
+//		}	else{
 //			Robot.manipulatorSub.setActuators(0);
 //		}
-		
-		if(Robot.oi.manipulator.getPOV() == 0){
-			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 0){
-				Robot.manipulatorSub.setActuators(-.5);
-			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 0){
-				Robot.manipulatorSub.setActuators(.5);
-			}
-		}	else if(Robot.oi.manipulator.getPOV() == 90){
-			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -35){
-				Robot.manipulatorSub.setActuators(-.5);
-			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -35){
-				Robot.manipulatorSub.setActuators(.5);
-			}
-		}	else if(Robot.oi.manipulator.getPOV() == 180){
-			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < -150){
-				Robot.manipulatorSub.setActuators(-.5);
-			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > -150){
-				Robot.manipulatorSub.setActuators(.5);
-			}
-		}	else if(Robot.oi.manipulator.getPOV() == 270){
-			if(RobotMap.leftActuatorMotor.getEncPosition()/900 < 45){
-				Robot.manipulatorSub.setActuators(-.5);
-			}	else if(RobotMap.leftActuatorMotor.getEncPosition()/900 > 45){
-				Robot.manipulatorSub.setActuators(.5);
-			}
-		}	else{
-			Robot.manipulatorSub.setActuators(0);
-		}
 
 	}
 

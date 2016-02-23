@@ -20,7 +20,7 @@ public class DriveSub extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void doArcade() {
-    	RobotMap.robotDrive.arcadeDrive(-Robot.oi.driver.getRawAxis(1), -Robot.oi.driver.getRawAxis(0));
+    	RobotMap.robotDrive.arcadeDrive(-Robot.oi.driver.getRawAxis(1), -Robot.oi.driver.getRawAxis(4));
     }
     public void doTank(){
     	RobotMap.robotDrive.tankDrive(-Robot.oi.driver.getRawAxis(1), -Robot.oi.driver.getRawAxis(5));

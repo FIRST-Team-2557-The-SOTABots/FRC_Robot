@@ -23,7 +23,8 @@ public class RobotMap {
     public static CANTalon catapultMotor;
     public static CANTalon climbingMotor;
     public static CANTalon leftActuatorMotor;
-    public static CANTalon rightActuatorMotor;
+//    public static CANTalon rightActuatorMotor;
+    
     public static CANTalon intakeMotor;
 
     public static Servo secondaryArm;
@@ -31,7 +32,10 @@ public class RobotMap {
     public static DigitalInput catapultHallEffect;
 
     public static Accelerometer rioAccelerometer;
+
     private static Gyro mainGyro;
+    public static AnalogOutput potentiometer;
+    
     public static EulerPositionEstimator positionEstimator;
 
     public static LidarRangeFinder LidarSensor;
@@ -39,6 +43,8 @@ public class RobotMap {
     public static ArduinoComm arduinoComm;
 
     public static RobotDrive robotDrive;
+    
+    public static boolean set = false;
 
     /**
      * Initializes all the parts of RobotMap. This must be called main init method
@@ -56,12 +62,18 @@ public class RobotMap {
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
         leftActuatorMotor = new CANTalon(2);
-        rightActuatorMotor = new CANTalon(3);
+        leftActuatorMotor.enableLimitSwitch(false, false);
+        leftActuatorMotor.setInverted(true);
+        //        rightActuatorMotor = new CANTalon(3);
+
+        
         intakeMotor = new CANTalon(4);
 
         secondaryArm = new Servo(0);
 
         catapultHallEffect = new DigitalInput(0);
+        
+        potentiometer = new AnalogOutput(1);
 
         rioAccelerometer = new BuiltInAccelerometer();
         mainGyro = new AnalogGyro(0);
