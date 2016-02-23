@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
     public static OI 				oi;
     public static Chassis chassis;
     public static ManipulatorSub 	manipulatorSub;
-    public static CameraSub 		cameraSub;
+    public static Camera camera;
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
     Command climbTower;
     Command driveCommand;
     Command intakeCommand;
+    Command ledUpdateCommand;
     Command secondArmRelease;
     Command smartDashboardCommand;
 
@@ -64,7 +65,7 @@ public class Robot extends IterativeRobot {
         //Subsystem Connections//
         chassis = new Chassis();
         manipulatorSub 			= new ManipulatorSub();
-        cameraSub 				= new CameraSub();
+        camera = new Camera();
         smartDashboardSub 		= new SmartDashboardSub();
         //Command Connections//
         armConfigurationCommand = new ArmConfigurationCommand();
@@ -72,6 +73,7 @@ public class Robot extends IterativeRobot {
         climbTower 				= new ClimbTowerCommand();
         driveCommand 			= new DriveCommand();
         intakeCommand 			= new IntakeCommand();
+        ledUpdateCommand        = new LEDUpdateCommand();
         secondArmRelease 		= new SecondArmReleaseCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
         
@@ -91,6 +93,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
+
+        ledUpdateCommand.start();
     }
 
     /**
@@ -102,9 +106,6 @@ public class Robot extends IterativeRobot {
 
         Scheduler.getInstance().run();
 
-        // Update camera sub
-        cameraSub.update();
-
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
     }
@@ -114,6 +115,7 @@ public class Robot extends IterativeRobot {
             autonomousCommand.cancel();
 
         // Start the drive command
+        ledUpdateCommand.start();
         armConfigurationCommand.start();
         catapultCommand.start();
         climbTower.start();
@@ -143,9 +145,6 @@ public class Robot extends IterativeRobot {
         
         smartDashboardCommand.start();
 
-        // Update camera sub
-        cameraSub.update();
-
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();
         
@@ -160,9 +159,6 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-
-        // Update camera sub
-        cameraSub.update();
 
         // Update Lidar NetworkTables
         RobotMap.LidarSensor.updateNetworkTables();

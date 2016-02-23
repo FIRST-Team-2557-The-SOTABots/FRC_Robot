@@ -7,6 +7,7 @@ public class Auto_CameraAlignForShot extends Command {
 
     public Auto_CameraAlignForShot() {
         requires(Robot.chassis);
+        requires(Robot.camera);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class Auto_CameraAlignForShot extends Command {
 
     @Override
     protected void interrupted() {
-
+        this.end();
     }
 
 }
