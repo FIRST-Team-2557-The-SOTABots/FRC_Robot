@@ -5,7 +5,7 @@ import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team2557.robot.commands.DriveCommand;
+import org.usfirst.frc.team2557.robot.commands.chassis.DriveCommand;
 
 public class Chassis extends Subsystem {
 

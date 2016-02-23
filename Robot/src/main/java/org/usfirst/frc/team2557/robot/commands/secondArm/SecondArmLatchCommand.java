@@ -1,12 +1,12 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.secondArm;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
-public class IntakeInCommand extends Command {
+public class SecondArmLatchCommand extends Command {
 
-    public IntakeInCommand() {
-        requires(Robot.intake);
+    public SecondArmLatchCommand() {
+        requires(Robot.secondArm);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class IntakeInCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.set(0.5);
+        Robot.secondArm.latch();
     }
 
     @Override
@@ -33,5 +33,4 @@ public class IntakeInCommand extends Command {
     protected void interrupted() {
         this.end();
     }
-
 }

@@ -2,7 +2,7 @@ package org.usfirst.frc.team2557.robot.commands.catapult;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team2557.robot.Robot;
-import org.usfirst.frc.team2557.robot.commands.WaitForButtonCommand;
+import org.usfirst.frc.team2557.robot.commands.util.WaitForButtonCommand;
 
 public class CatapultSequence extends CommandGroup {
 

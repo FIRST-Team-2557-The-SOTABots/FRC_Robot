@@ -2,9 +2,9 @@ package org.usfirst.frc.team2557.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team2557.robot.commands.IntakeInCommand;
-import org.usfirst.frc.team2557.robot.commands.IntakeOutCommand;
-import org.usfirst.frc.team2557.robot.commands.SecondArmReleaseCommand;
+import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
+import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
+import org.usfirst.frc.team2557.robot.commands.secondArm.SecondArmReleaseCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator

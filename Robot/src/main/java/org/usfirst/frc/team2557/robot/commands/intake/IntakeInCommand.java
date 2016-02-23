@@ -1,16 +1,12 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
-public class LidarUpdateCommand extends Command {
+public class IntakeInCommand extends Command {
 
-    public LidarUpdateCommand() {
-        // This command can run without other commands
-        // conflicting (requires is not needed).
-
-        // This command cannot be interrupted!
-        setInterruptible(false);
+    public IntakeInCommand() {
+        requires(Robot.intake);
     }
 
     @Override
@@ -20,7 +16,7 @@ public class LidarUpdateCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.lidar.updateNetworkTables();
+        Robot.intake.set(0.5);
     }
 
     @Override
@@ -35,7 +31,7 @@ public class LidarUpdateCommand extends Command {
 
     @Override
     protected void interrupted() {
-
+        this.end();
     }
 
 }

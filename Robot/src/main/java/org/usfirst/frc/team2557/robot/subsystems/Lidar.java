@@ -2,7 +2,7 @@ package org.usfirst.frc.team2557.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2557.robot.RobotMap;
-import org.usfirst.frc.team2557.robot.commands.LidarUpdateCommand;
+import org.usfirst.frc.team2557.robot.commands.lidar.LidarUpdateCommand;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 public class Lidar extends Subsystem {

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.chassis;
 
 import org.usfirst.frc.team2557.robot.Robot;
 

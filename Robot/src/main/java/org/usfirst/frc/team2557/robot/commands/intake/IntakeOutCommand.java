@@ -1,11 +1,11 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
-public class IntakeStopCommand extends Command {
+public class IntakeOutCommand extends Command {
 
-    public IntakeStopCommand() {
+    public IntakeOutCommand() {
         requires(Robot.intake);
     }
 
@@ -16,7 +16,7 @@ public class IntakeStopCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.set(0);
+        Robot.intake.set(0.5);
     }
 
     @Override

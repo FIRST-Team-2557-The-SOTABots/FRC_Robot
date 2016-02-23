@@ -1,12 +1,16 @@
-package org.usfirst.frc.team2557.robot.commands;
+package org.usfirst.frc.team2557.robot.commands.lidar;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
-public class SecondArmLatchCommand extends Command {
+public class LidarUpdateCommand extends Command {
 
-    public SecondArmLatchCommand() {
-        requires(Robot.secondArm);
+    public LidarUpdateCommand() {
+        // This command can run without other commands
+        // conflicting (requires is not needed).
+
+        // This command cannot be interrupted!
+        setInterruptible(false);
     }
 
     @Override
@@ -16,7 +20,7 @@ public class SecondArmLatchCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.secondArm.latch();
+        Robot.lidar.updateNetworkTables();
     }
 
     @Override
@@ -31,6 +35,7 @@ public class SecondArmLatchCommand extends Command {
 
     @Override
     protected void interrupted() {
-        this.end();
+
     }
+
 }
