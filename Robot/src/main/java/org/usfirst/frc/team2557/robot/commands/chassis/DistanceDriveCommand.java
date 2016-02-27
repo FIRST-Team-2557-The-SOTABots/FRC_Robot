@@ -27,10 +27,9 @@ public class DistanceDriveCommand extends Command {
         RobotMap.mainGyro.reset();
     }
 
-    final double Kp = 0.03;
     @Override
     protected void execute() {
-        Robot.chassis.set(this._speed, this._speed * RobotMap.mainGyro.getAngle() * Kp);
+        Robot.chassis.driveStraight(this._speed);
     }
 
     @Override
