@@ -34,8 +34,10 @@ public class RobotMap {
     public static Accelerometer rioAccelerometer;
 
     public static Gyro mainGyro;
-    public static AnalogInput potentiometer;
-    
+
+    public static AnalogInput leftPotentiometer;
+    public static AnalogInput rightPotentiometer;
+
     public static EulerDistanceEstimator distanceEstimator;
 
     public static LidarRangeFinder lidarSensor;
@@ -85,7 +87,9 @@ public class RobotMap {
         rioAccelerometer = new BuiltInAccelerometer();
 
         mainGyro = new AnalogGyro(0);
-        potentiometer = new AnalogInput(2);
+
+        leftPotentiometer = new AnalogInput(1);
+        rightPotentiometer = new AnalogInput(2);
 
         distanceEstimator = new EulerDistanceEstimator(rioAccelerometer);
 

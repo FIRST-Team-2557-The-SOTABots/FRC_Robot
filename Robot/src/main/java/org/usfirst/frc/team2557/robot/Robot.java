@@ -28,17 +28,16 @@ public class Robot extends IterativeRobot {
 	//Subsystem Declarations//
     public static OI 				oi;
     public static Chassis chassis;
+    public static Arm arm;
     public static Intake intake;
     public static Catapult catapult;
     public static Winch winch;
     public static SecondArm secondArm;
-    public static ManipulatorSub 	manipulatorSub;
     public static Camera camera;
     public static Lidar lidar;
     public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
-    Command armConfigurationCommand;
     Command autonomousCommand;
     Command smartDashboardCommand;
 
@@ -61,11 +60,11 @@ public class Robot extends IterativeRobot {
         
         //Subsystem Connections//
         chassis = new Chassis();
+        arm = new Arm();
         intake = new Intake();
         catapult = new Catapult();
         winch = new Winch();
         secondArm = new SecondArm();
-        manipulatorSub 			= new ManipulatorSub();
         camera = new Camera();
         lidar = new Lidar();
         smartDashboardSub 		= new SmartDashboardSub();
@@ -75,7 +74,6 @@ public class Robot extends IterativeRobot {
         oi 						= new OI();
 
         //Command Connections//
-        armConfigurationCommand = new ArmConfigurationCommand();
         smartDashboardCommand 	= new SmartDashboardCommand();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
@@ -109,9 +107,6 @@ public class Robot extends IterativeRobot {
         if(autonomousCommand != null)
             autonomousCommand.cancel();
 
-
-        // Start teleop commands
-        armConfigurationCommand.start();
         smartDashboardCommand.start();
     }
 
