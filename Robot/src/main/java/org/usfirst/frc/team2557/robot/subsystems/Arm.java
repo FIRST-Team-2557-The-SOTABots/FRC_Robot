@@ -37,7 +37,7 @@ public class Arm extends Subsystem {
         // http://www.chiefdelphi.com/forums/showthread.php?t=134738
         // ^^ Uses encoder position instead of potentiometers and a lead screws instead of actuators,
         // but the logic is the same. There are several algorithms, this seemed like the easiest.
-        rightActuator.set(-speed * (leftPotentiometer.getVoltage() - rightPotentiometer.getVoltage()) * Kp);
+        rightActuator.set(-(speed + (leftPotentiometer.getVoltage() - rightPotentiometer.getVoltage()) * Kp));
     }
 
     public double getPotentiometerValue() {
