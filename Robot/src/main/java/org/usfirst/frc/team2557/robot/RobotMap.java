@@ -23,7 +23,7 @@ public class RobotMap {
     public static CANTalon catapultMotor;
     public static CANTalon climbingMotor;
     public static CANTalon leftActuatorMotor;
-//    public static CANTalon rightActuatorMotor;
+    public static CANTalon rightActuatorMotor;
     
     public static CANTalon intakeMotor;
 
@@ -53,19 +53,30 @@ public class RobotMap {
     	/*
     	 * CAN ports 6, 8, 2, and 3 have encoder breakouts.
     	 */
-        driveLeft1 = new CANTalon(7);
+        // COMPETITION ROBOT!
+//        driveLeft1 = new CANTalon(7);
+//        driveLeft2 = new CANTalon(6);
+//        driveRight1 = new CANTalon(8);
+//        driveRight2 = new CANTalon(5);
+//        catapultMotor = new CANTalon(1);
+//        climbingMotor = new CANTalon(9);
+//        leftActuatorMotor = new CANTalon(2);
+        // PRACTICE ROBOT!
+        driveLeft1 = new CANTalon(9);
         driveLeft2 = new CANTalon(6);
         driveRight1 = new CANTalon(8);
-        driveRight2 = new CANTalon(5);
-        catapultMotor = new CANTalon(1);
-        climbingMotor = new CANTalon(9);
+        driveRight2 = new CANTalon(1);
+        catapultMotor = new CANTalon(4);
+        climbingMotor = new CANTalon(7);
         leftActuatorMotor = new CANTalon(2);
         leftActuatorMotor.enableLimitSwitch(false, false);
         leftActuatorMotor.setInverted(true);
-        //        rightActuatorMotor = new CANTalon(3);
+        rightActuatorMotor = new CANTalon(3);
 
-        
-        intakeMotor = new CANTalon(4);
+        // COMPETITION ROBOT!
+//        intakeMotor = new CANTalon(4);
+        // PRACTICE ROBOT!
+        intakeMotor = new CANTalon(5);
 
         secondaryArm = new Servo(0);
 
