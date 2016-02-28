@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.Timer;
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
@@ -14,6 +15,10 @@ public class Chassis extends Subsystem {
     Gyro gyro = RobotMap.mainGyro;
 
     double limitingFactor = 0.7;
+
+    double rampSpeedL = 0;
+    double rampSpeedR = 0;
+    double rampFactor = 0.05; // Change this variable to change the ramp speed
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveCommand());
@@ -34,7 +39,21 @@ public class Chassis extends Subsystem {
     }
 
     public void set(double lvalue, double rvalue) {
-        drive.tankDrive(lvalue, rvalue);
+        if(Math.abs(lvalue) > Math.abs(rampSpeedL)) {
+            rampSpeedL += lvalue * rampFactor;
+        }
+        if(Math.abs(lvalue) < Math.abs(rampSpeedL)) {
+            rampSpeedL = lvalue;
+        }
+        if(Math.abs(rvalue) > Math.abs(rampSpeedR)) {
+            rampSpeedR += rvalue * rampFactor;
+        }
+        if(Math.abs(lvalue) < Math.abs(rampSpeedR)) {
+            rampSpeedR = rvalue;
+        }
+
+        drive.tankDrive(rampSpeedL,
+                rampSpeedR);
     }
 
     public void stop() {
