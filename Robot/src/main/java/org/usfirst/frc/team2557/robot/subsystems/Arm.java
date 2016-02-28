@@ -21,7 +21,7 @@ public class Arm extends Subsystem {
         setDefaultCommand(new TeleopArmCommand());
     }
 
-    private double rightAdder = 0;
+    private final double Kp = 0.5;
     public void set(double speed) {
         if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed()) {
             speed = Math.min(0, speed);
@@ -29,16 +29,15 @@ public class Arm extends Subsystem {
             speed = Math.max(0, speed);
         }
 
-        leftActuator.set(speed * scaleFactor);
-//        rightActuator.set(speed * scaleFactor);
+        speed *= scaleFactor;
 
-        if(RobotMap.leftPotentiometer.getVoltage() > RobotMap.rightPotentiometer.getVoltage()) {
-            rightAdder += -0.05;
-        }
-        if (speed == 0) {
-            rightAdder = 0;
-        }
-        rightActuator.set(speed + rightAdder);
+        leftActuator.set(speed);
+        // TODO: The potentiometer values might be inversed on the right, if so the right value needs to be inversed
+        // TODO: This algorithm "works", but needs to be tweeked (itself and Kp) to work correctly
+        // http://www.chiefdelphi.com/forums/showthread.php?t=134738
+        // ^^ Uses encoder position instead of potentiometers and a lead screws instead of actuators,
+        // but the logic is the same. There are several algorithms, this seemed like the easiest.
+        rightActuator.set(-(speed + (leftPotentiometer.getVoltage() - rightPotentiometer.getVoltage()) * Kp));
     }
 
     public double getPotentiometerValue() {
