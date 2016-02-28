@@ -10,6 +10,7 @@ public class LidarUpdateCommand extends Command {
         // conflicting (requires is not needed).
 
         // This command cannot be interrupted!
+        requires(Robot.lidar);
         setInterruptible(false);
     }
 

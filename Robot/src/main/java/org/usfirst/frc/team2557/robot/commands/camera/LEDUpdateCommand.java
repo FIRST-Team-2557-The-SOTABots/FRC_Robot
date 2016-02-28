@@ -10,10 +10,7 @@ import org.usfirst.frc.team2557.robot.subsystems.Camera;
 public class LEDUpdateCommand extends Command {
 
     public LEDUpdateCommand() {
-        // Does not require the camera subsystem,
-        // this command can safely run with other
-        // commands using the camera at the same
-        // time.
+        requires(Robot.camera);
         setInterruptible(false);
     }
 
