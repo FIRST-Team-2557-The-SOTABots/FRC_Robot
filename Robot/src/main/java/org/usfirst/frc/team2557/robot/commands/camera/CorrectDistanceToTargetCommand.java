@@ -4,13 +4,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.subsystems.Camera;
 
-public class TurnToTargetCommand extends Command {
+public class CorrectDistanceToTargetCommand extends Command {
 
-    private static final double tolerance = 5;
+    private final double minShotDistance = 3;
+    private final double maxShotDistnace = 4;
 
     private double speed;
 
-    public TurnToTargetCommand(double speed) {
+    public CorrectDistanceToTargetCommand(double speed) {
         requires(Robot.chassis);
         requires(Robot.camera);
 
@@ -25,12 +26,14 @@ public class TurnToTargetCommand extends Command {
     @Override
     protected void execute() {
         Camera.Target target = this.getTarget();
-        if(target == null) {
-            Robot.chassis.set(speed, -speed);
-        }else {
-            double direction = (target.offset > 0) ? 1 : -1;
-            Robot.chassis.set(speed * direction, -speed * direction);
+        if(target != null) {
+            Robot.chassis.driveStraight(this.manipulateWithDistance(target.distance));
         }
+    }
+
+    private double manipulateWithDistance(double distance) {
+        double x = distance - (minShotDistance + maxShotDistnace) / 2 + 3;
+        return (x * x - 10) / (x * x);
     }
 
     private Camera.Target getTarget() {
@@ -55,14 +58,14 @@ public class TurnToTargetCommand extends Command {
     @Override
     protected boolean isFinished() {
         if(this.getTarget() == null)
-            return false;
+            return true;
 
-        return Math.abs(this.getTarget().offset) - tolerance <= 0;
+        return this.getTarget().distance >= minShotDistance && this.getTarget().distance <= maxShotDistnace;
     }
 
     @Override
     protected void end() {
-        Robot.chassis.stop();
+        Robot.chassis.set(0, 0);
     }
 
     @Override
