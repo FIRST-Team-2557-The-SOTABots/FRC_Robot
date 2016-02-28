@@ -9,43 +9,84 @@ public class Camera extends Subsystem {
 
     ITable contoursTable = NetworkTable.getTable("GRIP/goalContoursReport");
 
-    private final double fov = 68.5;
-    private final double FOVp = 320;
-    private final double Tft = 1.6667;
+    private final double fov = 45;
+    private final double cameraWidth = 158;
+    private final double targetWidth = 0.508;
 
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new LEDUpdateCommand());
     }
 
-    public double getTargetPositionX() {
-        final double Px = this.getClosestTargetValue("centerX");
-
-        return (Px - (FOVp / 2)) / (FOVp / 2);
+    private double[] getValueArray(String name) {
+        double[] values = contoursTable.getNumberArray(name, new double[0]);
+        return values;
     }
+    public Target[] getTargets() {
+        double[] centerXs = this.getValueArray("centerX");
+        double[] centerYs = this.getValueArray("centerY");
+        double[] widths = this.getValueArray("width");
+        double[] heights = this.getValueArray("height");
+        double[] areas = this.getValueArray("area");
+        double[] soliditys = this.getValueArray("solidity");
 
-    public double getTargetDistance() {
-        final double Tp = this.getClosestTargetValue("width");
-        return (Tft * FOVp) / (2 * Tp * Math.tan(Math.toRadians(fov / 2)));
-    }
+        Target[] targets = new Target[centerXs.length];
 
-    public int getNumTargets() {
-        double[] targets = contoursTable.getNumberArray("centerX", new double[0]);
-        return targets.length;
-    }
+        for(int i = 0; i < targets.length; i++) {
+            targets[i] = new Target();
 
-    private double getClosestTargetValue(String value) {
-        int lowestIndex = 0;
-        double[] xCandidates = contoursTable.getNumberArray("centerX", new double[1]);
+            targets[i].centerX = centerXs[i];
+            targets[i].centerY = centerYs[i];
 
-        for(int i = 0; i < xCandidates.length; i++) {
-            if(Math.abs(xCandidates[i]) < Math.abs(xCandidates[lowestIndex])) {
-                lowestIndex = i;
-                continue;
-            }
+            targets[i].width = widths[i];
+            targets[i].height = heights[i];
+
+            targets[i].area = areas[i];
+            targets[i].solidity = soliditys[i];
+
+            targets[i].aspectRatio = targets[i].width / targets[i].height;
+            // Distance calculation
+            // Width of the target is proportional to its height.
+            // We cannot depend on width being accurate, since different
+            // perspectives give different widths,
+            // however the height remains the same.
+            // Using this reasoning, we can approximate the distance
+            // to the target withing about a foot. If this error
+            // is too large, we can account it with additional calculations.
+            /*
+             * width     widthp
+             * -----  =  -----
+             * height    heightp
+             */
+            double targetPixels = 0.508 * targets[i].height / 0.3048;
+            targets[i].distance = (targetWidth * cameraWidth) / (2 * targetPixels * Math.tan(Math.toRadians(fov / 2)));
+            // TODO: Angle from the target (0 is dead straight), assumes target is in center of camera
+
         }
 
-        return contoursTable.getNumberArray(value, new double[1])[lowestIndex];
+        return targets;
+    }
+
+    public class Target {
+        public double centerX;
+        public double centerY;
+
+        public double width;
+        public double height;
+
+        public double area;
+        public double solidity;
+
+        public double aspectRatio;
+        /**
+         * The distance of the target in meters
+         */
+        public double distance;
+        /**
+         * The angle the robot is from the center
+         * line of the target in degrees
+         */
+        public double angleFromTarget;
     }
 
 }
