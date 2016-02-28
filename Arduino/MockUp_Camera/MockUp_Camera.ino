@@ -68,30 +68,30 @@ void loop() {
   if(currentMode != Mode) {
     switch(Mode) {
       case MODE_YELLOW:
-        colorWipe(strip.Color(200, 200, 0), 80);
+        colorWipe(strip.Color(255, 255, 0), 80);
         break;
       case MODE_PULSATINGYELLOW:
-        pulse(200, 200, 0, 0, 0, 0, 100);
+        pulse(255, 255, 0, 0, 0, 0, 100);
         break;
         
       case MODE_RED:
-        colorWipe(strip.Color(200, 0, 0), 80);
+        colorWipe(strip.Color(255, 0, 0), 80);
         break;
       case MODE_PULSATINGRED:
-        pulse(200, 0, 0, 0, 0, 0, 100);
+        pulse(255, 0, 0, 0, 0, 0, 100);
         break;
       case MODE_PULSATINGYELLOWRED:
-      
+        pulse(255, 255, 0, 255, 0, 0, 100);
         break;
         
       case MODE_BLUE:
-        colorWipe(strip.Color(0, 0, 200), 80);
+        colorWipe(strip.Color(0, 0, 255), 80);
         break;
       case MODE_PULSATINGBLUE:
-        pulse(0, 0, 200, 0, 0, 0, 100);
+        pulse(0, 0, 255, 0, 0, 0, 100);
         break;
       case MODE_PULSATINGYELLOWBLUE:
-      
+        pulse(255, 255, 0, 0, 0, 255, 100);
         break;
 
       case MODE_GROOVY:
@@ -197,29 +197,21 @@ void pulse(uint8_t r, uint8_t g, uint8_t b, uint8_t r2, uint8_t g2, uint8_t b2, 
   pulse_g2 = g2;
   pulse_b2 = b2;
   pulse_s = 0;
-  pulse_amount = 0.05;
+  pulse_amount = 0.1;
 
   strip_mode = 2;
 }
 void pulseUpdate() {
   pulse_s += pulse_amount;
-  if(pulse_s > 1) {
-    pulse_s = 1;
-    pulse_amount *= -1;
-  }
-  if(pulse_s < 0) {
-    pulse_s = 0;
-    pulse_amount *= -1;
-  }
   
-  if(strip_mode = 2) {
+  if(strip_mode == 2) {
     uint8_t r_amplitude = (pulse_r - pulse_r2) / 2;
     uint8_t g_amplitude = (pulse_g - pulse_g2) / 2;
     uint8_t b_amplitude = (pulse_b - pulse_b2) / 2;
 
-    uint8_t r = r_amplitude * pulse_s + pulse_r2;
-    uint8_t g = g_amplitude * pulse_s + pulse_g2;
-    uint8_t b = b_amplitude * pulse_s + pulse_b2;
+    uint8_t r = r_amplitude * (sin(pulse_s) / 2 + 0.5) + pulse_r2;
+    uint8_t g = g_amplitude * (sin(pulse_s) / 2 + 0.5) + pulse_g2;
+    uint8_t b = b_amplitude * (sin(pulse_s) / 2 + 0.5) + pulse_b2;
     
     for(int i = 0; i < strip.numPixels(); i++) {
       strip.setPixelColor(i,
