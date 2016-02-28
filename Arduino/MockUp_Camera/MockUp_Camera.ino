@@ -6,22 +6,23 @@
 #endif
 
 #define PIN 6
+#define SONAR_PIN 5
 
 // DEFINE MODES
 #define MODE_YELLOW 0
-#define MODE_PULSATINGYELLOW 1;
+#define MODE_PULSATINGYELLOW 1
 
-#define MODE_RED 2;
-#define MODE_PULSATINGRED 3;
-#define MODE_PULSATINGYELLOWRED 4;
+#define MODE_RED 2
+#define MODE_PULSATINGRED 3
+#define MODE_PULSATINGYELLOWRED 4
 
-#define MODE_BLUE 5;
-#define MODE_PULSATINGBLUE 6;
-#define MODE_PULSATINGYELLOWBLUE 7;
+#define MODE_BLUE 5
+#define MODE_PULSATINGBLUE 6
+#define MODE_PULSATINGYELLOWBLUE 7
 
-#define MODE_GROOVY 8;
+#define MODE_GROOVY 8
 
-int Mode = MODE_YELLOW;
+int Mode = MODE_PULSATINGYELLOW;
 int currentMode = -1;
 
 // Parameter 1 = number of pixels in strip
@@ -33,6 +34,7 @@ int currentMode = -1;
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip2 = Adafruit_NeoPixel(60, SONAR_PIN, NEO_GRB + NEO_KHZ800);
 
 // IMPORTANT: To reduce NeoPixel burnout risk, add 1000 uF capacitor across
 // pixel power leads, add 300 - 500 Ohm resistor on first pixel's data input
@@ -46,9 +48,12 @@ void setup() {
   Wire.onReceive(receiveEvent);
 
   strip.begin();
-  strip.show(); // Initialize all pixels to 'off'
+  strip.show();
 
-  sonar(strip.Color(0, 0, 200), 40, 8);
+  strip2.begin();
+  strip.show();
+
+  sonar(strip2.Color(200, 0, 0), 40, 8);
 }
 
 void loop() {
@@ -66,14 +71,14 @@ void loop() {
         colorWipe(strip.Color(200, 200, 0), 80);
         break;
       case MODE_PULSATINGYELLOW:
-        pulse(200, 200, 0, 200);
+        pulse(200, 200, 0, 0, 0, 0, 100);
         break;
         
       case MODE_RED:
         colorWipe(strip.Color(200, 0, 0), 80);
         break;
       case MODE_PULSATINGRED:
-        pulse(200, 0, 0, 200);
+        pulse(200, 0, 0, 0, 0, 0, 100);
         break;
       case MODE_PULSATINGYELLOWRED:
       
@@ -83,7 +88,7 @@ void loop() {
         colorWipe(strip.Color(0, 0, 200), 80);
         break;
       case MODE_PULSATINGBLUE:
-        pulse(0, 0, 200, 200);
+        pulse(0, 0, 200, 0, 0, 0, 100);
         break;
       case MODE_PULSATINGYELLOWBLUE:
       
@@ -95,14 +100,11 @@ void loop() {
     }
     currentMode = Mode;
   }
-  if(Mode == 0 && currentMode != Mode){
-    colorWipe(strip.Color(200, 0, 200), 100); //Purple
-    currentMode = Mode;
-  }else if(Mode == 
 
-  colorWipeUpdate();
-  sonarUpdate();
+  colorWipeUpdate(); 
   pulseUpdate();
+
+  sonarUpdate();
 
   delay(50);
 }
@@ -114,6 +116,8 @@ void receiveEvent(int howMany) {
   }
 }
 
+int strip_mode = 0;
+
 // Fill the dots one after the other with a color
 uint32_t colorWipe_c;
 uint8_t colorWipe_wait;
@@ -124,12 +128,16 @@ void colorWipe(uint32_t c, uint8_t wait) {
   colorWipe_wait = wait;
   colorWipe_i = 0;
   colorWipe_timer = 0;
+
+  strip_mode = 1;
 }
 void colorWipeUpdate() {
-  if(millis() - colorWipe_timer > colorWipe_wait && colorWipe_i < strip.numPixels()) {
-    strip.setPixelColor(colorWipe_i++, colorWipe_c);
-    strip.show();
-    colorWipe_timer = millis();
+  if(strip_mode == 1) {
+    if(millis() - colorWipe_timer > colorWipe_wait && colorWipe_i < strip.numPixels()) {
+      strip.setPixelColor(colorWipe_i++, colorWipe_c);
+      strip.show();
+      colorWipe_timer = millis();
+    }
   }
 }
 
@@ -139,22 +147,34 @@ uint8_t sonar_wait;
 unsigned long sonar_timer;
 int sonar_i;
 int sonar_max;
+boolean sonar_increasing;
 void sonar(uint32_t c, uint8_t wait, int leds) {
   sonar_c = c;
   sonar_wait = wait;
   sonar_timer = 0;
   sonar_i = 0;
   sonar_max = leds;
+  sonar_increasing = false;
 }
 void sonarUpdate() {
   if(millis() - sonar_timer > sonar_wait) {
-    strip.setPixelColor(sonar_i, strip.Color(0, 0, 0));
-    int realI = sonar_i++;
-    while(realI >= sonar_max) {
-      realI -= sonar_max;
+    strip2.setPixelColor(sonar_i, strip2.Color(0, 0, 0));
+    strip2.show();
+    if(sonar_increasing) {
+      sonar_i++;
+    }else{
+      sonar_i--;
     }
-    strip.setPixelColor(realI, sonar_c);
-    strip.show();
+
+    if(sonar_i >= sonar_max - 1) {
+      sonar_increasing = false;
+    }
+    if(sonar_i <= 0) {
+      sonar_increasing = true;
+    }
+
+    strip2.setPixelColor(sonar_i, sonar_c);
+    strip2.show();
     
     sonar_timer = millis();
   }
@@ -164,18 +184,55 @@ void sonarUpdate() {
 uint8_t pulse_r;
 uint8_t pulse_g;
 uint8_t pulse_b;
-unsigned long pulse_duration;
-void pulse(uint8_t r, uint8_t g, uint8_t b, uint8_t duration) {
+uint8_t pulse_r2;
+uint8_t pulse_g2;
+uint8_t pulse_b2;
+double pulse_s;
+double pulse_amount;
+void pulse(uint8_t r, uint8_t g, uint8_t b, uint8_t r2, uint8_t g2, uint8_t b2, long duration) {
   pulse_r = r;
   pulse_g = g;
   pulse_b = b;
-  pulse_duration = duration;
+  pulse_r2 = r2;
+  pulse_g2 = g2;
+  pulse_b2 = b2;
+  pulse_s = 0;
+  pulse_amount = 0.05;
+
+  strip_mode = 2;
 }
 void pulseUpdate() {
-  for(int i = 0; i < strip.numPixels(); i++) {
-    strip.setPixelColor(pulse_i, pulse_r * (sin(millis() / pulse_duration) + 1 / 2) * 200, pulse_g * (sin(millis() / pulse_duration) + 1 / 2) * 200, pulse_b * (sin(millis() / pulse_duration) + 1 / 2) * 200);
+  pulse_s += pulse_amount;
+  if(pulse_s > 1) {
+    pulse_s = 1;
+    pulse_amount *= -1;
   }
-  strip.show();
+  if(pulse_s < 0) {
+    pulse_s = 0;
+    pulse_amount *= -1;
+  }
+  
+  if(strip_mode = 2) {
+    uint8_t r_amplitude = (pulse_r - pulse_r2) / 2;
+    uint8_t g_amplitude = (pulse_g - pulse_g2) / 2;
+    uint8_t b_amplitude = (pulse_b - pulse_b2) / 2;
+
+    uint8_t r = r_amplitude * pulse_s + pulse_r2;
+    uint8_t g = g_amplitude * pulse_s + pulse_g2;
+    uint8_t b = b_amplitude * pulse_s + pulse_b2;
+    
+    for(int i = 0; i < strip.numPixels(); i++) {
+      strip.setPixelColor(i,
+        r,
+        g,
+        b);
+    }
+    strip.show();
+  }
+//  for(int i = 0; i < strip.numPixels(); i++) {
+//    strip.setPixelColor(pulse_i, pulse_r * (sin(millis() / pulse_duration) + 1 / 2) * 200, pulse_g * (sin(millis() / pulse_duration) + 1 / 2) * 200, pulse_b * (sin(millis() / pulse_duration) + 1 / 2) * 200);
+//  }
+//  strip.show();
 }
 
 void rainbow(uint8_t wait) {
