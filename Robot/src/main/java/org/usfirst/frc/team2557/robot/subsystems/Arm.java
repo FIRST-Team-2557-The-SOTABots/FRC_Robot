@@ -41,4 +41,8 @@ public class Arm extends Subsystem {
         rightActuator.set(speed + rightAdder);
     }
 
+    public double getPotentiometerValue() {
+        return this.leftPotentiometer.getValue();
+    }
+
 }
