@@ -45,6 +45,7 @@ public class Camera extends Subsystem {
             targets[i].solidity = soliditys[i];
 
             targets[i].aspectRatio = targets[i].width / targets[i].height;
+            targets[i].offset = targets[i].centerX - (targets[i].width / 2);
             // Distance calculation
             // Width of the target is proportional to its height.
             // We cannot depend on width being accurate, since different
@@ -78,6 +79,8 @@ public class Camera extends Subsystem {
         public double solidity;
 
         public double aspectRatio;
+        public double offset;
+
         /**
          * The distance of the target in meters
          */
