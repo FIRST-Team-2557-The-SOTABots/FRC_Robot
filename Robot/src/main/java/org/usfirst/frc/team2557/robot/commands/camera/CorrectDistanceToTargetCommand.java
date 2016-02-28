@@ -9,13 +9,11 @@ public class CorrectDistanceToTargetCommand extends Command {
     private final double minShotDistance = 3;
     private final double maxShotDistnace = 4;
 
-    private double speed;
+    private double speed = 1;
 
-    public CorrectDistanceToTargetCommand(double speed) {
+    public CorrectDistanceToTargetCommand() {
         requires(Robot.chassis);
         requires(Robot.camera);
-
-        this.speed = speed;
     }
 
     @Override
