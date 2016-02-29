@@ -14,22 +14,29 @@ public class Chassis extends Subsystem {
     RobotDrive drive = RobotMap.robotDrive;
     Gyro gyro = RobotMap.mainGyro;
 
-    double limitingFactor = 0.7;
+    double limitingFactor = 1;
 
     double rampSpeedL = 0;
     double rampSpeedR = 0;
-    double rampFactor = 0.05; // Change this variable to change the ramp speed
+    double rampFactor = 0.04; // Change this variable to change the ramp speed (lower = slower)
+
+    private Timer rampTimer = new Timer();
+    public Chassis() {
+        rampTimer.start();
+    }
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveCommand());
     }
 
     public void driveArcade() {
-    	drive.arcadeDrive(-Robot.oi.driver.getRawAxis(1) * limitingFactor,
-                -Robot.oi.driver.getRawAxis(4) * limitingFactor);
+        double power = -Robot.oi.driver.getRawAxis(1);
+        double turn = -Robot.oi.driver.getRawAxis(4);
+    	this.set((power - turn) * limitingFactor,
+                (power + turn) * limitingFactor);
     }
     public void driveTank(){
-    	drive.tankDrive(-Robot.oi.driver.getRawAxis(1) * limitingFactor,
+        this.set(-Robot.oi.driver.getRawAxis(1) * limitingFactor,
                 -Robot.oi.driver.getRawAxis(5) * limitingFactor);
     }
 
@@ -39,18 +46,23 @@ public class Chassis extends Subsystem {
     }
 
     public void set(double lvalue, double rvalue) {
-        if(Math.abs(lvalue) > Math.abs(rampSpeedL)) {
-            rampSpeedL += lvalue * rampFactor;
+        if(rampTimer.get() >= 0.01) {
+            if (Math.abs(lvalue) > Math.abs(rampSpeedL)) {
+                rampSpeedL += lvalue * rampFactor;
+            }
+            if (Math.abs(lvalue) < Math.abs(rampSpeedL)) {
+                rampSpeedL = lvalue;
+            }
+            if (Math.abs(rvalue) > Math.abs(rampSpeedR)) {
+                rampSpeedR += rvalue * rampFactor;
+            }
+            if (Math.abs(lvalue) < Math.abs(rampSpeedR)) {
+                rampSpeedR = rvalue;
+            }
+            rampTimer.reset();
         }
-        if(Math.abs(lvalue) < Math.abs(rampSpeedL)) {
-            rampSpeedL = lvalue;
-        }
-        if(Math.abs(rvalue) > Math.abs(rampSpeedR)) {
-            rampSpeedR += rvalue * rampFactor;
-        }
-        if(Math.abs(lvalue) < Math.abs(rampSpeedR)) {
-            rampSpeedR = rvalue;
-        }
+//        rampSpeedL = lvalue;
+//        rampSpeedR = rvalue;
 
         drive.tankDrive(rampSpeedL,
                 rampSpeedR);
