@@ -3,6 +3,7 @@ package org.usfirst.frc.team2557.robot.subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.RobotMap;
 import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 
@@ -21,13 +22,17 @@ public class Arm extends Subsystem {
         setDefaultCommand(new TeleopArmCommand());
     }
 
-    private final double Kp = 0.5;
+    private final double Kp = 0.03;
     public void set(double speed) {
-        if(RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed()) {
+        if(leftActuator.isFwdLimitSwitchClosed()) {
             speed = Math.min(0, speed);
-        }else if(leftActuator.isRevLimitSwitchClosed()) {
+        }
+        if(leftActuator.isRevLimitSwitchClosed()) {
             speed = Math.max(0, speed);
         }
+//        if(leftPotentiometer.getAverageVoltage() >= 4.39) {
+//            speed = Math.max(0, speed);
+//        }
 
         speed *= scaleFactor;
 
@@ -37,7 +42,11 @@ public class Arm extends Subsystem {
         // http://www.chiefdelphi.com/forums/showthread.php?t=134738
         // ^^ Uses encoder position instead of potentiometers and a lead screws instead of actuators,
         // but the logic is the same. There are several algorithms, this seemed like the easiest.
-        rightActuator.set(-(speed + (leftPotentiometer.getVoltage() - rightPotentiometer.getVoltage()) * Kp));
+        rightActuator.set(-(speed + ((leftPotentiometer.getVoltage() - 0.1) - rightPotentiometer.getVoltage()) * Kp));
+
+        SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
+        SmartDashboard.putNumber("Right Potentiometer", rightPotentiometer.getAverageVoltage());
+        SmartDashboard.putNumber("Potentiometer Difference", leftPotentiometer.getAverageVoltage() - rightPotentiometer.getAverageVoltage());
     }
 
     public double getPotentiometerValue() {
