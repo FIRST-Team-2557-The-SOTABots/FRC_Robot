@@ -21,7 +21,7 @@ public class LidarUpdateCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.lidar.updateNetworkTables();
+//        Robot.lidar.updateNetworkTables();
     }
 
     @Override
