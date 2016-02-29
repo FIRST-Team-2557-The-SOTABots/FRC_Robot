@@ -27,7 +27,7 @@ import java.io.IOException;
 public class Robot extends IterativeRobot {
 
 	//Subsystem Declarations//
-    public static OI 				oi;
+    public static OI oi;
     public static Chassis chassis;
     public static Arm arm;
     public static Intake intake;
@@ -36,11 +36,9 @@ public class Robot extends IterativeRobot {
     public static SecondArm secondArm;
     public static Camera camera;
     public static Lidar lidar;
-    public static SmartDashboardSub smartDashboardSub;
 
     //Command Declarations//
     Command autonomousCommand;
-    Command smartDashboardCommand;
 
     SendableChooser autoChooser;
 
@@ -68,14 +66,10 @@ public class Robot extends IterativeRobot {
         secondArm = new SecondArm();
         camera = new Camera();
         lidar = new Lidar();
-        smartDashboardSub 		= new SmartDashboardSub();
 
         //OI Connection//
         // NOTE: oi MUST be constructed after subsystems
         oi 						= new OI();
-
-        //Command Connections//
-        smartDashboardCommand 	= new SmartDashboardCommand();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser 			= new SendableChooser();
@@ -111,8 +105,6 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if(autonomousCommand != null)
             autonomousCommand.cancel();
-
-        smartDashboardCommand.start();
     }
 
     /**
