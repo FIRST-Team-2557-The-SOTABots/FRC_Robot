@@ -14,7 +14,7 @@ public class Chassis extends Subsystem {
     RobotDrive drive = RobotMap.robotDrive;
     Gyro gyro = RobotMap.mainGyro;
 
-    double limitingFactor = 1;
+    double limitingFactor = 0.8;
 
     double rampSpeedL = 0;
     double rampSpeedR = 0;
