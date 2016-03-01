@@ -14,6 +14,7 @@ public class Auto_Lowbar_Group extends CommandGroup {
 
         // TODO: Edit this sequence, it probably requires more steps than this
 
+        // TODO: Change the "Auto_ArmPosition(n)" to actual commands for positions (eg. LoadBallArmAngle)
 //        this.addParallel(new Auto_ArmPosition(-35));
         this.addParallel(new CatapultRetractCommand());
         this.addSequential(new Auto_DriveToDefense());
