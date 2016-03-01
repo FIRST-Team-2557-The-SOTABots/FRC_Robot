@@ -16,8 +16,16 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.driveArcade();
-//    	Robot.chassis.driveTank();
+        boolean fast = false;
+        if(Robot.oi.manipulatorA.get()
+                && Robot.oi.manipulatorB.get()
+                && Robot.oi.manipulatorX.get()
+                && Robot.oi.manipulatorY.get()) {
+            fast = true;
+        }
+
+    	Robot.chassis.driveArcade(fast);
+//    	Robot.chassis.driveTank(fast);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -14,11 +14,12 @@ public class Chassis extends Subsystem {
     RobotDrive drive = RobotMap.robotDrive;
     Gyro gyro = RobotMap.mainGyro;
 
-    double limitingFactor = 0.8;
+    double limitingFactor = 0.85;
+    double normalDrive = 0.65;
 
-    double rampSpeedL = 0;
-    double rampSpeedR = 0;
-    double rampFactor = 0.04; // Change this variable to change the ramp speed (lower = slower)
+//    double rampSpeedL = 0;
+//    double rampSpeedR = 0;
+//    double rampFactor = 0.08; // Change this variable to change the ramp speed (lower = slower)
 
     private Timer rampTimer = new Timer();
     public Chassis() {
@@ -29,15 +30,25 @@ public class Chassis extends Subsystem {
         setDefaultCommand(new DriveCommand());
     }
 
-    public void driveArcade() {
+    public void driveArcade(boolean fast) {
         double power = -Robot.oi.driver.getRawAxis(1);
         double turn = -Robot.oi.driver.getRawAxis(4);
-    	this.set((power - turn) * limitingFactor,
-                (power + turn) * limitingFactor);
+        if(fast) {
+            this.set((power - turn) * limitingFactor,
+                    (power + turn) * limitingFactor);
+        }else {
+            this.set((power - turn) * normalDrive,
+                    (power + turn) * normalDrive);
+        }
     }
-    public void driveTank(){
-        this.set(-Robot.oi.driver.getRawAxis(1) * limitingFactor,
-                -Robot.oi.driver.getRawAxis(5) * limitingFactor);
+    public void driveTank(boolean fast){
+        if(fast) {
+            this.set(-Robot.oi.driver.getRawAxis(1) * limitingFactor,
+                    -Robot.oi.driver.getRawAxis(5) * limitingFactor);
+        }else {
+            this.set(-Robot.oi.driver.getRawAxis(1) * normalDrive,
+                    -Robot.oi.driver.getRawAxis(5) * normalDrive);
+        }
     }
 
     private final double Kp = 0.03;
@@ -46,26 +57,28 @@ public class Chassis extends Subsystem {
     }
 
     public void set(double lvalue, double rvalue) {
-        if(rampTimer.get() >= 0.01) {
-            if (Math.abs(lvalue) > Math.abs(rampSpeedL)) {
-                rampSpeedL += lvalue * rampFactor;
-            }
-            if (Math.abs(lvalue) < Math.abs(rampSpeedL)) {
-                rampSpeedL = lvalue;
-            }
-            if (Math.abs(rvalue) > Math.abs(rampSpeedR)) {
-                rampSpeedR += rvalue * rampFactor;
-            }
-            if (Math.abs(lvalue) < Math.abs(rampSpeedR)) {
-                rampSpeedR = rvalue;
-            }
-            rampTimer.reset();
-        }
+//        if(rampTimer.get() >= 0.01) {
+//            if (Math.abs(lvalue) > Math.abs(rampSpeedL)) {
+//                rampSpeedL += lvalue * rampFactor;
+//            }
+//            if (Math.abs(lvalue) < Math.abs(rampSpeedL)) {
+//                rampSpeedL = lvalue;
+//            }
+//            if (Math.abs(rvalue) > Math.abs(rampSpeedR)) {
+//                rampSpeedR += rvalue * rampFactor;
+//            }
+//            if (Math.abs(lvalue) < Math.abs(rampSpeedR)) {
+//                rampSpeedR = rvalue;
+//            }
+//            rampTimer.reset();
+//        }
 //        rampSpeedL = lvalue;
 //        rampSpeedR = rvalue;
 
-        drive.tankDrive(rampSpeedL,
-                rampSpeedR);
+//        drive.tankDrive(rampSpeedL,
+//                rampSpeedR);
+
+        drive.tankDrive(lvalue, rvalue);
     }
 
     public void stop() {
