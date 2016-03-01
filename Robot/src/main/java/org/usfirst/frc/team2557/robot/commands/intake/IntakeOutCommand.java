@@ -26,7 +26,7 @@ public class IntakeOutCommand extends Command {
 
     @Override
     protected void end() {
-
+        Robot.intake.set(0);
     }
 
     @Override

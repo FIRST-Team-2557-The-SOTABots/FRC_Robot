@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
-import org.usfirst.frc.team2557.robot.commands.autonomous.groups.Auto_Lowbar_Group;
+import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_Lowbar;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser 			= new SendableChooser();
         autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
-        autoChooser.addObject("Lowbar", new Auto_Lowbar_Group());
+        autoChooser.addObject("Lowbar", new Auto_Lowbar());
 
         // Test commands
         autoChooser.addObject("Turn To Target", new TurnToTargetCommand(0.2));
