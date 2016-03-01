@@ -21,7 +21,7 @@ public class Auto_DoNothing extends Command {
 
     @Override
 	protected boolean isFinished() {
-    	return true;
+    	return false;
     }
 
     @Override
