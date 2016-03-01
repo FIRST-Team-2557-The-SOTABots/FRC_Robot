@@ -22,7 +22,7 @@ public class Arm extends Subsystem {
         setDefaultCommand(new TeleopArmCommand());
     }
 
-    private final double Kp = 0.03;
+    private final double Kp = 2.2;
     public void set(double speed) {
         if(leftActuator.isFwdLimitSwitchClosed()) {
             speed = Math.min(0, speed);
@@ -42,7 +42,7 @@ public class Arm extends Subsystem {
         // http://www.chiefdelphi.com/forums/showthread.php?t=134738
         // ^^ Uses encoder position instead of potentiometers and a lead screws instead of actuators,
         // but the logic is the same. There are several algorithms, this seemed like the easiest.
-        rightActuator.set(-(speed + ((leftPotentiometer.getVoltage() - 0.1) - rightPotentiometer.getVoltage()) * Kp));
+        rightActuator.set(-(speed + (leftPotentiometer.getAverageVoltage() - rightPotentiometer.getAverageVoltage()) * Kp));
 
         SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
         SmartDashboard.putNumber("Right Potentiometer", rightPotentiometer.getAverageVoltage());
