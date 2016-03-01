@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2557.robot.commands.*;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.commands.autonomous.groups.Auto_Lowbar_Group;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
@@ -120,8 +119,10 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        // Update distance estimator
+        RobotMap.distanceEstimator.update();
+
         Scheduler.getInstance().run();
-        
     }
 
     public void testInit() {
