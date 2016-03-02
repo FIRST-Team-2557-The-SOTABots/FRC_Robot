@@ -26,20 +26,21 @@ public class Arm extends Subsystem {
 
     private final double Kp = 2.8;
     public void set(double speed) {
-//    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
-//    		speed = Math.min(0, speed);
-//    	}
-//    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
-//    		speed = Math.max(0, speed);
-//    	}
+    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
+    		speed = Math.max(0, speed);
+    	}
+    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
+    		speed = Math.min(0, speed);
+    	}
 
         speed *= scaleFactor;
 
         leftActuator.set(speed);
         if(speed < 0) {
-        	rightActuator.set(speed - 0.75);
-        }else
-        	rightActuator.set(speed);
+        	rightActuator.set(speed * 0.85);
+        }else {
+            rightActuator.set(speed);
+        }
 //        // TODO: The potentiometer values might be inversed on the right, if so the right value needs to be inversed
 //        // TODO: This algorithm "works", but needs to be tweeked (itself and Kp) to work correctly
 //        // http://www.chiefdelphi.com/forums/showthread.php?t=134738

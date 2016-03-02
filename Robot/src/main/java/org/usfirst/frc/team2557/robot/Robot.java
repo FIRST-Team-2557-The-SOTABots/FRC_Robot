@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
         } catch(IOException e) {
             e.printStackTrace();
         }
-        
+
         //Subsystem Connections//
         chassis = new Chassis();
         arm = new Arm();
