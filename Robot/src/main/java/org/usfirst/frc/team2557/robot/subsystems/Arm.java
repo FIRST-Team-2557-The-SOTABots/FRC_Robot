@@ -26,44 +26,21 @@ public class Arm extends Subsystem {
 
     private final double Kp = 2.8;
     public void set(double speed) {
+    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
+    		speed = Math.max(0, speed);
+    	}
+    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
+    		speed = Math.min(0, speed);
+    	}
+
         speed *= scaleFactor;
 
-        if(leftActuator.isFwdLimitSwitchClosed()) {
-            speed = Math.max(0, speed);
-        }
-        if(leftActuator.isRevLimitSwitchClosed()) {
-            speed = Math.min(0, speed);
-        }
         leftActuator.set(speed);
-
-        double rspeed = scaleFactor;
-        if(leftPotentiometer.getAverageVoltage() > rightPotentiometer.getAverageVoltage() - 0.3) {
-            rspeed *= -1;
+        if(speed < 0) {
+        	rightActuator.set(speed * 0.85);
+        }else {
+            rightActuator.set(speed);
         }
-        if(rightActuator.isFwdLimitSwitchClosed()) {
-            rspeed = Math.max(0, rspeed);
-        }
-        if(rightActuator.isRevLimitSwitchClosed()) {
-            rspeed = Math.min(0, rspeed);
-        }
-        rightActuator.set(rspeed);
-
-
-//    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
-//    		speed = Math.max(0, speed);
-//    	}
-//    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
-//    		speed = Math.min(0, speed);
-//    	}
-//
-//        speed *= scaleFactor;
-//
-//        leftActuator.set(speed);
-//        if(speed < 0) {
-//        	rightActuator.set(speed * 0.85);
-//        }else {
-//            rightActuator.set(speed);
-//        }
 //        // TODO: The potentiometer values might be inversed on the right, if so the right value needs to be inversed
 //        // TODO: This algorithm "works", but needs to be tweeked (itself and Kp) to work correctly
 //        // http://www.chiefdelphi.com/forums/showthread.php?t=134738
