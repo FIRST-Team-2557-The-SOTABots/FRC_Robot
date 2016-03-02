@@ -39,6 +39,6 @@ public class WinchCommand extends Command {
 
     @Override
     protected void interrupted() {
-
+        this.end();
     }
 }

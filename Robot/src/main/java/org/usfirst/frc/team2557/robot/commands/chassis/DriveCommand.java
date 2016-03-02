@@ -18,7 +18,7 @@ public class DriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         boolean fast = false;
-        double speedEdit = (Math.abs(Robot.oi.driver.getRawAxis(3) + 1) / 2);
+        double speedEdit = (-Math.abs(Robot.oi.driver.getRawAxis(3) + 1) / 2);
 //        if(Robot.oi.manipulatorA.get()
 //                && Robot.oi.manipulatorB.get()
 //                && Robot.oi.manipulatorX.get()
@@ -38,7 +38,7 @@ public class DriveCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.chassis.stop();
+
     }
 
     // Called when another command which requires one or more of the same
