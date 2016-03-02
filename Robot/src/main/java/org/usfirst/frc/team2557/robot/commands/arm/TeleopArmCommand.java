@@ -16,7 +16,7 @@ public class TeleopArmCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.arm.set(Robot.oi.manipulator.getRawAxis(1));
+        Robot.arm.set(-Robot.oi.manipulator.getRawAxis(1));
     }
 
     @Override

@@ -54,30 +54,33 @@ public class RobotMap {
     	/*
     	 * CAN ports 6, 8, 2, and 3 have encoder breakouts.
     	 */
-        // COMPETITION ROBOT!
-//        driveLeft1 = new CANTalon(7);
-//        driveLeft2 = new CANTalon(6);
-//        driveRight1 = new CANTalon(8);
-//        driveRight2 = new CANTalon(5);
-//        catapultMotor = new CANTalon(1);
-//        climbingMotor = new CANTalon(9);
-//        leftActuatorMotor = new CANTalon(2);
-        // PRACTICE ROBOT!
-        driveLeft1 = new CANTalon(9);
+//         COMPETITION ROBOT!
+        driveLeft1 = new CANTalon(7);
         driveLeft2 = new CANTalon(6);
         driveRight1 = new CANTalon(8);
-        driveRight2 = new CANTalon(1);
-        catapultMotor = new CANTalon(4);
-        climbingMotor = new CANTalon(7);
+        driveRight2 = new CANTalon(5);
+        catapultMotor = new CANTalon(1);
+        climbingMotor = new CANTalon(9);
         leftActuatorMotor = new CANTalon(2);
-        leftActuatorMotor.enableLimitSwitch(false, false);
-        leftActuatorMotor.setInverted(true);
-        rightActuatorMotor = new CANTalon(3);
-
-        // COMPETITION ROBOT!
-//        intakeMotor = new CANTalon(4);
+        driveLeft1.setInverted(true);
+        driveLeft2.setInverted(true);
+        driveRight1.setInverted(true);
+        driveRight2.setInverted(true);
         // PRACTICE ROBOT!
-        intakeMotor = new CANTalon(5);
+//        driveLeft1 = new CANTalon(9);
+//        driveLeft2 = new CANTalon(6);
+//        driveRight1 = new CANTalon(8);
+//        driveRight2 = new CANTalon(1);
+//        catapultMotor = new CANTalon(4);
+//        climbingMotor = new CANTalon(7);
+//        leftActuatorMotor = new CANTalon(2);
+        leftActuatorMotor.enableLimitSwitch(false, false);
+        rightActuatorMotor = new CANTalon(3);
+        rightActuatorMotor.enableLimitSwitch(false, false);
+//         COMPETITION ROBOT!
+        intakeMotor = new CANTalon(4);
+        // PRACTICE ROBOT!
+//        intakeMotor = new CANTalon(5);
 
         secondaryArm = new Servo(0);
 
@@ -96,6 +99,7 @@ public class RobotMap {
 
         robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
         robotDrive.setExpiration(0.2);
+        robotDrive.setSafetyEnabled(false);
 
         arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt
     }
