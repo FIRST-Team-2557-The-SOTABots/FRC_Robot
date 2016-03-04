@@ -31,6 +31,6 @@ public class TeleopArmCommand extends Command {
 
     @Override
     protected void interrupted() {
-
+        
     }
 }
