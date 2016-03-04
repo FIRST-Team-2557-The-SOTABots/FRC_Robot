@@ -7,8 +7,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
 import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_Lowbar;
+import org.usfirst.frc.team2557.robot.commands.autonomous.LoadBall;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
@@ -72,12 +74,12 @@ public class Robot extends IterativeRobot {
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
         autoChooser 			= new SendableChooser();
-        autoChooser.addDefault("Do Nothing", new Auto_DoNothing());
-        autoChooser.addObject("Lowbar", new Auto_Lowbar());
+        autoChooser.addDefault("Do Nothing (AUTO)", new Auto_DoNothing());
+        autoChooser.addObject("Lowbar (AUTO)", new Auto_Lowbar());
 
         // Test commands
-        autoChooser.addObject("Turn To Target", new TurnToTargetCommand(0.2));
-        autoChooser.addObject("Move To Target", new CorrectDistanceToTargetCommand());
+        autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand(0.2));
+        autoChooser.addObject("Move To Target (TEST)", new CorrectDistanceToTargetCommand());
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
