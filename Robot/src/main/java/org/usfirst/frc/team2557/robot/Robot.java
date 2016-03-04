@@ -9,11 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.arm.LoadBallArmAngle;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
-import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_DoNothing;
-import org.usfirst.frc.team2557.robot.commands.autonomous.Auto_Lowbar;
-import org.usfirst.frc.team2557.robot.commands.autonomous.LoadBall;
+import org.usfirst.frc.team2557.robot.commands.autonomous.*;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
+import org.usfirst.frc.team2557.robot.commands.chassis.DriveCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
 import java.io.IOException;
@@ -77,6 +76,8 @@ public class Robot extends IterativeRobot {
         autoChooser 			= new SendableChooser();
         autoChooser.addDefault("Do Nothing (AUTO)", new Auto_DoNothing());
         autoChooser.addObject("Lowbar (AUTO)", new Auto_Lowbar());
+        autoChooser.addObject("Chival De Frise (AUTO)", new Auto_ChivalDeFrise());
+        autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
 
         // Test commands
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand(0.2));
