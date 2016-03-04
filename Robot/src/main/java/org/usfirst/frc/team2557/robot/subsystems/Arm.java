@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,6 +15,7 @@ public class Arm extends Subsystem {
 
     private AnalogInput leftPotentiometer = RobotMap.leftPotentiometer;
     private AnalogInput rightPotentiometer = RobotMap.rightPotentiometer;
+    private double rightAdder = 0;
 
     private double scaleFactor = 0.5;
 
@@ -24,41 +24,51 @@ public class Arm extends Subsystem {
         setDefaultCommand(new TeleopArmCommand());
     }
 
-    private final double Kp = 2.8;
     public void set(double speed) {
-    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
-    		speed = Math.max(0, speed);
-    	}
-    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
+    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
     		speed = Math.min(0, speed);
+    	}
+    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
+    		speed = Math.max(0, speed);
     	}
 
         speed *= scaleFactor;
 
         leftActuator.set(speed);
-        if(speed < 0) {
-        	rightActuator.set(speed * 0.85);
-        }else {
+
+        if(speed > 0) {
             rightActuator.set(speed);
         }
-//        // TODO: The potentiometer values might be inversed on the right, if so the right value needs to be inversed
-//        // TODO: This algorithm "works", but needs to be tweeked (itself and Kp) to work correctly
-//        // http://www.chiefdelphi.com/forums/showthread.php?t=134738
-//        // ^^ Uses encoder position instead of potentiometers and a lead screws instead of actuators,
-//        // but the logic is the same. There are several algorithms, this seemed like the easiest.
-////        double rspeed = speed;
-////    	double rspeed = (speed + (leftPotentiometer.getAverageVoltage() - rightPotentiometer.getAverageVoltage() - 0.3) * Kp);
-//    	rightActuator.set(speed + rmodifier);
+        if(speed < 0) {
+            rightActuator.set(speed * 1);
+        }
 
-    	SmartDashboard.putNumber("The Left Actuator Motor is pulling ", RobotMap.leftActuatorMotor.getOutputVoltage());
-    	SmartDashboard.putNumber("The right Actuator Motor is pulling ", RobotMap.rightActuatorMotor.getOutputVoltage());
         SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
         SmartDashboard.putNumber("Right Potentiometer", rightPotentiometer.getAverageVoltage());
-        SmartDashboard.putNumber("Potentiometer Difference", leftPotentiometer.getAverageVoltage() - rightPotentiometer.getAverageVoltage());
+        SmartDashboard.putNumber("Potentiometer Difference", leftPotentiometer.getAverageVoltage() - (rightPotentiometer.getAverageVoltage() - 0.3));
     }
 
     public double getPotentiometerValue() {
         return this.leftPotentiometer.getValue();
+    }
+
+    public PIDSource getPIDSource() {
+        return this.leftPotentiometer;
+    }
+
+    public static class ArmOutput implements PIDOutput {
+
+        private Arm arm;
+
+        public ArmOutput() {
+            arm = Robot.arm;
+        }
+
+        @Override
+        public void pidWrite(double output) {
+            arm.set(-output);
+        }
+
     }
 
 }
