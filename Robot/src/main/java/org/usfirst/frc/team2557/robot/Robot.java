@@ -129,6 +129,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
+    	SmartDashboard.putData("The lidar is reading; ", RobotMap.lidarSensor.getData(10). getDistance());
         LiveWindow.run();
     }
 }
