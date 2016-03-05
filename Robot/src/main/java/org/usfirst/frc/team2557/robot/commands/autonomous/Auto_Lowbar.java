@@ -9,6 +9,7 @@ import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultRetractCommand;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultShootCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.DistanceDriveCommand;
+import org.usfirst.frc.team2557.robot.commands.chassis.TimeDriveCommand;
 
 public class Auto_Lowbar extends CommandGroup {
 
@@ -25,10 +26,10 @@ public class Auto_Lowbar extends CommandGroup {
         this.addParallel(new LowbarArmAngle());
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
 
-        this.addSequential(new DistanceDriveCommand(2, 0.25)); // Drive through the lowbar
+        this.addSequential(new TimeDriveCommand(5, 0.5)); // Drive through the lowbar
 
         // Load ball! (we are still holding onto it...)
-        this.addSequential(new LoadBall());
+//        this.addSequential(new LoadBall());
 
         // TODO: Parallel to lower the arm to the floor
 //        this.addSequential(new TurnToTargetCommand(0.25));

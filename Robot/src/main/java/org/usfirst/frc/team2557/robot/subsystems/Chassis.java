@@ -53,7 +53,9 @@ public class Chassis extends Subsystem {
 
     private final double Kp = 0.03;
     public void driveStraight(double speed) {
-        this.set(speed, speed * this.getGyroAngle() * Kp);
+//        this.set(speed, speed * this.getGyroAngle() * Kp);
+        this.set(speed, speed);
+
     }
 
     public void set(double lvalue, double rvalue) {
