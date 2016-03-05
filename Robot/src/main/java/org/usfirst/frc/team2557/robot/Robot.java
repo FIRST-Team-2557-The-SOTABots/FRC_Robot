@@ -49,13 +49,6 @@ public class Robot extends IterativeRobot {
         // Initialize RobotMap
         RobotMap.init();
 
-        // Start GRIP
-        try {
-            new ProcessBuilder("/home/lvuser/grip").inheritIO().start();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
         //Subsystem Connections//
         chassis = new Chassis();
         arm = new Arm();
