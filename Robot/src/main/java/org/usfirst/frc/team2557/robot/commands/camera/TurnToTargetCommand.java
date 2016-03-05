@@ -26,10 +26,10 @@ public class TurnToTargetCommand extends Command {
     protected void execute() {
         Camera.Target target = this.getTarget();
         if(target == null) {
-            Robot.chassis.set(speed, -speed);
+            Robot.chassis.set(-speed, speed);
         }else {
             double direction = (target.offset > 0) ? 1 : -1;
-            Robot.chassis.set(speed * direction, -speed * direction);
+            Robot.chassis.set(-speed * direction, speed * direction);
         }
     }
 
