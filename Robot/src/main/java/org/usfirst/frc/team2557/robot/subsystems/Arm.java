@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -8,7 +9,10 @@ import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 
-public class Arm extends Subsystem {
+public class Arm extends PIDSubsystem {
+
+    public static final double ARM_LOWBAR = 4.081,
+        ARM_LOADBALL = 2.648;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
@@ -18,6 +22,17 @@ public class Arm extends Subsystem {
     private double rightAdder = 0;
 
     private double scaleFactor = 0.5;
+
+    private static final double Kp = 0.3;
+    private static final double Ki = 0;
+    private static final double Kd = 0;
+    public Arm() {
+        super(Kp, Ki, Kd);
+
+        this.setInputRange(0, 5);
+        this.setOutputRange(-1, 1);
+        this.setPercentTolerance(1);
+    }
 
     @Override
     protected void initDefaultCommand() {
@@ -48,27 +63,14 @@ public class Arm extends Subsystem {
         SmartDashboard.putNumber("Potentiometer Difference", leftPotentiometer.getAverageVoltage() - (rightPotentiometer.getAverageVoltage() - 0.3));
     }
 
-    public double getPotentiometerValue() {
-        return this.leftPotentiometer.getValue();
+    @Override
+    protected double returnPIDInput() {
+        return this.leftPotentiometer.getAverageVoltage();
     }
 
-    public PIDSource getPIDSource() {
-        return this.leftPotentiometer;
-    }
-
-    public static class ArmOutput implements PIDOutput {
-
-        private Arm arm;
-
-        public ArmOutput() {
-            arm = Robot.arm;
-        }
-
-        @Override
-        public void pidWrite(double output) {
-            arm.set(-output);
-        }
-
+    @Override
+    protected void usePIDOutput(double output) {
+        this.set(-output);
     }
 
 }

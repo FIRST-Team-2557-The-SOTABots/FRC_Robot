@@ -7,12 +7,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2557.robot.commands.arm.LoadBallArmAngle;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
-import org.usfirst.frc.team2557.robot.commands.chassis.DriveCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
 import java.io.IOException;
@@ -82,7 +80,7 @@ public class Robot extends IterativeRobot {
         // Test commands
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand(0.2));
         autoChooser.addObject("Move To Target (TEST)", new CorrectDistanceToTargetCommand());
-        autoChooser.addObject("Load Ball Configuration (TEST)", new LoadBallArmAngle());
+        autoChooser.addObject("Load Ball Configuration (TEST)", new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }

@@ -1,9 +1,9 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc.team2557.robot.commands.arm.LoadBallArmAngle;
-import org.usfirst.frc.team2557.robot.commands.arm.LowbarArmAngle;
+import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.DistanceDriveCommand;
+import org.usfirst.frc.team2557.robot.subsystems.Arm;
 
 public class Auto_ChivalDeFrise extends CommandGroup {
 
@@ -17,14 +17,15 @@ public class Auto_ChivalDeFrise extends CommandGroup {
         // TODO: Change the "Auto_ArmPosition(n)" to actual commands for positions (eg. LoadBallArmAngle)
 //        this.addParallel(new Auto_ArmPosition(-35)); // Lower the arm to the lowbar position
 //        this.addParallel(new CatapultRetractCommand()); // Retract the catapult on the way to the lowbar
-        this.addParallel(new LoadBallArmAngle());
+        this.addParallel(new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
 
-        this.addSequential(new LowbarArmAngle());
+        // TODO: Might need to lower the arm more
+        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR));
 
         this.addSequential(new DistanceDriveCommand(0.35, 0.5)); // Drive through the lowbar
 
-        this.addParallel(new LoadBallArmAngle());
+        this.addParallel(new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
         this.addSequential(new DistanceDriveCommand(1.5, 0.5));
 
         // Load ball! (we are still holding onto it...)
