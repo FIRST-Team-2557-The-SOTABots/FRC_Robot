@@ -6,9 +6,6 @@ import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.subsystems.Arm;
 
 public class MoveArmToAngleCommand extends Command {
-
-    private final double tolerance = 0.1;
-
     private double potentiometerValue;
 
     public MoveArmToAngleCommand(double potentiometerValue) {
@@ -24,7 +21,7 @@ public class MoveArmToAngleCommand extends Command {
 
     @Override
     protected void execute() {
-
+        Robot.arm.enable();
     }
 
     @Override
