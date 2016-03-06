@@ -24,7 +24,8 @@ public class DistanceDriveCommand extends Command {
     @Override
     protected void initialize() {
         RobotMap.distanceEstimator.reset();
-        RobotMap.mainGyro.reset();
+
+        Robot.chassis.initDriveStraight();
     }
 
     @Override

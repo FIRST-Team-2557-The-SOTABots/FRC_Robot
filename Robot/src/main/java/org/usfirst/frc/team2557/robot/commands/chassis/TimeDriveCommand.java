@@ -23,6 +23,8 @@ public class TimeDriveCommand extends Command {
     protected void initialize() {
         this._timer.reset();
         this._timer.start();
+
+        Robot.chassis.initDriveStraight();
     }
 
     @Override
