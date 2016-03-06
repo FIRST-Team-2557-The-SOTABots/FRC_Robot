@@ -62,10 +62,6 @@ public class RobotMap {
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
         leftActuatorMotor = new CANTalon(2);
-        driveLeft1.setInverted(true);
-        driveLeft2.setInverted(true);
-        driveRight1.setInverted(true);
-        driveRight2.setInverted(true);
         // PRACTICE ROBOT!
 //        driveLeft1 = new CANTalon(9);
 //        driveLeft2 = new CANTalon(6);

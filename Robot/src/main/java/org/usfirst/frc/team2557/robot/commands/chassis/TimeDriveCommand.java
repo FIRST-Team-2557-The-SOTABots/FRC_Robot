@@ -27,7 +27,7 @@ public class TimeDriveCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.chassis.driveStraight(-this._speed);
+        Robot.chassis.driveStraight(this._speed);
     }
 
     @Override
