@@ -89,7 +89,8 @@ public class RobotMap {
         leftPotentiometer = new AnalogInput(1);
         rightPotentiometer = new AnalogInput(2);
 
-        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer);
+        // The roborio's accelerometer's y-axis is pointing towards the front of the robot
+        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer, EulerDistanceEstimator.ForwardAxis.Y);
 
         lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
 

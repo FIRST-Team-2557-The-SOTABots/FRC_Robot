@@ -83,6 +83,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        RobotMap.distanceEstimator.autoInit();
+
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
     }
