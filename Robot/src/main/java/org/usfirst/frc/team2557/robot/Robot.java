@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
+import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
@@ -68,12 +69,18 @@ public class Robot extends IterativeRobot {
         autoChooser.addDefault("Do Nothing (AUTO)", new Auto_DoNothing());
         autoChooser.addObject("Lowbar (AUTO)", new Auto_Lowbar());
         autoChooser.addObject("Chival De Frise (AUTO)", new Auto_ChivalDeFrise());
+        autoChooser.addObject("Portcullis (AUTO)", new Auto_Portcullis());
+        autoChooser.addObject("Rough Terrain (AUTO)", new Auto_RoughTerrain());
+        autoChooser.addObject("Rampards (AUTO)", new Auto_Rampards());
+        autoChooser.addObject("Rock Wall (AUTO)", new Auto_RockWall());
+        autoChooser.addObject("Moat (AUTO)", new Auto_Moat());
         autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
 
         // Test commands
-        autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand(0.2));
+        autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());
         autoChooser.addObject("Move To Target (TEST)", new CorrectDistanceToTargetCommand());
-        autoChooser.addObject("Load Ball Configuration (TEST)", new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
+        autoChooser.addObject("Load Ball Arm Configuration Angle (TEST)", new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
+        autoChooser.addObject("Load Ball (TEST)", new Auto_LoadBall());
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
