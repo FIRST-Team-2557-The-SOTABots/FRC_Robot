@@ -12,7 +12,8 @@ import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 public class Arm extends PIDSubsystem {
 
     public static final double ARM_LOWBAR = 4.081,
-        ARM_LOADBALL = 2.648;
+        ARM_LOADBALL = 2.648,
+        ARM_ROUGH_DEFENSE = 3;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
