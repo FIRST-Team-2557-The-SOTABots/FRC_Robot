@@ -10,11 +10,11 @@ public class TurnToTargetCommand extends Command {
 
     private double speed;
 
-    public TurnToTargetCommand(double speed) {
+    public TurnToTargetCommand() {
         requires(Robot.chassis);
         requires(Robot.camera);
 
-        this.speed = speed;
+        this.speed = 0;
     }
 
     @Override
