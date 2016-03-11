@@ -9,7 +9,7 @@ import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 
-public class Arm extends PIDSubsystem {
+public class Arm extends Subsystem {
 
     public static final double ARM_LOWBAR = 4.081,
         ARM_LOADBALL = 2.648,
@@ -24,15 +24,7 @@ public class Arm extends PIDSubsystem {
 
     private double scaleFactor = 0.5;
 
-    private static final double Kp = 0.3;
-    private static final double Ki = 0;
-    private static final double Kd = 0;
     public Arm() {
-        super(Kp, Ki, Kd);
-
-        this.setInputRange(0, 5);
-        this.setOutputRange(-1, 1);
-        this.setPercentTolerance(1);
     }
 
     @Override
@@ -64,13 +56,11 @@ public class Arm extends PIDSubsystem {
         SmartDashboard.putNumber("Potentiometer Difference", leftPotentiometer.getAverageVoltage() - (rightPotentiometer.getAverageVoltage() - 0.3));
     }
 
-    @Override
-    protected double returnPIDInput() {
+    public double returnPIDInput() {
         return this.leftPotentiometer.getAverageVoltage();
     }
 
-    @Override
-    protected void usePIDOutput(double output) {
+    public void usePIDOutput(double output) {
         this.set(-output);
     }
 

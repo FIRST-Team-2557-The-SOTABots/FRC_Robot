@@ -17,7 +17,6 @@ public class TeleopArmCommand extends Command {
     @Override
     protected void execute() {
         // Disable the PID on the arm
-        Robot.arm.disable();
 
         Robot.arm.set(-Robot.oi.manipulator.getRawAxis(1));
     }
