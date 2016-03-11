@@ -15,7 +15,8 @@ public class Auto_Rampards extends CommandGroup {
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
         this.addSequential(new DistanceDriveCommand(1.5, 0.8)); // Drive over the rampards
         this.addSequential(new Auto_LoadBall()); // Load ball!
-        this.addSequential(new Auto_CameraShootSequence());
+
+//        this.addSequential(new Auto_CameraShootSequence());
 
     }
 
