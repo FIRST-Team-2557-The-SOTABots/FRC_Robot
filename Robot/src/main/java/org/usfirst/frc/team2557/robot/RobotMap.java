@@ -54,29 +54,18 @@ public class RobotMap {
     	/*
     	 * CAN ports 6, 8, 2, and 3 have encoder breakouts.
     	 */
-//         COMPETITION ROBOT!
         driveLeft1 = new CANTalon(7);
         driveLeft2 = new CANTalon(6);
         driveRight1 = new CANTalon(8);
         driveRight2 = new CANTalon(5);
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
+        intakeMotor = new CANTalon(4);
+
         leftActuatorMotor = new CANTalon(2);
-        // PRACTICE ROBOT!
-//        driveLeft1 = new CANTalon(9);
-//        driveLeft2 = new CANTalon(6);
-//        driveRight1 = new CANTalon(8);
-//        driveRight2 = new CANTalon(1);
-//        catapultMotor = new CANTalon(4);
-//        climbingMotor = new CANTalon(7);
-//        leftActuatorMotor = new CANTalon(2);
         leftActuatorMotor.enableLimitSwitch(false, false);
         rightActuatorMotor = new CANTalon(3);
         rightActuatorMotor.enableLimitSwitch(false, false);
-//         COMPETITION ROBOT!
-        intakeMotor = new CANTalon(4);
-        // PRACTICE ROBOT!
-//        intakeMotor = new CANTalon(5);
 
         secondaryArm = new Servo(0);
 
@@ -90,6 +79,7 @@ public class RobotMap {
         rightPotentiometer = new AnalogInput(2);
 
         // The roborio's accelerometer's y-axis is pointing towards the front of the robot
+        // NOTE: The practice bot's forward axis is NegY!!
         distanceEstimator = new EulerDistanceEstimator(rioAccelerometer, EulerDistanceEstimator.ForwardAxis.Y);
 
         lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
