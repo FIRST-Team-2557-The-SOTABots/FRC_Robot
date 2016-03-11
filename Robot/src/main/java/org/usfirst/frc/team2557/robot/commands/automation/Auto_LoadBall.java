@@ -11,7 +11,7 @@ public class Auto_LoadBall extends CommandGroup {
         // Move the arm to the correct position
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
         // Spin the intake for 2 seconds
-        this.addSequential(new IntakeInCommand(), 2.0);
+        this.addSequential(new IntakeInCommand(), 1.0);
     }
 
 }

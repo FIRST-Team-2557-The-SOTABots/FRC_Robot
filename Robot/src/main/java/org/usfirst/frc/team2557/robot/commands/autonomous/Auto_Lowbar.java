@@ -19,11 +19,11 @@ public class Auto_Lowbar extends CommandGroup {
 
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR));
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
-        this.addSequential(new DistanceDriveCommand(1.5, 0.6)); // Drive through the lowbar
+        this.addSequential(new TimeDriveCommand(5, 0.7)); // Drive through the lowbar
         this.addSequential(new Auto_LoadBall()); // Load ball!
-        this.addSequential(new TurnToTargetCommand()); // Turn to the target
-        this.addSequential(new CorrectDistanceToTargetCommand()); // Correct our distance to the target
-        this.addSequential(new TurnToTargetCommand()); // Double check that we are aligned
+//        this.addSequential(new TurnToTargetCommand()); // Turn to the target
+//        this.addSequential(new CorrectDistanceToTargetCommand()); // Correct our distance to the target
+//        this.addSequential(new TurnToTargetCommand()); // Double check that we are aligned
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR)); // Lower the arm to the floor
         this.addSequential(new CatapultShootCommand()); // Shoot the ball!
 
