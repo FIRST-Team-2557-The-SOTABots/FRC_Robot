@@ -41,6 +41,13 @@ public class Arm extends PIDSubsystem {
     }
 
     public void set(double speed) {
+        /*
+        Left Actuator's "bottomed-out" switch is fwd
+        Right Actuator's "bottomed-out" switch is rev
+
+        Left Actuator's "topped-out" switch is rev
+        Right Actuator's "topped-out" switch is fwd
+         */
     	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
     		speed = Math.min(0, speed);
     	}
