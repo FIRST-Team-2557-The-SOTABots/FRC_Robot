@@ -13,6 +13,8 @@ public class Camera extends Subsystem {
     private final double cameraWidth = 158;
     private final double targetWidth = 0.508;
 
+    private final double radiansPerWidth = fov / cameraWidth;
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new LEDUpdateCommand());
