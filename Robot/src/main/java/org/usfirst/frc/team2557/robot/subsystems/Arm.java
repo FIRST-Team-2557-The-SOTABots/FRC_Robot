@@ -187,8 +187,8 @@ public class Arm extends Subsystem {
         _elapsedTimer.start();
 
         // Update the PIDs
-        this._leftSpeedController.enable();
-        this._rightSpeedController.disable();
+//        this._leftSpeedController.enable();
+//        this._rightSpeedController.disable();
 
         // SMART DASHBOARD!
         SmartDashboard.putNumber("Left Speed", leftSpeed);
