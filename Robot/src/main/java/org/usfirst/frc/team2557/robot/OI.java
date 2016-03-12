@@ -6,6 +6,7 @@ import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
+import org.usfirst.frc.team2557.robot.commands.secondArm.SecondArmReleaseCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -98,6 +99,7 @@ public class OI {
 
         // Set commands to buttons
         //driverStart.whileActive(new SecondArmReleaseCommand());
+		button3.whileHeld(new SecondArmReleaseCommand());
 
         manipulatorLB.whileHeld(new IntakeOutCommand());
         manipulatorRB.whileHeld(new IntakeInCommand());

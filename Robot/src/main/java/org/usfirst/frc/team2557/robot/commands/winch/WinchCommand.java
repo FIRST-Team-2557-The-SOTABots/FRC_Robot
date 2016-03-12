@@ -20,7 +20,8 @@ public class WinchCommand extends Command {
 
     @Override
     protected void execute() {
-        if (Robot.oi.driver.getRawAxis(2) > 0.5 && Robot.oi.driver.getRawAxis(3) > 0.5) {
+//        if (Robot.oi.driver.getRawAxis(2) > 0.5 && Robot.oi.driver.getRawAxis(3) > 0.5) {
+        if(Robot.oi.driver.getRawButton(1)) {
             RobotMap.climbingMotor.set(1);
         } else {
             RobotMap.climbingMotor.set(0);
