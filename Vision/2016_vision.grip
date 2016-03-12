@@ -103,6 +103,14 @@
   </steps>
   <connections>
     <grip:Connection>
+      <grip:Output step="3" socket="0" previewed="true"/>
+      <grip:Input step="4" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="1" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
       <grip:Output step="2" socket="0" previewed="true"/>
       <grip:Input step="3" socket="0"/>
     </grip:Connection>
@@ -111,25 +119,17 @@
       <grip:Input step="2" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="0" socket="0" previewed="true"/>
-      <grip:Input step="1" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output source="0" socket="0" previewed="false"/>
       <grip:Input step="0" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="3" socket="0" previewed="true"/>
-      <grip:Input step="4" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
     <teamNumber>2557</teamNumber>
     <publishAddress>localhost</publishAddress>
-    <deployAddress>roborio-2557-FRC.local</deployAddress>
-    <deployDir>/home/lvuser</deployDir>
-    <deployUser>lvuser</deployUser>
-    <deployJavaHome>/usr/local/frc/JRE/</deployJavaHome>
-    <deployJvmOptions>lvuser</deployJvmOptions>
+    <deployAddress>raspberrypi-2557.local</deployAddress>
+    <deployDir>/home/pi/vision/grip</deployDir>
+    <deployUser>pi</deployUser>
+    <deployJavaHome>/usr</deployJavaHome>
+    <deployJvmOptions></deployJvmOptions>
   </settings>
 </grip:Pipeline>
