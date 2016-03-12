@@ -103,6 +103,9 @@ public class Robot extends IterativeRobot {
         // Update distance estimator
         RobotMap.distanceEstimator.update();
 
+        // Update the arm
+        arm.update();
+
         Scheduler.getInstance().run();
     }
 
@@ -126,6 +129,9 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         // Update distance estimator
         RobotMap.distanceEstimator.update();
+
+        // Update the arm
+        Robot.arm.update();
 
         Scheduler.getInstance().run();
     }
