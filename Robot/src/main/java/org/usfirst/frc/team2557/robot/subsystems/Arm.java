@@ -62,7 +62,27 @@ public class Arm extends Subsystem {
                         leftActuator.set(-output);
                     }
                 });
+        this._rightSpeedController = new PIDController(Kp, Ki, Kd,
+                new PIDSource() {
+                    @Override
+                    public void setPIDSourceType(PIDSourceType pidSource) {
+                    }
 
+                    @Override
+                    public PIDSourceType getPIDSourceType() {
+                        return PIDSourceType.kRate;
+                    }
+
+                    @Override
+                    public double pidGet() {
+                        return rightSpeed;
+                    }
+                }, new PIDOutput() {
+            @Override
+            public void pidWrite(double output) {
+                rightActuator.set(-output);
+            }
+        });
 
         this._leftSpeedController.setContinuous(true); // Might need to replace this with an input range
         this._rightSpeedController.setContinuous(true); // Might need to replace this with an input range
