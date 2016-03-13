@@ -19,8 +19,8 @@ public class DriveCommand extends Command {
     protected void execute() {
         double speedEdit = 1 - (-Math.abs(Robot.oi.driver.getRawAxis(3) + 1) / 2);
 
-        double power = Robot.oi.driver.getRawAxis(1);
-        double turn = Robot.oi.driver.getRawAxis(0);
+        double power = -Robot.oi.driver.getRawAxis(1);
+        double turn = -Robot.oi.driver.getRawAxis(0);
         Robot.chassis.set((power - turn) * speedEdit,
                 (power + turn) * speedEdit);
 
