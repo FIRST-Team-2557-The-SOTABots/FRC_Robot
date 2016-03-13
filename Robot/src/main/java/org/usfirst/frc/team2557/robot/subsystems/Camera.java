@@ -35,6 +35,16 @@ public class Camera extends Subsystem {
         Target[] targets = new Target[centerXs.length];
 
         for(int i = 0; i < targets.length; i++) {
+            if(centerXs.length <= i
+                    || centerYs.length <= i
+                    || widths.length <= i
+                    || heights.length <= i
+                    || areas.length <= i
+                    || soliditys.length <= i) {
+                // All the data hasn't been collected yet
+                continue;
+            }
+
             targets[i] = new Target();
 
             targets[i].centerX = centerXs[i];
