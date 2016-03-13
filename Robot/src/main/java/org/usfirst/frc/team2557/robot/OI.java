@@ -105,7 +105,7 @@ public class OI {
         manipulatorRB.whileHeld(new IntakeInCommand());
 
 		manipulatorX.whenPressed(new Auto_LoadBall());
-
+		button2.toggleWhenPressed(new SecondArmReleaseCommand());
 		manipulatorY.whileHeld(new Auto_CameraShootSequence());
     }
     /*

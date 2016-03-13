@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
 
         // Update the arm
         Robot.arm.update();
-
+        SmartDashboard.putNumber("Servo angle is: ", RobotMap.secondaryArm.getAngle());
         Scheduler.getInstance().run();
     }
 
