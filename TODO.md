@@ -25,6 +25,7 @@ This file contains a list of everything that programmers need to complete during
 
 ### Vision
 [ ] Set the Pi's IP to a static 10.25.57.11 [to hopefully have it show up on the SmartDashboard]
+[ ] Switch the driver stations to use SmartDashboard SFX [to have the correct widget for viewing the camera]
 [ ] Modify current vision correction commands to use PIDs
 [ ] Test vision tracking and determine offset from center of camera to line up robot with high goal
 [ ] Add vision tracking to the end of all autonomous modes
