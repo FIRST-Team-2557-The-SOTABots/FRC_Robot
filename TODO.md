@@ -34,4 +34,5 @@ This file contains a list of everything that programmers need to complete during
 
 ### Lidar
 [ ] Write algorithms for looking at angles ahead of the robot
+[ ] Write a plugin for SFX to view Lidar distances
 [ ] ... ... ...
