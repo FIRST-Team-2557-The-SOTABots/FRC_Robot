@@ -9,11 +9,11 @@ public class Camera extends Subsystem {
 
     ITable contoursTable = NetworkTable.getTable("GRIP/goalContoursReport");
 
-    private final double fov = 45;
-    private final double cameraWidth = 158;
-    private final double targetWidth = 0.508;
+    private static final double fov = 45;
+    public static final double cameraWidth = 158;
+    private static final double targetWidth = 0.508;
 
-    private final double radiansPerWidth = fov / cameraWidth;
+    private static final double radiansPerWidth = fov / cameraWidth;
 
     @Override
     protected void initDefaultCommand() {
