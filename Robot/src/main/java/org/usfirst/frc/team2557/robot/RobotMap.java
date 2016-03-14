@@ -67,7 +67,7 @@ public class RobotMap {
         rightActuatorMotor = new CANTalon(3);
         rightActuatorMotor.enableLimitSwitch(false, false);
 
-        secondaryArm = new Servo(0);
+        secondaryArm = new Servo(4);
 
         catapultHallEffect = new DigitalInput(0);
 
