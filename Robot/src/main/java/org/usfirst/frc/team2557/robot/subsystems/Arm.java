@@ -15,10 +15,11 @@ public class Arm extends Subsystem {
         ARM_LOADBALL = 2.648,
         ARM_ROUGH_DEFENSE = 3;
 
-    private static final double ARM_MIN_SPEED = -0,
-        ARM_MAX_SPEED = 0; // These values need to be determined experimentally!
+    public static final double deadzone = 0.1;
 
-    private double scaleFactor = 0.5;
+//    private static final double ARM_MIN_SPEED = -0,
+//        ARM_MAX_SPEED = 0; // These values need to be determined experimentally!
+    private static final double ARM_MAX_SPEED = -0.75;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
@@ -32,8 +33,8 @@ public class Arm extends Subsystem {
     private double leftSpeed = 0;
     private double rightSpeed = 0;
 
-    private final double Kp = 1;
-    private final double Ki = 0;
+    private final double Kp = 0.25;
+    private final double Ki = 0.15;
     private final double Kd = 0;
     private PIDController _leftSpeedController;
     private PIDController _rightSpeedController;
@@ -49,7 +50,7 @@ public class Arm extends Subsystem {
 
                     @Override
                     public PIDSourceType getPIDSourceType() {
-                        return PIDSourceType.kRate;
+                        return PIDSourceType.kDisplacement;
                     }
 
                     @Override
@@ -70,7 +71,7 @@ public class Arm extends Subsystem {
 
                     @Override
                     public PIDSourceType getPIDSourceType() {
-                        return PIDSourceType.kRate;
+                        return PIDSourceType.kDisplacement;
                     }
 
                     @Override
@@ -84,14 +85,19 @@ public class Arm extends Subsystem {
             }
         });
 
-        this._leftSpeedController.setContinuous(true); // Might need to replace this with an input range
-        this._rightSpeedController.setContinuous(true); // Might need to replace this with an input range
+//        this._leftSpeedController.setContinuous(true); // Might need to replace this with an input range
+//        this._rightSpeedController.setContinuous(true); // Might need to replace this with an input range
+        this._leftSpeedController.setInputRange(-1, 1);
+        this._rightSpeedController.setInputRange(-1, 1);
 
         this._leftSpeedController.setOutputRange(-1, 1);
         this._rightSpeedController.setOutputRange(-1, 1);
 
         this._leftSpeedController.setPercentTolerance(1); // Might need to replace this with absolute tolerance
         this._rightSpeedController.setPercentTolerance(1); // Might need to replace this with absolute tolerance
+
+        this._leftSpeedController.setSetpoint(0);
+        this._rightSpeedController.setSetpoint(0);
 
         this._elapsedTimer = new Timer();
         this._elapsedTimer.start();
@@ -103,6 +109,11 @@ public class Arm extends Subsystem {
     }
 
     public void set(double speed) {
+        if(speed > 0 && speed < deadzone)
+            speed = 0;
+        if(speed < 0 && speed > -deadzone)
+            speed = 0;
+
         /*
         Left Actuator's "bottomed-out" switch is fwd
         Right Actuator's "bottomed-out" switch is rev
@@ -118,24 +129,21 @@ public class Arm extends Subsystem {
     	}
 
         //region REMOVE THIS SECTION ONCE MIN/MAX RATES HAVE BEEN DETERMINED!
-        speed *= scaleFactor;
-
-        leftActuator.set(speed);
-
-        if(speed > 0) {
-            rightActuator.set(speed);
-        }
-        if(speed < 0) {
-            rightActuator.set(speed * 1);
-        }
+//        speed *= scaleFactor;
+//
+//        leftActuator.set(speed);
+//
+//        if(speed > 0) {
+//            rightActuator.set(speed);
+//        }
+//        if(speed < 0) {
+//            rightActuator.set(speed * 1);
+//        }
         //endregion
         //region UNCOMMENT THIS SECTION ONCE MIN/MAX RATES HAVE BEEN DETERMINED!
-//        double rateRange = Math.abs(ARM_MAX_SPEED) + Math.abs(ARM_MIN_SPEED);
-//        double speedRange = (speed + 1) / 2;
-//        double realSpeed = (rateRange * speedRange) - Math.abs(ARM_MIN_SPEED);
-//
-//        leftActuator.set(realSpeed);
-//        rightActuator.set(realSpeed);
+//        leftActuator.set(speed * ARM_MAX_SPEED);
+//        rightActuator.set(speed * ARM_MAX_SPEED);
+        setSpeed(speed * ARM_MAX_SPEED);
         //endregion
 
         SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
@@ -187,8 +195,8 @@ public class Arm extends Subsystem {
         _elapsedTimer.start();
 
         // Update the PIDs
-//        this._leftSpeedController.enable();
-//        this._rightSpeedController.disable();
+        this._leftSpeedController.enable();
+        this._rightSpeedController.enable();
 
         // SMART DASHBOARD!
         SmartDashboard.putNumber("Left Speed", leftSpeed);
