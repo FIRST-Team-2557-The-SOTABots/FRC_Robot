@@ -17,7 +17,7 @@ public class TurnByAngleCommand extends Command {
         this._degrees = degrees;
 
         // Kp, Ki, Kd, input (gyro), output (chassis)
-        this._controller = new PIDController(0.3, 0, 0,
+        this._controller = new PIDController(0.3, 0.1, 0,
                 new PIDSource() {
                     @Override
                     public void setPIDSourceType(PIDSourceType pidSource) {
