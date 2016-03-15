@@ -9,7 +9,7 @@ This file contains a list of everything that programmers need to complete during
 [ ] Determine actuator potentiometer volatge [on the competition bot] for allowing the camera to see through the arm (when it's close to the floor)
 
 ### Climber
-[ ] Reassign buttons for the winch and secondary arm release
+[x] Reassign buttons for the winch and secondary arm release
 
 ### Autonomous
 [ ] Test robot driving straight

@@ -13,7 +13,9 @@ public class Arm extends Subsystem {
 
     public static final double ARM_LOWBAR = 4.081,
         ARM_LOADBALL = 2.648,
-        ARM_ROUGH_DEFENSE = 3;
+        ARM_ROUGH_DEFENSE = 3,
+        ARM_CLIMB = 0, // TODO: Determine potentiometer values for the climb
+        ARM_RELEASE_SECOND_ARM = 2.6;
 
     public static final double deadzone = 0.1;
 

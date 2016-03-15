@@ -3,6 +3,7 @@ package org.usfirst.frc.team2557.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
+import org.usfirst.frc.team2557.robot.commands.automation.Auto_SecondArmSetup;
 import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
@@ -98,15 +99,13 @@ public class OI {
         manipulatorRJB 		= new JoystickButton(manipulator, 10);
 
         // Set commands to buttons
-        //driverStart.whileActive(new SecondArmReleaseCommand());
-		button3.whileHeld(new SecondArmReleaseCommand());
 
         manipulatorLB.whileHeld(new IntakeOutCommand());
         manipulatorRB.whileHeld(new IntakeInCommand());
 
 		manipulatorX.whenPressed(new Auto_LoadBall());
-		button2.toggleWhenPressed(new SecondArmReleaseCommand());
 		manipulatorY.whileHeld(new Auto_CameraShootSequence());
+		manipulatorBack.whenPressed(new Auto_SecondArmSetup());
     }
     /*
      * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
