@@ -17,15 +17,12 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double speedEdit = 1 - (-Math.abs(Robot.oi.driver.getRawAxis(3) + 1) / 2);
+        double speedEdit = 1 - (Robot.oi.driver.getRawAxis(3) + 1) / 2;
 
         double power = -Robot.oi.driver.getRawAxis(1);
         double turn = -Robot.oi.driver.getRawAxis(0);
         Robot.chassis.set((power - turn) * speedEdit,
                 (power + turn) * speedEdit);
-
-//    	Robot.chassis.driveArcade(fast);
-//    	Robot.chassis.driveTank(fast);
     }
 
     // Make this return true when this Command no longer needs to run execute()
