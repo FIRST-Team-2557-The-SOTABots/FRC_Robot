@@ -23,7 +23,7 @@ public class Chassis extends Subsystem {
         this.resetGyro();
     }
     public void driveStraight(double speed) {
-        drive.drive(speed, this.getGyroAngle() * Kp);
+        drive.drive(speed, -this.getGyroAngle() * Kp);
     }
 
     public void set(double lvalue, double rvalue) {
