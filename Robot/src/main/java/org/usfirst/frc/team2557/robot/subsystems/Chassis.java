@@ -18,12 +18,12 @@ public class Chassis extends Subsystem {
         setDefaultCommand(new DriveCommand());
     }
 
-    private final double Kp = 0.03;
+    private final double Kp = 0.05;
     public void initDriveStraight() {
         this.resetGyro();
     }
     public void driveStraight(double speed) {
-        drive.drive(speed, -this.getGyroAngle() * Kp);
+        drive.arcadeDrive(speed, -this.getGyroAngle() * Kp);
     }
 
     public void set(double lvalue, double rvalue) {
