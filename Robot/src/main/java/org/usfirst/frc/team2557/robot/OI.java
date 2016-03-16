@@ -103,9 +103,10 @@ public class OI {
         manipulatorLB.whileHeld(new IntakeOutCommand());
         manipulatorRB.whileHeld(new IntakeInCommand());
 
-		manipulatorX.whenPressed(new Auto_LoadBall());
-		manipulatorY.whileHeld(new Auto_CameraShootSequence());
-		manipulatorBack.whenPressed(new Auto_SecondArmSetup());
+		manipulatorY.whileHeld(new SecondArmReleaseCommand());
+//		manipulatorX.whenPressed(new Auto_LoadBall());
+//		manipulatorY.whileHeld(new Auto_CameraShootSequence());
+//		manipulatorBack.whenPressed(new Auto_SecondArmSetup());
     }
     /*
      * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
@@ -141,7 +142,7 @@ public class OI {
      *
      *			For Joystick, not Gamepad
      * X-Axis	=	=	=	=	=	Rotation Drive
-     * Y-Axis	=	=	=	=	=	Forward/Reverse Drive
+-+     * Y-Axis	=	=	=	=	=	Forward/Reverse Drive
      * z-Axis	=	=	=	=	=
      * Slider	=	=	=	=	=	Speed Adjustment
      * Button1 (Trigger)	=	=

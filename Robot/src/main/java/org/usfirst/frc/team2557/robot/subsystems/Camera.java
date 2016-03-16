@@ -3,7 +3,6 @@ package org.usfirst.frc.team2557.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITable;
-import org.usfirst.frc.team2557.robot.commands.camera.LEDUpdateCommand;
 
 public class Camera extends Subsystem {
 
@@ -13,11 +12,11 @@ public class Camera extends Subsystem {
     public static final double cameraWidth = 158;
     private static final double targetWidth = 0.508;
 
-    private static final double radiansPerWidth = fov / cameraWidth;
+    public static final double degreesPerWidth = fov / cameraWidth;
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new LEDUpdateCommand());
+
     }
 
     private double[] getValueArray(String name) {
