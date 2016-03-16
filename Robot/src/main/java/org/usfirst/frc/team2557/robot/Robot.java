@@ -12,6 +12,7 @@ import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
+import org.usfirst.frc.team2557.robot.commands.chassis.TurnByAngleCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
 import java.io.IOException;
@@ -77,6 +78,8 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
 
         // Test commands
+        autoChooser.addObject("Turn 90 degrees (TEST)", new TurnByAngleCommand(90));
+        autoChooser.addObject("Turn 10 degrees (TEST)", new TurnByAngleCommand(10));
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());
         autoChooser.addObject("Move To Target (TEST)", new CorrectDistanceToTargetCommand());
         autoChooser.addObject("Load Ball Arm Configuration Angle (TEST)", new MoveArmToAngleCommand(Arm.ARM_LOADBALL));

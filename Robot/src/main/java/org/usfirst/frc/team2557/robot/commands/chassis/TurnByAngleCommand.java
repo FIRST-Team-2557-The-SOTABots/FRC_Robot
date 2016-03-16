@@ -17,7 +17,7 @@ public class TurnByAngleCommand extends Command {
         this._degrees = degrees;
 
         // Kp, Ki, Kd, input (gyro), output (chassis)
-        this._controller = new PIDController(0.3, 0.1, 0,
+        this._controller = new PIDController(0.01, 0.05, 0,
                 new PIDSource() {
                     @Override
                     public void setPIDSourceType(PIDSourceType pidSource) {
@@ -35,7 +35,7 @@ public class TurnByAngleCommand extends Command {
                 }, new PIDOutput() {
                     @Override
                     public void pidWrite(double output) {
-                        Robot.chassis.set(output, -output);
+                        Robot.chassis.set(output * 0.5, -output * 0.5);
                     }
                 });
         requires(Robot.chassis);
@@ -65,7 +65,6 @@ public class TurnByAngleCommand extends Command {
         return this._controller.onTarget();
     }
 
-    @Override
     protected void end() {
         this._controller.disable();
     }
