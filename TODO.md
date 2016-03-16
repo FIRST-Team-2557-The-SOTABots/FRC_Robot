@@ -37,6 +37,6 @@ This file contains a list of everything that programmers need to complete during
 [ ] Create and attach command to shoot if lined up [for when we are being pushed around, the robot will shoot if they happen to push us in a correct position to shoot]
 
 ### Lidar
-[ ] Write algorithms for looking at angles ahead of the robot
+[ ] Implement algorithms for looking at angles ahead of the robot
 [ ] Write a plugin for SFX to view Lidar distances
 [ ] ... ... ...
