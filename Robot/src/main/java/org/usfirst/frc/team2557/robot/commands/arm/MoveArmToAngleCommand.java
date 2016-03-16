@@ -19,7 +19,7 @@ public class MoveArmToAngleCommand extends Command {
         this._value = potentiometerValue;
         requires(Robot.arm);
 
-        this._controller = new PIDController(2.5, 0.5, 0.5, new PIDSource() {
+        this._controller = new PIDController(0.3, 0.15, 0, new PIDSource() {
             @Override
             public void setPIDSourceType(PIDSourceType pidSource) {}
 
