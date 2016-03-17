@@ -11,11 +11,12 @@ import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 
 public class Arm extends Subsystem {
 
-    public static final double ARM_LOWBAR = 4.081,
-        ARM_LOADBALL = 2.648,
+    public static final double ARM_LOWBAR = 4.43,
+        ARM_LOADBALL = 3.184,
+        ARM_BOTTOM = 4.47,
         ARM_ROUGH_DEFENSE = 3,
-        ARM_CLIMB = 0, // TODO: Determine potentiometer values for the climb
-        ARM_RELEASE_SECOND_ARM = 2.6;
+        ARM_CLIMB = 1.74,
+        ARM_RELEASE_SECOND_ARM = 2.7;
 
     public static final double deadzone = 0.1;
 
