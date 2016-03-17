@@ -16,7 +16,7 @@ public class Auto_RockWall extends CommandGroup {
         this.addSequential(new DistanceDriveCommand(1.5, 1)); // Drive over the rock wall
         this.addSequential(new Auto_LoadBall()); // Load ball!
 
-//        this.addSequential(new Auto_CameraShootSequence());
+        this.addSequential(new Auto_CameraShootSequence());
 
     }
 

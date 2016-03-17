@@ -23,7 +23,7 @@ public class Auto_Lowbar extends CommandGroup {
         this.addSequential(new TimeDriveCommand(5, 0.7)); // Drive through the lowbar
         this.addSequential(new Auto_LoadBall()); // Load ball!
 
-//        this.addSequential(new Auto_CameraShootSequence());
+        this.addSequential(new Auto_CameraShootSequence());
 
     }
 
