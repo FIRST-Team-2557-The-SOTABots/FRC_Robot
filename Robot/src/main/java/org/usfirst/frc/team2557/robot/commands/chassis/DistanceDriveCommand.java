@@ -23,19 +23,19 @@ public class DistanceDriveCommand extends Command {
 
     @Override
     protected void initialize() {
-        RobotMap.distanceEstimator.reset();
-
-        Robot.chassis.initDriveStraight();
+        Robot.chassis.resetDriveStraight();
     }
 
     @Override
     protected void execute() {
-        Robot.chassis.driveStraight(this._speed);
+        double dir = this._distance - Robot.chassis.getDistanceTraveled();
+        if(dir != 0)
+            Robot.chassis.driveStraight(this._speed * ((dir) / Math.abs(dir)));
     }
 
     @Override
     protected boolean isFinished() {
-        return RobotMap.distanceEstimator.getDistance() >= this._distance;
+        return Math.abs(Robot.chassis.getDistanceTraveled()) >= Math.abs(this._distance);
     }
 
     @Override

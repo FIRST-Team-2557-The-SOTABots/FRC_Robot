@@ -1,9 +1,5 @@
 package org.usfirst.frc.team2557.robot.commands.camera;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.subsystems.Camera;
@@ -27,7 +23,7 @@ public class CorrectDistanceToTargetCommand extends Command {
 
     @Override
     protected void initialize() {
-        Robot.chassis.initDriveStraight();
+        Robot.chassis.resetDriveStraight();
 
         // Determine forward/backward to shoot
         Camera.Target target = this.getTarget();
