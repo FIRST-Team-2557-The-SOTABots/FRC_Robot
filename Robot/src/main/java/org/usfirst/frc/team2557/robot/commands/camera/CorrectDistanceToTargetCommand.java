@@ -26,7 +26,7 @@ public class CorrectDistanceToTargetCommand extends Command {
         Robot.chassis.resetDriveStraight();
 
         // Determine forward/backward to shoot
-        Camera.Target target = this.getTarget();
+        Camera.Target target = Robot.camera.getTarget();
         if(target != null) {
             this._needsCorrection = false;
             if(target.distance > maxShotDistance) {
@@ -53,20 +53,9 @@ public class CorrectDistanceToTargetCommand extends Command {
         }
     }
 
-    private Camera.Target getTarget() {
-        Camera.Target[] targets = Robot.camera.getTargets();
-        Camera.Target trackedTarget = null;
-
-        if(targets.length > 0) {
-            return targets[0];
-        }
-
-        return trackedTarget;
-    }
-
     @Override
     protected boolean isFinished() {
-        if(this.getTarget() == null)
+        if(Robot.camera.getTarget() == null)
             return true; // This should never happen if TurnToTarget is called first
 
         if(!this._needsCorrection)

@@ -3,6 +3,7 @@ package org.usfirst.frc.team2557.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITable;
+import org.usfirst.frc.team2557.robot.Robot;
 
 public class Camera extends Subsystem {
 
@@ -77,6 +78,25 @@ public class Camera extends Subsystem {
         }
 
         return targets;
+    }
+
+    public Camera.Target getTarget() {
+        Camera.Target[] targets = Robot.camera.getTargets();
+        Camera.Target trackedTarget = null;
+
+        for(Target target : targets) {
+            if(trackedTarget == null) {
+                trackedTarget = target;
+                continue;
+            }
+
+            if(target.width > trackedTarget.width) {
+                trackedTarget = target;
+                continue;
+            }
+        }
+
+        return trackedTarget;
     }
 
     public class Target {

@@ -51,24 +51,13 @@ public class TurnToTargetCommand extends Command {
         // Reset the PID
         this._controller.reset();
 
-        Camera.Target target = this.getTarget();
+        Camera.Target target = Robot.camera.getTarget();
         if(target != null) {
             double degrees = (target.centerX - Camera.cameraWidth / 2) * Camera.degreesPerWidth;
 
             // Set the setpoint for the PID
             this._controller.setSetpoint(degrees - 4.5);
         }
-    }
-
-    private Camera.Target getTarget() {
-        Camera.Target[] targets = Robot.camera.getTargets();
-        Camera.Target trackedTarget = null;
-
-        if(targets.length > 0) {
-            return targets[0];
-        }
-
-        return trackedTarget;
     }
 
     @Override
