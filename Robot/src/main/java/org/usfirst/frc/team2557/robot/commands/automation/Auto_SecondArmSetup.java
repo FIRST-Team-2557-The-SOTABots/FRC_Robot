@@ -11,8 +11,6 @@ public class Auto_SecondArmSetup extends CommandGroup{
     public Auto_SecondArmSetup() {
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_RELEASE_SECOND_ARM));
         this.addSequential(new SecondArmReleaseCommand(), 1);
-        this.addSequential(new WaitCommand(0.5));
-        this.addSequential(new SecondArmReleaseCommand(), 1);
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CLIMB));
     }
 
