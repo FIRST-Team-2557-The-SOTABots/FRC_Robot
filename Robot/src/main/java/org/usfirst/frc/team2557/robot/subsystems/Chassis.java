@@ -44,8 +44,8 @@ public class Chassis extends Subsystem {
     // NOTE: Works best when the robot has just driven straight
     public double getDistanceTraveled() {
         // Return the average of the distance between both encoders
-        // TODO: Convert the pos to meters: (shaftGearTeeth / wheelGearTeeth) * wheelDiameter(m) * PI
-        double posToMeters = 1;
+        // TODO: Convert the pos to meters: (14 / 28) * 8 * 3.14159
+        double posToMeters = (14 / 28) * 8 * 3.14159;
         return ((double) leftDrive.getEncPosition() - leftPosResetValue
                 + (double) rightDrive.getEncPosition() - rightPosResetValue)
                 * 0.5
