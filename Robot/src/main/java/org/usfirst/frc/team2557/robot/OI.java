@@ -3,12 +3,14 @@ package org.usfirst.frc.team2557.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_SecondArmSetup;
 import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
 import org.usfirst.frc.team2557.robot.commands.secondArm.SecondArmReleaseCommand;
+import org.usfirst.frc.team2557.robot.subsystems.Arm;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -105,11 +107,14 @@ public class OI {
         manipulatorRB.whileHeld(new IntakeInCommand());
 
 		manipulatorY.whileHeld(new SecondArmReleaseCommand());
+
 		manipulatorX.whenPressed(new Auto_LoadBall());
+
         Command autoShootSequence = new Auto_CameraShootSequence();
         manipulatorA.whenPressed(autoShootSequence);
         manipulatorBack.cancelWhenPressed(autoShootSequence);
-//        manipulatorB.whenPressed(new Auto_SecondArmSetup());
+
+        manipulatorB.whileHeld(new MoveArmToAngleCommand(Arm.ARM_CAMERA));
     }
     /*
      * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
