@@ -16,7 +16,7 @@ public class IntakeOutCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.set(-0.5);
+        Robot.intake.set(-0.8);
     }
 
     @Override
