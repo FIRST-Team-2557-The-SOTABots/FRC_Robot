@@ -17,7 +17,7 @@ import org.usfirst.frc.team2557.robot.commands.chassis.TimeDriveCommand;
 public class Auto_DriveToDefense extends TimeDriveCommand {
 
     public Auto_DriveToDefense() {
-        super(4, 0.5);
+        super(3, 0.5);
     }
 
 }

@@ -15,7 +15,7 @@ public class Auto_RoughTerrain extends CommandGroup {
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_ROUGH_DEFENSE)); // Move the arm to a relatively high angle
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
 //        this.addSequential(new DistanceDriveCommand(1.5, 0.85)); // Drive over the rough terrain
-        this.addSequential(new TimeDriveCommand(3, 0.85));
+        this.addSequential(new TimeDriveCommand(2.5, 0.85));
         this.addSequential(new Auto_LoadBall()); // Load ball!
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR));
 
