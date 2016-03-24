@@ -14,15 +14,15 @@ public class Arm extends Subsystem {
     public static final double ARM_LOWBAR = 4.43,
         ARM_LOADBALL = 3.184,
         ARM_BOTTOM = 4.47,
+        ARM_CAMERA = 0, // TODO: Determine this potentiometer value
         ARM_ROUGH_DEFENSE = 3,
         ARM_CLIMB = 1.74,
         ARM_RELEASE_SECOND_ARM = 2.7;
 
     public static final double deadzone = 0.1;
 
-//    private static final double ARM_MIN_SPEED = -0,
-//        ARM_MAX_SPEED = 0; // These values need to be determined experimentally!
-    private static final double ARM_MAX_SPEED = -0.75;
+//    private static final double ARM_MAX_SPEED = -0.75; // OLD SPEED, USED AT CENTRAL!
+    private static final double ARM_MAX_SPEED = -1.25;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
@@ -88,16 +88,14 @@ public class Arm extends Subsystem {
             }
         });
 
-//        this._leftSpeedController.setContinuous(true); // Might need to replace this with an input range
-//        this._rightSpeedController.setContinuous(true); // Might need to replace this with an input range
-        this._leftSpeedController.setInputRange(-1, 1);
-        this._rightSpeedController.setInputRange(-1, 1);
+        this._leftSpeedController.setInputRange(-2, 2);
+        this._rightSpeedController.setInputRange(-2, 2);
 
         this._leftSpeedController.setOutputRange(-1, 1);
         this._rightSpeedController.setOutputRange(-1, 1);
 
-        this._leftSpeedController.setPercentTolerance(1); // Might need to replace this with absolute tolerance
-        this._rightSpeedController.setPercentTolerance(1); // Might need to replace this with absolute tolerance
+        this._leftSpeedController.setPercentTolerance(1);
+        this._rightSpeedController.setPercentTolerance(1);
 
         this._leftSpeedController.setSetpoint(0);
         this._rightSpeedController.setSetpoint(0);
@@ -131,23 +129,7 @@ public class Arm extends Subsystem {
     		speed = Math.max(0, speed);
     	}
 
-        //region REMOVE THIS SECTION ONCE MIN/MAX RATES HAVE BEEN DETERMINED!
-//        speed *= scaleFactor;
-//
-//        leftActuator.set(speed);
-//
-//        if(speed > 0) {
-//            rightActuator.set(speed);
-//        }
-//        if(speed < 0) {
-//            rightActuator.set(speed * 1);
-//        }
-        //endregion
-        //region UNCOMMENT THIS SECTION ONCE MIN/MAX RATES HAVE BEEN DETERMINED!
-//        leftActuator.set(speed * ARM_MAX_SPEED);
-//        rightActuator.set(speed * ARM_MAX_SPEED);
         setSpeed(speed * ARM_MAX_SPEED);
-        //endregion
 
         SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
         SmartDashboard.putNumber("Right Potentiometer", rightPotentiometer.getAverageVoltage());
