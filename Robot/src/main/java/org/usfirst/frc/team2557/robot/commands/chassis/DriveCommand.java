@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveCommand extends Command {
 
+    private boolean _driveStraightInit;
+
     public DriveCommand() {
         requires(Robot.chassis);
     }
@@ -19,10 +21,23 @@ public class DriveCommand extends Command {
     protected void execute() {
         double speedEdit = 1 - (Robot.oi.driver.getRawAxis(3) + 1) / 2;
 
-        double power = -Robot.oi.driver.getRawAxis(1);
-        double turn = -Robot.oi.driver.getRawAxis(0);
-        Robot.chassis.set((power - turn) * speedEdit,
-                (power + turn) * speedEdit);
+        if(Robot.oi.button11.get()) {
+            if(!this._driveStraightInit) {
+                Robot.chassis.resetDriveStraight();
+                this._driveStraightInit = true;
+            }
+
+            // Drive straight!
+            Robot.chassis.driveStraight(Robot.oi.driver.getRawAxis(1) * speedEdit);
+        } else {
+            // Calculate arcade drive so we can use our custom "set" method
+            double power = -Robot.oi.driver.getRawAxis(1);
+            double turn = -Robot.oi.driver.getRawAxis(0);
+            Robot.chassis.set((power - turn) * speedEdit,
+                    (power + turn) * speedEdit);
+
+            this._driveStraightInit = false;
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
