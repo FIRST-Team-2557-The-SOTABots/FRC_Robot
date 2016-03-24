@@ -11,7 +11,7 @@ import org.usfirst.frc.team2557.robot.subsystems.Arm;
 public class Auto_CameraShootSequence extends CommandGroup {
 
     public Auto_CameraShootSequence() {
-        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
+//        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
         this.addSequential(new TurnToTargetCommand()); // Turn to the target
         this.addSequential(new CorrectDistanceToTargetCommand()); // Correct our distance to the target
         this.addSequential(new WaitCommand(1.5)); // Wait for camera to update
