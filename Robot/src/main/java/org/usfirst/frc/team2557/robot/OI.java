@@ -107,9 +107,9 @@ public class OI {
 		manipulatorY.whileHeld(new SecondArmReleaseCommand());
 		manipulatorX.whenPressed(new Auto_LoadBall());
         Command autoShootSequence = new Auto_CameraShootSequence();
-        manipulatorB.whenPressed(autoShootSequence);
+        manipulatorA.whenPressed(autoShootSequence);
         manipulatorBack.cancelWhenPressed(autoShootSequence);
-        manipulatorA.whenPressed(new Auto_SecondArmSetup());
+//        manipulatorB.whenPressed(new Auto_SecondArmSetup());
     }
     /*
      * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
