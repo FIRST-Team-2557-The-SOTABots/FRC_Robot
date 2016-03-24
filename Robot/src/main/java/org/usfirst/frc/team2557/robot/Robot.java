@@ -136,7 +136,12 @@ public class Robot extends IterativeRobot {
 
         // Update the arm
         Robot.arm.update();
-        SmartDashboard.putNumber("Servo angle is: ", RobotMap.secondaryArm.getAngle());
+        SmartDashboard.putNumber("distanceForward", RobotMap.lidarSensor.getData(352).getDistance());
+        SmartDashboard.putBoolean("Second Arm Release", RobotMap.leftPotentiometer.getVoltage() < 2.85);
+        SmartDashboard.putBoolean("Left Actuator Hall Effect FWD", RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed());
+        SmartDashboard.putBoolean("Left Actuator Hall Effect REV", RobotMap.leftActuatorMotor.isRevLimitSwitchClosed());
+        SmartDashboard.putBoolean("Right Actuator Hall Effect FWD", RobotMap.rightActuatorMotor.isFwdLimitSwitchClosed());
+        SmartDashboard.putBoolean("Right Acutator Hall Effect REV", RobotMap.rightActuatorMotor.isRevLimitSwitchClosed());
         Scheduler.getInstance().run();
     }
 
