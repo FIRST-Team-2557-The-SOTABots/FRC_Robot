@@ -76,6 +76,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Rock Wall (AUTO)", new Auto_RockWall());
         autoChooser.addObject("Moat (AUTO)", new Auto_Moat());
         autoChooser.addObject("Spy Box Shoot (AUTO)", new Auto_SpyBoxShoot());
+        autoChooser.addObject("Spy Box Shoot WITH AUTO ALIGN (AUTO)", new Auto_SpyBoxShoot_AutoAim());
         autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
 
         // Test commands
