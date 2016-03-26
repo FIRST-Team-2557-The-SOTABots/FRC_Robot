@@ -25,7 +25,7 @@ public class Arm extends Subsystem {
     public static final double deadzone = 0.1;
 
 //    private static final double ARM_MAX_SPEED = -0.75; // OLD SPEED, USED AT CENTRAL!
-    private static final double ARM_MAX_SPEED = -1.25;
+    private static final double ARM_MAX_SPEED = -1.1;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
