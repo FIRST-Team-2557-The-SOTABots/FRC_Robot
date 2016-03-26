@@ -11,18 +11,21 @@ import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 
 public class Arm extends Subsystem {
 
-    public static final double ARM_LOWBAR = 4.43,
-        ARM_LOADBALL = 3.184,
-        ARM_BOTTOM = 4.47,
-        ARM_CAMERA = 0, // TODO: Determine this potentiometer value
-        ARM_ROUGH_DEFENSE = 3,
-        ARM_CLIMB = 1.74,
-        ARM_RELEASE_SECOND_ARM = 2.7;
+//    public static final double ARM_LOWBAR = 4.43, COMPETITION BOT!
+//        ARM_LOADBALL = 3.184,
+//        ARM_BOTTOM = 4.47,
+//        ARM_CAMERA = 0, // TODO: Determine this potentiometer value
+//        ARM_ROUGH_DEFENSE = 3;
+    public static final double ARM_LOWBAR = 4.08, // PRACTIVE BOT!
+            ARM_LOADBALL = 3.1,
+            ARM_BOTTOM = 4.11,
+            ARM_CAMERA = 3.966,
+            ARM_ROUGH_DEFENSE = 3;
 
     public static final double deadzone = 0.1;
 
 //    private static final double ARM_MAX_SPEED = -0.75; // OLD SPEED, USED AT CENTRAL!
-    private static final double ARM_MAX_SPEED = -1.25;
+    private static final double ARM_MAX_SPEED = -1.1;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
@@ -63,7 +66,10 @@ public class Arm extends Subsystem {
                 }, new PIDOutput() {
                     @Override
                     public void pidWrite(double output) {
-                        leftActuator.set(-output);
+                        // Stop if too low (pot is below the lowest config and the output is telling the arm to go down)
+                        if(!(leftPotentiometer.getAverageVoltage() >= ARM_BOTTOM && output > 0)) {
+                            leftActuator.set(-output);
+                        }
                     }
                 });
         this._rightSpeedController = new PIDController(Kp, Ki, Kd,
@@ -84,7 +90,10 @@ public class Arm extends Subsystem {
                 }, new PIDOutput() {
             @Override
             public void pidWrite(double output) {
-                rightActuator.set(-output);
+                // Stop if too low (pot is below the lowest config and the output is telling the arm to go down)
+                if(!(rightPotentiometer.getAverageVoltage() >= ARM_BOTTOM && output > 0)) {
+                    rightActuator.set(-output);
+                }
             }
         });
 
@@ -122,17 +131,20 @@ public class Arm extends Subsystem {
         Left Actuator's "topped-out" switch is rev
         Right Actuator's "topped-out" switch is fwd
          */
-    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
-    		speed = Math.min(0, speed);
-    	}
-    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
-    		speed = Math.max(0, speed);
-    	}
+        /*
+        DISABLED! Reason: the hall-effects are acting strangely, going off
+        when the actuator is not even close to the sensor. We can create the
+        same effect using potentiometer values, which are easier to change
+        than a physical sensor.
+         */
+//    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
+//    		speed = Math.min(0, speed);
+//    	}
+//    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
+//    		speed = Math.max(0, speed);
+//    	}
 
         setSpeed(speed * ARM_MAX_SPEED);
-
-        SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
-        SmartDashboard.putNumber("Right Potentiometer", rightPotentiometer.getAverageVoltage());
     }
 
     private void setSpeed(double rate) {
@@ -144,6 +156,14 @@ public class Arm extends Subsystem {
             this._rightSpeedController.reset();
             this._rightSpeedController.setSetpoint(rate);
         }
+    }
+
+    public double getLeftSpeed() {
+        return leftSpeed;
+    }
+
+    public double getRightSpeed() {
+        return rightSpeed;
     }
 
     /**
@@ -182,10 +202,6 @@ public class Arm extends Subsystem {
         // Update the PIDs
         this._leftSpeedController.enable();
         this._rightSpeedController.enable();
-
-        // SMART DASHBOARD!
-        SmartDashboard.putNumber("Left Speed", leftSpeed);
-        SmartDashboard.putNumber("Right Speed", rightSpeed);
     }
 
     public double returnPIDInput() {

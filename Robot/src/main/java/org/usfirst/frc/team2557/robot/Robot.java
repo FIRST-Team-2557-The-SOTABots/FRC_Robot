@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
+import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TurnByAngleCommand;
@@ -37,6 +38,7 @@ public class Robot extends IterativeRobot {
     public static SecondArm secondArm;
     public static Camera camera;
     public static Lidar lidar;
+    public static Dashboard dashboard;
 
     //Command Declarations//
     Command autonomousCommand;
@@ -60,6 +62,7 @@ public class Robot extends IterativeRobot {
         secondArm = new SecondArm();
         camera = new Camera();
         lidar = new Lidar();
+        dashboard = new Dashboard();
 
         //OI Connection//
         // NOTE: oi MUST be constructed after subsystems
@@ -72,18 +75,21 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Chival De Frise (AUTO)", new Auto_ChivalDeFrise());
         autoChooser.addObject("Portcullis (AUTO)", new Auto_Portcullis());
         autoChooser.addObject("Rough Terrain (AUTO)", new Auto_RoughTerrain());
-        autoChooser.addObject("Rampards (AUTO)", new Auto_Rampards());
+        autoChooser.addObject("Ramparts (AUTO)", new Auto_Rampards());
         autoChooser.addObject("Rock Wall (AUTO)", new Auto_RockWall());
         autoChooser.addObject("Moat (AUTO)", new Auto_Moat());
         autoChooser.addObject("Spy Box Shoot (AUTO)", new Auto_SpyBoxShoot());
+        autoChooser.addObject("Spy Box Shoot WITH AUTO ALIGN (AUTO)", new Auto_SpyBoxShoot_AutoAim());
         autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
 
         // Test commands
+        autoChooser.addObject("------------", null);
         autoChooser.addObject("Turn 90 degrees (TEST)", new TurnByAngleCommand(90));
         autoChooser.addObject("Turn 10 degrees (TEST)", new TurnByAngleCommand(10));
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());
         autoChooser.addObject("Move To Target (TEST)", new CorrectDistanceToTargetCommand());
-        autoChooser.addObject("Load Ball Arm Configuration Angle (TEST)", new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
+        autoChooser.addObject("Arm To Auto Align (TEST)", new MoveArmToAngleCommand(Arm.ARM_CAMERA));
+        autoChooser.addObject("Auto Align & Shoot (TEST)", new Auto_CameraShootSequence());
         autoChooser.addObject("Load Ball (TEST)", new Auto_LoadBall());
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
@@ -94,8 +100,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        RobotMap.distanceEstimator.autoInit();
-
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
     }
@@ -104,16 +108,14 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        // Update distance estimator
-        RobotMap.distanceEstimator.update();
-
-        // Update the arm
+        // Update the arm subsystem (updates PIDs and such)
         arm.update();
 
         Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
+        // Cancel the autonomous command (if there was one previously running
         if(autonomousCommand != null)
             autonomousCommand.cancel();
     }
@@ -131,17 +133,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        // Update distance estimator
-        RobotMap.distanceEstimator.update();
-
         // Update the arm
         Robot.arm.update();
-        SmartDashboard.putNumber("distanceForward", RobotMap.lidarSensor.getData(352).getDistance());
-        SmartDashboard.putBoolean("Second Arm Release", RobotMap.leftPotentiometer.getVoltage() < 2.85);
-        SmartDashboard.putBoolean("Left Actuator Hall Effect FWD", RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed());
-        SmartDashboard.putBoolean("Left Actuator Hall Effect REV", RobotMap.leftActuatorMotor.isRevLimitSwitchClosed());
-        SmartDashboard.putBoolean("Right Actuator Hall Effect FWD", RobotMap.rightActuatorMotor.isFwdLimitSwitchClosed());
-        SmartDashboard.putBoolean("Right Acutator Hall Effect REV", RobotMap.rightActuatorMotor.isRevLimitSwitchClosed());
+
         Scheduler.getInstance().run();
     }
 
@@ -154,6 +148,7 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
     	SmartDashboard.putNumber("The lidar is reading; ", RobotMap.lidarSensor.getData(10).getDistance());
+
         LiveWindow.run();
     }
 }

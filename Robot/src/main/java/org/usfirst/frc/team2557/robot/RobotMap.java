@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.accessories.ArduinoComm;
-import org.usfirst.frc.team2557.math.EulerDistanceEstimator;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -34,10 +33,9 @@ public class RobotMap {
     public static Accelerometer rioAccelerometer;
 
     public static Gyro mainGyro;
+
     public static AnalogInput leftPotentiometer;
     public static AnalogInput rightPotentiometer;
-
-    public static EulerDistanceEstimator distanceEstimator;
 
     public static LidarRangeFinder lidarSensor;
 
@@ -64,8 +62,10 @@ public class RobotMap {
 
         leftActuatorMotor = new CANTalon(2);
         leftActuatorMotor.enableLimitSwitch(false, false);
+        leftActuatorMotor.enableBrakeMode(true);
         rightActuatorMotor = new CANTalon(3);
         rightActuatorMotor.enableLimitSwitch(false, false);
+        rightActuatorMotor.enableBrakeMode(true);
 
         secondaryArm = new Servo(4);
 
@@ -78,17 +78,13 @@ public class RobotMap {
         leftPotentiometer = new AnalogInput(1);
         rightPotentiometer = new AnalogInput(2);
 
-        // The roborio's accelerometer's y-axis is pointing towards the front of the robot
-        // NOTE: The practice bot's forward axis is NegY!!
-        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer, EulerDistanceEstimator.ForwardAxis.Y);
-
-        lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
+        lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx (serial)
 
         robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
         robotDrive.setExpiration(0.2);
         robotDrive.setSafetyEnabled(false);
 
-        arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt
+        arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt (i2c)
     }
 
 }

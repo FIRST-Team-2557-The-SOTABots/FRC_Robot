@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
-import org.usfirst.frc.team2557.robot.commands.automation.Auto_SecondArmSetup;
 import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
