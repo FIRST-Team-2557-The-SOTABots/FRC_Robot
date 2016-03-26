@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.accessories.ArduinoComm;
-import org.usfirst.frc.team2557.math.EulerDistanceEstimator;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
@@ -34,11 +33,9 @@ public class RobotMap {
     public static Accelerometer rioAccelerometer;
 
     public static Gyro mainGyro;
-    
+
     public static AnalogInput leftPotentiometer;
     public static AnalogInput rightPotentiometer;
-
-    public static EulerDistanceEstimator distanceEstimator;
 
     public static LidarRangeFinder lidarSensor;
 
@@ -80,10 +77,6 @@ public class RobotMap {
 
         leftPotentiometer = new AnalogInput(1);
         rightPotentiometer = new AnalogInput(2);
-
-        // The roborio's accelerometer's y-axis is pointing towards the front of the robot
-        // NOTE: The practice bot's forward axis is NegY!!
-        distanceEstimator = new EulerDistanceEstimator(rioAccelerometer, EulerDistanceEstimator.ForwardAxis.Y);
 
         lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx (serial)
 

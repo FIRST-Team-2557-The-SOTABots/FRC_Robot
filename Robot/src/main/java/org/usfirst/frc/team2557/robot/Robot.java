@@ -98,8 +98,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        RobotMap.distanceEstimator.autoInit();
-
         autonomousCommand = (Command) autoChooser.getSelected();
         autonomousCommand.start();
     }
@@ -108,9 +106,6 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        // Update distance estimator
-        RobotMap.distanceEstimator.update();
-
         // Update the arm
         arm.update();
 
@@ -135,9 +130,6 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        // Update distance estimator
-        RobotMap.distanceEstimator.update();
-
         // Update the arm
         Robot.arm.update();
         SmartDashboard.putNumber("Lidar distance forward", RobotMap.lidarSensor.getData(352).getDistance());
