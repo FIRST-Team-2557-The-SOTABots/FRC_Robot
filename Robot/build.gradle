@@ -25,7 +25,7 @@ apply plugin: 'GradleRIO'   //Apply the GradleRIO plugin
 
 gradlerio.robotClass = "org.usfirst.frc.team2557.robot.Robot" //The class for the main Robot Class. Used in manifest
 gradlerio.team = "2557"
-gradlerio.rioIP = "10.25.57.20" // GradleRIO attempts to upload code via USB first, falls back to IP
+gradlerio.rioIP = "10.25.57.2" // GradleRIO attempts to upload code via USB first, falls back to IP
 
 def robotManifest = {
   attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
