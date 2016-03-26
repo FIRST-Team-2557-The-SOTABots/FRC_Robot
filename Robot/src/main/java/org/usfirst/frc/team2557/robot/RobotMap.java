@@ -34,6 +34,7 @@ public class RobotMap {
     public static Accelerometer rioAccelerometer;
 
     public static Gyro mainGyro;
+    
     public static AnalogInput leftPotentiometer;
     public static AnalogInput rightPotentiometer;
 
@@ -82,13 +83,13 @@ public class RobotMap {
         // NOTE: The practice bot's forward axis is NegY!!
         distanceEstimator = new EulerDistanceEstimator(rioAccelerometer, EulerDistanceEstimator.ForwardAxis.Y);
 
-        lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx
+        lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx (serial)
 
         robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
         robotDrive.setExpiration(0.2);
         robotDrive.setSafetyEnabled(false);
 
-        arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt
+        arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt (i2c)
     }
 
 }
