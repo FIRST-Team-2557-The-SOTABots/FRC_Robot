@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
+import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TurnByAngleCommand;
@@ -72,7 +73,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Chival De Frise (AUTO)", new Auto_ChivalDeFrise());
         autoChooser.addObject("Portcullis (AUTO)", new Auto_Portcullis());
         autoChooser.addObject("Rough Terrain (AUTO)", new Auto_RoughTerrain());
-        autoChooser.addObject("Rampards (AUTO)", new Auto_Rampards());
+        autoChooser.addObject("Ramparts (AUTO)", new Auto_Rampards());
         autoChooser.addObject("Rock Wall (AUTO)", new Auto_RockWall());
         autoChooser.addObject("Moat (AUTO)", new Auto_Moat());
         autoChooser.addObject("Spy Box Shoot (AUTO)", new Auto_SpyBoxShoot());
@@ -80,11 +81,13 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
 
         // Test commands
+        autoChooser.addObject("------------", null);
         autoChooser.addObject("Turn 90 degrees (TEST)", new TurnByAngleCommand(90));
         autoChooser.addObject("Turn 10 degrees (TEST)", new TurnByAngleCommand(10));
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());
         autoChooser.addObject("Move To Target (TEST)", new CorrectDistanceToTargetCommand());
-        autoChooser.addObject("Load Ball Arm Configuration Angle (TEST)", new MoveArmToAngleCommand(Arm.ARM_LOADBALL));
+        autoChooser.addObject("Arm To Auto Align (TEST)", new MoveArmToAngleCommand(Arm.ARM_CAMERA));
+        autoChooser.addObject("Auto Align & Shoot (TEST)", new Auto_CameraShootSequence());
         autoChooser.addObject("Load Ball (TEST)", new Auto_LoadBall());
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
