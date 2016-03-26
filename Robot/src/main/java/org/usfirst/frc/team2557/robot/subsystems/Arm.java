@@ -66,7 +66,10 @@ public class Arm extends Subsystem {
                 }, new PIDOutput() {
                     @Override
                     public void pidWrite(double output) {
-                        leftActuator.set(-output);
+                        // Stop if too low (pot is below the lowest config and the output is telling the arm to go down)
+                        if(!(leftPotentiometer.getAverageVoltage() >= ARM_BOTTOM && output > 0)) {
+                            leftActuator.set(-output);
+                        }
                     }
                 });
         this._rightSpeedController = new PIDController(Kp, Ki, Kd,
@@ -87,7 +90,10 @@ public class Arm extends Subsystem {
                 }, new PIDOutput() {
             @Override
             public void pidWrite(double output) {
-                rightActuator.set(-output);
+                // Stop if too low (pot is below the lowest config and the output is telling the arm to go down)
+                if(!(rightPotentiometer.getAverageVoltage() >= ARM_BOTTOM && output > 0)) {
+                    rightActuator.set(-output);
+                }
             }
         });
 
@@ -125,12 +131,18 @@ public class Arm extends Subsystem {
         Left Actuator's "topped-out" switch is rev
         Right Actuator's "topped-out" switch is fwd
          */
-    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
-    		speed = Math.min(0, speed);
-    	}
-    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
-    		speed = Math.max(0, speed);
-    	}
+        /*
+        DISABLED! Reason: the hall-effects are acting strangely, going off
+        when the actuator is not even close to the sensor. We can create the
+        same effect using potentiometer values, which are easier to change
+        than a physical sensor.
+         */
+//    	if(leftActuator.isRevLimitSwitchClosed() || rightActuator.isFwdLimitSwitchClosed()) {
+//    		speed = Math.min(0, speed);
+//    	}
+//    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
+//    		speed = Math.max(0, speed);
+//    	}
 
         setSpeed(speed * ARM_MAX_SPEED);
 

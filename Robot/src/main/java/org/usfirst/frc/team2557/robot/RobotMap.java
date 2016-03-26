@@ -65,8 +65,10 @@ public class RobotMap {
 
         leftActuatorMotor = new CANTalon(2);
         leftActuatorMotor.enableLimitSwitch(false, false);
+        leftActuatorMotor.enableBrakeMode(true);
         rightActuatorMotor = new CANTalon(3);
         rightActuatorMotor.enableLimitSwitch(false, false);
+        rightActuatorMotor.enableBrakeMode(true);
 
         secondaryArm = new Servo(4);
 
