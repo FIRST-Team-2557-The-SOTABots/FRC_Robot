@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
     public static SecondArm secondArm;
     public static Camera camera;
     public static Lidar lidar;
+    public static Dashboard dashboard;
 
     //Command Declarations//
     Command autonomousCommand;
@@ -61,6 +62,7 @@ public class Robot extends IterativeRobot {
         secondArm = new SecondArm();
         camera = new Camera();
         lidar = new Lidar();
+        dashboard = new Dashboard();
 
         //OI Connection//
         // NOTE: oi MUST be constructed after subsystems
@@ -106,13 +108,14 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        // Update the arm
+        // Update the arm subsystem (updates PIDs and such)
         arm.update();
 
         Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
+        // Cancel the autonomous command (if there was one previously running
         if(autonomousCommand != null)
             autonomousCommand.cancel();
     }
@@ -132,12 +135,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         // Update the arm
         Robot.arm.update();
-        SmartDashboard.putNumber("Lidar distance forward", RobotMap.lidarSensor.getData(352).getDistance());
-        SmartDashboard.putBoolean("Second Arm Release", RobotMap.leftPotentiometer.getVoltage() < 2.85);
-        SmartDashboard.putBoolean("Left Actuator Hall Effect FWD", RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed());
-        SmartDashboard.putBoolean("Left Actuator Hall Effect REV", RobotMap.leftActuatorMotor.isRevLimitSwitchClosed());
-        SmartDashboard.putBoolean("Right Actuator Hall Effect FWD", RobotMap.rightActuatorMotor.isFwdLimitSwitchClosed());
-        SmartDashboard.putBoolean("Right Acutator Hall Effect REV", RobotMap.rightActuatorMotor.isRevLimitSwitchClosed());
+
         Scheduler.getInstance().run();
     }
 
@@ -150,6 +148,7 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
     	SmartDashboard.putNumber("The lidar is reading; ", RobotMap.lidarSensor.getData(10).getDistance());
+
         LiveWindow.run();
     }
 }

@@ -53,10 +53,6 @@ public class MoveArmToAngleCommand extends Command {
     @Override
     protected void execute() {
         this._controller.enable();
-
-        SmartDashboard.putNumber("Arm PID Setpoint", this._controller.getSetpoint());
-        SmartDashboard.putNumber("Arm PID Error", this._controller.getError());
-        SmartDashboard.putBoolean("Arm PID On Target", this._controller.onTarget());
     }
 
     @Override

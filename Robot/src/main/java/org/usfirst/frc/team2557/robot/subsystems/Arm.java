@@ -145,9 +145,6 @@ public class Arm extends Subsystem {
 //    	}
 
         setSpeed(speed * ARM_MAX_SPEED);
-
-        SmartDashboard.putNumber("Left Potentiometer", leftPotentiometer.getAverageVoltage());
-        SmartDashboard.putNumber("Right Potentiometer", rightPotentiometer.getAverageVoltage());
     }
 
     private void setSpeed(double rate) {
@@ -159,6 +156,14 @@ public class Arm extends Subsystem {
             this._rightSpeedController.reset();
             this._rightSpeedController.setSetpoint(rate);
         }
+    }
+
+    public double getLeftSpeed() {
+        return leftSpeed;
+    }
+
+    public double getRightSpeed() {
+        return rightSpeed;
     }
 
     /**
@@ -197,10 +202,6 @@ public class Arm extends Subsystem {
         // Update the PIDs
         this._leftSpeedController.enable();
         this._rightSpeedController.enable();
-
-        // SMART DASHBOARD!
-        SmartDashboard.putNumber("Left Speed", leftSpeed);
-        SmartDashboard.putNumber("Right Speed", rightSpeed);
     }
 
     public double returnPIDInput() {
