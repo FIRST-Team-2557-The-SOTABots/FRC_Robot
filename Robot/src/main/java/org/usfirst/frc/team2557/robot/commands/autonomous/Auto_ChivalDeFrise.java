@@ -18,7 +18,7 @@ public class Auto_ChivalDeFrise extends CommandGroup {
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_BOTTOM)); // Lower the arm to push down the ramps
 //        this.addSequential(new DistanceDriveCommand(0.35, 0.5)); // Drive on the chival de frise
-        this.addSequential(new TimeDriveCommand(0.75, 0.75));
+        this.addSequential(new TimeDriveCommand(1, 0.75));
         this.addParallel(new MoveArmToAngleCommand(Arm.ARM_LOADBALL)); // Move the arm back up (vv)
 //        this.addSequential(new DistanceDriveCommand(1, 0.5)); // Drive over the chival de frise
         this.addSequential(new TimeDriveCommand(0.75, 1));

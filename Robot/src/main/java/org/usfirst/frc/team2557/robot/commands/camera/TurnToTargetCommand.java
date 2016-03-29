@@ -16,7 +16,7 @@ public class TurnToTargetCommand extends Command {
     public TurnToTargetCommand() {
 
         // Kp, Ki, Kd, input (gyro), output (chassis)
-        this._controller = new PIDController(0.01, 0.05, 0,
+        this._controller = new PIDController(0.025, 0.08, 0,
                 new PIDSource() {
                     @Override
                     public void setPIDSourceType(PIDSourceType pidSource) {
@@ -41,7 +41,7 @@ public class TurnToTargetCommand extends Command {
 
         this._controller.setContinuous(true);
         this._controller.setOutputRange(-1, 1);
-        this._controller.setAbsoluteTolerance(1); // 1 degree tolerance
+        this._controller.setAbsoluteTolerance(0.25); // 1 degree tolerance
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TurnToTargetCommand extends Command {
             double degrees = (target.centerX - Camera.cameraWidth / 2) * Camera.degreesPerWidth;
 
             // Set the setpoint for the PID
-            this._controller.setSetpoint(degrees - 4.5);
+            this._controller.setSetpoint(degrees + 0.5);
         }
     }
 

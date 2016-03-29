@@ -16,7 +16,7 @@ public class Auto_Rampards extends CommandGroup {
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_ROUGH_DEFENSE)); // Move the arm to a relatively high angle
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
 //        this.addSequential(new DistanceDriveCommand(1.5, 0.8)); // Drive over the rampards
-        this.addSequential(new TimeDriveCommand(2.5, 0.8));
+        this.addSequential(new TimeDriveCommand(.75, 0.8));
         this.addSequential(new Auto_LoadBall()); // Load ball!
 
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA)); // Move the arm so the camera can see
