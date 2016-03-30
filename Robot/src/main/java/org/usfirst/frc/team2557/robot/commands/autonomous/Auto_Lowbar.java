@@ -22,7 +22,7 @@ public class Auto_Lowbar extends CommandGroup {
 
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR));
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
-        this.addSequential(new TimeDriveCommand(5, 0.7)); // Drive through the lowbar
+        this.addSequential(new TimeDriveCommand(1.5, 0.7)); // Drive through the lowbar
         this.addSequential(new TurnByAngleCommand(45));
         this.addSequential(new Auto_LoadBall()); // Load ball!
 

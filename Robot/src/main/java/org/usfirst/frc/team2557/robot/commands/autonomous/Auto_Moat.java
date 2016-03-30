@@ -16,7 +16,7 @@ public class Auto_Moat extends CommandGroup {
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_ROUGH_DEFENSE)); // Move the arm to a relatively high angle
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
 //        this.addSequential(new DistanceDriveCommand(1.5, 0.9)); // Drive over the moat
-        this.addSequential(new TimeDriveCommand(2.5, 0.9));
+        this.addSequential(new TimeDriveCommand(3, 0.9));
         this.addSequential(new Auto_LoadBall()); // Load ball!
 
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA)); // Move the arm so the camera can see
