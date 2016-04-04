@@ -16,16 +16,16 @@ public class Arm extends Subsystem {
 //        ARM_BOTTOM = 4.47,
 //        ARM_CAMERA = 0, // TODO: Determine this potentiometer value
 //        ARM_ROUGH_DEFENSE = 3;
-    public static final double ARM_LOWBAR = 3.88, // PRACTIVE BOT!
-            ARM_LOADBALL = 3.1,
-            ARM_BOTTOM = 3.93,
+    public static final double ARM_LOWBAR = 4.3, // PRACTIVE BOT!
+            ARM_LOADBALL = 3.297, //3.529
+            ARM_BOTTOM = 4.296,
             ARM_CAMERA = 3.966,
             ARM_ROUGH_DEFENSE = 3;
 
     public static final double deadzone = 0.1;
 
 //    private static final double ARM_MAX_SPEED = -0.75; // OLD SPEED, USED AT CENTRAL!
-    private static final double ARM_MAX_SPEED = -1.1;
+    private static final double ARM_MAX_SPEED = -1.5;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
     private CANTalon rightActuator = RobotMap.rightActuatorMotor;
@@ -66,10 +66,7 @@ public class Arm extends Subsystem {
                 }, new PIDOutput() {
                     @Override
                     public void pidWrite(double output) {
-                        // Stop if too low (pot is below the lowest config and the output is telling the arm to go down)
-                        if(!(leftPotentiometer.getAverageVoltage() >= ARM_BOTTOM && output > 0)) {
-                            leftActuator.set(-output);
-                        }
+                        leftActuator.set(-output);
                     }
                 });
         this._rightSpeedController = new PIDController(Kp, Ki, Kd,
@@ -90,10 +87,7 @@ public class Arm extends Subsystem {
                 }, new PIDOutput() {
             @Override
             public void pidWrite(double output) {
-                // Stop if too low (pot is below the lowest config and the output is telling the arm to go down)
-                if(!(rightPotentiometer.getAverageVoltage() >= ARM_BOTTOM && output > 0)) {
-                    rightActuator.set(-output);
-                }
+                rightActuator.set(-output);
             }
         });
 

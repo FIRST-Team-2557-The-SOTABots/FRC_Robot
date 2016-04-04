@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
+import org.usfirst.frc.team2557.robot.commands.catapult.CatapultRetractCommand;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultShootCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.DistanceDriveCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TimeDriveCommand;
@@ -16,6 +17,7 @@ public class Auto_ChivalDeFrise extends CommandGroup {
 
         this.addParallel(new MoveArmToAngleCommand(Arm.ARM_LOADBALL)); // Move the arm to a position taller than the ramps (vv)
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
+        this.addParallel(new CatapultRetractCommand());
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_BOTTOM)); // Lower the arm to push down the ramps
 //        this.addSequential(new DistanceDriveCommand(0.35, 0.5)); // Drive on the chival de frise
         this.addSequential(new TimeDriveCommand(1, 0.75));
