@@ -16,7 +16,7 @@ public class IntakeStopCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.set(0);
+        Robot.intake.set((Robot.oi.manipulator.getRawAxis(3) >= 0.1) ? Robot.oi.manipulator.getRawAxis(3) / 2 : 0);
     }
 
     @Override
