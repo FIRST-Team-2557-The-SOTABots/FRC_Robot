@@ -14,9 +14,9 @@ import org.usfirst.frc.team2557.robot.subsystems.Arm;
 public class Auto_Portcullis extends CommandGroup {
 
     public Auto_Portcullis() {
+        this.addParallel(new Auto_LoadBall()); // Load ball!
+        this.addSequential(new CatapultRetractCommand());
 
-        this.addSequential(new Auto_LoadBall()); // Load ball!
-        this.addParallel(new CatapultRetractCommand());
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR)); // Move the arm down
         this.addSequential(new Auto_DriveToDefense()); // Drive to the defense
 //        this.addSequential(new DistanceDriveCommand(1.5, 0.8)); // Drive through the portcullis (fast enough will bounce the gate up high enough)
