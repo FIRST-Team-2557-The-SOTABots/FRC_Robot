@@ -22,10 +22,10 @@ public class Auto_Portcullis extends CommandGroup {
 //        this.addSequential(new DistanceDriveCommand(1.5, 0.8)); // Drive through the portcullis (fast enough will bounce the gate up high enough)
         this.addSequential(new TimeDriveCommand(2, 0.8));
 
-        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA)); // Move the arm so the camera can see
-        this.addSequential(new WaitCommand(1.5)); // Wait for the camera to update
-
-        this.addSequential(new Auto_CameraShootSequence());
+//        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA)); // Move the arm so the camera can see
+//        this.addSequential(new WaitCommand(1.5)); // Wait for the camera to update
+//
+//        this.addSequential(new Auto_CameraShootSequence());
 
     }
 }

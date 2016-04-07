@@ -18,12 +18,12 @@ public class Auto_RockWall extends CommandGroup {
         this.addParallel(new CatapultRetractCommand());
         this.addSequential(new Auto_DriveToDefense()); // Drive the the defense
         this.addSequential(new TimeDriveCommand(1.5, 1)); // Drive over the rock wall
-        this.addSequential(new Auto_LoadBall()); // Load ball!
-
-        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA)); // Move the arm so the camera can see
-        this.addSequential(new WaitCommand(1.5)); // Wait for the camera to update
-
-        this.addSequential(new Auto_CameraShootSequence());
+//        this.addSequential(new Auto_LoadBall()); // Load ball!
+//
+//        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA)); // Move the arm so the camera can see
+//        this.addSequential(new WaitCommand(1.5)); // Wait for the camera to update
+//
+//        this.addSequential(new Auto_CameraShootSequence());
 
     }
 
