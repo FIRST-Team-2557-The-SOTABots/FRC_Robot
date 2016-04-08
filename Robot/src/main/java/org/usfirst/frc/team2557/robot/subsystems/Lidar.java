@@ -6,17 +6,20 @@ import org.usfirst.frc.team2557.robot.commands.lidar.LidarUpdateCommand;
 import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 public class Lidar extends Subsystem {
+
 	private double volts;
 	private double voltInches;
 	private double distance;
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new LidarUpdateCommand());
     }
 
-    public LidarRangeFinder.LidarData getDat(int angle) {
+    public LidarRangeFinder.LidarData getData(int angle) {
         return RobotMap.lidarSensor.getData(angle);
     }
+
     public void getDistance(){
     	volts = RobotMap.sonar.getVoltage();
     	voltInches = volts / 512;
