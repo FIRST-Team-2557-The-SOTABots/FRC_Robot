@@ -15,6 +15,7 @@ import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCom
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TurnByAngleCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
+//import org.usfirst.frc.team2557.robot.commands.lidar.DistanceCommand;
 
 import java.io.IOException;
 
@@ -42,6 +43,7 @@ public class Robot extends IterativeRobot {
 
     //Command Declarations//
     Command autonomousCommand;
+    Command DistanceCommand;
 
     SendableChooser autoChooser;
 
@@ -63,6 +65,8 @@ public class Robot extends IterativeRobot {
         camera = new Camera();
         lidar = new Lidar();
         dashboard = new Dashboard();
+        
+//        DistanceCommand = new DistanceCommand();
 
         //OI Connection//
         // NOTE: oi MUST be constructed after subsystems
@@ -135,6 +139,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         // Update the arm
         Robot.arm.update();
+        DistanceCommand.start();
 
         Scheduler.getInstance().run();
     }

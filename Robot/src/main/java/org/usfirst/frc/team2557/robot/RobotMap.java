@@ -38,6 +38,7 @@ public class RobotMap {
     public static AnalogInput rightPotentiometer;
 
     public static LidarRangeFinder lidarSensor;
+    public static AnalogInput sonar;
 
     public static ArduinoComm arduinoComm;
 
