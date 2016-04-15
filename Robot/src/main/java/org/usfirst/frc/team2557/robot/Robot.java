@@ -16,8 +16,6 @@ import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TurnByAngleCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
-import java.io.IOException;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
