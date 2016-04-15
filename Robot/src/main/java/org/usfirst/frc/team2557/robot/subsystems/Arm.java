@@ -16,7 +16,7 @@ public class Arm extends Subsystem {
 //        ARM_BOTTOM = 4.47,
 //        ARM_CAMERA = 0, // TODO: Determine this potentiometer value
 //        ARM_ROUGH_DEFENSE = 3;
-    public static final double ARM_LOWBAR = 4.3, // PRACTIVE BOT!
+    public static final double ARM_LOWBAR = 4.3, // PRACTICE BOT!
             ARM_LOADBALL = 3.297, //3.529
             ARM_BOTTOM = 4.296,
             ARM_CAMERA = 3.966,
