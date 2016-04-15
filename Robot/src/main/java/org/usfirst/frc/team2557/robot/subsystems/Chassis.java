@@ -1,14 +1,7 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2557.robot.Robot;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -17,8 +10,8 @@ import org.usfirst.frc.team2557.robot.commands.chassis.DriveCommand;
 
 public class Chassis extends Subsystem {
 
-    CANTalon leftDrive = RobotMap.driveLeft2;
-    CANTalon rightDrive = RobotMap.driveRight1;
+    CANTalon leftEncTalon = RobotMap.driveLeft2;
+    CANTalon rightEncTalon = RobotMap.driveRight1;
     RobotDrive drive = RobotMap.robotDrive;
     Gyro gyro = RobotMap.mainGyro;
 
@@ -53,14 +46,22 @@ public class Chassis extends Subsystem {
     public double getDistanceTraveled() {
         // Return the average of the distance between both encoders
         double posToMeters = (14 / 28) * 8 * 3.14159;
-        return ((double) leftDrive.getEncPosition() - leftPosResetValue
-                + (double) rightDrive.getEncPosition() - rightPosResetValue)
+        return ((double) leftEncTalon.getEncPosition() - leftPosResetValue
+                + (double) rightEncTalon.getEncPosition() - rightPosResetValue)
                 * 0.5
                 * posToMeters;
     }
     public void resetDistanceTraveled() {
-        leftPosResetValue = (double) leftDrive.getEncPosition();
-        rightPosResetValue = (double) rightDrive.getEncPosition();
+        leftPosResetValue = (double) leftEncTalon.getEncPosition();
+        rightPosResetValue = (double) rightEncTalon.getEncPosition();
+    }
+
+    public double getLeftEncoderVel() {
+        return leftEncTalon.getEncVelocity();
+    }
+
+    public double getRightEncoderVel() {
+        return rightEncTalon.getEncVelocity();
     }
 
     public void resetGyro() {

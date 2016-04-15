@@ -27,6 +27,9 @@ public class DashboardPrintCommand extends Command {
 
         SmartDashboard.putNumber("Distance traveled (m)", Robot.chassis.getDistanceTraveled());
 
+        SmartDashboard.putNumber("Encoder (L)", Robot.chassis.getLeftEncoderVel());
+        SmartDashboard.putNumber("Encoder (R)", Robot.chassis.getRightEncoderVel());
+
         SmartDashboard.putBoolean("Second Arm Release", RobotMap.leftPotentiometer.getVoltage() < 2.85);
 
         SmartDashboard.putBoolean("Left Actuator Hall Effect FWD", RobotMap.leftActuatorMotor.isFwdLimitSwitchClosed());
