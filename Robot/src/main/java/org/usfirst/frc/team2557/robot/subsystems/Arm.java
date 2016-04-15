@@ -160,6 +160,10 @@ public class Arm extends Subsystem {
         return rightSpeed;
     }
 
+    public double getPosition() {
+        return (this.leftPotentiometer.getAverageVoltage() + this.rightPotentiometer.getAverageVoltage()) / 2;
+    }
+
     /**
      * Must be called every periodic!
      */
@@ -199,7 +203,7 @@ public class Arm extends Subsystem {
     }
 
     public double returnPIDInput() {
-        return this.leftPotentiometer.getAverageVoltage();
+        return (this.leftPotentiometer.getAverageVoltage() + this.rightPotentiometer.getAverageVoltage()) / 2;
     }
 
     public void usePIDOutput(double output) {

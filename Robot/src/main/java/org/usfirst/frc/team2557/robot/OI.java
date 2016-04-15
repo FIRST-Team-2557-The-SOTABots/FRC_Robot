@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
+import org.usfirst.frc.team2557.robot.commands.autonomous.macro.MacroPlayCommand;
+import org.usfirst.frc.team2557.robot.commands.autonomous.macro.MacroRecordCommand;
 import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
 import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
@@ -101,6 +103,8 @@ public class OI {
         manipulatorRJB 		= new JoystickButton(manipulator, 10);
 
         // Set commands to buttons
+        button12.whileHeld(new MacroRecordCommand("/home/lvuser/test.autonomous"));
+        button11.whileHeld(new MacroPlayCommand("/home/lvuser/test.autonomous"));
 
         manipulatorLB.whileHeld(new IntakeOutCommand());
         manipulatorRB.whileHeld(new IntakeInCommand());

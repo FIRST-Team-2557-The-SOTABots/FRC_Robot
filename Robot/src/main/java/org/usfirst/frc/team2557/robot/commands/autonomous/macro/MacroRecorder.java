@@ -43,7 +43,8 @@ public class MacroRecorder {
             // Catapult motor
             writer.append("," + RobotMap.catapultMotor.get()); // Catapult
 
-            // TODO: Arm
+            // Arm position
+            writer.append("," + Robot.arm.getPosition()); // Arm potentiometer position
 
 		/*
 		 * THE LAST ENTRY OF THINGS YOU RECORD NEEDS TO HAVE A DELIMITER CONCATENATED TO
