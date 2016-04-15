@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
-import org.usfirst.frc.team2557.robot.commands.chassis.DistanceDriveCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TimeDriveCommand;
 
 //public class Auto_DriveToDefense extends DistanceDriveCommand {

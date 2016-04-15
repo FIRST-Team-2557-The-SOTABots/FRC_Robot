@@ -1,10 +1,9 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2557.robot.commands.chassis.DriveCommand;
 
@@ -80,6 +79,58 @@ public class Chassis extends Subsystem {
     }
     public double getRightEncoderDistance() {
         return this.getRightEncoderPos() * posToMeters;
+    }
+
+    public PIDSource getLeftPIDSource() {
+        return new PIDSource() {
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource) {
+            }
+
+            @Override
+            public PIDSourceType getPIDSourceType() {
+                return PIDSourceType.kDisplacement;
+            }
+
+            @Override
+            public double pidGet() {
+                return getLeftEncoderVel();
+            }
+        };
+    }
+    public PIDSource getRightPIDSource() {
+        return new PIDSource() {
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource) {
+            }
+
+            @Override
+            public PIDSourceType getPIDSourceType() {
+                return PIDSourceType.kDisplacement;
+            }
+
+            @Override
+            public double pidGet() {
+                return getRightEncoderVel();
+            }
+        };
+    }
+
+    public PIDOutput getLeftPIDOutput() {
+        return new PIDOutput() {
+            @Override
+            public void pidWrite(double output) {
+                leftEncTalon.set(output);
+            }
+        };
+    }
+    public PIDOutput getRightPIDOutput() {
+        return new PIDOutput() {
+            @Override
+            public void pidWrite(double output) {
+                rightEncTalon.set(output);
+            }
+        };
     }
 
     public void resetGyro() {
