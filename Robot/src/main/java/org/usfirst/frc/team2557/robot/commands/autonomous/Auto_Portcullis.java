@@ -1,13 +1,9 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
-import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultRetractCommand;
-import org.usfirst.frc.team2557.robot.commands.catapult.CatapultShootCommand;
-import org.usfirst.frc.team2557.robot.commands.chassis.DistanceDriveCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TimeDriveCommand;
 import org.usfirst.frc.team2557.robot.subsystems.Arm;
 

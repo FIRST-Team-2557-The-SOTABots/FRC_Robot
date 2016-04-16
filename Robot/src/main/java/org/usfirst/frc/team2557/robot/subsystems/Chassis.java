@@ -1,22 +1,27 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team2557.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2557.robot.commands.chassis.DriveCommand;
 
 public class Chassis extends Subsystem {
 
-    CANTalon leftEncTalon = RobotMap.driveLeft2;
-    CANTalon rightEncTalon = RobotMap.driveRight1;
+//    CANTalon leftEncTalon = RobotMap.driveLeft2;
+//    CANTalon rightEncTalon = RobotMap.driveRight1;
+    // TODO: See whether the comp bot's encoders are switched as well
+    CANTalon leftEncTalon = RobotMap.driveRight1; // Right and left are switched on the practice bot
+    CANTalon rightEncTalon = RobotMap.driveLeft2;
+
     RobotDrive drive = RobotMap.robotDrive;
     Gyro gyro = RobotMap.mainGyro;
 
     double leftPosResetValue = 0;
     double rightPosResetValue = 0;
+
+    private final double posToMeters = (14 / 28) * 8 * 3.14159;
     
     public Chassis() {
     	
@@ -42,14 +47,13 @@ public class Chassis extends Subsystem {
         this.set(0, 0);
     }
 
-    // NOTE: Works best when the robot has just driven straight
+    // NOTE: Only works when the robot has just driven straight
     public double getDistanceTraveled() {
         // Return the average of the distance between both encoders
         double posToMeters = (14 / 28) * 8 * 3.14159;
-        return ((double) leftEncTalon.getEncPosition() - leftPosResetValue
-                + (double) rightEncTalon.getEncPosition() - rightPosResetValue)
-                * 0.5
-                * posToMeters;
+        return (this.getLeftEncoderPos()
+                + this.getRightEncoderPos())
+                * 0.5;
     }
     public void resetDistanceTraveled() {
         leftPosResetValue = (double) leftEncTalon.getEncPosition();
@@ -59,9 +63,74 @@ public class Chassis extends Subsystem {
     public double getLeftEncoderVel() {
         return leftEncTalon.getEncVelocity();
     }
-
     public double getRightEncoderVel() {
-        return rightEncTalon.getEncVelocity();
+        return -rightEncTalon.getEncVelocity(); // Right encoder is negative (spins reverse when the bot is moving forwards)
+    }
+
+    public double getLeftEncoderPos() {
+        return leftEncTalon.getEncPosition() - leftPosResetValue;
+    }
+    public double getRightEncoderPos() {
+        return -(rightEncTalon.getEncPosition() - rightPosResetValue); // Right encoder is negative (spins reverse when the bot is moving forwards)
+    }
+
+    public double getLeftEncoderDistance() {
+        return this.getLeftEncoderPos() * posToMeters;
+    }
+    public double getRightEncoderDistance() {
+        return this.getRightEncoderPos() * posToMeters;
+    }
+
+    public PIDSource getLeftPIDSource() {
+        return new PIDSource() {
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource) {
+            }
+
+            @Override
+            public PIDSourceType getPIDSourceType() {
+                return PIDSourceType.kDisplacement;
+            }
+
+            @Override
+            public double pidGet() {
+                return getLeftEncoderVel();
+            }
+        };
+    }
+    public PIDSource getRightPIDSource() {
+        return new PIDSource() {
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource) {
+            }
+
+            @Override
+            public PIDSourceType getPIDSourceType() {
+                return PIDSourceType.kDisplacement;
+            }
+
+            @Override
+            public double pidGet() {
+                return getRightEncoderVel();
+            }
+        };
+    }
+
+    public PIDOutput getLeftPIDOutput() {
+        return new PIDOutput() {
+            @Override
+            public void pidWrite(double output) {
+                leftEncTalon.set(output);
+            }
+        };
+    }
+    public PIDOutput getRightPIDOutput() {
+        return new PIDOutput() {
+            @Override
+            public void pidWrite(double output) {
+                rightEncTalon.set(output);
+            }
+        };
     }
 
     public void resetGyro() {
