@@ -17,7 +17,8 @@ public class Lidar extends Subsystem {
     }
 
     public LidarRangeFinder.LidarData getData(int angle) {
-        return RobotMap.lidarSensor.getData(angle);
+//        return RobotMap.lidarSensor.getData(angle);
+        return null;
     }
 
     public void getDistance(){
