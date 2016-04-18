@@ -27,8 +27,11 @@ public class DashboardPrintCommand extends Command {
 
         SmartDashboard.putNumber("Distance Traveled (m)", Robot.chassis.getDistanceTraveled());
 
-        SmartDashboard.putNumber("Encoder Distance(L)", Robot.chassis.getLeftEncoderVel());
-        SmartDashboard.putNumber("Encoder Distance (R)", Robot.chassis.getRightEncoderVel());
+        SmartDashboard.putNumber("Encoder Distance(L)", Robot.chassis.getLeftEncoderDistance());
+        SmartDashboard.putNumber("Encoder Distance (R)", Robot.chassis.getRightEncoderDistance());
+
+        SmartDashboard.putNumber("Encoder Pos (L)", Robot.chassis.getLeftEncoderPos());
+        SmartDashboard.putNumber("Encoder Pos (R)", Robot.chassis.getRightEncoderPos());
 
         SmartDashboard.putNumber("Encoder Speed (L)", Robot.chassis.getLeftEncoderVel());
         SmartDashboard.putNumber("Encoder Speed (R)", Robot.chassis.getRightEncoderVel());
@@ -39,6 +42,8 @@ public class DashboardPrintCommand extends Command {
 
         SmartDashboard.putNumber("Left Potentiometer Speed", Robot.arm.getLeftSpeed());
         SmartDashboard.putNumber("Right Potentiometer Speed", Robot.arm.getRightSpeed());
+
+        SmartDashboard.putNumber("Gyro Angle", Robot.chassis.getGyroAngle());
     }
 
     @Override
