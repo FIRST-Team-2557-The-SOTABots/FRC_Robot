@@ -45,7 +45,3 @@ task genJavadoc(type: Jar, dependsOn: javadoc) {
 artifacts {
   archives genJavadoc
 }
-
-dependencies {
-    compile files("lib/navx_frc.jar");
-}

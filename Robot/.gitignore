@@ -92,6 +92,6 @@ bin/
 !gradle/wrapper/gradle-wrapper.jar
 !gradle/libs/GradleRIO.jar
 
-!lib/*.jar
+!libs/*.jar
 
 !dependencies/*
