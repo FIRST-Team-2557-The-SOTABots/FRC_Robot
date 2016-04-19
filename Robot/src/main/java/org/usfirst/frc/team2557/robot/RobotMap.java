@@ -74,7 +74,7 @@ public class RobotMap {
 
         rioAccelerometer = new BuiltInAccelerometer();
 
-        mainGyro = new AnalogGyro(0);
+        mainGyro = new ADXRS450_Gyro();
 
         leftPotentiometer = new AnalogInput(1);
         rightPotentiometer = new AnalogInput(2);
