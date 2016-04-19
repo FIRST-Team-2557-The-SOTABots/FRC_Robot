@@ -22,7 +22,7 @@ public class Arm extends Subsystem {
             ARM_CAMERA = 3.966,
             ARM_ROUGH_DEFENSE = 3;
 
-    public static final double deadzone = 0.1;
+    public static final double deadzone = 0.35;
 
 //    private static final double ARM_MAX_SPEED = -0.75; // OLD SPEED, USED AT CENTRAL!
     private static final double ARM_MAX_SPEED = -1.5;
@@ -137,6 +137,11 @@ public class Arm extends Subsystem {
 //    	if(leftActuator.isFwdLimitSwitchClosed() || rightActuator.isRevLimitSwitchClosed()) {
 //    		speed = Math.max(0, speed);
 //    	}
+
+        SmartDashboard.putBoolean("Left Fwd", leftActuator.isFwdLimitSwitchClosed());
+        SmartDashboard.putBoolean("Left Rev", leftActuator.isRevLimitSwitchClosed());
+        SmartDashboard.putBoolean("Right Fwd", rightActuator.isFwdLimitSwitchClosed());
+        SmartDashboard.putBoolean("Right Rev", rightActuator.isRevLimitSwitchClosed());
 
         setSpeed(speed * ARM_MAX_SPEED);
     }
