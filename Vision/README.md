@@ -13,13 +13,13 @@ This README assumes that you already have a clean installation [Rasbian Jessie L
 2. Run the configuration (```sudo raspi-config```). Expand the file system to fill the entire SD card. Enable the Pi camera. Set the Pi to login on boot. Reboot the Pi.
 3. Change the hostname
   * ```sudo nano /etc/hostname```
-  * Replace *raspberrypi* with raspberrypi-2557*
+  * Replace *raspberrypi* with *raspberrypi-2557*
   * Write the file and exit nano
   * ```sudo nano /etc/hosts```
   * Leave all of the entries alone except for the very last entry labeled *127.0.1.1* with the hostname *raspberrypi*. This is the only line you want to edit. Replace *raspberrypi* with *raspberrypi-2557*
   * Write the file and exit nano
   * Reboot the Pi
-  * **You may now SSH into the Pi using the hostname *raspberrypi-2557.local*
+  * __You may now SSH into the Pi using the hostname *raspberrypi-2557.local*__
 4. Perform updates
   * ```sudo apt-get update```
   * ```sudo apt-get upgrade```
