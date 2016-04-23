@@ -55,7 +55,7 @@ This README assumes that you already have a clean installation [Rasbian Jessie L
   * To use the Pi cam, enter the following into the file instead: ```screen -dS mjpg-streamer nv LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH mjpg_streamer -o "output_http.so -w ./www -p 443" -i "input_raspicam.so -fps 15 -r 640x480"```
 13. Write the file and exit nano
 
-AT THIS POINT THE DRIVER STATION CAN BE USED TO PROCESS VISION! If this is the stopping point, do the following. If not, move on.
+**AT THIS POINT THE DRIVER STATION CAN BE USED TO PROCESS VISION!** If this is the stopping point, do the following. If not, move on.
 1. ```sudo nano /home/pi/.profile```
 2. At the bottom of the file, add the following: ```sh /home/pi/vision/start_stream.sh```
 
