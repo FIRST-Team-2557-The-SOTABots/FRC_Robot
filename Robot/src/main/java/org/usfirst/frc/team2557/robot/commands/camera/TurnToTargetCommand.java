@@ -34,14 +34,14 @@ public class TurnToTargetCommand extends Command {
                 }, new PIDOutput() {
             @Override
             public void pidWrite(double output) {
-                Robot.chassis.set(output * 0.5, -output * 0.5);
+                Robot.chassis.set(output * 0.55, -output * 0.55);
             }
         });
         requires(Robot.chassis);
 
         this._controller.setContinuous(true);
         this._controller.setOutputRange(-1, 1);
-        this._controller.setAbsoluteTolerance(0.25); // 1 degree tolerance
+        this._controller.setAbsoluteTolerance(0.5); // 1 degree tolerance
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TurnToTargetCommand extends Command {
             double degrees = (target.centerX - Camera.cameraWidth / 2) * Camera.degreesPerWidth;
 
             // Set the setpoint for the PID
-            this._controller.setSetpoint(degrees + 0.5);
+            this._controller.setSetpoint(degrees - 7);
         }
     }
 

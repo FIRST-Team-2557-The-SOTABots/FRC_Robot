@@ -14,7 +14,7 @@ public class Auto_RoughTerrain extends CommandGroup {
         this.addParallel(new CatapultRetractCommand());
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_ROUGH_DEFENSE)); // Move the arm to a relatively high angle
 
-        this.addSequential(new EncoderPosDriveCommand(18622, 0.4));
+        this.addSequential(new EncoderPosDriveCommand(21222, 0.85));
 
     }
 

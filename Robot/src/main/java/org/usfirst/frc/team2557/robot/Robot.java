@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
 import org.usfirst.frc.team2557.robot.commands.autonomous.*;
-import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
+import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.*;
 import org.usfirst.frc.team2557.robot.commands.camera.CorrectDistanceToTargetCommand;
 import org.usfirst.frc.team2557.robot.commands.camera.TurnToTargetCommand;
+import org.usfirst.frc.team2557.robot.commands.chassis.EncoderPosDriveCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TurnByAngleCommand;
 import org.usfirst.frc.team2557.robot.subsystems.*;
 
@@ -70,9 +71,14 @@ public class Robot extends IterativeRobot {
         autoChooser 			= new SendableChooser();
         autoChooser.addDefault("Do Nothing (AUTO)", new Auto_DoNothing());
         autoChooser.addObject("Lowbar (AUTO)", new Auto_Lowbar());
+        autoChooser.addObject("Lowbar Left Batter (AUTO)", new Auto_LowbarLeft());
+        autoChooser.addObject("Lowbar Center Batter (AUTO)", new Auto_LowbarCenter());
         autoChooser.addObject("Chival De Frise (AUTO)", new Auto_ChivalDeFrise());
+        autoChooser.addObject("Chival De Frise POS 3 CENTER (AUTO)", new Auto_ChivalDeFrise_Pos3Center());
         autoChooser.addObject("Portcullis (AUTO)", new Auto_Portcullis());
+        autoChooser.addObject("Portcullis POS 3 CENTER (AUTO)", new Auto_Portcullis_Pos3Center());
         autoChooser.addObject("Rough Terrain (AUTO)", new Auto_RoughTerrain());
+        autoChooser.addObject("Rough Terrain POS 1 CENTER (AUTO)", new Auto_RoughTerrain_Pos1Center());
         autoChooser.addObject("Ramparts (AUTO)", new Auto_Rampards());
         autoChooser.addObject("Rock Wall (AUTO)", new Auto_RockWall());
         autoChooser.addObject("Moat (AUTO)", new Auto_Moat());
@@ -82,6 +88,15 @@ public class Robot extends IterativeRobot {
 
         // Test commands
         autoChooser.addObject("------------", null);
+        autoChooser.addObject("Auto Shoot Position 3 RIGHT (TEST)", new Auto_Pos3Right());
+        autoChooser.addObject("Auto Shoot Position 4 RIGHT (TEST)", new Auto_Pos4Right());
+        autoChooser.addObject("Auto Shoot Position 1 LEFT (TEST)", new Auto_Pos1Left());
+        autoChooser.addObject("Auto Shoot Position 2 LEFT (TEST)", new Auto_Pos2Left());
+        autoChooser.addObject("Auto Shoot Position 1 CENTER (TEST)", new Auto_Pos1Center());
+        autoChooser.addObject("Auto Shoot Position 2 CENTER (TEST)", new Auto_Pos2Center());
+        autoChooser.addObject("Auto Shoot Position 3 CENTER (TEST)", new Auto_Pos3Center());
+        autoChooser.addObject("Auto Shoot Position 4 CENTER (TEST)", new Auto_Pos4Center());
+        autoChooser.addObject("Drive Up Onto Batter (TEST)", new EncoderPosDriveCommand(4058, 0.5));
         autoChooser.addObject("Turn 90 degrees (TEST)", new TurnByAngleCommand(90));
         autoChooser.addObject("Turn 10 degrees (TEST)", new TurnByAngleCommand(10));
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());

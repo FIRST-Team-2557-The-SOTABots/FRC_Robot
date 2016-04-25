@@ -18,7 +18,7 @@ public class Auto_Lowbar extends CommandGroup {
         this.addParallel(new CatapultRetractCommand());
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR));
 
-        this.addSequential(new EncoderPosDriveCommand(18282, 0.5));
+        this.addSequential(new EncoderPosDriveCommand(18282, 1));
     }
 
 }

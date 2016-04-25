@@ -36,7 +36,7 @@ public class Chassis extends Subsystem {
         this.resetDistanceTraveled();
     }
     public void driveStraight(double speed) {
-    	drive.drive(speed, -gyro.getAngle() * 0.01);
+    	drive.drive(speed, -gyro.getAngle() * 0.03);
     }
 
     public void set(double lvalue, double rvalue) {

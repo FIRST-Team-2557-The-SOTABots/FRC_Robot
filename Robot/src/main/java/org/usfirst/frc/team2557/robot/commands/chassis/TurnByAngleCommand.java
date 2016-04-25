@@ -35,7 +35,7 @@ public class TurnByAngleCommand extends Command {
                 }, new PIDOutput() {
                     @Override
                     public void pidWrite(double output) {
-                        Robot.chassis.set(output * 0.5, -output * 0.5);
+                        Robot.chassis.set(output * 0.65, -output * 0.65);
                     }
                 });
         requires(Robot.chassis);
