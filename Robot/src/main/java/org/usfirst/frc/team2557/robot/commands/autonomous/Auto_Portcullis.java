@@ -12,8 +12,8 @@ import org.usfirst.frc.team2557.robot.subsystems.Arm;
 public class Auto_Portcullis extends CommandGroup {
 
     public Auto_Portcullis() {
+        this.addParallel(new MoveArmToAngleCommand(Arm.ARM_LOADBALL)); // Load ball!
         this.addSequential(new CatapultRetractCommand());
-        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOADBALL)); // Load ball!
 
         this.addParallel(new IntakeInCommand(), 2);
         this.addSequential(new MoveArmToAngleCommand(Arm.ARM_LOWBAR)); // Move the arm down
