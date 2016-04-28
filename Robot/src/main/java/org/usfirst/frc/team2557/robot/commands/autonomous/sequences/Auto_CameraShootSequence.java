@@ -12,12 +12,14 @@ import org.usfirst.frc.team2557.robot.subsystems.Arm;
 public class Auto_CameraShootSequence extends CommandGroup {
 
     public Auto_CameraShootSequence() {
-        this.addSequential(new WaitCommand(1.5));
+        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_CAMERA));
+
+        this.addSequential(new WaitCommand(0.75));
 
         this.addSequential(new TurnToTargetCommand()); // Turn to the widest thing
 
         this.addParallel(new MoveArmToAngleCommand(Arm.ARM_BOTTOM));
-        this.addSequential(new EncoderPosDriveCommand(4058, 0.5)); // Move onto the batter
+        this.addSequential(new EncoderPosDriveCommand(4058, 0.4)); // Move onto the batter
 
         this.addSequential(new CatapultShootCommand()); // Shoot the ball!
     }
