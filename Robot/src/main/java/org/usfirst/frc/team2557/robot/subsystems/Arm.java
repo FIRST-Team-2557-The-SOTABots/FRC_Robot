@@ -11,20 +11,19 @@ import org.usfirst.frc.team2557.robot.commands.arm.TeleopArmCommand;
 
 public class Arm extends Subsystem {
 
-//    public static final double ARM_LOWBAR = 4.43, COMPETITION BOT!
-//        ARM_LOADBALL = 3.184,
-//        ARM_BOTTOM = 4.47,
-//        ARM_CAMERA = 0, // TODO: Determine this potentiometer value
-//        ARM_ROUGH_DEFENSE = 3;
-    public static final double ARM_LOWBAR = 4.05, // PRACTICE BOT!
-            ARM_LOADBALL = 3.297, //3.529
-            ARM_BOTTOM = 4.296,
-            ARM_CAMERA = 3.966,
-            ARM_ROUGH_DEFENSE = 3;
+    public static final double ARM_LOWBAR = 4.43, // COMPETITION BOT!
+        ARM_LOADBALL = 3.184,
+        ARM_BOTTOM = 4.47,
+        ARM_CAMERA = 4,
+        ARM_ROUGH_DEFENSE = 3;
+//    public static final double ARM_LOWBAR = 4.05, // PRACTICE BOT!
+//            ARM_LOADBALL = 3.297, //3.529
+//            ARM_BOTTOM = 4.296,
+//            ARM_CAMERA = 3.966,
+//            ARM_ROUGH_DEFENSE = 3;
 
     public static final double deadzone = 0.35;
 
-//    private static final double ARM_MAX_SPEED = -0.75; // OLD SPEED, USED AT CENTRAL!
     private static final double ARM_MAX_SPEED = -1.5;
 
     private CANTalon leftActuator = RobotMap.leftActuatorMotor;
