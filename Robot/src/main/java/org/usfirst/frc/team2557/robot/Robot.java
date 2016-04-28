@@ -116,20 +116,10 @@ public class Robot extends IterativeRobot {
         // Test commands
         autoChooser.addObject("------------", null);
         autoChooser.addObject("Auto Shoot Position 3 RIGHT (TEST)", new Auto_Pos3Right());
-        autoChooser.addObject("Auto Shoot Position 4 RIGHT (TEST)", new Auto_Pos4Right());
-        autoChooser.addObject("Auto Shoot Position 1 LEFT (TEST)", new Auto_Pos1Left());
-        autoChooser.addObject("Auto Shoot Position 2 LEFT (TEST)", new Auto_Pos2Left());
-        autoChooser.addObject("Auto Shoot Position 1 CENTER (TEST)", new Auto_Pos1Center());
-        autoChooser.addObject("Auto Shoot Position 2 CENTER (TEST)", new Auto_Pos2Center());
-        autoChooser.addObject("Auto Shoot Position 3 CENTER (TEST)", new Auto_Pos3Center());
-        autoChooser.addObject("Auto Shoot Position 4 CENTER (TEST)", new Auto_Pos4Center());
         autoChooser.addObject("Drive Up Onto Batter (TEST)", new EncoderPosDriveCommand(4058, 0.5));
         autoChooser.addObject("Turn 90 degrees (TEST)", new TurnByAngleCommand(90));
-        autoChooser.addObject("Turn 10 degrees (TEST)", new TurnByAngleCommand(10));
         autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());
-        autoChooser.addObject("Arm To Camera (TEST)", new MoveArmToAngleCommand(Arm.ARM_CAMERA));
         autoChooser.addObject("Auto Align & Shoot (TEST)", new Auto_CameraShootSequence());
-        autoChooser.addObject("Load Ball (TEST)", new Auto_LoadBall());
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
     }
