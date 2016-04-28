@@ -56,7 +56,7 @@ public class TurnToTargetCommand extends Command {
             double degrees = (target.centerX - Camera.cameraWidth / 2) * Camera.degreesPerWidth;
 
             // Set the setpoint for the PID
-            this._controller.setSetpoint(degrees - 7);
+            this._controller.setSetpoint(degrees - 4);
         }
     }
 

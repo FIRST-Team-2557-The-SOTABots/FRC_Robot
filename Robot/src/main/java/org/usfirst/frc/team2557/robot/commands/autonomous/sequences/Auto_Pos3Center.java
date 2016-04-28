@@ -9,11 +9,15 @@ public class Auto_Pos3Center extends CommandGroup {
 
     public Auto_Pos3Center() {
 
+        this.addParallel(new Auto_LoadBall());
+
         this.addSequential(new TurnByAngleCommand(-20));
 
         this.addSequential(new EncoderPosDriveCommand(6776, 0.5));
 
         this.addSequential(new TurnByAngleCommand(20));
+
+        this.addSequential(new Auto_CameraShootSequence());
 
     }
 

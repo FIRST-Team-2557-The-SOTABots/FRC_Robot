@@ -18,8 +18,9 @@ public class Auto_CameraShootSequence extends CommandGroup {
 
         this.addSequential(new TurnToTargetCommand()); // Turn to the widest thing
 
-        this.addParallel(new MoveArmToAngleCommand(Arm.ARM_BOTTOM));
         this.addSequential(new EncoderPosDriveCommand(4058, 0.4)); // Move onto the batter
+
+        this.addSequential(new MoveArmToAngleCommand(Arm.ARM_BOTTOM));
 
         this.addSequential(new CatapultShootCommand()); // Shoot the ball!
     }

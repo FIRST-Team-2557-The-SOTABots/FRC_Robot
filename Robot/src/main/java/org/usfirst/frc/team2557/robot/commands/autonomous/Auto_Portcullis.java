@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
 import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
+import org.usfirst.frc.team2557.robot.commands.autonomous.resolvers.PosBatterResolverCommand;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultRetractCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.CorrectAngleOffsetCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.EncoderPosDriveCommand;
@@ -12,6 +14,7 @@ import org.usfirst.frc.team2557.robot.subsystems.Arm;
 public class Auto_Portcullis extends CommandGroup {
 
     public Auto_Portcullis() {
+
         this.addParallel(new MoveArmToAngleCommand(Arm.ARM_LOADBALL)); // Load ball!
         this.addSequential(new CatapultRetractCommand());
 
@@ -24,6 +27,8 @@ public class Auto_Portcullis extends CommandGroup {
         this.addSequential(new EncoderPosDriveCommand(10615, 1)); // Move to the green tape
 
         this.addSequential(new CorrectAngleOffsetCommand());
+
+        this.addSequential(new PosBatterResolverCommand());
 
     }
 }

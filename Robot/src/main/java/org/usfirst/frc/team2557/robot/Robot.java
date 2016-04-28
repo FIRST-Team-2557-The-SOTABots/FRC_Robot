@@ -43,6 +43,16 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
 
     SendableChooser autoChooser;
+    public SendableChooser posChooser;
+    public SendableChooser batterChooser;
+
+    public static Robot instance;
+
+    public Robot() {
+        super();
+
+        instance = this;
+    }
 
     /**
      * This function is run when the robot is first started up and should be
@@ -68,60 +78,33 @@ public class Robot extends IterativeRobot {
         oi 						= new OI();
 
         // Make a SendableChooser on the SmartDashboard for changing auto programs
-        autoChooser 			= new SendableChooser();
+        autoChooser = new SendableChooser();
         autoChooser.addDefault("Do Nothing (AUTO)", new Auto_DoNothing());
-        autoChooser.addObject("*************", null);
-        autoChooser.addObject("Drive To Defense (AUTO)", new Auto_DriveToDefense());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Lowbar (AUTO)", new Auto_Lowbar());
         autoChooser.addObject("Lowbar Left Batter (AUTO)", new Auto_LowbarLeft());
         autoChooser.addObject("Lowbar Center Batter (AUTO)", new Auto_LowbarCenter());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Chival De Frise (AUTO)", new Auto_ChivalDeFrise());
-        autoChooser.addObject("Chival De Frise POS 1 LEFT (AUTO)", new Auto_ChivalDeFrise_Pos1Left());
-        autoChooser.addObject("Chival De Frise POS 1 CENTER (AUTO)", new Auto_ChivalDeFrise_Pos1Center());
-        autoChooser.addObject("Chival De Frise POS 2 LEFT (AUTO)", new Auto_ChivalDeFrise_Pos2Left());
-        autoChooser.addObject("Chival De Frise POS 2 CENTER (AUTO)", new Auto_ChivalDeFrise_Pos2Center());
-        autoChooser.addObject("Chival De Frise POS 3 CENTER (AUTO)", new Auto_ChivalDeFrise_Pos3Center());
-        autoChooser.addObject("Chival De Frise POS 3 RIGHT (AUTO)", new Auto_ChivalDeFrise_Pos3Right());
-        autoChooser.addObject("Chival De Frise POS 4 CENTER (AUTO)", new Auto_ChivalDeFrise_Pos4Center());
-        autoChooser.addObject("Chival De Frise POS 4 RIGHT (AUTO)", new Auto_ChivalDeFrise_Pos4Right());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Portcullis (AUTO)", new Auto_Portcullis());
-        autoChooser.addObject("Portcullis POS 1 LEFT (AUTO)", new Auto_Portcullis_Pos1Left());
-        autoChooser.addObject("Portcullis POS 1 CENTER (AUTO)", new Auto_Portcullis_Pos1Center());
-        autoChooser.addObject("Portcullis POS 2 LEFT (AUTO)", new Auto_Portcullis_Pos2Left());
-        autoChooser.addObject("Portcullis POS 2 CENTER (AUTO)", new Auto_Portcullis_Pos2Center());
-        autoChooser.addObject("Portcullis POS 3 CENTER (AUTO)", new Auto_Portcullis_Pos3Center());
-        autoChooser.addObject("Portcullis POS 3 RIGHT (AUTO)", new Auto_Portcullis_Pos3Right());
-        autoChooser.addObject("Portcullis POS 4 CENTER (AUTO)", new Auto_Portcullis_Pos4Center());
-        autoChooser.addObject("Portcullis POS 4 RIGHT (AUTO)", new Auto_Portcullis_Pos4Right());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Rough Terrain (AUTO)", new Auto_RoughTerrain());
-        autoChooser.addObject("Rough Terrain POS 1 LEFT (AUTO)", new Auto_RoughTerrain_Pos1Left());
-        autoChooser.addObject("Rough Terrain POS 1 CENTER (AUTO)", new Auto_RoughTerrain_Pos1Center());
-        autoChooser.addObject("Rough Terrain POS 2 LEFT (AUTO)", new Auto_RoughTerrain_Pos2Left());
-        autoChooser.addObject("Rough Terrain POS 2 CENTER (AUTO)", new Auto_RoughTerrain_Pos2Center());
-        autoChooser.addObject("Rough Terrain POS 3 CENTER (AUTO)", new Auto_RoughTerrain_Pos3Center());
-        autoChooser.addObject("Rough Terrain POS 3 RIGHT (AUTO)", new Auto_RoughTerrain_Pos3Right());
-        autoChooser.addObject("Rough Terrain POS 4 CENTER (AUTO)", new Auto_RoughTerrain_Pos4Center());
-        autoChooser.addObject("Rough Terrain POS 4 RIGHT (AUTO)", new Auto_RoughTerrain_Pos4Right());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Ramparts (AUTO)", new Auto_Rampards());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Rock Wall (AUTO)", new Auto_RockWall());
-        autoChooser.addObject("*************", null);
         autoChooser.addObject("Moat (AUTO)", new Auto_Moat());
 
-        // Test commands
-        autoChooser.addObject("------------", null);
-        autoChooser.addObject("Auto Shoot Position 3 RIGHT (TEST)", new Auto_Pos3Right());
-        autoChooser.addObject("Drive Up Onto Batter (TEST)", new EncoderPosDriveCommand(4058, 0.5));
-        autoChooser.addObject("Turn 90 degrees (TEST)", new TurnByAngleCommand(90));
-        autoChooser.addObject("Turn To Target (TEST)", new TurnToTargetCommand());
-        autoChooser.addObject("Auto Align & Shoot (TEST)", new Auto_CameraShootSequence());
+        posChooser = new SendableChooser();
+        posChooser.addDefault("No Shoot", 0);
+        posChooser.addObject("Position 1", 1);
+        posChooser.addObject("Position 2", 2);
+        posChooser.addObject("Position 3", 3);
+        posChooser.addObject("Position 4", 4);
+
+        batterChooser = new SendableChooser();
+        batterChooser.addDefault("Left", -1);
+        batterChooser.addObject("Center", 0);
+        batterChooser.addObject("Right", 1);
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
+        SmartDashboard.putData("Position Chooser", posChooser);
+        SmartDashboard.putData("Batter Chooser", batterChooser);
     }
 
     public void disabledPeriodic() {

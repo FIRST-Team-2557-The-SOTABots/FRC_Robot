@@ -2,7 +2,9 @@ package org.usfirst.frc.team2557.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
+import org.usfirst.frc.team2557.robot.commands.autonomous.resolvers.PosBatterResolverCommand;
 import org.usfirst.frc.team2557.robot.commands.catapult.CatapultRetractCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.EncoderPosDriveCommand;
 import org.usfirst.frc.team2557.robot.commands.chassis.TimeDriveCommand;
@@ -25,6 +27,7 @@ public class Auto_ChivalDeFrise extends CommandGroup {
         this.addParallel(new MoveArmToAngleCommand(Arm.ARM_ROUGH_DEFENSE));
         this.addSequential(new EncoderPosDriveCommand(9530, 0.8));
 
+        this.addSequential(new PosBatterResolverCommand());
     }
 
 }

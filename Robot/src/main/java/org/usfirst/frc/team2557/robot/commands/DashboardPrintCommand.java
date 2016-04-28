@@ -25,16 +25,8 @@ public class DashboardPrintCommand extends Command {
     protected void execute() {
         SmartDashboard.putNumber("Lidar Distance Forward", RobotMap.lidarSensor.getData(352).getDistance());
 
-        SmartDashboard.putNumber("Distance Traveled (m)", Robot.chassis.getDistanceTraveled());
-
-        SmartDashboard.putNumber("Encoder Distance(L)", Robot.chassis.getLeftEncoderDistance());
-        SmartDashboard.putNumber("Encoder Distance (R)", Robot.chassis.getRightEncoderDistance());
-
         SmartDashboard.putNumber("Encoder Pos (L)", Robot.chassis.getLeftEncoderPos());
         SmartDashboard.putNumber("Encoder Pos (R)", Robot.chassis.getRightEncoderPos());
-
-        SmartDashboard.putNumber("Encoder Speed (L)", Robot.chassis.getLeftEncoderVel());
-        SmartDashboard.putNumber("Encoder Speed (R)", Robot.chassis.getRightEncoderVel());
 
         SmartDashboard.putNumber("Left Potentiometer", RobotMap.leftPotentiometer.getAverageVoltage());
         SmartDashboard.putNumber("Right Potentiometer", RobotMap.rightPotentiometer.getAverageVoltage());
@@ -42,8 +34,6 @@ public class DashboardPrintCommand extends Command {
 
         SmartDashboard.putNumber("Left Potentiometer Speed", Robot.arm.getLeftSpeed());
         SmartDashboard.putNumber("Right Potentiometer Speed", Robot.arm.getRightSpeed());
-
-        SmartDashboard.putNumber("Gyro Angle", Robot.chassis.getGyroAngle());
     }
 
     @Override
