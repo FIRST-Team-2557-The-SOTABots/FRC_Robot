@@ -1,7 +1,7 @@
-package org.usfirst.frc.team2557.robot;
+package src.org.usfirst.frc.team2557.robot;
 
-import org.usfirst.frc.team2557.robot.commands.IntakeInCommand;
-import org.usfirst.frc.team2557.robot.commands.IntakeOutCommand;
+import src.org.usfirst.frc.team2557.robot.commands.IntakeInCommand;
+import src.org.usfirst.frc.team2557.robot.commands.IntakeOutCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
