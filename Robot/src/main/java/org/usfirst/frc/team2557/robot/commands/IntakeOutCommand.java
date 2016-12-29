@@ -1,12 +1,16 @@
-package org.usfirst.frc.team2557.robot.commands.arm;
+package org.usfirst.frc.team2557.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
-public class TeleopArmCommand extends Command {
+import edu.wpi.first.wpilibj.command.Command;
 
-    public TeleopArmCommand() {
-        requires(Robot.arm);
+/**
+ *
+ */
+public class IntakeOutCommand extends Command {
+
+	public IntakeOutCommand() {
+        requires(Robot.intake);
     }
 
     @Override
@@ -16,9 +20,7 @@ public class TeleopArmCommand extends Command {
 
     @Override
     protected void execute() {
-        // Disable the PID on the arm
-
-        Robot.arm.set(-Robot.oi.manipulator.getRawAxis(1));
+        Robot.intake.set(-0.5);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class TeleopArmCommand extends Command {
 
     @Override
     protected void end() {
-
+        Robot.intake.set(0);
     }
 
     @Override

@@ -1,11 +1,15 @@
-package org.usfirst.frc.team2557.robot.commands.intake;
+package org.usfirst.frc.team2557.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ *
+ */
 public class IntakeInCommand extends Command {
 
-    public IntakeInCommand() {
+	public IntakeInCommand() {
         requires(Robot.intake);
     }
 
@@ -33,5 +37,4 @@ public class IntakeInCommand extends Command {
     protected void interrupted() {
         this.end();
     }
-
 }

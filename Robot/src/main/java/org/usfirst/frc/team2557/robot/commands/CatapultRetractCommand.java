@@ -1,11 +1,15 @@
-package org.usfirst.frc.team2557.robot.commands.catapult;
+package org.usfirst.frc.team2557.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ *
+ */
 public class CatapultRetractCommand extends Command {
 
-    public CatapultRetractCommand() {
+	public CatapultRetractCommand() {
         requires(Robot.catapult);
     }
 

@@ -1,17 +1,16 @@
-package org.usfirst.frc.team2557.robot.commands.util;
+package org.usfirst.frc.team2557.robot.commands;
 
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team2557.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * To be used in command groups as a sequential.
+ *
  */
-public class WaitForButtonCommand extends Command {
+public class IntakeStopCommand extends Command {
 
-    JoystickButton button;
-
-    public WaitForButtonCommand(JoystickButton button) {
-        this.button = button;
+	public IntakeStopCommand() {
+        requires(Robot.intake);
     }
 
     @Override
@@ -21,12 +20,12 @@ public class WaitForButtonCommand extends Command {
 
     @Override
     protected void execute() {
-
+        Robot.intake.set(0);
     }
 
     @Override
     protected boolean isFinished() {
-        return button.get();
+        return false;
     }
 
     @Override

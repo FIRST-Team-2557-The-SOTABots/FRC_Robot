@@ -1,14 +1,19 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
+import org.usfirst.frc.team2557.robot.RobotMap;
+import org.usfirst.frc.team2557.robot.commands.CatapultSequence;
+
 import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team2557.robot.RobotMap;
-import org.usfirst.frc.team2557.robot.commands.catapult.CatapultSequence;
 
+/**
+ *
+ */
 public class Catapult extends Subsystem {
-
-    CANTalon motor = RobotMap.catapultMotor;
+    
+	CANTalon motor = RobotMap.catapultMotor;
     DigitalInput hallEffect = RobotMap.catapultHallEffect;
 
     @Override
@@ -24,5 +29,5 @@ public class Catapult extends Subsystem {
     public boolean isCatapultDown() {
         return !this.hallEffect.get();
     }
-
 }
+

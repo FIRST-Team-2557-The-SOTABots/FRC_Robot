@@ -1,13 +1,18 @@
 package org.usfirst.frc.team2557.robot.subsystems;
 
-import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2557.robot.RobotMap;
-import org.usfirst.frc.team2557.robot.commands.intake.IntakeStopCommand;
+import org.usfirst.frc.team2557.robot.commands.IntakeStopCommand;
 
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+/**
+ *
+ */
 public class Intake extends Subsystem {
-
-    CANTalon intakeMotor = RobotMap.intakeMotor;
+    
+	CANTalon intakeMotor = RobotMap.intakeMotor;
 
     @Override
     protected void initDefaultCommand() {
@@ -19,5 +24,5 @@ public class Intake extends Subsystem {
     public void set(double speed) {
         intakeMotor.set(speed);
     }
-
 }
+

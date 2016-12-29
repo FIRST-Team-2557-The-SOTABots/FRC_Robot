@@ -1,51 +1,45 @@
 package org.usfirst.frc.team2557.robot;
 
+import org.usfirst.frc.team2557.robot.commands.IntakeInCommand;
+import org.usfirst.frc.team2557.robot.commands.IntakeOutCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team2557.robot.commands.arm.MoveArmToAngleCommand;
-import org.usfirst.frc.team2557.robot.commands.automation.Auto_LoadBall;
-import org.usfirst.frc.team2557.robot.commands.autonomous.macro.MacroPlayCommand;
-import org.usfirst.frc.team2557.robot.commands.autonomous.macro.MacroRecordCommand;
-import org.usfirst.frc.team2557.robot.commands.autonomous.sequences.Auto_CameraShootSequence;
-import org.usfirst.frc.team2557.robot.commands.intake.IntakeInCommand;
-import org.usfirst.frc.team2557.robot.commands.intake.IntakeOutCommand;
-import org.usfirst.frc.team2557.robot.commands.secondArm.SecondArmReleaseCommand;
-import org.usfirst.frc.team2557.robot.subsystems.Arm;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-//	public Joystick driver; //Gamepad
-//
-//	public JoystickButton driverA;
-//	public JoystickButton driverB;
-//	public JoystickButton driverX;
-//	public JoystickButton driverY;
-//	public JoystickButton driverLB;
-//	public JoystickButton driverRB;
-//	public JoystickButton driverBack;
-//	public JoystickButton driverStart;
-//	public JoystickButton driverLJB;
-//	public JoystickButton driverRJB;
-//
-	public Joystick manipulator; //Gamepad
-
-	public JoystickButton manipulatorA;
-	public JoystickButton manipulatorB;
-	public JoystickButton manipulatorX;
-	public JoystickButton manipulatorY;
-	public JoystickButton manipulatorLB;
-	public JoystickButton manipulatorRB;
-	public JoystickButton manipulatorBack;
-	public JoystickButton manipulatorStart;
-	public JoystickButton manipulatorLJB;
-	public JoystickButton manipulatorRJB;
+    //// CREATING BUTTONS
+    // One type of button is a joystick button which is any button on a joystick.
+    // You create one by telling it which joystick it's on and which button
+    // number it is.
+    // Joystick stick = new Joystick(port);
+    // Button button = new JoystickButton(stick, buttonNumber);
+    
+    // There are a few additional built in buttons you can use. Additionally,
+    // by subclassing Button you can create custom triggers and bind those to
+    // commands the same as any other Button.
+    
+    //// TRIGGERING COMMANDS WITH BUTTONS
+    // Once you have a button, it's trivial to bind it to a button in one of
+    // three ways:
+    
+    // Start the command when the button is pressed and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenPressed(new ExampleCommand());
+    
+    // Run the command while the button is being held down and interrupt it once
+    // the button is released.
+    // button.whileHeld(new ExampleCommand());
+    
+    // Start the command when the button is released  and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenReleased(new ExampleCommand());
+	public Joystick driver;
 	
-	public Joystick driver; //Gamepad
-
 	public JoystickButton button1;
 	public JoystickButton button2;
 	public JoystickButton button3;
@@ -59,23 +53,23 @@ public class OI {
 	public JoystickButton button11;
 	public JoystickButton button12;
 
-    public OI(){
-//        driver = new Joystick(0);
-//
-//        driverA = new JoystickButton(driver, 1);
-//        driverB = new JoystickButton(driver, 2);
-//        driverX = new JoystickButton(driver, 3);
-//        driverY = new JoystickButton(driver, 4);
-//        driverLB = new JoystickButton(driver, 5);
-//        driverRB = new JoystickButton(driver, 6);
-//        driverBack = new JoystickButton(driver, 7);
-//        driverStart = new JoystickButton(driver, 8);
-//        driverLJB = new JoystickButton(driver, 9);
-//        driverRJB = new JoystickButton(driver, 10);
-
-    	
-    	driver 		= new Joystick(0);
-
+	public Joystick manipulator;
+	
+	public JoystickButton manipulatorA;
+	public JoystickButton manipulatorB;
+	public JoystickButton manipulatorX;
+	public JoystickButton manipulatorY;
+	public JoystickButton manipulatorLB;
+	public JoystickButton manipulatorRB;
+	public JoystickButton manipulatorBack;
+	public JoystickButton manipulatorStart;
+	public JoystickButton manipulatorLJB;
+	public JoystickButton manipulatorRJB;
+	
+	public OI(){
+		
+		driver = new Joystick(0);
+		
     	button1	 	= new JoystickButton(driver, 1);
     	button2 	= new JoystickButton(driver, 2);
     	button3 	= new JoystickButton(driver, 3);
@@ -89,7 +83,7 @@ public class OI {
     	button11 	= new JoystickButton(driver, 11);
     	button12 	= new JoystickButton(driver, 12);
     	
-        manipulator = new Joystick(1);
+    	manipulator = new Joystick(1);
 
         manipulatorA 		= new JoystickButton(manipulator, 1);
         manipulatorB 		= new JoystickButton(manipulator, 2);
@@ -101,132 +95,10 @@ public class OI {
         manipulatorStart 	= new JoystickButton(manipulator, 8);
         manipulatorLJB 		= new JoystickButton(manipulator, 9);
         manipulatorRJB 		= new JoystickButton(manipulator, 10);
-
-        // Set commands to buttons
-        button12.whileHeld(new MacroRecordCommand("/home/lvuser/test.autonomous"));
-        button11.whileHeld(new MacroPlayCommand("/home/lvuser/test.autonomous"));
-
+    	
         manipulatorLB.whileHeld(new IntakeOutCommand());
         manipulatorRB.whileHeld(new IntakeInCommand());
-
-		manipulatorY.whileHeld(new SecondArmReleaseCommand());
-
-		manipulatorX.whenPressed(new Auto_LoadBall());
-
-        Command autoShootSequence = new Auto_CameraShootSequence();
-        manipulatorA.whenPressed(autoShootSequence);
-        manipulatorBack.cancelWhenPressed(autoShootSequence);
-
-        manipulatorB.whileHeld(new MoveArmToAngleCommand(Arm.ARM_CAMERA));
-    }
-    /*
-     * This commented section will be a place where anyone can easily see what buttons do what and what axis do what
-     * 
-     *===Driver Controller===
-     *
-     * Left Joystick Y-Axis	=	=	Left side of the drive train
-     * Left Joystick X-Axis	=	=
-     * Right Joystick Y-Axis	=	Right side of the drive train
-     * Right Joystick X-Axis	= 
-     * Left Trigger Axis	=	= 	Winch (tied into Right Trigger)
-     * Right Trigger Axis	=	=	Winch (tied into Left Trigger)
-     * A	=	=	=	=	=	= 
-     * B	=	=	=	=	=	= 
-     * X	=	=	=	=	=	= 
-     * Y	=	=	=	=	=	= 
-     * LB	=	=	=	=	=	= 
-     * RB	=	=	=	=	=	= 
-     * BACK	=	=	=	=	=	=	Secondary Arm Servo Actuation (tied into START)
-     * START	=	=	=	=	= 	Secondary Arm Servo Actuation (tied into BACK)
-     * LJB	=	=	=	=	=	= 
-     * RJB	=	=	=	=	=	= 
-     * POV-1	=	=	=	=	= 
-     * POV1	=	=	=	=	=	= 
-     * POV2	=	=	=	=	=	= 
-     * POV3	=	=	=	=	=	= 
-     * POV4	=	=	=	=	=	= 
-     * POV5	=	=	=	=	=	= 
-     * POV6	=	=	=	=	=	= 
-     * POV7	=	=	=	=	=	= 
-     * POV8	=	=	=	=	=	=
-     *
-     *
-     *			For Joystick, not Gamepad
-     * X-Axis	=	=	=	=	=	Rotation Drive
--+     * Y-Axis	=	=	=	=	=	Forward/Reverse Drive
-     * z-Axis	=	=	=	=	=
-     * Slider	=	=	=	=	=	Speed Adjustment
-     * Button1 (Trigger)	=	=
-     * Button2 (Thumb Button)	=
-     * Button3	=	=	=	=	=
-     * Button4	=	=	=	=	=
-     * Button5	=	=	=	=	=
-     * Button6	=	=	=	=	=
-     * Button7	=	=	=	=	=
-     * Button8	=	=	=	=	=
-     * Button9	=	=	=	=	=
-     * Button10	=	=	=	=	=
-     * Button11	=	=	=	=	=	
-     * Button12=	=	=	=	=
-     *
-     *
-     *
-     *
-     *===Manipulator Controller===
-     *
-     * Left Joystick Y-Axis	=	=
-     * Left Joystick X-Axis	=	=
-     * Right Joystick Y-Axis	=
-     * Right Joystick X-Axis	=
-     * Left Trigger Axis	=	=
-     * Right Trigger Axis	=	=	Setting the catapult
-     * A	=	=	=	=	=	=
-     * B	=	=	=	=	=	=
-     * X	=	=	=	=	=	=
-     * Y	=	=	=	=	=	=
-     * LB	=	=	=	=	=	=	Spitting out the ball (outtake)
-     * RB	=	=	=	=	=	=	Intaking the ball
-     * BACK	=	=	=	=	=	=	Intake Arm Configuration 5; Climbing
-     * START	=	=	=	=	=	Allows for the catapult to shoot
-     * LJB	=	=	=	=	=	=	Reset Encoders
-     * RJB	=	=	=	=	=	=	
-     * POV-1	=	=	=	=	=
-     * POV0	=	=	=	=	=	=	Intake Arm Configuration 1; Intake
-     * POV1	=	=	=	=	=	=
-     * POV2	=	=	=	=	=	=	Intake Arm Configuration 2; Load
-     * POV3	=	=	=	=	=	=
-     * POV4	=	=	=	=	=	=	Intake Arm Configuration 3; Portcullis
-     * POV5	=	=	=	=	=	=
-     * POV6	=	=	=	=	=	=	Intake Arm Configuration 4; Lowbar
-     * POV7	=	=	=	=	=	=
-     * 
-     *
-     *
-     *
-     *			For Joystick, not Gamepad
-     * X-Axis	=	=	=	=	=
-     * Y-Axis	=	=	=	=	=
-     * z-Axis	=	=	=	=	=
-     * Slider	=	=	=	=	=
-     * Button1 (Trigger)	=	=
-     * Button2 (Thumb Button)	=
-     * Button3	=	=	=	=	=
-     * Button4	=	=	=	=	=
-     * Button5	=	=	=	=	=
-     * Button6	=	=	=	=	=
-     * Button7	=	=	=	=	=
-     * Button8	=	=	=	=	=
-     * Button9	=	=	=	=	=
-     * Button10	=	=	=	=	=
-     * Button11	=	=	=	=	=	
-     * Button12=	=	=	=	=
-     *
-     * 
-     * 
-     * 
-     * 
-     *
-     */
-     
+				
+	}
 }
 

@@ -1,12 +1,17 @@
-package org.usfirst.frc.team2557.robot.commands.secondArm;
+package org.usfirst.frc.team2557.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2557.robot.Robot;
 
-public class SecondArmLatchCommand extends Command {
+import edu.wpi.first.wpilibj.command.Command;
 
-    public SecondArmLatchCommand() {
-        requires(Robot.secondArm);
+/**
+ *
+ */
+public class TeleopArmCommand extends Command {
+
+
+    public TeleopArmCommand() {
+        requires(Robot.arm);
     }
 
     @Override
@@ -16,7 +21,7 @@ public class SecondArmLatchCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.secondArm.latch();
+        Robot.arm.set(-Robot.oi.manipulator.getRawAxis(1));
     }
 
     @Override
@@ -31,6 +36,6 @@ public class SecondArmLatchCommand extends Command {
 
     @Override
     protected void interrupted() {
-        this.end();
+        
     }
 }

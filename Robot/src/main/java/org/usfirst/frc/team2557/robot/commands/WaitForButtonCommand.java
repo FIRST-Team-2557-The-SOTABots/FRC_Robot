@@ -1,12 +1,17 @@
-package org.usfirst.frc.team2557.robot.commands.intake;
+package org.usfirst.frc.team2557.robot.commands;
 
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team2557.robot.Robot;
 
-public class IntakeOutCommand extends Command {
+/**
+ *
+ */
+public class WaitForButtonCommand extends Command {
 
-    public IntakeOutCommand() {
-        requires(Robot.intake);
+	JoystickButton button;
+
+    public WaitForButtonCommand(JoystickButton button) {
+        this.button = button;
     }
 
     @Override
@@ -16,17 +21,17 @@ public class IntakeOutCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.set(-1);
+
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return button.get();
     }
 
     @Override
     protected void end() {
-        Robot.intake.set(0);
+
     }
 
     @Override

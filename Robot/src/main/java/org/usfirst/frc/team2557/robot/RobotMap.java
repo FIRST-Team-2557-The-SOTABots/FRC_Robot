@@ -1,10 +1,18 @@
 package org.usfirst.frc.team2557.robot;
 
-import edu.wpi.first.wpilibj.*;
+//import org.usfirst.frc.team2557.robot.subsystems.LidarRangeFinder;
+
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import org.usfirst.frc.team2557.accessories.ArduinoComm;
-import org.usfirst.frc.team2557.sensors.LidarRangeFinder;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -33,17 +41,11 @@ public class RobotMap {
     public static Accelerometer rioAccelerometer;
 
     public static Gyro mainGyro;
-
     public static AnalogInput leftPotentiometer;
     public static AnalogInput rightPotentiometer;
 
-    public static LidarRangeFinder lidarSensor;
-    public static AnalogInput sonar;
-
-    public static ArduinoComm arduinoComm;
-
     public static RobotDrive robotDrive;
-
+    
     /**
      * Initializes all the parts of RobotMap. This must be called main init method
      * in Robot.java, as WPI needs to set up before these objects can be constructed.
@@ -59,33 +61,35 @@ public class RobotMap {
         driveRight2 = new CANTalon(5);
         catapultMotor = new CANTalon(1);
         climbingMotor = new CANTalon(9);
-        intakeMotor = new CANTalon(4);
-
         leftActuatorMotor = new CANTalon(2);
+        driveLeft1.setInverted(true);
+        driveLeft2.setInverted(true);
+        driveRight1.setInverted(false);
+        driveRight2.setInverted(false);
+        
+
         leftActuatorMotor.enableLimitSwitch(false, false);
-        leftActuatorMotor.enableBrakeMode(true);
         rightActuatorMotor = new CANTalon(3);
         rightActuatorMotor.enableLimitSwitch(false, false);
-        rightActuatorMotor.enableBrakeMode(true);
+        intakeMotor = new CANTalon(4);
 
-        secondaryArm = new Servo(4);
+        secondaryArm = new Servo(0);
 
         catapultHallEffect = new DigitalInput(0);
 
         rioAccelerometer = new BuiltInAccelerometer();
 
-        mainGyro = new ADXRS450_Gyro();
+        mainGyro = new AnalogGyro(0);
 
         leftPotentiometer = new AnalogInput(1);
         rightPotentiometer = new AnalogInput(2);
 
-        lidarSensor = new LidarRangeFinder(SerialPort.Port.kMXP); // Using the MXP breakout for tx/rx (serial)
 
         robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
         robotDrive.setExpiration(0.2);
         robotDrive.setSafetyEnabled(false);
+        
 
-        arduinoComm = new ArduinoComm(); // Using the MXP breakout for sda/sdt (i2c)
     }
 
 }
