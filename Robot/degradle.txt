@@ -1,0 +1,21 @@
+If you want to do it for a specific branch:
+
+1) Delete /Robot/tools, /Robot/gradle, /Robot/dependencies, /Robot/build.gradle, /Robot/gradlew, /Robot/gradlew.bat, /Robot/.gitignore
+2) Go to /Robot/src/main/java. You need to move “org” to /Robot/src, so it would become /Robot/src/org
+3) Add the files attached to this email in /Robot (except “.gitignore”)
+4) Replace the “.gitignore” file with the attached “.gitignore”
+5) Commit and push
+
+
+
+
+
+
+
+	If you want to change all the branches, there will be some work involved. Though you’re in off-season so there’ll be plenty of time to do it. Change “master” it to ANT (ungradle), and merge “master” into the other branches. There will be merge conflicts, so you’ll have to resolve all the merge conflicts. I was stupid and made the branches separate form each other. But after that is done it will give you a big advantage; if there is a core addition (eg. re-usable camera code or LED code or something like that) you can add it to master and merge master into all the other branches.
+	If you make the changes to master you can branch it off to dev/2017 so that both master and dev/2017 have ANT, and I might help convert the other branches back to ANT, if you want the help.
+
+Have fun!
+Philip
+
+
