@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Robot" default="deploy">
+<project name="FRC Deployment" default="deploy">
 
   <!--
   The following properties can be defined to override system level
@@ -20,11 +20,11 @@
   <!-- <property name="target" value=""/> -->
 
   <!-- Any other property in build.properties can also be overridden. -->
-
+  
   <property file="${user.home}/wpilib/wpilib.properties"/>
   <property file="build.properties"/>
   <property file="${user.home}/wpilib/java/${version}/ant/build.properties"/>
-
+  
   <import file="${wpilib.ant.dir}/build.xml"/>
 
-</project>
+</project> 
