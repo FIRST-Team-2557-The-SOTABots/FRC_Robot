@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="FRC Deployment" default="deploy">
+<project name="Robot" default="deploy">
 
   <!--
   The following properties can be defined to override system level
